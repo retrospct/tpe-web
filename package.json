@@ -1,0 +1,39 @@
+{
+  "name": "tpe-web",
+  "version": "0.1.0",
+  "description": "The public website for Two Perfect Events - twoperfectevents.com",
+  "private": true,
+  "license": "Apache-2.0",
+  "author": "Justin Lee <me@jlee.cool> (https://jlee.cool)",
+  "scripts": {
+    "dev": "concurrently \"npm:next:dev\" \"npm:slicemachine\" --names \"next,slicemachine\" --prefix-colors blue,magenta",
+    "next:dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "slicemachine": "start-slicemachine",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@prismicio/client": "^7.3.1",
+    "@prismicio/next": "^1.5.0",
+    "@prismicio/react": "^2.7.3",
+    "next": "^14.1.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@slicemachine/adapter-next": "^0.3.38",
+    "@types/node": "^20.11.27",
+    "@types/react": "^18.2.65",
+    "@types/react-dom": "^18.2.22",
+    "concurrently": "^8.2.2",
+    "eslint": "^8",
+    "eslint-config-next": "^14.1.3",
+    "prettier": "^3.2.5",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "prettier-plugin-tailwindcss": "^0.5.12",
+    "slice-machine-ui": "^1.26.0",
+    "typescript": "^5.4.2"
+  }
+}
