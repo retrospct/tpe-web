@@ -44,7 +44,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
         {/* mt-16 flow-root sm:mt-24 */}
         <div className="flow-root">
           {/* -m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4 */}
-          <div className="bg-main-bg w-full">
+          <div className="bg-main-bg min-w-full">
             {/* <img
                   src="https://tailwindui.com/img/component-images/project-app-screenshot.png"
                   alt="App screenshot"
@@ -52,18 +52,20 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                   height={1442}
                   className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
                 /> */}
-            {isFilled.image(slice.primary.image) && <PrismicNextImage field={slice.primary.image} className="w-full" />}
+            {isFilled.image(slice.primary.image) && (
+              <PrismicNextImage field={slice.primary.image} className="min-w-full" />
+            )}
           </div>
         </div>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto mt-16 flow-root max-w-5xl text-left sm:mt-24">
             {isFilled.richText(slice.primary.title) && (
-              <div className="max-w-4xl text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+              <div className="max-w-4xl text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
                 <PrismicRichText field={slice.primary.title} />
               </div>
             )}
-            <div className="mt-10 flex items-center justify-center gap-x-12">
-              <div className="bg-pink min-w-fit p-2 hover:bg-rose-300">
+            <div className="mt-6 flex flex-col-reverse items-center justify-center gap-x-12 sm:mt-10 sm:flex-row">
+              <div className="bg-pink mt-8 min-w-fit p-2 hover:bg-rose-300 sm:mt-0">
                 {isFilled.link(slice.primary.cta_link) ? (
                   <PrismicNextLink
                     field={slice.primary.cta_link}
@@ -81,7 +83,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                 )}
               </div>
               {isFilled.richText(slice.primary.description) && (
-                <div className="mt-6 text-right text-lg leading-8 text-gray-600">
+                <div className="mt-6 text-left text-lg leading-8 text-gray-600 sm:text-right">
                   <PrismicRichText field={slice.primary.description} />
                 </div>
               )}
