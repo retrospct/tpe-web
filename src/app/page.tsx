@@ -1,10 +1,8 @@
-import { Metadata } from 'next'
-
-import * as prismic from '@prismicio/client'
-import { SliceZone } from '@prismicio/react'
-
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
+import * as prismic from '@prismicio/client'
+import { SliceZone } from '@prismicio/react'
+import { Metadata } from 'next'
 
 // This component renders your homepage.
 //
