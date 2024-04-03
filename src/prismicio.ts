@@ -35,7 +35,8 @@ export const createClient = (config: prismicNext.CreateClientConfig = {}) => {
       process.env.NODE_ENV === 'production'
         ? { next: { tags: ['prismic'] }, cache: 'force-cache' }
         : { next: { revalidate: 5 } },
-    ...config
+    ...config,
+    accessToken: process.env.NEXT_PUBLIC_PRISMIC_TOKEN
   })
 
   prismicNext.enableAutoPreviews({ client })

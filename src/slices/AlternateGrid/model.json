@@ -1,8 +1,8 @@
 {
-  "id": "hero",
+  "id": "alternate_grid",
   "type": "SharedSlice",
-  "name": "Hero",
-  "description": "Hero",
+  "name": "AlternateGrid",
+  "description": "AlternateGrid",
   "variations": [
     {
       "id": "default",
@@ -44,24 +44,28 @@
             "constraint": {},
             "thumbnails": []
           }
-        },
-        "callToActionLabel": {
-          "type": "Text",
-          "config": {
-            "label": "callToActionLabel",
-            "placeholder": ""
-          }
-        },
-        "callToActionLink": {
-          "type": "Link",
-          "config": {
-            "label": "callToActionLink",
-            "placeholder": "",
-            "select": null
-          }
         }
       },
-      "items": {}
+      "items": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading2,heading3,heading4,heading5,heading6,strong,em"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,hyperlink,strong,em,list-item,o-list-item,rtl"
+          }
+        }
+      }
     },
     {
       "id": "imageRight",
@@ -103,24 +107,28 @@
             "constraint": {},
             "thumbnails": []
           }
-        },
-        "callToActionLabel": {
-          "type": "Text",
-          "config": {
-            "label": "callToActionLabel",
-            "placeholder": ""
-          }
-        },
-        "callToActionLink": {
-          "type": "Link",
-          "config": {
-            "label": "callToActionLink",
-            "placeholder": "",
-            "select": null
-          }
         }
       },
-      "items": {}
+      "items": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading2,heading3,heading4,heading5,heading6,strong,em"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,hyperlink,strong,em,list-item,o-list-item,rtl"
+          }
+        }
+      }
     }
   ]
 }

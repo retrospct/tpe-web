@@ -36,6 +36,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "alternate_grid": {
+              "type": "SharedSlice"
+            },
+            "customer_logos": {
+              "type": "SharedSlice"
+            },
             "hero": {
               "type": "SharedSlice"
             },

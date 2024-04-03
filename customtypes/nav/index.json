@@ -1,0 +1,10 @@
+{
+  "format": "custom",
+  "id": "nav",
+  "json": {
+    "Main": {}
+  },
+  "label": "Nav",
+  "repeatable": false,
+  "status": true
+}
