@@ -102,13 +102,7 @@ export type NavDocument<Lang extends string = string> = prismic.PrismicDocumentW
   Lang
 >
 
-type PageDocumentDataSlicesSlice =
-  | HeroImageSlice
-  | AlternateGridSlice
-  | CustomerLogosSlice
-  | HeroSlice
-  | CallToActionSlice
-  | RichTextSlice
+type PageDocumentDataSlicesSlice = BannerSlice | HeroImageSlice | CustomerLogosSlice
 
 /**
  * Content for Page documents

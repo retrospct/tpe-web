@@ -1,13 +1,16 @@
 import { repositoryName } from '@/prismicio'
 import { PrismicPreview } from '@prismicio/next'
-import { Inter } from 'next/font/google'
+import { Crimson_Pro } from 'next/font/google'
+import localFont from 'next/font/local'
 
 import '../styles/globals.css'
 
-const inter = Inter({
+const crimson = Crimson_Pro({
   subsets: ['latin'],
-  variable: '--font-inter'
+  variable: '--font-crimson'
 })
+
+const belgant = localFont({ src: './font/belgant-aesthetic.otf', variable: '--font-belgant' })
 
 export default function RootLayout({
   children
@@ -15,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} font-sans`}>
+    <html lang="en" className={`${crimson.variable} ${belgant.variable}`}>
       <body>{children}</body>
       <PrismicPreview repositoryName={repositoryName ?? 'tpe-web'} />
     </html>

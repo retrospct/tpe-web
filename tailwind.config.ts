@@ -21,19 +21,26 @@ export default {
       '8xl': ['6rem', { lineHeight: '1' }],
       '9xl': ['8rem', { lineHeight: '1' }]
     },
+    colors: {
+      black: '#fff'
+    },
     extend: {
       colors: {
-        'main-bg': '#EFE4D9',
+        almond: '#EFE4D9',
         pink: '#EEC8CB',
-        red: '#9E3811'
+        red: '#9E3811',
+        brown: '#5B3613',
+        beige: '#F8F3EE'
       },
       borderRadius: {
         '4xl': '2rem'
       },
       fontFamily: {
-        sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
-        display: 'var(--font-lexend)'
+        sans: ['var(--font-crimson)', ...defaultTheme.fontFamily.sans],
+        serif: ['var(--font-belgant)', ...defaultTheme.fontFamily.serif]
+        // display: ['var(--font-crimson)', 'ui-serif']
       },
+
       maxWidth: {
         '2xl': '40rem'
       }
