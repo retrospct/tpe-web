@@ -26,25 +26,13 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-main-bg relative isolate pt-12 sm:pt-16 lg:pt-20"
+      className="bg-main-bg relative isolate pt-0"
     >
-      {/* <div
-        className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-        aria-hidden="true"
-      >
-        <div
-          className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-          style={{
-            clipPath:
-              'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)'
-          }}
-        />
-      </div> */}
       <div className="pb-12 sm:pb-16 lg:pb-20">
         {/* mt-16 flow-root sm:mt-24 */}
         <div className="flow-root">
           {/* -m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4 */}
-          <div className="bg-main-bg min-w-full">
+          <div className="bg-main-bg relative h-[calc(88dvh-120px)] min-h-[calc(88dvh-120px)] min-w-full overflow-hidden sm:h-[652px] sm:min-h-[652px]">
             {/* <img
                   src="https://tailwindui.com/img/component-images/project-app-screenshot.png"
                   alt="App screenshot"
@@ -53,7 +41,15 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                   className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
                 /> */}
             {isFilled.image(slice.primary.image) && (
-              <PrismicNextImage field={slice.primary.image} className="min-w-full" />
+              <PrismicNextImage
+                field={slice.primary.image}
+                // imgixParams={{ crop: 'faces,edges,center', fit: 'crop', h:652, minH: 652 }}
+                className="object-cover"
+                // height={652}
+                // style={{ objectFit: 'cover' }}
+                priority
+                fill
+              />
             )}
           </div>
         </div>
@@ -64,12 +60,12 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                 <PrismicRichText field={slice.primary.title} />
               </div>
             )}
-            <div className="mt-6 flex flex-col-reverse items-center justify-center gap-x-12 sm:mt-10 sm:flex-row">
+            <div className="mt-8 flex flex-col-reverse items-center justify-center gap-x-12 sm:mt-10 sm:flex-row">
               <div className="bg-pink mt-8 min-w-fit p-2 hover:bg-rose-300 sm:mt-0">
                 {isFilled.link(slice.primary.cta_link) ? (
                   <PrismicNextLink
                     field={slice.primary.cta_link}
-                    className="border-red text-red inline-block text-nowrap border-2 border-solid px-16 py-7 text-lg font-semibold focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-8 focus-visible:outline-rose-400"
+                    className="border-red text-red inline-block text-nowrap border-2 border-solid px-14 py-4 text-lg font-semibold focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-8 focus-visible:outline-rose-400"
                   >
                     {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
                   </PrismicNextLink>
@@ -83,28 +79,41 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                 )}
               </div>
               {isFilled.richText(slice.primary.description) && (
-                <div className="mt-6 text-left text-lg leading-8 text-gray-600 sm:text-right">
-                  <PrismicRichText field={slice.primary.description} />
+                <div className="text-left text-lg leading-8 text-gray-600 sm:text-right">
+                  <PrismicRichText field={slice.primary.description} components={components} />
                 </div>
               )}
             </div>
           </div>
         </div>
       </div>
-      {/* <div
-        className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-        aria-hidden="true"
-      >
-        <div
-          className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-          style={{
-            clipPath:
-              'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)'
-          }}
-        />
-      </div> */}
     </section>
   )
 }
 
 export default HeroImage
+
+// {/* <div
+//   className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+//   aria-hidden="true"
+// >
+//   <div
+//     className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+//     style={{
+//       clipPath:
+//         'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)'
+//     }}
+//   />
+// </div> */}
+// {/* <div
+//   className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+//   aria-hidden="true"
+// >
+//   <div
+//     className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+//     style={{
+//       clipPath:
+//         'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)'
+//     }}
+//   />
+// </div> */}

@@ -797,7 +797,7 @@ export interface HeroImageSliceDefaultPrimary {
    * Title field in *HeroImage → Primary*
    *
    * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Perferendis Repellendus Magnam Nemo
    * - **API ID Path**: hero_image.primary.title
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
@@ -807,27 +807,17 @@ export interface HeroImageSliceDefaultPrimary {
    * Description field in *HeroImage → Primary*
    *
    * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Officia ex cupidatat et anim ut ullamco tempor laboris pariatur ex officia sint.
    * - **API ID Path**: hero_image.primary.description
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField
 
   /**
-   * Max Width field in *HeroImage → Primary*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: 0 = full width
-   * - **API ID Path**: hero_image.primary.max_width
-   * - **Documentation**: https://prismic.io/docs/field#number
-   */
-  max_width: prismic.NumberField
-
-  /**
    * CTA Text field in *HeroImage → Primary*
    *
    * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: CLICK ME
    * - **API ID Path**: hero_image.primary.cta_text
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
@@ -837,11 +827,22 @@ export interface HeroImageSliceDefaultPrimary {
    * CTA Link field in *HeroImage → Primary*
    *
    * - **Field Type**: Link
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Link to another page
    * - **API ID Path**: hero_image.primary.cta_link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   cta_link: prismic.LinkField
+
+  /**
+   * Max Width field in *HeroImage → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: default
+   * - **API ID Path**: hero_image.primary.max_width
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  max_width: prismic.SelectField<'default' | 'full' | 'tight' | 'loose', 'filled'>
 }
 
 /**
