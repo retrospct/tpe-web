@@ -377,6 +377,48 @@ type AlternateGridSliceVariation = AlternateGridSliceDefault | AlternateGridSlic
 export type AlternateGridSlice = prismic.SharedSlice<'alternate_grid', AlternateGridSliceVariation>
 
 /**
+ * Primary content in *Banner → Items*
+ */
+export interface BannerSliceDefaultItem {
+  /**
+   * Title field in *Banner → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: WEDDINGS
+   * - **API ID Path**: banner.items[].title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+}
+
+/**
+ * Default variation for Banner Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BannerSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Record<string, never>,
+  Simplify<BannerSliceDefaultItem>
+>
+
+/**
+ * Slice variation for *Banner*
+ */
+type BannerSliceVariation = BannerSliceDefault
+
+/**
+ * Banner Shared Slice
+ *
+ * - **API ID**: `banner`
+ * - **Description**: Banner
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BannerSlice = prismic.SharedSlice<'banner', BannerSliceVariation>
+
+/**
  * Primary content in *CallToAction → Primary*
  */
 export interface CallToActionSliceDefaultPrimary {
@@ -936,6 +978,10 @@ declare module '@prismicio/client' {
       AlternateGridSliceVariation,
       AlternateGridSliceDefault,
       AlternateGridSliceImageRight,
+      BannerSlice,
+      BannerSliceDefaultItem,
+      BannerSliceVariation,
+      BannerSliceDefault,
       CallToActionSlice,
       CallToActionSliceDefaultPrimary,
       CallToActionSliceAlignLeftPrimary,

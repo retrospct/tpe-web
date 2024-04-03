@@ -1,0 +1,28 @@
+{
+  "id": "banner",
+  "type": "SharedSlice",
+  "name": "Banner",
+  "description": "Banner",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {},
+      "items": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "WEDDINGS",
+            "allowTargetBlank": true,
+            "single": "paragraph,hyperlink,em,strong"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 
 export const components = {
   alternate_grid: dynamic(() => import('./AlternateGrid')),
+  banner: dynamic(() => import('./Banner')),
   call_to_action: dynamic(() => import('./CallToAction')),
   customer_logos: dynamic(() => import('./CustomerLogos')),
   hero: dynamic(() => import('./Hero')),
