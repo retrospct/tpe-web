@@ -32,23 +32,14 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
         {/* mt-16 flow-root sm:mt-24 */}
         <div className="flow-root">
           {/* -m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4 */}
-          <div className="bg-main-bg relative h-[calc(88dvh-120px)] min-h-[calc(88dvh-120px)] min-w-full overflow-hidden sm:h-[652px] sm:min-h-[652px]">
-            {/* <img
-                  src="https://tailwindui.com/img/component-images/project-app-screenshot.png"
-                  alt="App screenshot"
-                  width={2432}
-                  height={1442}
-                  className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
-                /> */}
+          <div className="bg-main-bg relative h-[calc(88dvh-120px)] max-h-[652px] min-h-[652px] min-w-full overflow-hidden sm:h-[652px] sm:min-h-[652px]">
             {isFilled.image(slice.primary.image) && (
               <PrismicNextImage
                 field={slice.primary.image}
-                // imgixParams={{ crop: 'faces,edges,center', fit: 'crop', h:652, minH: 652 }}
+                imgixParams={{ crop: 'faces,edges', fit: 'crop', w: 1, h: 652, maxH: 652 }}
                 className="object-cover"
-                // height={652}
-                // style={{ objectFit: 'cover' }}
-                priority
                 fill
+                priority
               />
             )}
           </div>
