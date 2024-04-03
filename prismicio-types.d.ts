@@ -103,6 +103,7 @@ export type NavDocument<Lang extends string = string> = prismic.PrismicDocumentW
 >
 
 type PageDocumentDataSlicesSlice =
+  | HeroImageSlice
   | AlternateGridSlice
   | CustomerLogosSlice
   | HeroSlice
@@ -823,14 +824,24 @@ export interface HeroImageSliceDefaultPrimary {
   max_width: prismic.NumberField
 
   /**
-   * Button Text field in *HeroImage → Primary*
+   * CTA Text field in *HeroImage → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero_image.primary.button_text
+   * - **API ID Path**: hero_image.primary.cta_text
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  button_text: prismic.RichTextField
+  cta_text: prismic.RichTextField
+
+  /**
+   * CTA Link field in *HeroImage → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_image.primary.cta_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta_link: prismic.LinkField
 }
 
 /**

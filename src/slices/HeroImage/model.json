@@ -45,13 +45,21 @@
             "placeholder": "0 = full width"
           }
         },
-        "button_text": {
+        "cta_text": {
           "type": "StructuredText",
           "config": {
-            "label": "Button Text",
+            "label": "CTA Text",
             "placeholder": "",
             "allowTargetBlank": false,
             "single": "paragraph,em"
+          }
+        },
+        "cta_link": {
+          "type": "Link",
+          "config": {
+            "label": "CTA Link",
+            "placeholder": "",
+            "select": null
           }
         }
       },

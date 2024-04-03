@@ -5,24 +5,24 @@
 		"primary": {
 			"image": {
 				"origin": {
-					"id": "main",
-					"url": "https://images.unsplash.com/photo-1547082299-de196ea013d6",
-					"width": 4272,
-					"height": 2848
+					"id": "IfjHaIoAoqE",
+					"url": "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyfHx3ZWRkaW5nfGVufDB8fHx8MTcxMjExNDQzM3ww&ixlib=rb-4.0.3&q=85",
+					"width": 5184,
+					"height": 3456
 				},
-				"url": "https://images.unsplash.com/photo-1547082299-de196ea013d6",
-				"width": 4272,
-				"height": 2848,
+				"url": "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyfHx3ZWRkaW5nfGVufDB8fHx8MTcxMjExNDQzM3ww&ixlib=rb-4.0.3&q=85",
+				"width": 5184,
+				"height": 3456,
 				"edit": {
+					"background": "transparent",
 					"zoom": 1,
 					"crop": {
 						"x": 0,
 						"y": 0
-					},
-					"background": "transparent"
+					}
 				},
 				"credits": null,
-				"alt": null,
+				"alt": "a bride and groom walking on a hill",
 				"__TYPE__": "ImageContent",
 				"thumbnails": {}
 			},
@@ -76,7 +76,7 @@
 					}
 				]
 			},
-			"button_text": {
+			"cta_text": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{

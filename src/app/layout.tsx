@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} font-sans`}>
       <body>{children}</body>
-      <PrismicPreview repositoryName={repositoryName} />
+      <PrismicPreview repositoryName={repositoryName ?? 'tpe-web'} />
     </html>
   )
 }

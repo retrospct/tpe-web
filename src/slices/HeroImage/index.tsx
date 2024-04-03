@@ -1,6 +1,17 @@
 import { isFilled, type Content } from '@prismicio/client'
-import { PrismicNextImage } from '@prismicio/next'
-import { PrismicRichText, SliceComponentProps } from '@prismicio/react'
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
+import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from '@prismicio/react'
+
+const components: JSXMapSerializer = {
+  hyperlink: ({ node, children }) => {
+    return <PrismicNextLink field={node.data}>{children}</PrismicNextLink>
+  }
+  // label: ({ node, children }) => {
+  //   if (node.data.label === 'codespan') {
+  //     return <code>{children}</code>
+  //   }
+  // }
+}
 
 /**
  * Props for `HeroImage`.
@@ -53,14 +64,21 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
             )}
             <div className="mt-10 flex items-center justify-center gap-x-12">
               <div className="bg-pink min-w-fit p-2 hover:bg-rose-300">
-                <a
-                  href="#"
-                  className="border-red text-red inline-block text-nowrap border-2 border-solid px-16 py-7 text-lg font-semibold focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-8 focus-visible:outline-rose-400"
-                >
-                  {isFilled.richText(slice.primary.button_text) && (
-                    <PrismicRichText field={slice.primary.button_text} />
-                  )}
-                </a>
+                {isFilled.link(slice.primary.cta_link) ? (
+                  <PrismicNextLink
+                    field={slice.primary.cta_link}
+                    className="border-red text-red inline-block text-nowrap border-2 border-solid px-16 py-7 text-lg font-semibold focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-8 focus-visible:outline-rose-400"
+                  >
+                    {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
+                  </PrismicNextLink>
+                ) : (
+                  <a
+                    href="#contact"
+                    className="border-red text-red inline-block text-nowrap border-2 border-solid px-16 py-7 text-lg font-semibold focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-8 focus-visible:outline-rose-400"
+                  >
+                    {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
+                  </a>
+                )}
               </div>
               {isFilled.richText(slice.primary.description) && (
                 <div className="mt-6 text-right text-lg leading-8 text-gray-600">
