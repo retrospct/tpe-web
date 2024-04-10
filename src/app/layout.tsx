@@ -1,3 +1,4 @@
+import Nav from '@/components/Nav'
 import { repositoryName } from '@/prismicio'
 import { PrismicPreview } from '@prismicio/next'
 import { Crimson_Pro } from 'next/font/google'
@@ -19,7 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${crimson.variable} ${belgant.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Nav />
+        {children}
+      </body>
       <PrismicPreview repositoryName={repositoryName ?? 'tpe-web'} />
     </html>
   )

@@ -1,10 +1,38 @@
 {
   "format": "custom",
   "id": "nav",
-  "json": {
-    "Main": {}
-  },
   "label": "Nav",
   "repeatable": false,
-  "status": true
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID",
+          "placeholder": ""
+        }
+      },
+      "name": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Name",
+          "placeholder": "Name of the navigation list",
+          "allowTargetBlank": false,
+          "single": "paragraph,strong,em"
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "nav_item": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
 }

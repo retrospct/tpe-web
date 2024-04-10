@@ -85,7 +85,34 @@ export type FooterDocument<Lang extends string = string> = prismic.PrismicDocume
   Lang
 >
 
-interface NavDocumentData {}
+type NavDocumentDataSlicesSlice = NavItemSlice
+
+/**
+ * Content for Nav documents
+ */
+interface NavDocumentData {
+  /**
+   * Name field in *Nav*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Name of the navigation list
+   * - **API ID Path**: nav.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  name: prismic.RichTextField
+
+  /**
+   * Slice Zone field in *Nav*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nav.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<NavDocumentDataSlicesSlice>
+}
 
 /**
  * Nav document from Prismic
@@ -96,13 +123,20 @@ interface NavDocumentData {}
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type NavDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+export type NavDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
   Simplify<NavDocumentData>,
   'nav',
   Lang
 >
 
-type PageDocumentDataSlicesSlice = BannerSlice | HeroImageSlice | CustomerLogosSlice
+type PageDocumentDataSlicesSlice =
+  | CallToActionSlice
+  | RichTextSlice
+  | CustomerLogosSlice
+  | AlternateGridSlice
+  | HeroSlice
+  | BannerSlice
+  | HeroImageSlice
 
 /**
  * Content for Page documents
@@ -909,6 +943,83 @@ type HeroImageSliceVariation = HeroImageSliceDefault
 export type HeroImageSlice = prismic.SharedSlice<'hero_image', HeroImageSliceVariation>
 
 /**
+ * Primary content in *NavItem → Primary*
+ */
+export interface NavItemSliceDefaultPrimary {
+  /**
+   * Name field in *NavItem → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Name of the link
+   * - **API ID Path**: nav_item.primary.name
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  name: prismic.RichTextField
+
+  /**
+   * Link field in *NavItem → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Link for the item
+   * - **API ID Path**: nav_item.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField
+}
+
+/**
+ * Primary content in *NavItem → Items*
+ */
+export interface NavItemSliceDefaultItem {
+  /**
+   * Child Name field in *NavItem → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Name of the child link
+   * - **API ID Path**: nav_item.items[].child_name
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  child_name: prismic.RichTextField
+
+  /**
+   * Child Link field in *NavItem → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Link for the child item
+   * - **API ID Path**: nav_item.items[].child_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  child_link: prismic.LinkField
+}
+
+/**
+ * Default variation for NavItem Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NavItemSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<NavItemSliceDefaultPrimary>,
+  Simplify<NavItemSliceDefaultItem>
+>
+
+/**
+ * Slice variation for *NavItem*
+ */
+type NavItemSliceVariation = NavItemSliceDefault
+
+/**
+ * NavItem Shared Slice
+ *
+ * - **API ID**: `nav_item`
+ * - **Description**: NavItem
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NavItemSlice = prismic.SharedSlice<'nav_item', NavItemSliceVariation>
+
+/**
  * Primary content in *RichText → Primary*
  */
 export interface RichTextSliceDefaultPrimary {
@@ -960,6 +1071,7 @@ declare module '@prismicio/client' {
       FooterDocumentData,
       NavDocument,
       NavDocumentData,
+      NavDocumentDataSlicesSlice,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
@@ -997,6 +1109,11 @@ declare module '@prismicio/client' {
       HeroImageSliceDefaultPrimary,
       HeroImageSliceVariation,
       HeroImageSliceDefault,
+      NavItemSlice,
+      NavItemSliceDefaultPrimary,
+      NavItemSliceDefaultItem,
+      NavItemSliceVariation,
+      NavItemSliceDefault,
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,

@@ -1,0 +1,56 @@
+{
+  "id": "nav_item",
+  "type": "SharedSlice",
+  "name": "NavItem",
+  "description": "NavItem",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "name": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Name",
+            "placeholder": "Name of the link",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em,heading2,heading3,heading4,heading5,heading6"
+          }
+        },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "Link",
+            "placeholder": "Link for the item",
+            "allowTargetBlank": true,
+            "select": null
+          }
+        }
+      },
+      "items": {
+        "child_name": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Child Name",
+            "placeholder": "Name of the child link",
+            "allowTargetBlank": true,
+            "single": "paragraph,heading2,heading3,heading4,heading5,heading6,strong,em"
+          }
+        },
+        "child_link": {
+          "type": "Link",
+          "config": {
+            "label": "Child Link",
+            "placeholder": "Link for the child item",
+            "allowTargetBlank": true,
+            "select": null
+          }
+        }
+      }
+    }
+  ]
+}
