@@ -13,12 +13,16 @@ export const repositoryName = process.env.NEXT_PUBLIC_PRISMIC_ENVIRONMENT || con
 const routes: prismic.ClientConfig['routes'] = [
   {
     type: 'page',
-    path: '/:uid'
+    uid: 'home',
+    path: '/'
   },
   {
     type: 'page',
-    uid: 'home',
-    path: '/'
+    path: '/:uid'
+  },
+  {
+    type: 'post',
+    path: '/blog/:uid'
   }
 ]
 
@@ -41,4 +45,17 @@ export const createClient = (config: prismicNext.CreateClientConfig = {}) => {
   prismicNext.enableAutoPreviews({ client })
 
   return client
+}
+
+/**
+ * Link resolver for client side link resolving
+ * https://prismic.io/docs/technical-reference/prismicio-next#link-resolvers-in-the-app-router
+ *
+ * @param doc - The Prismic document to resolve a URL for.
+ */
+export function linkResolver(doc: prismic.FilledContentRelationshipField) {
+  if (doc.type === 'post') {
+    return '/blog/' + doc.uid
+  }
+  return '/'
 }

@@ -36,6 +36,7 @@ export default {
         '4xl': '2rem'
       },
       fontFamily: {
+        base: ['var(--font-crimson)', ...defaultTheme.fontFamily.sans],
         sans: ['var(--font-crimson)', ...defaultTheme.fontFamily.sans],
         serif: ['var(--font-belgant)', ...defaultTheme.fontFamily.serif]
         // display: ['var(--font-crimson)', 'ui-serif']

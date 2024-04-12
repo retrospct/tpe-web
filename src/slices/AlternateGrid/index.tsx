@@ -1,6 +1,7 @@
+import { PrismicRichText } from '@/components/PrismicRichText'
 import { isFilled, type Content } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
-import { PrismicRichText, SliceComponentProps } from '@prismicio/react'
+import { SliceComponentProps } from '@prismicio/react'
 
 export type AlternateGridProps = SliceComponentProps<Content.AlternateGridSlice>
 

@@ -1,10 +1,10 @@
 import { cn } from '@/utils'
 
-interface StarProps {
+interface TpStarProps {
   className?: string
 }
 
-const Star = ({ className }: StarProps) => {
+export const TpStar = ({ className }: TpStarProps) => {
   return (
     <svg
       width="20"
@@ -22,4 +22,4 @@ const Star = ({ className }: StarProps) => {
   )
 }
 
-export default Star
+export default TpStar

@@ -26,13 +26,13 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-almond relative isolate pt-0"
+      className="relative isolate bg-almond pt-0"
     >
       <div className="pb-12 sm:pb-16 lg:pb-20">
         {/* mt-16 flow-root sm:mt-24 */}
         <div className="flow-root">
           {/* -m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4 */}
-          <div className="bg-almond relative h-[calc(66dvh-120px)] max-h-[652px] min-w-full overflow-hidden sm:h-[652px] sm:min-h-[652px]">
+          <div className="relative h-[calc(66dvh-120px)] max-h-[652px] min-w-full overflow-hidden bg-almond sm:h-[652px] sm:min-h-[652px]">
             {isFilled.image(slice.primary.image) && (
               <PrismicNextImage
                 field={slice.primary.image}
@@ -47,23 +47,23 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto mt-16 flow-root max-w-5xl text-left sm:mt-24">
             {isFilled.richText(slice.primary.title) && (
-              <div className="text-red max-w-4xl font-serif text-4xl tracking-wider sm:text-5xl">
+              <div className="max-w-4xl font-serif text-4xl tracking-wider text-red sm:text-5xl">
                 <PrismicRichText field={slice.primary.title} />
               </div>
             )}
             <div className="mt-8 flex flex-col-reverse items-center justify-center gap-x-12 sm:mt-10 sm:flex-row">
-              <div className="bg-pink mt-8 min-w-fit p-2 hover:bg-rose-300 sm:mt-0">
+              <div className="hover:bg-rose-300 mt-8 min-w-fit bg-pink p-2 sm:mt-0">
                 {isFilled.link(slice.primary.cta_link) && (
                   <PrismicNextLink
                     field={slice.primary.cta_link}
-                    className="border-red text-red inline-block text-nowrap border-2 border-solid px-14 py-4 text-lg font-semibold focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-8 focus-visible:outline-rose-400"
+                    className="focus-visible:outline-rose-400 inline-block text-nowrap border-2 border-solid border-red px-14 py-4 text-lg font-semibold text-red focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-8"
                   >
                     {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
                   </PrismicNextLink>
                 )}
               </div>
               {isFilled.richText(slice.primary.description) && (
-                <div className="text-brown text-left text-2xl font-medium leading-8 sm:text-right">
+                <div className="text-left text-2xl font-medium leading-8 text-brown sm:text-right">
                   <PrismicRichText field={slice.primary.description} components={components} />
                 </div>
               )}
