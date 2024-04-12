@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge'
+import { cn } from '@/utils'
 
 interface StarProps {
   className?: string
@@ -12,7 +12,7 @@ const Star = ({ className }: StarProps) => {
       viewBox="0 0 20 17"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={twMerge('h-5 w-5', className)}
+      className={cn('h-5 w-5', className)}
     >
       <path
         d="M10.7298 3.27406e-10C11.6492 5.04237 14.3674 7.59814 20 8.7161C14.3705 9.83119 11.4592 11.9576 10.5 17C9.58065 11.9576 6.63258 9.83407 1 8.7161C6.62952 7.60102 9.35081 5.04237 10.7298 3.27406e-10Z"

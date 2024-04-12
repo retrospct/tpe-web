@@ -27,27 +27,41 @@
 				"__TYPE__": "GroupItemContent",
 				"value": [
 					[
-						"child_name",
+						"name",
 						{
 							"__TYPE__": "StructuredTextContent",
 							"value": [
 								{
 									"type": "paragraph",
 									"content": {
-										"text": "Duis aliqua velit sit ad incididunt ullamco. Voluptate aliquip ex consectetur aliqua elit elit. Lorem pariatur ut pariatur adipisicing cillum sint id do."
+										"text": "Excepteur cillum do labore occaecat nisi exercitation ex ut et do."
 									}
 								}
 							]
 						}
 					],
 					[
-						"child_link",
+						"link",
 						{
 							"__TYPE__": "LinkContent",
 							"value": {
 								"__TYPE__": "ExternalLink",
-								"url": "http://twitter.com"
+								"url": "https://slicemachine.dev"
 							}
+						}
+					],
+					[
+						"description",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Mollit sunt mollit cupidatat labore esse laborum commodo consequat irure fugiat velit non dolor."
+									}
+								}
+							]
 						}
 					]
 				]
