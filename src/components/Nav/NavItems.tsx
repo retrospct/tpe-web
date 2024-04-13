@@ -1,4 +1,5 @@
 'use client'
+import { cn } from '@/utils'
 import { Dialog, Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import { Bars3Icon } from '@heroicons/react/24/outline'
@@ -11,8 +12,8 @@ import { NavDocument, NavItemSlice, NavItemSliceDefaultItem, Simplify } from '..
 import NavLogo from './NavLogo'
 
 const callsToAction = [
-  { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-  { name: 'Contact sales', href: '#', icon: PhoneIcon }
+  { name: 'Our portfolio', href: '/portfolio', icon: PlayCircleIcon },
+  { name: 'Contact us', href: '/contact', icon: PhoneIcon }
 ]
 
 const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
@@ -23,7 +24,7 @@ const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="text-gray-700 -m-2.5 inline-flex items-center justify-center rounded-md p-2.5"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-red"
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
@@ -43,23 +44,23 @@ const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
 
 export default NavItems
 
-function NavLinks({ slices }: { slices: SliceZone<NavItemSlice> }) {
+function NavLinks({ slices, ...rest }: { slices: SliceZone<NavItemSlice> }) {
   if (slices.length === 0) return null
   return slices.map((slice) => {
     if (slice.items.length > 0) {
       // NavLinks group with flyout menu
-      return <NavLinksGroup key={slice.id} slice={slice} />
+      return <NavLinksGroup key={slice.id} slice={slice} {...rest} />
     } else {
       // Regular NavLink
-      return <NavLink key={slice.id} slice={slice} />
+      return <NavLink key={slice.id} slice={slice} {...rest} />
     }
   })
 }
 
-function NavLink({ slice }: { slice: NavItemSlice }) {
+function NavLink({ slice, className }: { slice: NavItemSlice; className?: string }) {
   if (!isFilled.link(slice.primary.link)) return null
   return (
-    <PrismicNextLink key={slice.id} field={slice.primary.link} className="font-medium text-red">
+    <PrismicNextLink key={slice.id} field={slice.primary.link} className={cn('font-medium text-red', className)}>
       {isFilled.richText(slice.primary.name) && <PrismicText field={slice.primary.name} />}
     </PrismicNextLink>
   )
@@ -82,20 +83,20 @@ function NavLinksGroup({ slice }: { slice: NavItemSlice }) {
           leaveFrom="opacity-100 translate-y-0"
           leaveTo="opacity-0 translate-y-1"
         >
-          <Popover.Panel className="ring-gray-900/5 absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-beige shadow-lg ring-1">
+          <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden bg-beige shadow-lg ring-1 ring-red/90">
             <div className="p-4">
               {slice.items.map((item) => (
                 <NavItemLink key={JSON.stringify(item)} item={item} />
               ))}
             </div>
-            <div className="grid grid-cols-2 divide-x divide-red/5 bg-almond">
+            <div className="grid grid-cols-2 divide-x divide-red/30 bg-almond">
               {callsToAction.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
                   className="flex items-center justify-center gap-x-2.5 p-3 font-medium leading-6 text-red hover:bg-pink"
                 >
-                  <item.icon className="text-gray-400 h-5 w-5 flex-none" aria-hidden="true" />
+                  <item.icon className="h-5 w-5 flex-none" aria-hidden="true" />
                   {item.name}
                 </Link>
               ))}
@@ -109,24 +110,21 @@ function NavLinksGroup({ slice }: { slice: NavItemSlice }) {
 
 function NavItemLink({ item }: { item: Simplify<NavItemSliceDefaultItem> }) {
   return (
-    <div
-      key={JSON.stringify(item)}
-      className="hover:bg-gray-50 group relative flex gap-x-6 rounded-lg p-4 text-sm leading-6"
-    >
+    <div key={JSON.stringify(item)} className="group relative flex gap-x-6 p-4 leading-6 hover:bg-almond">
       {/* <div className="bg-gray-50 group-hover:bg-white mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg">
         <item.icon className="text-gray-600 group-hover:text-indigo-600 h-6 w-6" aria-hidden="true" />
       </div> */}
       {isFilled.link(item.link) && (
         <div className="flex-auto">
-          <PrismicNextLink field={item.link}>
+          <PrismicNextLink field={item.link} className="block">
             {isFilled.richText(item.name) && (
-              <div className="text-gray-900 block font-semibold">
+              <div className="font-medium uppercase text-red">
                 <PrismicText field={item.name} />
                 <span className="absolute inset-0" />
               </div>
             )}
             {isFilled.richText(item.description) && (
-              <p className="text-gray-600 mt-1">
+              <p className="mt-1 text-brown">
                 <PrismicText field={item.description} />
               </p>
             )}
@@ -149,11 +147,11 @@ const NavDialog = ({
   return (
     <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
       <div className="fixed inset-0 z-10" />
-      <Dialog.Panel className="bg-white sm:ring-gray-900/10 fixed inset-y-0 right-0 z-10 flex w-full flex-col justify-between overflow-y-auto sm:max-w-sm sm:ring-1">
+      <Dialog.Panel className="fixed inset-y-0 right-0 z-10 flex w-full flex-col justify-between overflow-y-auto bg-white sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
         <div className="p-6">
           <NavLogo />
           <div className="mt-6 flow-root">
-            <div className="divide-gray-500/10 -my-6 divide-y">
+            <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 {/* {products.map((item) => (
                   <a
@@ -180,12 +178,12 @@ const NavDialog = ({
             </div>
           </div>
         </div>
-        <div className="divide-gray-900/5 bg-gray-50 sticky bottom-0 grid grid-cols-2 divide-x text-center">
+        <div className="sticky bottom-0 grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50 text-center">
           {callsToAction.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="text-gray-900 hover:bg-gray-100 p-3 text-base font-semibold leading-7"
+              className="p-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
             >
               {item.name}
             </Link>

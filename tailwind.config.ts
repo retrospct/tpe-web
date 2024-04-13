@@ -21,9 +21,9 @@ export default {
       '8xl': ['6rem', { lineHeight: '1' }],
       '9xl': ['8rem', { lineHeight: '1' }]
     },
-    colors: {
-      black: '#fff'
-    },
+    // colors: {
+    //   black: '#fff'
+    // },
     extend: {
       colors: {
         almond: '#EFE4D9',
