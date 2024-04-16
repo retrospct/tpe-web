@@ -1,5 +1,5 @@
 'use client'
-import { cn } from '@/utils'
+import { cn } from '@/lib/utils'
 import { Dialog, Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import { Bars3Icon } from '@heroicons/react/24/outline'

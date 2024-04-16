@@ -1067,6 +1067,114 @@ type RichTextSliceVariation = RichTextSliceDefault
  */
 export type RichTextSlice = prismic.SharedSlice<'rich_text', RichTextSliceVariation>
 
+/**
+ * Primary content in *Services → Primary*
+ */
+export interface ServicesSliceDefaultPrimary {
+  /**
+   * Title field in *Services → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Optional section title.
+   * - **API ID Path**: services.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Description field in *Services → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Optional description section text.
+   * - **API ID Path**: services.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
+}
+
+/**
+ * Primary content in *Services → Items*
+ */
+export interface ServicesSliceDefaultItem {
+  /**
+   * Image field in *Services → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+
+  /**
+   * Link Text field in *Services → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Page to link to.
+   * - **API ID Path**: services.items[].link_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  link_text: prismic.RichTextField
+
+  /**
+   * Link field in *Services → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.items[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField
+
+  /**
+   * List field in *Services → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: List of items to detail out.
+   * - **API ID Path**: services.items[].list
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  list: prismic.RichTextField
+
+  /**
+   * Image Left field in *Services → Items*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: services.items[].image_left
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  image_left: prismic.BooleanField
+}
+
+/**
+ * Default variation for Services Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ServicesSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<ServicesSliceDefaultPrimary>,
+  Simplify<ServicesSliceDefaultItem>
+>
+
+/**
+ * Slice variation for *Services*
+ */
+type ServicesSliceVariation = ServicesSliceDefault
+
+/**
+ * Services Shared Slice
+ *
+ * - **API ID**: `services`
+ * - **Description**: Services
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ServicesSlice = prismic.SharedSlice<'services', ServicesSliceVariation>
+
 declare module '@prismicio/client' {
   interface CreateClient {
     (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>
@@ -1127,7 +1235,12 @@ declare module '@prismicio/client' {
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
-      RichTextSliceDefault
+      RichTextSliceDefault,
+      ServicesSlice,
+      ServicesSliceDefaultPrimary,
+      ServicesSliceDefaultItem,
+      ServicesSliceVariation,
+      ServicesSliceDefault
     }
   }
 }

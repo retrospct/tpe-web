@@ -10,5 +10,6 @@ export const components = {
   hero: dynamic(() => import('./Hero')),
   hero_image: dynamic(() => import('./HeroImage')),
   nav_item: dynamic(() => import('./NavItem')),
-  rich_text: dynamic(() => import('./RichText'))
+  rich_text: dynamic(() => import('./RichText')),
+  services: dynamic(() => import('./Services'))
 }

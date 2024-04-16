@@ -1,0 +1,225 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "OUR SERVICES",
+							"spans": [
+								{
+									"type": "em",
+									"start": 0,
+									"end": 12
+								}
+							]
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Lorem eu eu magna quis culpa excepteur veniam occaecat excepteur eu tempor commodo."
+						}
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"image",
+						{
+							"origin": {
+								"id": "main",
+								"url": "https://images.unsplash.com/photo-1471897488648-5eae4ac6686b",
+								"width": 3560,
+								"height": 5340
+							},
+							"url": "https://images.unsplash.com/photo-1471897488648-5eae4ac6686b",
+							"width": 3560,
+							"height": 5340,
+							"edit": {
+								"zoom": 1,
+								"crop": {
+									"x": 0,
+									"y": 0
+								},
+								"background": "transparent"
+							},
+							"credits": null,
+							"alt": null,
+							"__TYPE__": "ImageContent",
+							"thumbnails": {}
+						}
+					],
+					[
+						"link_text",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Link 1 Text",
+										"spans": []
+									},
+									"direction": "ltr"
+								}
+							]
+						}
+					],
+					[
+						"list",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "list-item",
+									"content": {
+										"text": "Service 1",
+										"spans": []
+									},
+									"direction": "ltr"
+								},
+								{
+									"type": "list-item",
+									"content": {
+										"text": "Service 2",
+										"spans": []
+									},
+									"direction": "ltr"
+								},
+								{
+									"type": "list-item",
+									"content": {
+										"text": "Service 3",
+										"spans": []
+									},
+									"direction": "ltr"
+								}
+							]
+						}
+					],
+					[
+						"image_left",
+						{
+							"__TYPE__": "BooleanContent",
+							"value": true
+						}
+					],
+					[
+						"link",
+						{
+							"__TYPE__": "LinkContent",
+							"value": {
+								"__TYPE__": "ExternalLink",
+								"url": "/about"
+							}
+						}
+					]
+				]
+			},
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"image",
+						{
+							"__TYPE__": "ImageContent",
+							"url": "https://images.unsplash.com/photo-1511688878353-3a2f5be94cd7?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwzfHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3MTMyNjM0ODd8MA&ixlib=rb-4.0.3&q=85",
+							"alt": "assorted sliced citrus fruits on brown wooden chopping board",
+							"origin": {
+								"id": "1CsaVdwfIew",
+								"url": "https://images.unsplash.com/photo-1511688878353-3a2f5be94cd7?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwzfHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3MTMyNjM0ODd8MA&ixlib=rb-4.0.3&q=85",
+								"width": 3709,
+								"height": 5563
+							},
+							"width": 3709,
+							"height": 5563,
+							"edit": {
+								"background": "transparent",
+								"zoom": 1,
+								"crop": {
+									"x": 0,
+									"y": 0
+								}
+							},
+							"thumbnails": {}
+						}
+					],
+					[
+						"link_text",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Link 2 Text",
+										"spans": []
+									},
+									"direction": "ltr"
+								}
+							]
+						}
+					],
+					[
+						"list",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "list-item",
+									"content": {
+										"text": "Service 1",
+										"spans": []
+									},
+									"direction": "ltr"
+								},
+								{
+									"type": "list-item",
+									"content": {
+										"text": "Service 2",
+										"spans": []
+									},
+									"direction": "ltr"
+								},
+								{
+									"type": "list-item",
+									"content": {
+										"text": "Service 3",
+										"spans": []
+									},
+									"direction": "ltr"
+								}
+							]
+						}
+					],
+					[
+						"link",
+						{
+							"__TYPE__": "LinkContent",
+							"value": {
+								"__TYPE__": "ExternalLink",
+								"url": "/",
+								"target": ""
+							}
+						}
+					]
+				]
+			}
+		]
+	}
+]
