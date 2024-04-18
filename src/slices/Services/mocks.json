@@ -137,7 +137,6 @@
 					[
 						"image",
 						{
-							"__TYPE__": "ImageContent",
 							"url": "https://images.unsplash.com/photo-1511688878353-3a2f5be94cd7?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwzfHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3MTMyNjM0ODd8MA&ixlib=rb-4.0.3&q=85",
 							"alt": "assorted sliced citrus fruits on brown wooden chopping board",
 							"origin": {
@@ -156,6 +155,8 @@
 									"y": 0
 								}
 							},
+							"credits": null,
+							"__TYPE__": "ImageContent",
 							"thumbnails": {}
 						}
 					],
