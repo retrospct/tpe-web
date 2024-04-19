@@ -18,6 +18,8 @@
       }
     ],
     "paths": {
+      "@/components/icons/*": ["./src/components/icons/*"],
+      "@/components/ui/*": ["./src/components/ui/*"],
       "@/*": ["./src/*"]
     }
   },

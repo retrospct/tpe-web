@@ -1,4 +1,4 @@
-import { TpLogo } from '@/components/svg'
+import { TpLogo } from '@/components/icons'
 import Link from 'next/link'
 
 export const NavLogo = ({ name }: { name?: string }) => {

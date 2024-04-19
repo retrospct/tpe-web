@@ -1,3 +1,4 @@
+import { TpSquiggle } from '@/components/icons'
 import { isFilled, type Content } from '@prismicio/client'
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from '@prismicio/react'
@@ -47,16 +48,17 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto mt-16 flow-root max-w-5xl text-left sm:mt-24">
             {isFilled.richText(slice.primary.title) && (
-              <div className="max-w-4xl font-serif text-4xl tracking-wider text-red sm:text-5xl">
+              <div className="max-w-4xl font-serif text-4xl font-normal tracking-wider text-red sm:text-5xl">
                 <PrismicRichText field={slice.primary.title} />
+                <TpSquiggle className="text-pink" />
               </div>
             )}
             <div className="mt-8 flex flex-col-reverse items-center justify-center gap-x-12 sm:mt-10 sm:flex-row">
-              <div className="hover:bg-rose-300 mt-8 min-w-fit bg-pink p-2 sm:mt-0">
+              <div className="mt-8 min-w-fit bg-pink p-2 transition-colors hover:bg-rose-300 sm:mt-0">
                 {isFilled.link(slice.primary.cta_link) && (
                   <PrismicNextLink
                     field={slice.primary.cta_link}
-                    className="focus-visible:outline-rose-400 inline-block text-nowrap border-2 border-solid border-red px-14 py-4 text-lg font-semibold text-red focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-8"
+                    className="inline-block text-nowrap border-2 border-solid border-red px-14 py-4 text-lg font-semibold text-red focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-8 focus-visible:outline-rose-400"
                   >
                     {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
                   </PrismicNextLink>

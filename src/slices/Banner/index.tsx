@@ -1,4 +1,4 @@
-import { TpStar } from '@/components/svg'
+import { TpStar } from '@/components/icons'
 import { Content, isFilled } from '@prismicio/client'
 import { PrismicRichText, SliceComponentProps } from '@prismicio/react'
 

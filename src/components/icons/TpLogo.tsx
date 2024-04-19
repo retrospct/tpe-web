@@ -1,10 +1,10 @@
 import { cn } from '@/lib/utils'
 
-interface TpLogoProps {
+interface TpIconProps {
   className?: string
 }
 
-export const TpLogo = ({ className }: TpLogoProps) => {
+export const TpLogo = ({ className }: TpIconProps) => {
   return (
     <svg
       width="266"
@@ -165,5 +165,3 @@ export const TpLogo = ({ className }: TpLogoProps) => {
     </svg>
   )
 }
-
-export default TpLogo
