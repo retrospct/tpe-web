@@ -4,7 +4,34 @@ import type * as prismic from '@prismicio/client'
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] }
 
-interface FooterDocumentData {}
+type FooterDocumentDataSlicesSlice = NavItemSlice
+
+/**
+ * Content for Footer documents
+ */
+interface FooterDocumentData {
+  /**
+   * Name field in *Footer*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  name: prismic.RichTextField
+
+  /**
+   * Slice Zone field in *Footer*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<FooterDocumentDataSlicesSlice>
+}
 
 /**
  * Footer document from Prismic
@@ -15,7 +42,7 @@ interface FooterDocumentData {}
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type FooterDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+export type FooterDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
   Simplify<FooterDocumentData>,
   'footer',
   Lang
@@ -70,11 +97,6 @@ type PageDocumentDataSlicesSlice =
   | AwardsSlice
   | TestimonialsSlice
   | ServicesSlice
-  | CallToActionSlice
-  | RichTextSlice
-  | CustomerLogosSlice
-  | AlternateGridSlice
-  | HeroSlice
   | BannerSlice
   | HeroImageSlice
 
@@ -1360,6 +1382,7 @@ declare module '@prismicio/client' {
     export type {
       FooterDocument,
       FooterDocumentData,
+      FooterDocumentDataSlicesSlice,
       NavDocument,
       NavDocumentData,
       NavDocumentDataSlicesSlice,

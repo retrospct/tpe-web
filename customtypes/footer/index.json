@@ -1,10 +1,38 @@
 {
   "format": "custom",
   "id": "footer",
-  "json": {
-    "Main": {}
-  },
   "label": "Footer",
   "repeatable": false,
-  "status": true
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID",
+          "placeholder": ""
+        }
+      },
+      "name": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Name",
+          "placeholder": "",
+          "allowTargetBlank": false,
+          "single": "paragraph,strong,em"
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "nav_item": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
 }

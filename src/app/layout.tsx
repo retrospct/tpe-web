@@ -4,6 +4,7 @@ import { PrismicPreview } from '@prismicio/next'
 import { Crimson_Pro } from 'next/font/google'
 import localFont from 'next/font/local'
 
+import Footer from '@/components/Footer'
 import { cn } from '@/lib/utils'
 import '../styles/globals.css'
 
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body>
         <Nav />
         {children}
+        <Footer />
       </body>
       <PrismicPreview repositoryName={repositoryName ?? 'tpe-web'} />
     </html>

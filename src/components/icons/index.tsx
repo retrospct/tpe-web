@@ -1,5 +1,6 @@
 export * from './TpFrame'
 export * from './TpLogo'
+export * from './TpLogoCircle'
 export * from './TpQuote'
 export * from './TpRating'
 export * from './TpSquiggle'
