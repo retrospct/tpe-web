@@ -28,7 +28,7 @@ const Awards = ({ slice }: AwardsProps): JSX.Element => {
                     <PrismicText field={item.title} />
                   </p>
                 )}
-                {isFilled.image(item.logo) && <PrismicNextImage field={item.logo} className="mt-2 max-h-12 w-auto" />}
+                {isFilled.image(item.logo) && <PrismicNextImage field={item.logo} className="mt-2 h-12 w-auto" />}
                 {isFilled.richText(item.subtitle) && !isFilled.number(item.rating) && (
                   <p className="mt-2 h-4 leading-none">
                     <PrismicText field={item.subtitle} />
