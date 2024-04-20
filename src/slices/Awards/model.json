@@ -1,0 +1,52 @@
+{
+  "id": "awards",
+  "type": "SharedSlice",
+  "name": "Awards",
+  "description": "Awards",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {},
+      "items": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        },
+        "logo": {
+          "type": "Image",
+          "config": {
+            "label": "Logo",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "subtitle": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subtitle",
+            "placeholder": "If rating is provided this value is ignored.",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        },
+        "rating": {
+          "type": "Number",
+          "config": {
+            "label": "Rating",
+            "placeholder": "(Optional) 0-5, if provided subtitle is ignored."
+          }
+        }
+      }
+    }
+  ]
+}

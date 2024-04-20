@@ -1,4 +1,5 @@
 export * from './TpLogo'
 export * from './TpQuote'
+export * from './TpRating'
 export * from './TpSquiggle'
 export * from './TpStar'

@@ -66,6 +66,7 @@ export type NavDocument<Lang extends string = string> = prismic.PrismicDocumentW
 >
 
 type PageDocumentDataSlicesSlice =
+  | AwardsSlice
   | TestimonialsSlice
   | ServicesSlice
   | CallToActionSlice
@@ -405,6 +406,78 @@ type AlternateGridSliceVariation = AlternateGridSliceDefault | AlternateGridSlic
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type AlternateGridSlice = prismic.SharedSlice<'alternate_grid', AlternateGridSliceVariation>
+
+/**
+ * Primary content in *Awards → Items*
+ */
+export interface AwardsSliceDefaultItem {
+  /**
+   * Title field in *Awards → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: awards.items[].title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Logo field in *Awards → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: awards.items[].logo
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo: prismic.ImageField<never>
+
+  /**
+   * Subtitle field in *Awards → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: If rating is provided this value is ignored.
+   * - **API ID Path**: awards.items[].subtitle
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subtitle: prismic.RichTextField
+
+  /**
+   * Rating field in *Awards → Items*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: (Optional) 0-5, if provided subtitle is ignored.
+   * - **API ID Path**: awards.items[].rating
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  rating: prismic.NumberField
+}
+
+/**
+ * Default variation for Awards Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AwardsSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Record<string, never>,
+  Simplify<AwardsSliceDefaultItem>
+>
+
+/**
+ * Slice variation for *Awards*
+ */
+type AwardsSliceVariation = AwardsSliceDefault
+
+/**
+ * Awards Shared Slice
+ *
+ * - **API ID**: `awards`
+ * - **Description**: Awards
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AwardsSlice = prismic.SharedSlice<'awards', AwardsSliceVariation>
 
 /**
  * Primary content in *Banner → Items*
@@ -1256,6 +1329,10 @@ declare module '@prismicio/client' {
       AlternateGridSliceVariation,
       AlternateGridSliceDefault,
       AlternateGridSliceImageRight,
+      AwardsSlice,
+      AwardsSliceDefaultItem,
+      AwardsSliceVariation,
+      AwardsSliceDefault,
       BannerSlice,
       BannerSliceDefaultItem,
       BannerSliceVariation,
