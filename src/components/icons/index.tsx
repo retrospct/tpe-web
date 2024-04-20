@@ -1,3 +1,4 @@
+export * from './TpFrame'
 export * from './TpLogo'
 export * from './TpQuote'
 export * from './TpRating'

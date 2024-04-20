@@ -672,6 +672,54 @@ type CallToActionSliceVariation = CallToActionSliceDefault | CallToActionSliceAl
 export type CallToActionSlice = prismic.SharedSlice<'call_to_action', CallToActionSliceVariation>
 
 /**
+ * Primary content in *Contact → Primary*
+ */
+export interface ContactSliceDefaultPrimary {
+  /**
+   * Title field in *Contact → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Image field in *Contact → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+}
+
+/**
+ * Default variation for Contact Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactSliceDefault = prismic.SharedSliceVariation<'default', Simplify<ContactSliceDefaultPrimary>, never>
+
+/**
+ * Slice variation for *Contact*
+ */
+type ContactSliceVariation = ContactSliceDefault
+
+/**
+ * Contact Shared Slice
+ *
+ * - **API ID**: `contact`
+ * - **Description**: Contact
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactSlice = prismic.SharedSlice<'contact', ContactSliceVariation>
+
+/**
  * Primary content in *CustomerLogos → Primary*
  */
 export interface CustomerLogosSliceDefaultPrimary {
@@ -1343,6 +1391,10 @@ declare module '@prismicio/client' {
       CallToActionSliceVariation,
       CallToActionSliceDefault,
       CallToActionSliceAlignLeft,
+      ContactSlice,
+      ContactSliceDefaultPrimary,
+      ContactSliceVariation,
+      ContactSliceDefault,
       CustomerLogosSlice,
       CustomerLogosSliceDefaultPrimary,
       CustomerLogosSliceDefaultItem,

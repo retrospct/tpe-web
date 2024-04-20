@@ -7,6 +7,7 @@ export const components = {
   awards: dynamic(() => import('./Awards')),
   banner: dynamic(() => import('./Banner')),
   call_to_action: dynamic(() => import('./CallToAction')),
+  contact: dynamic(() => import('./Contact')),
   customer_logos: dynamic(() => import('./CustomerLogos')),
   hero: dynamic(() => import('./Hero')),
   hero_image: dynamic(() => import('./HeroImage')),
