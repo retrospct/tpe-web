@@ -66,6 +66,7 @@ export type NavDocument<Lang extends string = string> = prismic.PrismicDocumentW
 >
 
 type PageDocumentDataSlicesSlice =
+  | ContactSlice
   | AwardsSlice
   | TestimonialsSlice
   | ServicesSlice

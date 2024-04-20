@@ -11,10 +11,10 @@ export const TpRating = ({ className, rating = 5 }: TpIconProps) => {
   const renderStars = () => {
     const stars = []
     for (let i = 0; i < fullStars; i++) {
-      stars.push(<TpRatingStar className={className} />)
+      stars.push(<TpRatingStar key={`rstar-${i}`} className={className} />)
     }
     if (hasHalfStar) {
-      stars.push(<TpRatingHalfStar className={className} />)
+      stars.push(<TpRatingHalfStar key={`half-rstar-${rating}`} className={className} />)
     }
     return stars
   }
