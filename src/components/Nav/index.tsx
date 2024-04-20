@@ -8,7 +8,7 @@ export default async function Nav() {
   const navigation = await client.getByUID('nav', 'main-nav')
 
   return (
-    <header className="bg-almond">
+    <header>
       <NavLogo />
       <NavItems navigation={navigation} />
     </header>

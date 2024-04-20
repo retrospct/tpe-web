@@ -27,13 +27,13 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative isolate bg-almond pt-0"
+      className="relative isolate pt-0"
     >
       <div className="pb-12 sm:pb-16 lg:pb-20">
         {/* mt-16 flow-root sm:mt-24 */}
         <div className="flow-root">
           {/* -m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4 */}
-          <div className="relative h-[calc(66dvh-120px)] max-h-[652px] min-w-full overflow-hidden bg-almond sm:h-[652px] sm:min-h-[652px]">
+          <div className="relative h-[calc(66dvh-120px)] max-h-[652px] min-w-full overflow-hidden sm:h-[652px] sm:min-h-[652px]">
             {isFilled.image(slice.primary.image) && (
               <PrismicNextImage
                 field={slice.primary.image}
@@ -50,7 +50,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
             {isFilled.richText(slice.primary.title) && (
               <div className="max-w-4xl font-serif text-4xl font-normal tracking-wider text-red sm:text-5xl">
                 <PrismicRichText field={slice.primary.title} />
-                <TpSquiggle className="text-pink" />
+                <TpSquiggle className="w-full text-pink" />
               </div>
             )}
             <div className="mt-8 flex flex-col-reverse items-center justify-center gap-x-12 sm:mt-10 sm:flex-row">

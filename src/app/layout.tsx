@@ -4,6 +4,7 @@ import { PrismicPreview } from '@prismicio/next'
 import { Crimson_Pro } from 'next/font/google'
 import localFont from 'next/font/local'
 
+import { cn } from '@/lib/utils'
 import '../styles/globals.css'
 
 const crimson = Crimson_Pro({
@@ -19,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${crimson.variable} ${belgant.variable}`}>
+    <html lang="en" className={cn('bg-almond', crimson.variable, belgant.variable)}>
       <body>
         <Nav />
         {children}

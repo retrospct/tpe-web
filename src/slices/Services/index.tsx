@@ -22,26 +22,26 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
       {slice.variation === 'default' && (
         <>
           {isFilled.richText(slice.primary.title) && (
-            <div className="flex items-center justify-center text-center font-serif text-4xl font-normal tracking-wider text-red sm:text-5xl">
+            <div className="flex items-center justify-center text-center font-serif text-4xl font-normal tracking-wider text-red lg:text-5xl">
               <TpStar className="mr-5 text-pink" />
               <PrismicRichText field={slice.primary.title} />
               <TpStar className="ml-5 text-pink" />
             </div>
           )}
-          <div className="mt-8 flex w-full flex-col items-center justify-center sm:mt-12 sm:flex-row">
+          <div className="flex w-full flex-col items-center justify-center lg:flex-row">
             {slice.items.length > 0 &&
               slice.items.map((item) => (
                 <div
                   key={JSON.stringify(item)}
                   className={cn(
-                    'flex w-full flex-col items-center',
-                    item.image_left ? 'sm:flex-row-reverse' : 'sm:flex-row'
+                    'mt-8 flex w-full flex-col items-center lg:mt-12',
+                    item.image_left ? 'lg:flex-row-reverse' : 'lg:flex-row'
                   )}
                 >
                   {isFilled.link(item.link) && (
                     <PrismicNextLink field={item.link} className="group">
                       {isFilled.image(item.image) && (
-                        <div className="relative mx-6 w-full max-w-60 overflow-hidden rounded-t-full border-[5px] border-solid border-pink text-center transition-transform group-hover:scale-105 sm:mx-12">
+                        <div className="relative mx-6 w-full max-w-60 overflow-hidden rounded-t-full border-[5px] border-solid border-pink text-center transition-transform group-hover:scale-105 lg:mx-12">
                           <PrismicNextImage
                             field={item.image}
                             imgixParams={{ crop: 'faces,edges', fit: 'crop', w: 1, h: 1 }}
@@ -50,14 +50,14 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
                         </div>
                       )}
                       {isFilled.richText(item.link_text) && (
-                        <div className="relative mx-6 mt-5 w-full max-w-60 text-center text-xl font-normal tracking-wider underline underline-offset-8 transition-transform group-hover:scale-105 sm:mx-12">
+                        <div className="relative mx-6 mt-5 w-full max-w-60 text-center text-xl font-normal tracking-wider underline underline-offset-8 transition-transform group-hover:scale-105 lg:mx-12">
                           <PrismicRichText field={item.link_text} />
                         </div>
                       )}
                     </PrismicNextLink>
                   )}
                   {isFilled.richText(item.list) && (
-                    <div className="mx-6 text-center text-xl font-medium text-brown sm:mx-12">
+                    <div className="mx-0 mt-6 text-center text-xl font-medium leading-loose text-brown lg:mt-0 xl:mx-12">
                       <PrismicRichText field={item.list} />
                     </div>
                   )}
