@@ -2,13 +2,13 @@
 import { cn } from '@/lib/utils'
 import { Dialog, Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import { Bars3Icon } from '@heroicons/react/24/outline'
 import { SliceZone, isFilled } from '@prismicio/client'
 import { PrismicNextLink } from '@prismicio/next'
 import { PrismicText } from '@prismicio/react'
 import Link from 'next/link'
-import { Fragment, useState } from 'react'
+import { Fragment, ReactNode } from 'react'
 import { FooterDocument, NavItemSlice, NavItemSliceDefaultItem, Simplify } from '../../../prismicio-types'
+import { TpBrandFacebook, TpBrandInstagram, TpBrandPinterest, TpBrandTikTok, TpBrandYelp } from '../icons'
 import NavLogo from './NavLogo'
 
 const callsToAction = [
@@ -17,28 +17,19 @@ const callsToAction = [
 ]
 
 const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   return (
-    <>
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-red"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">Open main menu</span>
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-          </button>
-        </div>
+    <div className="mx-auto mt-6 flex max-w-5xl flex-col items-center justify-between">
+      <div className="mx-auto mb-10 flex w-full flex-col items-center justify-between px-6 md:flex-row md:px-8">
         <NavLinks slices={navigation.data.slices} />
-      </nav>
-      <NavDialog
-        slices={navigation.data.slices}
-        mobileMenuOpen={mobileMenuOpen}
-        setMobileMenuOpen={() => setMobileMenuOpen(false)}
-      />
-    </>
+      </div>
+      <div className="flex items-center justify-center gap-6">
+        <SocialLink href="https://yelp.com" icon={<TpBrandYelp />} />
+        <SocialLink href="https://instagram.com" icon={<TpBrandInstagram />} />
+        <SocialLink href="https://facebook.com" icon={<TpBrandFacebook />} />
+        <SocialLink href="https://tiktok.com" icon={<TpBrandTikTok />} />
+        <SocialLink href="https://pinterest.com" icon={<TpBrandPinterest />} />
+      </div>
+    </div>
   )
 }
 
@@ -52,7 +43,7 @@ function NavLinks({ slices, ...rest }: { slices: SliceZone<NavItemSlice> }) {
       return <NavLinksGroup key={slice.id} slice={slice} {...rest} />
     } else {
       // Regular NavLink
-      return <NavLink key={slice.id} slice={slice} {...rest} />
+      return <NavLink key={slice.id} slice={slice} className="py-2 md:py-0" {...rest} />
     }
   })
 }
@@ -63,6 +54,14 @@ function NavLink({ slice, className }: { slice: NavItemSlice; className?: string
     <PrismicNextLink key={slice.id} field={slice.primary.link} className={cn('font-medium text-red', className)}>
       {isFilled.richText(slice.primary.name) && <PrismicText field={slice.primary.name} />}
     </PrismicNextLink>
+  )
+}
+
+function SocialLink({ href, className, icon }: { href: string; className?: string; icon?: ReactNode }) {
+  return (
+    <Link href={href} className={cn('font-medium text-red', className)}>
+      {icon}
+    </Link>
   )
 }
 

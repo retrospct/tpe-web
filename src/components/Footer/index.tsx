@@ -8,7 +8,7 @@ export default async function Footer() {
   const navigation = await client.getByUID('footer', 'main-footer')
 
   return (
-    <footer>
+    <footer className="my-16">
       <NavLogo />
       <NavItems navigation={navigation} />
     </footer>
