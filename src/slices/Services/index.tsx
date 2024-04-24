@@ -1,4 +1,4 @@
-import { TpStar } from '@/components/icons'
+import { Heading } from '@/components'
 import { cn } from '@/lib/utils'
 import { Content, isFilled } from '@prismicio/client'
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
@@ -21,13 +21,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
     >
       {slice.variation === 'default' && (
         <>
-          {isFilled.richText(slice.primary.title) && (
-            <div className="flex items-center justify-center text-center font-serif text-4xl font-normal tracking-wider text-red lg:text-5xl">
-              <TpStar className="mr-5 text-pink" />
-              <PrismicRichText field={slice.primary.title} />
-              <TpStar className="ml-5 text-pink" />
-            </div>
-          )}
+          <Heading richText={slice.primary.title} />
           <div className="flex w-full flex-col items-center justify-center lg:flex-row">
             {slice.items.length > 0 &&
               slice.items.map((item) => (

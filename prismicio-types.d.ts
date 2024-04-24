@@ -4,6 +4,115 @@ import type * as prismic from '@prismicio/client'
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] }
 
+type EventDocumentDataSlicesSlice = ImageGridSlice
+
+/**
+ * Content for Event documents
+ */
+interface EventDocumentData {
+  /**
+   * Type field in *Event*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: WEDDING
+   * - **API ID Path**: event.type
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  type: prismic.SelectField<'WEDDING' | 'PRIVATE' | 'CORPORATE', 'filled'>
+
+  /**
+   * Thumbnail field in *Event*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event.thumbnail
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  thumbnail: prismic.ImageField<never>
+
+  /**
+   * Title field in *Event*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Credits field in *Event*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Photo or other credits
+   * - **API ID Path**: event.credits
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  credits: prismic.RichTextField
+
+  /**
+   * Slice Zone field in *Event*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<EventDocumentDataSlicesSlice> /**
+   * Title field in *Event*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event.meta_title
+   * - **Tab**: SEO
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField
+
+  /**
+   * Description field in *Event*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event.meta_description
+   * - **Tab**: SEO
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField
+
+  /**
+   * Image field in *Event*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event.meta_image
+   * - **Tab**: SEO
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>
+}
+
+/**
+ * Event document from Prismic
+ *
+ * - **API ID**: `event`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type EventDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<EventDocumentData>,
+  'event',
+  Lang
+>
+
 /**
  * Item in *Footer → Statements*
  */
@@ -254,6 +363,170 @@ export type PageDocument<Lang extends string = string> = prismic.PrismicDocument
   Lang
 >
 
+/**
+ * Item in *Portfolio → Weddings*
+ */
+export interface PortfolioDocumentDataWeddingsItem {
+  /**
+   * Event field in *Portfolio → Weddings*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio.weddings[].event
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  event: prismic.ContentRelationshipField<'event'>
+}
+
+/**
+ * Item in *Portfolio → Private*
+ */
+export interface PortfolioDocumentDataPrivateItem {
+  /**
+   * Event field in *Portfolio → Private*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio.private[].event
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  event: prismic.ContentRelationshipField<'event'>
+}
+
+/**
+ * Item in *Portfolio → corporate*
+ */
+export interface PortfolioDocumentDataCorporateItem {
+  /**
+   * Event field in *Portfolio → corporate*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio.corporate[].event
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  event: prismic.ContentRelationshipField<'event'>
+}
+
+type PortfolioDocumentDataSlicesSlice = never
+
+/**
+ * Content for Portfolio documents
+ */
+interface PortfolioDocumentData {
+  /**
+   * Title field in *Portfolio*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Description field in *Portfolio*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
+
+  /**
+   * Weddings field in *Portfolio*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio.weddings[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  weddings: prismic.GroupField<Simplify<PortfolioDocumentDataWeddingsItem>>
+
+  /**
+   * Private field in *Portfolio*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio.private[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  private: prismic.GroupField<Simplify<PortfolioDocumentDataPrivateItem>>
+
+  /**
+   * corporate field in *Portfolio*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio.corporate[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  corporate: prismic.GroupField<Simplify<PortfolioDocumentDataCorporateItem>>
+
+  /**
+   * Slice Zone field in *Portfolio*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PortfolioDocumentDataSlicesSlice> /**
+   * Meta Description field in *Portfolio*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: portfolio.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField
+
+  /**
+   * Meta Image field in *Portfolio*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>
+
+  /**
+   * Meta Title field in *Portfolio*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: portfolio.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField
+}
+
+/**
+ * Portfolio document from Prismic
+ *
+ * - **API ID**: `portfolio`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PortfolioDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<PortfolioDocumentData>,
+  'portfolio',
+  Lang
+>
+
 type PostDocumentDataSlicesSlice = never
 
 /**
@@ -318,7 +591,13 @@ export type PostDocument<Lang extends string = string> = prismic.PrismicDocument
   Lang
 >
 
-export type AllDocumentTypes = FooterDocument | NavDocument | PageDocument | PostDocument
+export type AllDocumentTypes =
+  | EventDocument
+  | FooterDocument
+  | NavDocument
+  | PageDocument
+  | PortfolioDocument
+  | PostDocument
 
 /**
  * Primary content in *AlternateGrid → Primary*
@@ -1169,6 +1448,69 @@ type HeroImageSliceVariation = HeroImageSliceDefault
 export type HeroImageSlice = prismic.SharedSlice<'hero_image', HeroImageSliceVariation>
 
 /**
+ * Primary content in *ImageGrid → Items*
+ */
+export interface ImageGridSliceDefaultItem {
+  /**
+   * Layout field in *ImageGrid → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: portrait
+   * - **API ID Path**: image_grid.items[].layout
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  layout: prismic.SelectField<'portrait' | 'landscape' | 'square', 'filled'>
+
+  /**
+   * Image field in *ImageGrid → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_grid.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+
+  /**
+   * Caption field in *ImageGrid → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_grid.items[].caption
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  caption: prismic.RichTextField
+}
+
+/**
+ * Default variation for ImageGrid Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageGridSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Record<string, never>,
+  Simplify<ImageGridSliceDefaultItem>
+>
+
+/**
+ * Slice variation for *ImageGrid*
+ */
+type ImageGridSliceVariation = ImageGridSliceDefault
+
+/**
+ * ImageGrid Shared Slice
+ *
+ * - **API ID**: `image_grid`
+ * - **Description**: ImageGrid
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageGridSlice = prismic.SharedSlice<'image_grid', ImageGridSliceVariation>
+
+/**
  * Primary content in *NavItem → Primary*
  */
 export interface NavItemSliceDefaultPrimary {
@@ -1528,6 +1870,9 @@ declare module '@prismicio/client' {
 
   namespace Content {
     export type {
+      EventDocument,
+      EventDocumentData,
+      EventDocumentDataSlicesSlice,
       FooterDocument,
       FooterDocumentData,
       FooterDocumentDataStatementsItem,
@@ -1538,6 +1883,12 @@ declare module '@prismicio/client' {
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      PortfolioDocument,
+      PortfolioDocumentData,
+      PortfolioDocumentDataWeddingsItem,
+      PortfolioDocumentDataPrivateItem,
+      PortfolioDocumentDataCorporateItem,
+      PortfolioDocumentDataSlicesSlice,
       PostDocument,
       PostDocumentData,
       PostDocumentDataSlicesSlice,
@@ -1583,6 +1934,10 @@ declare module '@prismicio/client' {
       HeroImageSliceDefaultPrimary,
       HeroImageSliceVariation,
       HeroImageSliceDefault,
+      ImageGridSlice,
+      ImageGridSliceDefaultItem,
+      ImageGridSliceVariation,
+      ImageGridSliceDefault,
       NavItemSlice,
       NavItemSliceDefaultPrimary,
       NavItemSliceDefaultItem,

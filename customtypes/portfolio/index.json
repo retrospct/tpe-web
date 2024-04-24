@@ -1,0 +1,121 @@
+{
+  "format": "page",
+  "id": "portfolio",
+  "label": "Portfolio",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID",
+          "placeholder": ""
+        }
+      },
+      "title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Title",
+          "placeholder": "",
+          "allowTargetBlank": false,
+          "single": "paragraph,heading1,heading2,heading3,strong,em,hyperlink"
+        }
+      },
+      "description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Description",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+        }
+      },
+      "weddings": {
+        "type": "Group",
+        "config": {
+          "label": "Weddings",
+          "repeat": true,
+          "fields": {
+            "event": {
+              "type": "Link",
+              "config": {
+                "label": "Event",
+                "select": "document",
+                "customtypes": ["event"]
+              }
+            }
+          }
+        }
+      },
+      "private": {
+        "type": "Group",
+        "config": {
+          "label": "Private",
+          "repeat": true,
+          "fields": {
+            "event": {
+              "type": "Link",
+              "config": {
+                "label": "Event",
+                "select": "document",
+                "customtypes": ["event"]
+              }
+            }
+          }
+        }
+      },
+      "corporate": {
+        "type": "Group",
+        "config": {
+          "label": "corporate",
+          "repeat": true,
+          "fields": {
+            "event": {
+              "type": "Link",
+              "config": {
+                "label": "Event",
+                "select": "document",
+                "customtypes": ["event"]
+              }
+            }
+          }
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      }
+    }
+  }
+}

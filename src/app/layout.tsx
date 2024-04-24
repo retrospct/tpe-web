@@ -1,11 +1,11 @@
+import Footer from '@/components/Footer'
 import Nav from '@/components/Nav'
+import { cn } from '@/lib/utils'
 import { repositoryName } from '@/prismicio'
 import { PrismicPreview } from '@prismicio/next'
 import { Crimson_Pro } from 'next/font/google'
 import localFont from 'next/font/local'
 
-import Footer from '@/components/Footer'
-import { cn } from '@/lib/utils'
 import '../styles/globals.css'
 
 const crimson = Crimson_Pro({
