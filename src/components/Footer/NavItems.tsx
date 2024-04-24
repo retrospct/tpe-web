@@ -1,52 +1,88 @@
 'use client'
 import { cn } from '@/lib/utils'
-import { Dialog, Popover, Transition } from '@headlessui/react'
+import { Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import { SliceZone, isFilled } from '@prismicio/client'
+import { isFilled } from '@prismicio/client'
 import { PrismicNextLink } from '@prismicio/next'
 import { PrismicText } from '@prismicio/react'
 import Link from 'next/link'
-import { Fragment, ReactNode } from 'react'
+import { Fragment } from 'react'
 import { FooterDocument, NavItemSlice, NavItemSliceDefaultItem, Simplify } from '../../../prismicio-types'
 import { TpBrandFacebook, TpBrandInstagram, TpBrandPinterest, TpBrandTikTok, TpBrandYelp } from '../icons'
-import NavLogo from './NavLogo'
 
 const callsToAction = [
   { name: 'Our portfolio', href: '/portfolio', icon: PlayCircleIcon },
   { name: 'Contact us', href: '/contact', icon: PhoneIcon }
 ]
 
+const platforms = new Map([
+  ['Facebook', { platform: 'Facebook', icon: <TpBrandFacebook /> }],
+  ['Instagram', { platform: 'Instagram', icon: <TpBrandInstagram /> }],
+  ['Yelp', { platform: 'Yelp', icon: <TpBrandYelp /> }],
+  ['TikTok', { platform: 'TikTok', icon: <TpBrandTikTok /> }],
+  ['Pinterest', { platform: 'Pinterest', icon: <TpBrandPinterest /> }],
+  ['Unknown', { platform: 'Unknown', icon: <TpBrandFacebook /> }]
+])
+
 const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
   return (
     <div className="mx-auto mt-6 flex max-w-5xl flex-col items-center justify-between">
+      {/* <SliceZone slices={navigation.data.slices} components={components} /> */}
       <div className="mx-auto mb-10 flex w-full flex-col items-center justify-between px-6 md:flex-row md:px-8">
-        <NavLinks slices={navigation.data.slices} />
+        {navigation.data.slices.map((slice) => {
+          if (slice.slice_type === 'nav_item') {
+            return slice.items.length > 0 ? (
+              <NavLinksGroup key={slice.id} slice={slice} />
+            ) : (
+              <NavLink key={slice.id} slice={slice} className="py-2 md:py-0" />
+            )
+          }
+          return null
+        })}
       </div>
-      <div className="flex items-center justify-center gap-6">
-        <SocialLink href="https://yelp.com" icon={<TpBrandYelp />} />
-        <SocialLink href="https://instagram.com" icon={<TpBrandInstagram />} />
-        <SocialLink href="https://facebook.com" icon={<TpBrandFacebook />} />
-        <SocialLink href="https://tiktok.com" icon={<TpBrandTikTok />} />
-        <SocialLink href="https://pinterest.com" icon={<TpBrandPinterest />} />
-      </div>
+
+      {navigation.data.slices.map((slice) => {
+        if (slice.slice_type === 'social_item') {
+          return (
+            <div key={slice.id} className="flex items-center justify-center gap-6">
+              {slice.items.map(
+                (item) =>
+                  isFilled.link(item.link) && (
+                    <PrismicNextLink key={JSON.stringify(item)} field={item.link} className="font-medium text-red">
+                      {platforms.get(item?.platform || 'Unknown')?.icon}
+                    </PrismicNextLink>
+                  )
+              )}
+            </div>
+          )
+        }
+      })}
     </div>
   )
 }
 
 export default NavItems
 
-function NavLinks({ slices, ...rest }: { slices: SliceZone<NavItemSlice> }) {
-  if (slices.length === 0) return null
-  return slices.map((slice) => {
-    if (slice.items.length > 0) {
-      // NavLinks group with flyout menu
-      return <NavLinksGroup key={slice.id} slice={slice} {...rest} />
-    } else {
-      // Regular NavLink
-      return <NavLink key={slice.id} slice={slice} className="py-2 md:py-0" {...rest} />
-    }
-  })
-}
+// {/* <div className="flex items-center justify-center gap-6">
+//   <SocialLink href="https://yelp.com" icon={<TpBrandYelp />} />
+//   <SocialLink href="https://instagram.com" icon={<TpBrandInstagram />} />
+//   <SocialLink href="https://facebook.com" icon={<TpBrandFacebook />} />
+//   <SocialLink href="https://tiktok.com" icon={<TpBrandTikTok />} />
+//   <SocialLink href="https://pinterest.com" icon={<TpBrandPinterest />} />
+// </div> */}
+
+// function NavLinks({ slice, ...rest }: { slice: NavItemSlice }) {
+//   // if (slice.items.length === 0) return null
+//   return slice.items.map((slice) => {
+//     if (slice.items.length > 0) {
+//       // NavLinks group with flyout menu
+//       return <NavLinksGroup key={slice.id} slice={slice} {...rest} />
+//     } else {
+//       // Regular NavLink
+//       return <NavLink key={slice.id} slice={slice} className="py-2 md:py-0" {...rest} />
+//     }
+//   })
+// }
 
 function NavLink({ slice, className }: { slice: NavItemSlice; className?: string }) {
   if (!isFilled.link(slice.primary.link)) return null
@@ -57,13 +93,13 @@ function NavLink({ slice, className }: { slice: NavItemSlice; className?: string
   )
 }
 
-function SocialLink({ href, className, icon }: { href: string; className?: string; icon?: ReactNode }) {
-  return (
-    <Link href={href} className={cn('font-medium text-red', className)}>
-      {icon}
-    </Link>
-  )
-}
+// function SocialLink({ link, className, icon }: { link: string; className?: string; icon?: ReactNode }) {
+//   return (
+//     <Link href={link} className={cn('font-medium text-red', className)}>
+//       {icon}
+//     </Link>
+//   )
+// }
 
 function NavLinksGroup({ slice }: { slice: NavItemSlice }) {
   return (
@@ -134,64 +170,64 @@ function NavItemLink({ item }: { item: Simplify<NavItemSliceDefaultItem> }) {
   )
 }
 
-const NavDialog = ({
-  slices,
-  mobileMenuOpen,
-  setMobileMenuOpen
-}: {
-  slices: SliceZone<NavItemSlice>
-  mobileMenuOpen: boolean
-  setMobileMenuOpen: () => void
-}) => {
-  return (
-    <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-      <div className="fixed inset-0 z-10" />
-      <Dialog.Panel className="fixed inset-y-0 right-0 z-10 flex w-full flex-col justify-between overflow-y-auto bg-white sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-        <div className="p-6">
-          <NavLogo />
-          <div className="mt-6 flow-root">
-            <div className="-my-6 divide-y divide-gray-500/10">
-              <div className="space-y-2 py-6">
-                {/* {products.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="text-gray-900 hover:bg-gray-50 group -mx-3 flex items-center gap-x-6 rounded-lg p-3 text-base font-semibold leading-7"
-                  >
-                    <div className="bg-gray-50 group-hover:bg-white flex h-11 w-11 flex-none items-center justify-center rounded-lg">
-                      <item.icon className="text-gray-600 group-hover:text-indigo-600 h-6 w-6" aria-hidden="true" />
-                    </div>
-                    {item.name}
-                  </a>
-                ))} */}
-                {slices.map((slice) => {
-                  if (slice.items.length > 0) {
-                    // NavLinks group with flyout menu
-                    return <NavLinksGroup key={slice.id} slice={slice} />
-                  } else {
-                    // Regular NavLink
-                    return <NavLink key={slice.id} slice={slice} />
-                  }
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="sticky bottom-0 grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50 text-center">
-          {callsToAction.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="p-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-      </Dialog.Panel>
-    </Dialog>
-  )
-}
+// const NavDialog = ({
+//   slices,
+//   mobileMenuOpen,
+//   setMobileMenuOpen
+// }: {
+//   slices: SliceZone<NavItemSlice>
+//   mobileMenuOpen: boolean
+//   setMobileMenuOpen: () => void
+// }) => {
+//   return (
+//     <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+//       <div className="fixed inset-0 z-10" />
+//       <Dialog.Panel className="fixed inset-y-0 right-0 z-10 flex w-full flex-col justify-between overflow-y-auto bg-white sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+//         <div className="p-6">
+//           <NavLogo />
+//           <div className="mt-6 flow-root">
+//             <div className="-my-6 divide-y divide-gray-500/10">
+//               <div className="space-y-2 py-6">
+//                 {/* {products.map((item) => (
+//                   <a
+//                     key={item.name}
+//                     href={item.href}
+//                     className="text-gray-900 hover:bg-gray-50 group -mx-3 flex items-center gap-x-6 rounded-lg p-3 text-base font-semibold leading-7"
+//                   >
+//                     <div className="bg-gray-50 group-hover:bg-white flex h-11 w-11 flex-none items-center justify-center rounded-lg">
+//                       <item.icon className="text-gray-600 group-hover:text-indigo-600 h-6 w-6" aria-hidden="true" />
+//                     </div>
+//                     {item.name}
+//                   </a>
+//                 ))} */}
+//                 {slices.map((slice) => {
+//                   if (slice.items.length > 0) {
+//                     // NavLinks group with flyout menu
+//                     return <NavLinksGroup key={slice.id} slice={slice} />
+//                   } else {
+//                     // Regular NavLink
+//                     return <NavLink key={slice.id} slice={slice} />
+//                   }
+//                 })}
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//         <div className="sticky bottom-0 grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50 text-center">
+//           {callsToAction.map((item) => (
+//             <Link
+//               key={item.name}
+//               href={item.href}
+//               className="p-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
+//             >
+//               {item.name}
+//             </Link>
+//           ))}
+//         </div>
+//       </Dialog.Panel>
+//     </Dialog>
+//   )
+// }
 
 // const products = [
 //   { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },

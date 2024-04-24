@@ -4,7 +4,7 @@ import type * as prismic from '@prismicio/client'
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] }
 
-type FooterDocumentDataSlicesSlice = NavItemSlice
+type FooterDocumentDataSlicesSlice = SocialItemSlice | NavItemSlice
 
 /**
  * Content for Footer documents
@@ -1322,6 +1322,74 @@ type ServicesSliceVariation = ServicesSliceDefault
 export type ServicesSlice = prismic.SharedSlice<'services', ServicesSliceVariation>
 
 /**
+ * Primary content in *SocialItem → Primary*
+ */
+export interface SocialItemSliceDefaultPrimary {
+  /**
+   * UTM field in *SocialItem → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: UTM string to append to each links for analytics (optional)
+   * - **API ID Path**: social_item.primary.utm
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  utm: prismic.RichTextField
+}
+
+/**
+ * Primary content in *SocialItem → Items*
+ */
+export interface SocialItemSliceDefaultItem {
+  /**
+   * Platform field in *SocialItem → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Yelp
+   * - **API ID Path**: social_item.items[].platform
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  platform: prismic.SelectField<'Yelp' | 'Instagram' | 'Facebook' | 'TikTok' | 'Pinterest', 'filled'>
+
+  /**
+   * Link field in *SocialItem → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Link to social platform or profile.
+   * - **API ID Path**: social_item.items[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField
+}
+
+/**
+ * Default variation for SocialItem Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SocialItemSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<SocialItemSliceDefaultPrimary>,
+  Simplify<SocialItemSliceDefaultItem>
+>
+
+/**
+ * Slice variation for *SocialItem*
+ */
+type SocialItemSliceVariation = SocialItemSliceDefault
+
+/**
+ * SocialItem Shared Slice
+ *
+ * - **API ID**: `social_item`
+ * - **Description**: SocialItem
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SocialItemSlice = prismic.SharedSlice<'social_item', SocialItemSliceVariation>
+
+/**
  * Primary content in *Testimonials → Primary*
  */
 export interface TestimonialsSliceDefaultPrimary {
@@ -1448,6 +1516,11 @@ declare module '@prismicio/client' {
       ServicesSliceDefaultItem,
       ServicesSliceVariation,
       ServicesSliceDefault,
+      SocialItemSlice,
+      SocialItemSliceDefaultPrimary,
+      SocialItemSliceDefaultItem,
+      SocialItemSliceVariation,
+      SocialItemSliceDefault,
       TestimonialsSlice,
       TestimonialsSliceDefaultPrimary,
       TestimonialsSliceVariation,

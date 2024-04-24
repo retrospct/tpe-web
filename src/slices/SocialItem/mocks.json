@@ -1,0 +1,44 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"utm": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Magna occaecat non cillum ipsum proident fugiat irure. Id est officia cupidatat id. Quis occaecat do deserunt culpa proident esse aute commodo commodo non."
+						}
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"link",
+						{
+							"__TYPE__": "LinkContent",
+							"value": {
+								"__TYPE__": "ExternalLink",
+								"url": "http://google.com"
+							}
+						}
+					],
+					[
+						"platform",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "Yelp",
+							"type": "Select"
+						}
+					]
+				]
+			}
+		]
+	}
+]

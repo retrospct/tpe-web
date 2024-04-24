@@ -1,0 +1,53 @@
+{
+  "id": "social_item",
+  "type": "SharedSlice",
+  "name": "SocialItem",
+  "description": "SocialItem",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "utm": {
+          "type": "StructuredText",
+          "config": {
+            "label": "UTM",
+            "placeholder": "UTM string to append to each links for analytics (optional)",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        }
+      },
+      "items": {
+        "platform": {
+          "type": "Select",
+          "config": {
+            "label": "Platform",
+            "placeholder": "",
+            "options": [
+              "Yelp",
+              "Instagram",
+              "Facebook",
+              "TikTok",
+              "Pinterest"
+            ],
+            "default_value": "Yelp"
+          }
+        },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "Link",
+            "placeholder": "Link to social platform or profile.",
+            "allowTargetBlank": true,
+            "select": null
+          }
+        }
+      }
+    }
+  ]
+}
