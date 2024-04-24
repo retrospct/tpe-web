@@ -64,6 +64,16 @@
 								}
 							]
 						}
+					],
+					[
+						"link",
+						{
+							"__TYPE__": "LinkContent",
+							"value": {
+								"__TYPE__": "ExternalLink",
+								"url": "http://twitter.com"
+							}
+						}
 					]
 				]
 			},
@@ -118,6 +128,16 @@
 							"credits": null,
 							"__TYPE__": "ImageContent",
 							"thumbnails": {}
+						}
+					],
+					[
+						"link",
+						{
+							"__TYPE__": "LinkContent",
+							"value": {
+								"__TYPE__": "ExternalLink",
+								"url": "https://slicemachine.dev"
+							}
 						}
 					]
 				]

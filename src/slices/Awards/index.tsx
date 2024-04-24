@@ -1,6 +1,6 @@
 import { TpRating } from '@/components/icons/TpRating'
 import { Content, isFilled } from '@prismicio/client'
-import { PrismicNextImage } from '@prismicio/next'
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import { PrismicText, SliceComponentProps } from '@prismicio/react'
 
 /**
@@ -28,7 +28,13 @@ const Awards = ({ slice }: AwardsProps): JSX.Element => {
                     <PrismicText field={item.title} />
                   </p>
                 )}
-                {isFilled.image(item.logo) && <PrismicNextImage field={item.logo} className="mt-2 h-12 w-auto" />}
+                {isFilled.image(item.logo) && isFilled.link(item.link) ? (
+                  <PrismicNextLink field={item.link}>
+                    <PrismicNextImage field={item.logo} className="mt-2 h-12 w-auto" />
+                  </PrismicNextLink>
+                ) : (
+                  <PrismicNextImage field={item.logo} className="mt-2 h-12 w-auto" />
+                )}
                 {isFilled.richText(item.subtitle) && !isFilled.number(item.rating) && (
                   <p className="mt-2 h-4 leading-none">
                     <PrismicText field={item.subtitle} />

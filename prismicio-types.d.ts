@@ -473,6 +473,16 @@ export interface AwardsSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#number
    */
   rating: prismic.NumberField
+
+  /**
+   * Link field in *Awards → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: awards.items[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField
 }
 
 /**

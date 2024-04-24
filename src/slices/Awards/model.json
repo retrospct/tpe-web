@@ -45,6 +45,15 @@
             "label": "Rating",
             "placeholder": "(Optional) 0-5, if provided subtitle is ignored."
           }
+        },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "Link",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "select": null
+          }
         }
       }
     }
