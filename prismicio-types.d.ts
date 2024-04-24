@@ -19,41 +19,6 @@ export interface FooterDocumentDataStatementsItem {
   text: prismic.RichTextField
 }
 
-/**
- * Item in *Footer → Newsletter*
- */
-export interface FooterDocumentDataNewsletterItem {
-  /**
-   * Input field in *Footer → Newsletter*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Email Address*
-   * - **API ID Path**: footer.newsletter[].input
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  input: prismic.RichTextField
-
-  /**
-   * CTA field in *Footer → Newsletter*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: SIGN UP
-   * - **API ID Path**: footer.newsletter[].cta
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  cta: prismic.RichTextField
-
-  /**
-   * Text field in *Footer → Newsletter*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Subscribe to our newsletter for planning resources, inspiration, and updates!
-   * - **API ID Path**: footer.newsletter[].text
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  text: prismic.RichTextField
-}
-
 type FooterDocumentDataSlicesSlice = SocialItemSlice | NavItemSlice
 
 /**
@@ -70,28 +35,6 @@ interface FooterDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   name: prismic.RichTextField
-
-  /**
-   * Statements field in *Footer*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: footer.statements[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  statements: prismic.GroupField<Simplify<FooterDocumentDataStatementsItem>>
-
-  /**
-   * Newsletter Text field in *Footer*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Subscribe to our newsletter for planning resources, inspiration, and updates!
-   * - **API ID Path**: footer.newsletter_text
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  newsletter_text: prismic.RichTextField
 
   /**
    * Newsletter Input field in *Footer*
@@ -116,15 +59,37 @@ interface FooterDocumentData {
   newsletter_cta: prismic.RichTextField
 
   /**
-   * Newsletter field in *Footer*
+   * Newsletter Text field in *Footer*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Subscribe to our newsletter for planning resources, inspiration, and updates!
+   * - **API ID Path**: footer.newsletter_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  newsletter_text: prismic.RichTextField
+
+  /**
+   * Statements field in *Footer*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: footer.newsletter[]
+   * - **API ID Path**: footer.statements[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#group
    */
-  newsletter: prismic.GroupField<Simplify<FooterDocumentDataNewsletterItem>>
+  statements: prismic.GroupField<Simplify<FooterDocumentDataStatementsItem>>
+
+  /**
+   * Copyright field in *Footer*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: 2024 Two Perfect Events™ All rights reserved. Photo Credits / Terms & Privacy
+   * - **API ID Path**: footer.copyright
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  copyright: prismic.RichTextField
 
   /**
    * Slice Zone field in *Footer*
@@ -1566,7 +1531,6 @@ declare module '@prismicio/client' {
       FooterDocument,
       FooterDocumentData,
       FooterDocumentDataStatementsItem,
-      FooterDocumentDataNewsletterItem,
       FooterDocumentDataSlicesSlice,
       NavDocument,
       NavDocumentData,

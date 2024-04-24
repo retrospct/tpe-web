@@ -22,7 +22,7 @@ const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
   return (
     <div className="mx-auto mt-6 flex max-w-5xl flex-col items-center justify-between">
       {/* <SliceZone slices={navigation.data.slices} components={components} /> */}
-      <div className="mx-auto mb-10 flex w-full flex-col items-center justify-between px-6 md:flex-row md:px-8">
+      <div className="mx-auto mb-8 flex w-full flex-col items-center justify-between px-6 md:flex-row md:px-8">
         {navigation.data.slices.map((slice) => {
           if (slice.slice_type === 'nav_item') {
             return slice.items.length > 0 ? (

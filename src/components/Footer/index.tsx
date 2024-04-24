@@ -15,23 +15,24 @@ export default async function Footer() {
       <NavLogo />
       <NavItems navigation={navigation} />
 
-      {isFilled.richText(navigation.data.newsletter_cta) &&
-        isFilled.keyText(navigation.data.newsletter_input) &&
-        isFilled.richText(navigation.data.newsletter_text) && (
-          <div className="mx-auto mt-10 flex w-full flex-col items-center justify-center px-6 text-center text-red lg:px-12">
-            <div className="flex items-center justify-center gap-1">
-              <input
-                type="email"
-                placeholder={navigation.data.newsletter_input}
-                // value={navigation.data.newsletter_input}
-              />
-              <PrismicRichText field={navigation.data.newsletter_cta} />
-            </div>
-            <div className="max-w-72">
-              <PrismicRichText field={navigation.data.newsletter_text} />
-            </div>
+      {isFilled.richText(navigation.data.newsletter_cta) && isFilled.richText(navigation.data.newsletter_text) && (
+        <div className="mx-auto mt-8 flex w-full flex-col items-center justify-center px-6 text-center text-red lg:px-12">
+          <div className="mb-3 flex items-center justify-center gap-1">
+            <input
+              type="email"
+              placeholder={
+                isFilled.keyText(navigation.data.newsletter_input) ? navigation.data.newsletter_input : 'Email Address*'
+              }
+              // value={navigation.data.newsletter_input}
+              required
+            />
+            <PrismicRichText field={navigation.data.newsletter_cta} />
           </div>
-        )}
+          <div className="max-w-72 font-light">
+            <PrismicRichText field={navigation.data.newsletter_text} />
+          </div>
+        </div>
+      )}
 
       {/* {navigation.data?.newsletter?.length > 0 && (
         <div className="mx-auto flex w-full flex-col items-center justify-center px-6 text-center text-red lg:flex-row lg:justify-between lg:px-12">
@@ -53,11 +54,19 @@ export default async function Footer() {
           {navigation.data.statements.map(
             (statement, i) =>
               isFilled.richText(statement.text) && (
-                <div key={`statement-${i}`} className={cn('mt-10', i === 1 && 'order-first lg:order-none')}>
+                <div
+                  key={`statement-${i}`}
+                  className={cn('mt-6 text-sm', i === 1 && 'order-first text-base font-medium lg:order-none')}
+                >
                   <PrismicRichText field={statement.text} />
                 </div>
               )
           )}
+        </div>
+      )}
+      {isFilled.richText(navigation.data.copyright) && (
+        <div className="mx-auto mt-6 max-w-xs px-6 text-center text-xs text-red lg:mt-1 lg:max-w-full lg:px-12">
+          <PrismicRichText field={navigation.data.copyright} />
         </div>
       )}
     </footer>
