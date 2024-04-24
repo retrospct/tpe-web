@@ -4,6 +4,21 @@ import type * as prismic from '@prismicio/client'
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] }
 
+/**
+ * Item in *Footer → Statements*
+ */
+export interface FooterDocumentDataStatementsItem {
+  /**
+   * Text field in *Footer → Statements*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.statements[].text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField
+}
+
 type FooterDocumentDataSlicesSlice = SocialItemSlice | NavItemSlice
 
 /**
@@ -20,6 +35,17 @@ interface FooterDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   name: prismic.RichTextField
+
+  /**
+   * Statements field in *Footer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.statements[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  statements: prismic.GroupField<Simplify<FooterDocumentDataStatementsItem>>
 
   /**
    * Slice Zone field in *Footer*
@@ -1460,6 +1486,7 @@ declare module '@prismicio/client' {
     export type {
       FooterDocument,
       FooterDocumentData,
+      FooterDocumentDataStatementsItem,
       FooterDocumentDataSlicesSlice,
       NavDocument,
       NavDocumentData,

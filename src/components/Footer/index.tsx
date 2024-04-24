@@ -1,5 +1,7 @@
 import { createClient } from '@/prismicio'
 
+import { isFilled } from '@prismicio/client'
+import { PrismicRichText } from '@prismicio/react'
 import NavItems from './NavItems'
 import NavLogo from './NavLogo'
 
@@ -11,6 +13,14 @@ export default async function Footer() {
     <footer className="my-16">
       <NavLogo />
       <NavItems navigation={navigation} />
+      {navigation.data?.statements?.length > 0 && (
+        <div className="mx-auto mt-6 flex w-full flex-col items-center justify-between px-6 text-center text-red md:flex-row md:px-12">
+          {navigation.data.statements.map(
+            (statement, i) =>
+              isFilled.richText(statement.text) && <PrismicRichText key={`statement-${i}`} field={statement.text} />
+          )}
+        </div>
+      )}
     </footer>
   )
 }
