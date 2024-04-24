@@ -50,7 +50,7 @@ export default async function Footer() {
         </div>
       )} */}
       {navigation.data?.statements?.length > 0 && (
-        <div className="mx-auto flex w-full flex-col items-center justify-center px-6 text-center text-red lg:flex-row lg:justify-between lg:px-12">
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-6 text-center text-red lg:flex-row lg:justify-between lg:px-12">
           {navigation.data.statements.map(
             (statement, i) =>
               isFilled.richText(statement.text) && (
