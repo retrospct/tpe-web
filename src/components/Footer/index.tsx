@@ -3,6 +3,7 @@ import { createClient } from '@/prismicio'
 import { cn } from '@/lib/utils'
 import { isFilled } from '@prismicio/client'
 import { PrismicRichText } from '@prismicio/react'
+import { SubscribeForm } from '../SubscribeForm'
 import NavItems from './NavItems'
 import NavLogo from './NavLogo'
 
@@ -17,17 +18,12 @@ export default async function Footer() {
 
       {isFilled.richText(navigation.data.newsletter_cta) && isFilled.richText(navigation.data.newsletter_text) && (
         <div className="mx-auto mt-8 flex w-full flex-col items-center justify-center px-6 text-center text-red lg:px-12">
-          <div className="mb-3 flex items-center justify-center gap-1">
-            <input
-              type="email"
-              placeholder={
-                isFilled.keyText(navigation.data.newsletter_input) ? navigation.data.newsletter_input : 'Email Address*'
-              }
-              // value={navigation.data.newsletter_input}
-              required
-            />
-            <PrismicRichText field={navigation.data.newsletter_cta} />
-          </div>
+          <SubscribeForm
+            cta={<PrismicRichText field={navigation.data.newsletter_cta} />}
+            placeholder={
+              isFilled.keyText(navigation.data.newsletter_input) ? navigation.data.newsletter_input : undefined
+            }
+          />
           <div className="max-w-72 font-light">
             <PrismicRichText field={navigation.data.newsletter_text} />
           </div>

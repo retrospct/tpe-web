@@ -89,7 +89,8 @@ const config = {
         // display: ['var(--font-crimson)', 'ui-serif']
       },
       maxWidth: {
-        '2xl': '40rem'
+        '2xl': '40rem',
+        '8xl': '90rem'
       },
       keyframes: {
         'accordion-down': {

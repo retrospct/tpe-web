@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer'
 import Nav from '@/components/Nav'
+import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
 import { repositoryName } from '@/prismicio'
 import { PrismicPreview } from '@prismicio/next'
@@ -21,12 +22,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={cn('bg-almond', crimson.variable, belgant.variable)}>
+    <html
+      lang="en"
+      className={cn('min-h-screen bg-background font-sans antialiased', crimson.variable, belgant.variable)}
+    >
       <body>
         <Nav />
         {children}
         <Footer />
       </body>
+      <Toaster />
       <PrismicPreview repositoryName={repositoryName ?? 'tpe-web'} />
     </html>
   )

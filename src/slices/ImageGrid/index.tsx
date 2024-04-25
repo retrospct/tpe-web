@@ -18,7 +18,7 @@ const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
       className="flex items-center justify-center"
     >
       {slice.variation === 'default' && (
-        <div className="my-10 flex w-full max-w-7xl flex-col items-center justify-evenly text-center font-medium text-red lg:my-16 lg:flex-row">
+        <div className="max-w-8xl my-10 flex w-full flex-col items-center justify-evenly text-center font-medium text-red lg:my-16 lg:flex-row">
           {slice.items.length > 0 &&
             slice.items.map((item) => (
               <div key={JSON.stringify(item)} className="flex flex-col items-center justify-center py-6">

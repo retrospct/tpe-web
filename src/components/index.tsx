@@ -1,4 +1,6 @@
+export * from './ContactForm'
 export * from './Heading'
 export * from './Nav'
 export * from './PrismicNextLink'
 export * from './PrismicRichText'
+export * from './SubscribeForm'
