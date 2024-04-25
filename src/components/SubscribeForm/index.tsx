@@ -10,11 +10,16 @@ import { toast } from 'sonner'
 import { z } from 'zod'
 
 const formSchema = z.object({
-  email: z.string().min(1, { message: 'Email address is required.' }).max(100).email()
+  email: z
+    .string()
+    .min(1, { message: 'Email address is required.' })
+    .max(100)
+    .email()
+    .describe('Email address provided by the user.')
 })
 
 export function SubscribeForm({
-  placeholder = 'Email Address',
+  placeholder = 'Email',
   cta = 'Submit',
   className
 }: {
@@ -22,7 +27,6 @@ export function SubscribeForm({
   cta?: ReactNode
   className?: string
 }) {
-  // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -30,18 +34,12 @@ export function SubscribeForm({
     }
   })
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values)
     toast.message('Form has been submitted', {
       description: JSON.stringify(values, null, 2)
-      // description: (
-      //   <pre className="mt-2 w-full rounded-md bg-slate-950 p-4">
-      //     <code>{JSON.stringify(values, null, 2)}</code>
-      //   </pre>
-      // )
     })
   }
 
@@ -57,7 +55,7 @@ export function SubscribeForm({
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel hidden>Email Address</FormLabel>
+              <FormLabel hidden>Email</FormLabel>
               <FormControl>
                 <Input placeholder={placeholder} {...field} />
               </FormControl>

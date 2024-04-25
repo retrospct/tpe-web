@@ -1,13 +1,19 @@
 'use client'
 import { Button } from '@/components/ui/button'
+import { Calendar } from '@/components/ui/calendar'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Textarea } from '@/components/ui/textarea'
+import { cn } from '@/lib/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { format } from 'date-fns'
+import { CalendarIcon } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
+// import { addMonths, isSameMonth } from 'date-fns';
 
 const phoneValidation = new RegExp(/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/)
 
@@ -21,7 +27,8 @@ const formSchema = z.object({
     .max(20, { message: 'Phone number must not be longer than 20 characters please.' })
     .regex(phoneValidation, { message: 'Invalid phone number' }),
   // eventDate: z.date().optional(),
-  eventDate: z.string().optional(),
+  // eventDate: z.date().optional(),
+  eventDate: z.date().optional(),
   comments: z.string().max(240, { message: 'Reply must not be longer than 240 characters please.' }).optional(),
   referral: z.string().max(80, { message: 'Reply must not be longer than 80 characters please.' }).optional(),
   newsletter: z.boolean().default(false).optional()
@@ -36,12 +43,24 @@ export function ContactForm() {
       firstName: '',
       lastName: '',
       phone: '',
-      eventDate: '',
+      eventDate: undefined,
       comments: '',
       referral: '',
       newsletter: false
     }
   })
+  // const today = new Date();
+  // const nextMonth = addMonths(new Date(), 1);
+  // const [month, setMonth] = useState<Date>(nextMonth);
+
+  // const footer = (
+  //   <button
+  //     disabled={isSameMonth(today, month)}
+  //     onClick={() => setMonth(today)}
+  //   >
+  //     Today
+  //   </button>
+  // );
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -66,9 +85,9 @@ export function ContactForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel hidden>Email Address</FormLabel>
+              <FormLabel hidden>Email</FormLabel>
               <FormControl>
-                <Input placeholder="Email Address*" {...field} />
+                <Input placeholder="Email*" {...field} />
               </FormControl>
               {/* <FormDescription>This is your email address</FormDescription> */}
               <FormMessage />
@@ -108,7 +127,7 @@ export function ContactForm() {
             control={form.control}
             name="phone"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="relative w-1/2">
                 <FormLabel hidden>Phone</FormLabel>
                 <FormControl>
                   <Input placeholder="Phone*" {...field} />
@@ -117,7 +136,7 @@ export function ContactForm() {
               </FormItem>
             )}
           />
-          <FormField
+          {/* <FormField
             control={form.control}
             name="eventDate"
             render={({ field }) => (
@@ -126,6 +145,56 @@ export function ContactForm() {
                 <FormControl>
                   <Input placeholder="Event Date" {...field} />
                 </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          /> */}
+          <FormField
+            control={form.control}
+            name="eventDate"
+            render={({ field }) => (
+              <FormItem className="relative flex w-1/2 flex-col">
+                <FormLabel hidden>Event Date</FormLabel>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        className={cn(
+                          'bg-foreground px-3 text-left text-lg font-normal text-primary',
+                          !field.value && 'text-secondary'
+                        )}
+                      >
+                        {field.value ? format(field.value, 'PPP') : <span>Event Date</span>}
+                        <CalendarIcon className="ml-auto h-4 w-4 opacity-70" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={field.value}
+                      onSelect={field.onChange}
+                      disabled={(date) => date < new Date() || date < new Date('1900-01-01')}
+                      fromYear={new Date().getFullYear()}
+                      fromMonth={new Date()}
+                      footer={
+                        <div className="pt-2 text-center">
+                          <Button
+                            variant="link"
+                            size="sm"
+                            className="text-lg font-medium italic text-primary"
+                            onClick={() => form.setValue('eventDate', undefined)}
+                          >
+                            RESET
+                          </Button>
+                        </div>
+                      }
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
                 <FormMessage />
               </FormItem>
             )}
