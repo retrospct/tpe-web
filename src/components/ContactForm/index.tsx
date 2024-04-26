@@ -160,9 +160,9 @@ export function ContactForm() {
                     <FormControl>
                       <Button
                         variant="outline"
-                        size="lg"
+                        size="md"
                         className={cn(
-                          'bg-foreground px-3 text-left text-lg font-normal text-primary',
+                          'h-11 bg-foreground px-3 text-left text-lg font-normal text-primary',
                           !field.value && 'text-secondary'
                         )}
                       >
@@ -244,7 +244,9 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="italic">
+          SUBMIT
+        </Button>
       </form>
     </Form>
   )

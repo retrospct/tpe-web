@@ -44,7 +44,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
                         </div>
                       )}
                       {isFilled.richText(item.link_text) && (
-                        <div className="relative mx-6 mt-5 w-full max-w-60 text-center text-xl font-normal tracking-wider underline underline-offset-8 transition-transform group-hover:scale-105 lg:mx-12">
+                        <div className="relative mx-6 mt-5 w-full max-w-60 text-center text-xl font-normal tracking-wider underline underline-offset-8 lg:mx-12">
                           <PrismicRichText field={item.link_text} />
                         </div>
                       )}

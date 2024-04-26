@@ -60,7 +60,11 @@ function NavLinks({ slices, ...rest }: { slices: SliceZone<NavItemSlice> }) {
 function NavLink({ slice, className }: { slice: NavItemSlice; className?: string }) {
   if (!isFilled.link(slice.primary.link)) return null
   return (
-    <PrismicNextLink key={slice.id} field={slice.primary.link} className={cn('font-medium text-red', className)}>
+    <PrismicNextLink
+      key={slice.id}
+      field={slice.primary.link}
+      className={cn('font-medium text-primary underline-offset-8 hover:underline', className)}
+    >
       {isFilled.richText(slice.primary.name) && <PrismicText field={slice.primary.name} />}
     </PrismicNextLink>
   )
@@ -70,7 +74,7 @@ function NavLinksGroup({ slice }: { slice: NavItemSlice }) {
   return (
     <Popover.Group key={slice.id} className="hidden lg:flex lg:gap-x-12">
       <Popover className="relative">
-        <Popover.Button className="flex items-center gap-x-1 font-medium leading-6 text-red">
+        <Popover.Button className="flex items-center gap-x-1 font-medium leading-6 text-primary underline-offset-8 hover:underline">
           <PrismicText field={slice.primary.name} />
           <ChevronDownIcon className="h-5 w-5 flex-none" aria-hidden="true" />
         </Popover.Button>

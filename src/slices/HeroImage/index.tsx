@@ -1,4 +1,5 @@
 import { TpSquiggle } from '@/components/icons'
+import { buttonVariants } from '@/components/ui/button'
 import { isFilled, type Content } from '@prismicio/client'
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from '@prismicio/react'
@@ -54,12 +55,9 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
               </div>
             )}
             <div className="mt-8 flex flex-col-reverse items-center justify-center gap-x-12 sm:mt-10 sm:flex-row">
-              <div className="mt-8 min-w-fit bg-pink p-2 transition-colors hover:bg-rose-300 sm:mt-0">
+              <div className="mt-8 sm:mt-0">
                 {isFilled.link(slice.primary.cta_link) && (
-                  <PrismicNextLink
-                    field={slice.primary.cta_link}
-                    className="inline-block text-nowrap border-2 border-solid border-red px-14 py-4 text-lg font-semibold text-red focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-8 focus-visible:outline-rose-400"
-                  >
+                  <PrismicNextLink field={slice.primary.cta_link} className={buttonVariants({ variant: 'default' })}>
                     {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
                   </PrismicNextLink>
                 )}

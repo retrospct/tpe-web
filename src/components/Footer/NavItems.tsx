@@ -42,7 +42,11 @@ const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
               {slice.items.map(
                 (item) =>
                   isFilled.link(item.link) && (
-                    <PrismicNextLink key={JSON.stringify(item)} field={item.link} className="font-medium text-red">
+                    <PrismicNextLink
+                      key={JSON.stringify(item)}
+                      field={item.link}
+                      className="font-medium text-primary underline-offset-8 transition-all hover:scale-105 hover:text-primary/90"
+                    >
                       {platforms.get(item?.platform || 'Unknown')?.icon}
                     </PrismicNextLink>
                   )
@@ -68,7 +72,11 @@ export default NavItems
 function NavLink({ slice, className }: { slice: NavItemSlice; className?: string }) {
   if (!isFilled.link(slice.primary.link)) return null
   return (
-    <PrismicNextLink key={slice.id} field={slice.primary.link} className={cn('font-medium text-red', className)}>
+    <PrismicNextLink
+      key={slice.id}
+      field={slice.primary.link}
+      className={cn('font-medium text-primary underline-offset-8 hover:underline', className)}
+    >
       {isFilled.richText(slice.primary.name) && <PrismicText field={slice.primary.name} />}
     </PrismicNextLink>
   )
@@ -86,7 +94,7 @@ function NavLinksGroup({ slice }: { slice: NavItemSlice }) {
   return (
     <Popover.Group key={slice.id} className="hidden lg:flex lg:gap-x-12">
       <Popover className="relative">
-        <Popover.Button className="flex items-center gap-x-1 font-medium leading-6 text-red">
+        <Popover.Button className="flex items-center gap-x-1 font-medium leading-6 text-primary underline-offset-8 hover:underline">
           <PrismicText field={slice.primary.name} />
           <ChevronDownIcon className="h-5 w-5 flex-none" aria-hidden="true" />
         </Popover.Button>
@@ -122,7 +130,7 @@ function NavItemLink({ item }: { item: Simplify<NavItemSliceDefaultItem> }) {
         <div className="flex-auto">
           <PrismicNextLink field={item.link} className="block">
             {isFilled.richText(item.name) && (
-              <div className="font-medium uppercase text-red">
+              <div className="font-medium uppercase text-primary">
                 <PrismicText field={item.name} />
                 <span className="absolute inset-0" />
               </div>

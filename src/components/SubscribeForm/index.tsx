@@ -20,7 +20,7 @@ const formSchema = z.object({
 
 export function SubscribeForm({
   placeholder = 'Email',
-  cta = 'Submit',
+  cta = 'SIGN UP',
   className
 }: {
   placeholder?: string
@@ -48,7 +48,7 @@ export function SubscribeForm({
       <form
         id="subscribe-form"
         onSubmit={form.handleSubmit(onSubmit)}
-        className={cn('my-2 flex items-center justify-center gap-2', className)}
+        className={cn('my-2 flex items-start justify-center gap-2', className)}
       >
         <FormField
           control={form.control}
@@ -57,14 +57,14 @@ export function SubscribeForm({
             <FormItem>
               <FormLabel hidden>Email</FormLabel>
               <FormControl>
-                <Input placeholder={placeholder} {...field} />
+                <Input placeholder={placeholder} className="h-9" {...field} />
               </FormControl>
               {/* <FormDescription>This is your email address</FormDescription> */}
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" className="h-11">
+        <Button type="submit" size="md">
           {cta}
         </Button>
       </form>
