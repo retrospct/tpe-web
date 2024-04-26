@@ -61,14 +61,6 @@ const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
 
 export default NavItems
 
-// {/* <div className="flex items-center justify-center gap-6">
-//   <SocialLink href="https://yelp.com" icon={<TpBrandYelp />} />
-//   <SocialLink href="https://instagram.com" icon={<TpBrandInstagram />} />
-//   <SocialLink href="https://facebook.com" icon={<TpBrandFacebook />} />
-//   <SocialLink href="https://tiktok.com" icon={<TpBrandTikTok />} />
-//   <SocialLink href="https://pinterest.com" icon={<TpBrandPinterest />} />
-// </div> */}
-
 function NavLink({ slice, className }: { slice: NavItemSlice; className?: string }) {
   if (!isFilled.link(slice.primary.link)) return null
   return (
