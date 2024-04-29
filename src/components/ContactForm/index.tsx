@@ -13,7 +13,6 @@ import { CalendarIcon } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
-// import { addMonths, isSameMonth } from 'date-fns';
 
 const phoneValidation = new RegExp(/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/)
 
@@ -35,7 +34,6 @@ const formSchema = z.object({
 })
 
 export function ContactForm() {
-  // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -49,31 +47,13 @@ export function ContactForm() {
       newsletter: false
     }
   })
-  // const today = new Date();
-  // const nextMonth = addMonths(new Date(), 1);
-  // const [month, setMonth] = useState<Date>(nextMonth);
 
-  // const footer = (
-  //   <button
-  //     disabled={isSameMonth(today, month)}
-  //     onClick={() => setMonth(today)}
-  //   >
-  //     Today
-  //   </button>
-  // );
-
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values)
     toast.message('Form has been submitted', {
       description: JSON.stringify(values, null, 2)
-      // description: (
-      //   <pre className="mt-2 w-full rounded-md bg-slate-950 p-4">
-      //     <code>{JSON.stringify(values, null, 2)}</code>
-      //   </pre>
-      // )
     })
   }
 
