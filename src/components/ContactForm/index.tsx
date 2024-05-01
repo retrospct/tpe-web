@@ -18,8 +18,8 @@ const phoneValidation = new RegExp(/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[
 
 const formSchema = z.object({
   email: z.string().min(1, { message: 'Email address is required.' }).max(100).email(),
-  firstName: z.string().min(1, { message: 'First name is required.' }).max(50),
-  lastName: z.string().min(1, { message: 'Last name is required.' }).max(50),
+  name: z.string().min(1, { message: 'Name is required.' }).max(100),
+  // lastName: z.string().min(1, { message: 'Last name is required.' }).max(50),
   phone: z
     .string()
     .min(1, { message: 'Phone number is required.' })
@@ -38,8 +38,8 @@ export function ContactForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: '',
-      firstName: '',
-      lastName: '',
+      name: '',
+      // lastName: '',
       phone: '',
       eventDate: undefined,
       comments: '',
@@ -59,7 +59,11 @@ export function ContactForm() {
 
   return (
     <Form {...form}>
-      <form id="contact-form" onSubmit={form.handleSubmit(onSubmit)} className="my-11 space-y-4 px-2 text-center">
+      <form
+        id="contact-form"
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="my-11 w-full max-w-md space-y-4 px-2 text-center"
+      >
         <FormField
           control={form.control}
           name="email"
@@ -74,20 +78,20 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        <div className="flex w-full justify-between gap-4">
-          <FormField
-            control={form.control}
-            name="firstName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel hidden>First Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="First Name*" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel hidden>Name</FormLabel>
+              <FormControl>
+                <Input placeholder="Name*" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        {/* <div className="flex w-full justify-between gap-4">
           <FormField
             control={form.control}
             name="lastName"
@@ -101,7 +105,7 @@ export function ContactForm() {
               </FormItem>
             )}
           />
-        </div>
+        </div> */}
         <div className="flex w-full justify-between gap-4">
           <FormField
             control={form.control}
@@ -198,10 +202,10 @@ export function ContactForm() {
           name="referral"
           render={({ field }) => (
             <FormItem>
-              <FormLabel hidden>How did you hear about TPE?</FormLabel>
+              <FormLabel hidden>How did you hear about us?</FormLabel>
               <FormControl>
-                <Input placeholder="How did you hear about TPE?" {...field} />
-                {/* <Textarea placeholder="How did you hear about TPE?" className="resize-none" {...field} /> */}
+                <Input placeholder="How did you hear about us?" {...field} />
+                {/* <Textarea placeholder="How did you hear about us?" className="resize-none" {...field} /> */}
               </FormControl>
               <FormMessage />
             </FormItem>
