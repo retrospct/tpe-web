@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils'
 import { Content, isFilled } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
 import { SliceComponentProps } from '@prismicio/react'
@@ -15,14 +16,27 @@ const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="flex items-center justify-center"
+      className="mx-auto flex w-full max-w-8xl flex-col items-center justify-start"
     >
       {slice.variation === 'default' && (
-        <div className="my-10 flex w-full max-w-8xl flex-col items-center justify-center text-center font-medium text-red lg:my-16 lg:flex-row">
+        <div className="my-10 columns-1 gap-1 text-center font-medium text-primary md:columns-2 md:gap-2 lg:my-16 lg:columns-3 lg:gap-3">
           {slice.items.length > 0 &&
             slice.items.map((item) => (
-              <div key={JSON.stringify(item)} className="m-3 flex flex-col items-center justify-center">
-                {isFilled.image(item.image) && <PrismicNextImage field={item.image} className="h-96 w-auto" />}
+              <div key={JSON.stringify(item)} className="relative mb-3 overflow-hidden">
+                {isFilled.image(item.image) && (
+                  <PrismicNextImage
+                    field={item.image}
+                    // fill={item.layout !== 'portrait'}
+                    className={cn(
+                      'h-auto w-auto',
+                      item.layout === 'portrait'
+                        ? 'h-96 w-72'
+                        : item.layout === 'square'
+                          ? 'h-72 w-72 object-cover'
+                          : 'h-60 w-72 object-cover'
+                    )}
+                  />
+                )}
                 {/* {isFilled.richText(item.caption) && (
                   <div className="m-0 h-4 leading-none">
                     <PrismicRichText field={item.caption} />
