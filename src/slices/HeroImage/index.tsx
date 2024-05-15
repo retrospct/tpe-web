@@ -63,7 +63,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                 )}
               </div>
               {isFilled.richText(slice.primary.description) && (
-                <div className="text-left text-2xl font-medium leading-8 text-brown sm:text-right">
+                <div className="text-left text-2xl font-medium leading-8 text-brown">
                   <PrismicRichText field={slice.primary.description} components={components} />
                 </div>
               )}

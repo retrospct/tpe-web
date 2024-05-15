@@ -16,10 +16,10 @@ const Awards = ({ slice }: AwardsProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="flex items-center justify-center"
+      className="flex items-center justify-center bg-foreground"
     >
       {slice.variation === 'default' && (
-        <div className="my-10 flex w-full max-w-7xl flex-col items-center justify-evenly text-center font-medium text-red lg:my-16 lg:flex-row">
+        <div className="my-10 flex w-full max-w-7xl flex-col items-center justify-evenly text-center font-medium text-primary lg:my-16 lg:flex-row">
           {slice.items.length > 0 &&
             slice.items.map((item) => (
               <div key={JSON.stringify(item)} className="flex flex-col items-center justify-center py-6">

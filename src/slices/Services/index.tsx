@@ -35,7 +35,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
                   {isFilled.link(item.link) && (
                     <PrismicNextLink field={item.link} className="group">
                       {isFilled.image(item.image) && (
-                        <div className="relative mx-6 w-full max-w-60 overflow-hidden rounded-t-full border-[5px] border-solid border-pink text-center transition-transform group-hover:scale-105 lg:mx-12">
+                        <div className="relative mx-6 w-full max-w-60 overflow-hidden rounded-t-full border-[5px] border-solid border-primary text-center transition-transform group-hover:scale-105 lg:mx-12">
                           <PrismicNextImage
                             field={item.image}
                             imgixParams={{ crop: 'faces,edges', fit: 'crop', w: 1, h: 1 }}

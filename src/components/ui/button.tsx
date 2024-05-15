@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'relative bg-accent font-semibold tracking-widest text-primary before:absolute before:inset-2 before:block before:border-2 before:border-primary hover:bg-accent/80', //hover:bg-accent-hover
+          'relative bg-primary font-semibold tracking-widest text-accent before:absolute before:inset-2 before:block before:border-2 before:border-accent hover:bg-primary/80', //hover:bg-accent-hover
         destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
         outline: 'border-2 border-primary bg-background hover:bg-accent hover:text-accent-foreground',
         secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',

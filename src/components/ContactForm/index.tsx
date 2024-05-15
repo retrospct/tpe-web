@@ -215,7 +215,7 @@ export function ContactForm() {
           control={form.control}
           name="newsletter"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-center justify-center space-x-3 space-y-0 border p-4 text-red">
+            <FormItem className="flex flex-row items-center justify-center space-x-3 space-y-0 p-4 text-primary">
               <FormControl>
                 <Checkbox checked={field.value} onCheckedChange={field.onChange} />
               </FormControl>
