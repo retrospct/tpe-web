@@ -14,7 +14,7 @@ export default async function Page({ params }: { params: Params }) {
   return (
     <div className="my-14">
       <Heading richText={page.data.title} />
-      <p className="text-red">NAVIGATION HERE</p>
+      <p className="text-center text-primary">NAVIGATION HERE</p>
       <SliceZone slices={page.data.slices} components={components} />
     </div>
   )

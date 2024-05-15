@@ -21,7 +21,7 @@ export default async function Page({ params }: { params: Params }) {
   return (
     <div className="mx-auto my-14 flex w-full max-w-7xl flex-col items-center">
       <Heading richText={page.data.title} />
-      <p className="text-center text-red">NAVIGATION HERE</p>
+      <p className="text-center text-primary">NAVIGATION HERE</p>
       {/* {page?.data && (
         <div className="mx-auto flex w-full flex-col items-center justify-center px-6 text-center text-red lg:flex-row lg:justify-between lg:px-12">
           <code className="text-left">
@@ -38,10 +38,10 @@ export default async function Page({ params }: { params: Params }) {
                 {event?.url && (
                   <Link href={event.url}>
                     {isFilled.image(event?.data?.thumbnail) && (
-                      <PrismicNextImage field={event.data.thumbnail} className="mt-2 h-96 w-auto" />
+                      <PrismicNextImage field={event.data.thumbnail} className="h-96 w-auto" />
                     )}
                     {isFilled.richText(event?.data?.title) && (
-                      <div className="m-0 h-4 leading-none">
+                      <div className="mt-4 text-lg uppercase leading-none">
                         <PrismicRichText field={event.data.title} />
                       </div>
                     )}
@@ -60,10 +60,10 @@ export default async function Page({ params }: { params: Params }) {
                 {event?.url && (
                   <Link href={event.url}>
                     {isFilled.image(event?.data?.thumbnail) && (
-                      <PrismicNextImage field={event.data.thumbnail} className="mt-2 h-96 w-auto" />
+                      <PrismicNextImage field={event.data.thumbnail} className="h-96 w-auto" />
                     )}
                     {isFilled.richText(event?.data?.title) && (
-                      <div className="m-0 h-4 leading-none">
+                      <div className="mt-4 text-lg uppercase leading-none">
                         <PrismicRichText field={event.data.title} />
                       </div>
                     )}
@@ -82,10 +82,10 @@ export default async function Page({ params }: { params: Params }) {
                 {event?.url && (
                   <Link href={event.url}>
                     {isFilled.image(event?.data?.thumbnail) && (
-                      <PrismicNextImage field={event.data.thumbnail} className="mt-2 h-96 w-auto" />
+                      <PrismicNextImage field={event.data.thumbnail} className="h-96 w-auto" />
                     )}
                     {isFilled.richText(event?.data?.title) && (
-                      <div className="m-0 h-4 leading-none">
+                      <div className="mt-4 text-lg uppercase leading-none">
                         <PrismicRichText field={event.data.title} />
                       </div>
                     )}

@@ -1,6 +1,6 @@
 import { Content, isFilled } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
-import { PrismicRichText, SliceComponentProps } from '@prismicio/react'
+import { SliceComponentProps } from '@prismicio/react'
 
 /**
  * Props for `ImageGrid`.
@@ -18,17 +18,17 @@ const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
       className="flex items-center justify-center"
     >
       {slice.variation === 'default' && (
-        <div className="max-w-8xl my-10 flex w-full flex-col items-center justify-evenly text-center font-medium text-red lg:my-16 lg:flex-row">
+        <div className="my-10 flex w-full max-w-8xl flex-col items-center justify-center text-center font-medium text-red lg:my-16 lg:flex-row">
           {slice.items.length > 0 &&
             slice.items.map((item) => (
-              <div key={JSON.stringify(item)} className="flex flex-col items-center justify-center py-6">
-                {isFilled.image(item.image) && <PrismicNextImage field={item.image} className="mt-2 h-12 w-auto" />}
-                {isFilled.richText(item.caption) && (
+              <div key={JSON.stringify(item)} className="m-3 flex flex-col items-center justify-center">
+                {isFilled.image(item.image) && <PrismicNextImage field={item.image} className="h-96 w-auto" />}
+                {/* {isFilled.richText(item.caption) && (
                   <div className="m-0 h-4 leading-none">
                     <PrismicRichText field={item.caption} />
                   </div>
-                )}
-                <p>{item.layout}</p>
+                )} */}
+                {/* <p>{item.layout}</p> */}
               </div>
             ))}
         </div>
