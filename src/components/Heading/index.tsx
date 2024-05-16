@@ -36,7 +36,7 @@ export const HeadingDivider = ({
       </div>
       <div className="relative flex items-center justify-start">
         <TpStar className="-ml-2 bg-background text-primary xl:-ml-8" />
-        <span className="bg-background px-4 font-serif text-4xl uppercase leading-8 text-primary">
+        <span className="bg-background px-4 font-serif text-2xl uppercase leading-8 text-primary lg:text-3xl">
           {isFilled.richText(richText) ? <PrismicRichText field={richText} /> : text}
         </span>
       </div>
