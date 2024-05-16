@@ -24,7 +24,7 @@ const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-red"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-primary"
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
@@ -98,7 +98,7 @@ function NavLinksGroup({ slice }: { slice: NavItemSlice }) {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="flex items-center justify-center gap-x-2.5 p-3 font-medium leading-6 text-red hover:bg-pink"
+                  className="flex items-center justify-center gap-x-2.5 p-3 font-medium leading-6 text-primary hover:bg-pink"
                 >
                   <item.icon className="h-5 w-5 flex-none" aria-hidden="true" />
                   {item.name}
@@ -122,7 +122,7 @@ function NavItemLink({ item }: { item: Simplify<NavItemSliceDefaultItem> }) {
         <div className="flex-auto">
           <PrismicNextLink field={item.link} className="block">
             {isFilled.richText(item.name) && (
-              <div className="font-medium uppercase text-red">
+              <div className="font-medium uppercase text-primary">
                 <PrismicText field={item.name} />
                 <span className="absolute inset-0" />
               </div>

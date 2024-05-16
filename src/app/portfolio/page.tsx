@@ -1,11 +1,8 @@
-import { Heading } from '@/components'
+import { EventsGrid, Heading, HeadingDivider } from '@/components'
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
-import { isFilled } from '@prismicio/client'
-import { PrismicNextImage } from '@prismicio/next'
-import { PrismicRichText, SliceZone } from '@prismicio/react'
+import { SliceZone } from '@prismicio/react'
 import { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 type Params = { uid: string }
@@ -19,9 +16,27 @@ export default async function Page({ params }: { params: Params }) {
     .catch(() => notFound())
 
   return (
-    <div className="mx-auto my-14 flex w-full max-w-7xl flex-col items-center">
+    <div className="relative mx-auto my-14 flex w-full max-w-7xl flex-col items-center justify-start px-6 lg:px-8">
+      {/* <div className="inset-0 mx-auto my-8 flex w-full max-w-xl items-center" aria-hidden="true">
+        <div className="w-full border-t-2 border-accent px-6" />
+      </div> */}
       <Heading richText={page.data.title} />
-      <p className="text-center text-primary">NAVIGATION HERE</p>
+      <div className="flex w-full justify-center">
+        <p className="text-center text-primary">NAVIGATION HERE</p>
+      </div>
+      <div className="my-10 flex w-full flex-col items-center justify-center">
+        <HeadingDivider text="Weddings" className="max-w-4xl" />
+        <EventsGrid events={page.data?.weddings} />
+      </div>
+      <div className="my-10 flex w-full flex-col items-center justify-center">
+        <HeadingDivider text="Private Parties" className="max-w-4xl" />
+        <EventsGrid events={page.data?.private} />
+      </div>
+      <div className="my-10 flex w-full flex-col items-center justify-center">
+        <HeadingDivider text="Corporate" className="max-w-4xl" />
+        <EventsGrid events={page.data?.corporate} />
+      </div>
+      <SliceZone slices={page.data.slices} components={components} />
       {/* {page?.data && (
         <div className="mx-auto flex w-full flex-col items-center justify-center px-6 text-center text-red lg:flex-row lg:justify-between lg:px-12">
           <code className="text-left">
@@ -29,73 +44,6 @@ export default async function Page({ params }: { params: Params }) {
           </code>
         </div>
       )} */}
-      <div className="my-10 flex w-full flex-col items-center justify-center">
-        <h2 className="self-start font-serif text-4xl text-primary">Weddings</h2>
-        <div className="flex w-full max-w-8xl flex-col items-center justify-evenly text-center font-medium text-red lg:my-3 lg:flex-row">
-          {page.data?.weddings &&
-            page.data.weddings.map(({ event }: { event: any }) => (
-              <div key={event.uid} className="mx-3 my-6 flex flex-col items-center justify-center">
-                {event?.url && (
-                  <Link href={event.url}>
-                    {isFilled.image(event?.data?.thumbnail) && (
-                      <PrismicNextImage field={event.data.thumbnail} className="h-96 w-auto" />
-                    )}
-                    {isFilled.richText(event?.data?.title) && (
-                      <div className="mt-4 text-lg uppercase leading-none">
-                        <PrismicRichText field={event.data.title} />
-                      </div>
-                    )}
-                  </Link>
-                )}
-              </div>
-            ))}
-        </div>
-      </div>
-      <div className="my-10 flex w-full flex-col items-center justify-center">
-        <h2 className="self-start font-serif text-4xl text-primary">Private Parties</h2>
-        <div className="flex w-full max-w-8xl flex-col items-center justify-evenly text-center font-medium text-red lg:my-3 lg:flex-row">
-          {page.data?.private &&
-            page.data.private.map(({ event }: { event: any }) => (
-              <div key={event.uid} className="mx-3 my-6 flex flex-col items-center justify-center">
-                {event?.url && (
-                  <Link href={event.url}>
-                    {isFilled.image(event?.data?.thumbnail) && (
-                      <PrismicNextImage field={event.data.thumbnail} className="h-96 w-auto" />
-                    )}
-                    {isFilled.richText(event?.data?.title) && (
-                      <div className="mt-4 text-lg uppercase leading-none">
-                        <PrismicRichText field={event.data.title} />
-                      </div>
-                    )}
-                  </Link>
-                )}
-              </div>
-            ))}
-        </div>
-      </div>
-      <div className="my-10 flex w-full flex-col items-center justify-center">
-        <h2 className="self-start font-serif text-4xl text-primary">Corporate</h2>
-        <div className="flex w-full max-w-8xl flex-col items-center justify-evenly text-center font-medium text-red lg:my-3 lg:flex-row">
-          {page.data?.corporate &&
-            page.data.corporate.map(({ event }: { event: any }) => (
-              <div key={event.uid} className="mx-3 my-6 flex flex-col items-center justify-center">
-                {event?.url && (
-                  <Link href={event.url}>
-                    {isFilled.image(event?.data?.thumbnail) && (
-                      <PrismicNextImage field={event.data.thumbnail} className="h-96 w-auto" />
-                    )}
-                    {isFilled.richText(event?.data?.title) && (
-                      <div className="mt-4 text-lg uppercase leading-none">
-                        <PrismicRichText field={event.data.title} />
-                      </div>
-                    )}
-                  </Link>
-                )}
-              </div>
-            ))}
-        </div>
-      </div>
-      <SliceZone slices={page.data.slices} components={components} />
     </div>
   )
 }

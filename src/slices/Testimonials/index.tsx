@@ -21,8 +21,8 @@ const Testimonials = ({ slice }: TestimonialsProps): JSX.Element => {
       <div className="mb-24 flex justify-center">
         <div className="relative max-h-[466px] min-h-fit w-full max-w-6xl">
           {isFilled.image(slice.primary.image) && <PrismicNextImage field={slice.primary.image} />}
-          <TpStar className="absolute left-6 top-1 z-20 text-pink md:left-8 md:top-2" />
-          <TpStar className="absolute -bottom-4 right-2 z-20 text-pink md:right-20" />
+          <TpStar className="absolute left-6 top-1 z-20 text-primary md:left-8 md:top-2" />
+          <TpStar className="absolute -bottom-4 right-2 z-20 text-primary md:right-20" />
         </div>
       </div>
       <div className="absolute bottom-0 right-8 z-10 flex w-full max-w-5xl justify-end md:right-1/3">

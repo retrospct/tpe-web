@@ -1,4 +1,5 @@
 export * from './ContactForm'
+export * from './EventsGrid'
 export * from './Heading'
 export * from './Nav'
 export * from './PrismicNextLink'

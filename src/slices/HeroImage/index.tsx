@@ -1,4 +1,4 @@
-import { TpSquiggle } from '@/components/icons'
+// import { TpSquiggle } from '@/components/icons'
 import { buttonVariants } from '@/components/ui/button'
 import { isFilled, type Content } from '@prismicio/client'
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
@@ -49,11 +49,13 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto mt-16 flow-root max-w-5xl text-left sm:mt-24">
             {isFilled.richText(slice.primary.title) && (
-              <div className="max-w-4xl font-serif text-4xl font-normal tracking-wider text-red sm:text-5xl">
+              <div className="max-w-4xl text-pretty font-serif text-4xl font-normal tracking-wider text-primary sm:text-5xl">
                 <PrismicRichText field={slice.primary.title} />
-                <TpSquiggle className="w-full text-pink" />
+                <div className="after:bg-squiggle w-full after:mb-0 after:ml-0 after:mt-2 after:block after:h-[12px] after:w-full after:md:ml-28 after:md:h-[20px] after:md:w-[400px]" />
+                {/* <TpSquiggle className="w-full text-accent sm:w-auto" /> */}
               </div>
             )}
+
             <div className="mt-8 flex flex-col-reverse items-center justify-center gap-x-12 sm:mt-10 sm:flex-row">
               <div className="mt-8 sm:mt-0">
                 {isFilled.link(slice.primary.cta_link) && (

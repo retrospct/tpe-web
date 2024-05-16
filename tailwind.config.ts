@@ -77,6 +77,9 @@ const config = {
           foreground: 'hsl(var(--card-foreground))'
         }
       },
+      backgroundImage: {
+        squiggle: 'var(--squiggle)'
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

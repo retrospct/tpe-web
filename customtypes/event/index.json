@@ -35,7 +35,7 @@
           "label": "Title",
           "placeholder": "",
           "allowTargetBlank": false,
-          "single": "paragraph,strong,em,heading2,heading3"
+          "single": "heading2,strong,em"
         }
       },
       "credits": {
