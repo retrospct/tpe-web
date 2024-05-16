@@ -23,7 +23,7 @@ const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
 
   return (
     <>
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <nav className="w mx-auto flex max-w-3xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:hidden">
           <button
             type="button"
