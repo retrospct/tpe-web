@@ -1,8 +1,12 @@
 import { Heading } from '@/components'
+import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
 import { SliceZone } from '@prismicio/react'
+import { ArrowLeft } from 'lucide-react'
 import { Metadata } from 'next'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 type Params = { uid: string }
@@ -14,8 +18,14 @@ export default async function Page({ params }: { params: Params }) {
   return (
     <div className="my-14">
       <Heading richText={page.data.title} />
-      <p className="text-center text-primary">NAVIGATION HERE</p>
+      <Link href="/portfolio" className={cn(buttonVariants({ variant: 'link' }), 'mx-auto mt-6 w-full p-0 text-lg')}>
+        <ArrowLeft />
+      </Link>
+      {/* <p className="text-center text-primary">NAVIGATION HERE</p> */}
       <SliceZone slices={page.data.slices} components={components} />
+      <Link href="/portfolio" className={cn(buttonVariants({ variant: 'link' }), 'mx-auto w-full text-lg')}>
+        <ArrowLeft className="mr-2 inline-block h-4 w-4" /> Back to Portfolio
+      </Link>
     </div>
   )
 }

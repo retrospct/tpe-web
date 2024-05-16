@@ -7,8 +7,10 @@ import { SliceZone, isFilled } from '@prismicio/client'
 import { PrismicNextLink } from '@prismicio/next'
 import { PrismicText } from '@prismicio/react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Fragment, useState } from 'react'
 import { NavDocument, NavItemSlice, NavItemSliceDefaultItem, Simplify } from '../../../prismicio-types'
+import { TpStar } from '../icons'
 import NavLogo from './NavLogo'
 
 const callsToAction = [
@@ -18,6 +20,7 @@ const callsToAction = [
 
 const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
   return (
     <>
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -58,25 +61,31 @@ function NavLinks({ slices, ...rest }: { slices: SliceZone<NavItemSlice> }) {
 }
 
 function NavLink({ slice, className }: { slice: NavItemSlice; className?: string }) {
+  const pathname = usePathname()
   if (!isFilled.link(slice.primary.link)) return null
   return (
     <PrismicNextLink
       key={slice.id}
       field={slice.primary.link}
-      className={cn('text-lg font-medium text-primary underline-offset-8 hover:underline', className)}
+      className={cn('relative text-lg font-medium text-primary hover:text-primary/80', className)} // underline-offset-8 hover:underline
     >
       {isFilled.richText(slice.primary.name) && <PrismicText field={slice.primary.name} />}
+      {pathname === slice.primary.link.url && <TpStar className="absolute left-[calc(50%-5px)] h-[10px] w-[10px]" />}
     </PrismicNextLink>
   )
 }
 
 function NavLinksGroup({ slice }: { slice: NavItemSlice }) {
+  const pathname = usePathname()
   return (
     <Popover.Group key={slice.id} className="hidden lg:flex lg:gap-x-12">
       <Popover className="relative">
-        <Popover.Button className="flex items-center gap-x-1 text-lg font-medium leading-6 text-primary underline-offset-8 hover:underline">
+        <Popover.Button className="relative flex items-center gap-x-1 text-lg font-medium leading-6 text-primary hover:text-primary/80">
           <PrismicText field={slice.primary.name} />
           <ChevronDownIcon className="h-5 w-5 flex-none" aria-hidden="true" />
+          {(pathname === '/design' || (isFilled.link(slice.primary.link) && pathname === slice.primary.link.url)) && (
+            <TpStar className="absolute left-[calc(50%-5px)] top-6 h-[10px] w-[10px]" />
+          )}
         </Popover.Button>
         <Transition
           as={Fragment}

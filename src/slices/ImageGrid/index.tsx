@@ -19,7 +19,7 @@ const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
       className="mx-auto flex w-full max-w-8xl flex-col items-center justify-start"
     >
       {slice.variation === 'default' && (
-        <div className="my-10 columns-1 gap-1 text-center font-medium text-primary md:columns-2 md:gap-2 lg:my-16 lg:columns-3 lg:gap-3">
+        <div className="my-8 columns-1 gap-1 text-center font-medium text-primary md:columns-2 md:gap-2 lg:my-14 lg:columns-3 lg:gap-3">
           {slice.items.length > 0 &&
             slice.items.map((item) => (
               <div key={JSON.stringify(item)} className="relative mb-3 overflow-hidden">
