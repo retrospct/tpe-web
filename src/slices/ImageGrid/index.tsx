@@ -28,12 +28,8 @@ const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
                     field={item.image}
                     // fill={item.layout !== 'portrait'}
                     className={cn(
-                      'h-auto w-auto',
-                      item.layout === 'portrait'
-                        ? 'h-96 w-72'
-                        : item.layout === 'square'
-                          ? 'h-72 w-72 object-cover'
-                          : 'h-60 w-72 object-cover'
+                      'h-auto w-auto object-cover',
+                      item.layout === 'portrait' ? 'w-80' : item.layout === 'square' ? 'h-80 w-80' : 'h-60 w-80'
                     )}
                   />
                 )}

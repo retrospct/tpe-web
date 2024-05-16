@@ -23,22 +23,24 @@ export const Heading = ({ richText, className }: { richText?: RichTextField | nu
 export const HeadingDivider = ({
   text,
   richText,
-  className
+  className,
+  anchor = text?.toLowerCase().replace(/\s/g, '-')
 }: {
   text?: string
   richText?: RichTextField | null
   className?: string
+  anchor?: string
 }) => {
   return (
-    <div className={cn('relative mb-6 w-full', className)}>
+    <div id={anchor} className={cn('relative mb-6 w-full', className)}>
       <div className="absolute inset-0 flex items-center" aria-hidden="true">
         <div className="w-full border-2 border-accent" />
       </div>
       <div className="relative flex items-center justify-start">
         <TpStar className="-ml-2 bg-background text-primary xl:-ml-8" />
-        <span className="bg-background px-4 font-serif text-2xl uppercase leading-8 text-primary lg:text-3xl">
+        <div className="bg-background px-4 font-serif text-2xl uppercase leading-8 text-primary lg:text-3xl">
           {isFilled.richText(richText) ? <PrismicRichText field={richText} /> : text}
-        </span>
+        </div>
       </div>
     </div>
   )
