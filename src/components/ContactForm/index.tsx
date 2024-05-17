@@ -133,7 +133,7 @@ export function ContactForm() {
                         variant="outline"
                         size="md"
                         className={cn(
-                          'h-11 bg-foreground px-3 text-left text-lg font-normal text-primary',
+                          'h-11 bg-background px-3 text-left text-lg font-normal text-primary',
                           !field.value && 'text-secondary'
                         )}
                       >

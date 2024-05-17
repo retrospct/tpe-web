@@ -16,10 +16,10 @@ const Contact = ({ slice }: ContactProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="mx-auto max-w-7xl py-16 text-primary sm:py-24"
+      className="flex w-full flex-col items-center bg-foreground py-16 text-primary sm:py-24"
     >
       {slice.variation === 'default' && (
-        <div className="flex flex-col items-center justify-center text-red lg:flex-row">
+        <div className="flex w-full max-w-7xl flex-col items-center justify-center px-3 text-primary lg:flex-row lg:px-0">
           <div className="flex w-full flex-col items-center justify-between">
             <Heading richText={slice.primary.title} accents sectionTitle />
             <ContactForm />
