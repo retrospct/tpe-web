@@ -16,7 +16,7 @@ const Contact = ({ slice }: ContactProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="mx-auto my-16 max-w-7xl text-red sm:my-24"
+      className="mx-auto max-w-7xl py-16 text-primary sm:py-24"
     >
       {slice.variation === 'default' && (
         <div className="flex flex-col items-center justify-center text-red lg:flex-row">

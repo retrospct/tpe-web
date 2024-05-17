@@ -16,16 +16,14 @@ const Testimonials = ({ slice }: TestimonialsProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative my-16 flow-root md:my-24"
+      className="relative flex flex-col items-center justify-center pb-24 pt-16 md:pb-32 md:pt-24"
     >
-      <div className="mb-24 flex justify-center">
-        <div className="relative max-h-[466px] min-h-fit w-full max-w-6xl">
-          {isFilled.image(slice.primary.image) && <PrismicNextImage field={slice.primary.image} />}
-          <TpStar className="absolute left-6 top-1 z-20 text-primary md:left-8 md:top-2" />
-          <TpStar className="absolute -bottom-4 right-2 z-20 text-primary md:right-20" />
-        </div>
+      <div className="relative max-h-[466px] min-h-fit w-full max-w-6xl lg:max-h-[562px]">
+        {isFilled.image(slice.primary.image) && <PrismicNextImage field={slice.primary.image} />}
+        <TpStar className="absolute left-6 top-1 z-20 text-primary md:left-8 md:top-2" />
+        <TpStar className="absolute -bottom-4 right-2 z-20 text-primary md:right-20" />
       </div>
-      <div className="absolute bottom-0 right-8 z-10 flex w-full max-w-5xl justify-end md:right-1/3">
+      <div className="absolute bottom-0 right-8 z-10 flex w-full max-w-5xl justify-end md:bottom-20 md:right-1/3">
         <div className="relative flex min-h-40 min-w-72 items-center justify-center">
           {isFilled.richText(slice.primary.quote) && (
             <div className="relative max-w-52 text-left text-lg font-medium leading-6 text-brown">

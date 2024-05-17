@@ -17,7 +17,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="my-16 flex w-full flex-col text-red sm:my-24"
+      className="flex w-full flex-col py-16 text-red sm:py-24"
     >
       {slice.variation === 'default' && (
         <>
