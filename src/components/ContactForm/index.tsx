@@ -120,19 +120,6 @@ export function ContactForm() {
               </FormItem>
             )}
           />
-          {/* <FormField
-            control={form.control}
-            name="eventDate"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel hidden>Event Date</FormLabel>
-                <FormControl>
-                  <Input placeholder="Event Date" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          /> */}
           <FormField
             control={form.control}
             name="eventDate"
@@ -221,9 +208,6 @@ export function ContactForm() {
               </FormControl>
               <div className="space-y-1 leading-none">
                 <FormLabel>Join our email list for tips, tricks, and all things TPE!</FormLabel>
-                {/* <FormDescription>
-                  You can manage your mobile notifications in the <Link href="/">mobile settings</Link> page.
-                </FormDescription> */}
               </div>
             </FormItem>
           )}

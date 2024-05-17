@@ -3,18 +3,30 @@ import { cn } from '@/lib/utils'
 import { RichTextField, isFilled } from '@prismicio/client'
 import { PrismicRichText } from '@prismicio/react'
 
-export const Heading = ({ richText, className }: { richText?: RichTextField | null; className?: string }) => {
+export const Heading = ({
+  richText,
+  className,
+  accents = false,
+  sectionTitle = false
+}: {
+  richText?: RichTextField | null
+  className?: string
+  accents?: boolean
+  sectionTitle?: boolean
+}) => {
   return (
     isFilled.richText(richText) && (
       <div
         className={cn(
-          'mx-3 flex items-center justify-center text-center font-serif text-4xl font-normal tracking-wider text-red lg:mx-6 lg:text-5xl',
+          'font-serif text-4xl font-normal tracking-wider text-primary lg:text-5xl',
+          accents && 'flex items-center justify-center',
+          sectionTitle && 'mx-3 text-center lg:mx-6',
           className
         )}
       >
-        <TpStar className="mr-5 text-primary" />
+        {accents && <TpStar className="mr-5 text-primary" />}
         <PrismicRichText field={richText} />
-        <TpStar className="ml-5 text-primary" />
+        {accents && <TpStar className="ml-5 text-primary" />}
       </div>
     )
   )

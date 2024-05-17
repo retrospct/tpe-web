@@ -17,11 +17,10 @@ export default async function Page({ params }: { params: Params }) {
 
   return (
     <div className="my-14">
-      <Heading richText={page.data.title} />
+      <Heading richText={page.data.title} accents sectionTitle />
       <Link href="/portfolio" className={cn(buttonVariants({ variant: 'link' }), 'mx-auto mt-6 w-full p-0 text-lg')}>
         <ArrowLeft />
       </Link>
-      {/* <p className="text-center text-primary">NAVIGATION HERE</p> */}
       <SliceZone slices={page.data.slices} components={components} />
       <Link href="/portfolio" className={cn(buttonVariants({ variant: 'link' }), 'mx-auto w-full text-lg')}>
         <ArrowLeft className="mr-2 inline-block h-4 w-4" /> Back to Portfolio

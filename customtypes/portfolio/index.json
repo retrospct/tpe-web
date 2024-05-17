@@ -31,62 +31,15 @@
           "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
         }
       },
-      "weddings": {
-        "type": "Group",
-        "config": {
-          "label": "Weddings",
-          "repeat": true,
-          "fields": {
-            "event": {
-              "type": "Link",
-              "config": {
-                "label": "Event",
-                "select": "document",
-                "customtypes": ["event"]
-              }
-            }
-          }
-        }
-      },
-      "private": {
-        "type": "Group",
-        "config": {
-          "label": "Private",
-          "repeat": true,
-          "fields": {
-            "event": {
-              "type": "Link",
-              "config": {
-                "label": "Event",
-                "select": "document",
-                "customtypes": ["event"]
-              }
-            }
-          }
-        }
-      },
-      "corporate": {
-        "type": "Group",
-        "config": {
-          "label": "corporate",
-          "repeat": true,
-          "fields": {
-            "event": {
-              "type": "Link",
-              "config": {
-                "label": "Event",
-                "select": "document",
-                "customtypes": ["event"]
-              }
-            }
-          }
-        }
-      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "events_list": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },

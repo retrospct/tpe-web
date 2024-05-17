@@ -1,0 +1,46 @@
+{
+  "id": "events_list",
+  "type": "SharedSlice",
+  "name": "EventsList",
+  "description": "EventsList",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading2,em,strong"
+          }
+        },
+        "anchor_link": {
+          "type": "Text",
+          "config": {
+            "label": "Anchor Link",
+            "placeholder": "Used to link or jump to this section within a page."
+          }
+        }
+      },
+      "items": {
+        "event": {
+          "type": "Link",
+          "config": {
+            "label": "Event",
+            "select": "document",
+            "customtypes": [
+              "event"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

@@ -36,6 +36,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "image_grid": {
+              "type": "SharedSlice"
+            },
+            "callout": {
+              "type": "SharedSlice"
+            },
             "contact": {
               "type": "SharedSlice"
             },

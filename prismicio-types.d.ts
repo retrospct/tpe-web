@@ -272,6 +272,8 @@ export type NavDocument<Lang extends string = string> = prismic.PrismicDocumentW
 >
 
 type PageDocumentDataSlicesSlice =
+  | ImageGridSlice
+  | CalloutSlice
   | ContactSlice
   | AwardsSlice
   | TestimonialsSlice
@@ -363,52 +365,7 @@ export type PageDocument<Lang extends string = string> = prismic.PrismicDocument
   Lang
 >
 
-/**
- * Item in *Portfolio → Weddings*
- */
-export interface PortfolioDocumentDataWeddingsItem {
-  /**
-   * Event field in *Portfolio → Weddings*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: portfolio.weddings[].event
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  event: prismic.ContentRelationshipField<'event'>
-}
-
-/**
- * Item in *Portfolio → Private*
- */
-export interface PortfolioDocumentDataPrivateItem {
-  /**
-   * Event field in *Portfolio → Private*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: portfolio.private[].event
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  event: prismic.ContentRelationshipField<'event'>
-}
-
-/**
- * Item in *Portfolio → corporate*
- */
-export interface PortfolioDocumentDataCorporateItem {
-  /**
-   * Event field in *Portfolio → corporate*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: portfolio.corporate[].event
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  event: prismic.ContentRelationshipField<'event'>
-}
-
-type PortfolioDocumentDataSlicesSlice = never
+type PortfolioDocumentDataSlicesSlice = EventsListSlice
 
 /**
  * Content for Portfolio documents
@@ -435,39 +392,6 @@ interface PortfolioDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField
-
-  /**
-   * Weddings field in *Portfolio*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: portfolio.weddings[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  weddings: prismic.GroupField<Simplify<PortfolioDocumentDataWeddingsItem>>
-
-  /**
-   * Private field in *Portfolio*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: portfolio.private[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  private: prismic.GroupField<Simplify<PortfolioDocumentDataPrivateItem>>
-
-  /**
-   * corporate field in *Portfolio*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: portfolio.corporate[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  corporate: prismic.GroupField<Simplify<PortfolioDocumentDataCorporateItem>>
 
   /**
    * Slice Zone field in *Portfolio*
@@ -1054,6 +978,54 @@ type CallToActionSliceVariation = CallToActionSliceDefault | CallToActionSliceAl
 export type CallToActionSlice = prismic.SharedSlice<'call_to_action', CallToActionSliceVariation>
 
 /**
+ * Primary content in *Callout → Primary*
+ */
+export interface CalloutSliceDefaultPrimary {
+  /**
+   * Title field in *Callout → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: callout.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Body field in *Callout → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: callout.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField
+}
+
+/**
+ * Default variation for Callout Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CalloutSliceDefault = prismic.SharedSliceVariation<'default', Simplify<CalloutSliceDefaultPrimary>, never>
+
+/**
+ * Slice variation for *Callout*
+ */
+type CalloutSliceVariation = CalloutSliceDefault
+
+/**
+ * Callout Shared Slice
+ *
+ * - **API ID**: `callout`
+ * - **Description**: Callout
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CalloutSlice = prismic.SharedSlice<'callout', CalloutSliceVariation>
+
+/**
  * Primary content in *Contact → Primary*
  */
 export interface ContactSliceDefaultPrimary {
@@ -1187,6 +1159,73 @@ type CustomerLogosSliceVariation = CustomerLogosSliceDefault
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type CustomerLogosSlice = prismic.SharedSlice<'customer_logos', CustomerLogosSliceVariation>
+
+/**
+ * Primary content in *EventsList → Primary*
+ */
+export interface EventsListSliceDefaultPrimary {
+  /**
+   * Title field in *EventsList → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_list.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Anchor Link field in *EventsList → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Used to link or jump to this section within a page.
+   * - **API ID Path**: events_list.primary.anchor_link
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  anchor_link: prismic.KeyTextField
+}
+
+/**
+ * Primary content in *EventsList → Items*
+ */
+export interface EventsListSliceDefaultItem {
+  /**
+   * Event field in *EventsList → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_list.items[].event
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  event: prismic.ContentRelationshipField<'event'>
+}
+
+/**
+ * Default variation for EventsList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type EventsListSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<EventsListSliceDefaultPrimary>,
+  Simplify<EventsListSliceDefaultItem>
+>
+
+/**
+ * Slice variation for *EventsList*
+ */
+type EventsListSliceVariation = EventsListSliceDefault
+
+/**
+ * EventsList Shared Slice
+ *
+ * - **API ID**: `events_list`
+ * - **Description**: EventsList
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type EventsListSlice = prismic.SharedSlice<'events_list', EventsListSliceVariation>
 
 /**
  * Primary content in *Hero → Primary*
@@ -1598,44 +1637,6 @@ type NavItemSliceVariation = NavItemSliceDefault
 export type NavItemSlice = prismic.SharedSlice<'nav_item', NavItemSliceVariation>
 
 /**
- * Primary content in *RichText → Primary*
- */
-export interface RichTextSliceDefaultPrimary {
-  /**
-   * Content field in *RichText → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Lorem ipsum...
-   * - **API ID Path**: rich_text.primary.content
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  content: prismic.RichTextField
-}
-
-/**
- * Default variation for RichText Slice
- *
- * - **API ID**: `default`
- * - **Description**: RichText
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type RichTextSliceDefault = prismic.SharedSliceVariation<'default', Simplify<RichTextSliceDefaultPrimary>, never>
-
-/**
- * Slice variation for *RichText*
- */
-type RichTextSliceVariation = RichTextSliceDefault
-
-/**
- * RichText Shared Slice
- *
- * - **API ID**: `rich_text`
- * - **Description**: RichText
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type RichTextSlice = prismic.SharedSlice<'rich_text', RichTextSliceVariation>
-
-/**
  * Primary content in *Services → Primary*
  */
 export interface ServicesSliceDefaultPrimary {
@@ -1885,9 +1886,6 @@ declare module '@prismicio/client' {
       PageDocumentDataSlicesSlice,
       PortfolioDocument,
       PortfolioDocumentData,
-      PortfolioDocumentDataWeddingsItem,
-      PortfolioDocumentDataPrivateItem,
-      PortfolioDocumentDataCorporateItem,
       PortfolioDocumentDataSlicesSlice,
       PostDocument,
       PostDocumentData,
@@ -1915,6 +1913,10 @@ declare module '@prismicio/client' {
       CallToActionSliceVariation,
       CallToActionSliceDefault,
       CallToActionSliceAlignLeft,
+      CalloutSlice,
+      CalloutSliceDefaultPrimary,
+      CalloutSliceVariation,
+      CalloutSliceDefault,
       ContactSlice,
       ContactSliceDefaultPrimary,
       ContactSliceVariation,
@@ -1924,6 +1926,11 @@ declare module '@prismicio/client' {
       CustomerLogosSliceDefaultItem,
       CustomerLogosSliceVariation,
       CustomerLogosSliceDefault,
+      EventsListSlice,
+      EventsListSliceDefaultPrimary,
+      EventsListSliceDefaultItem,
+      EventsListSliceVariation,
+      EventsListSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceImageRightPrimary,
@@ -1943,10 +1950,6 @@ declare module '@prismicio/client' {
       NavItemSliceDefaultItem,
       NavItemSliceVariation,
       NavItemSliceDefault,
-      RichTextSlice,
-      RichTextSliceDefaultPrimary,
-      RichTextSliceVariation,
-      RichTextSliceDefault,
       ServicesSlice,
       ServicesSliceDefaultPrimary,
       ServicesSliceDefaultItem,

@@ -1,4 +1,4 @@
-import { EventsGrid, Heading, HeadingDivider } from '@/components'
+import { Heading } from '@/components'
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
 import { SliceZone } from '@prismicio/react'
@@ -21,7 +21,7 @@ export default async function Page({ params }: { params: Params }) {
       {/* <div className="inset-0 mx-auto my-8 flex w-full max-w-xl items-center" aria-hidden="true">
         <div className="w-full border-t-2 border-accent px-6" />
       </div> */}
-      <Heading richText={page.data.title} />
+      <Heading richText={page.data.title} accents sectionTitle />
       <ul className="mt-3 flex w-full max-w-xl justify-between text-center text-primary sm:text-lg">
         <li className="hover:text-primary/80">
           <Link href="#weddings" shallow>
@@ -39,7 +39,7 @@ export default async function Page({ params }: { params: Params }) {
           </Link>
         </li>
       </ul>
-      <div className="my-10 flex w-full flex-col items-center justify-center">
+      {/* <div className="my-10 flex w-full flex-col items-center justify-center">
         <HeadingDivider text="Weddings" className="max-w-4xl" />
         <EventsGrid events={page.data?.weddings} />
       </div>
@@ -50,7 +50,7 @@ export default async function Page({ params }: { params: Params }) {
       <div className="my-10 flex w-full flex-col items-center justify-center">
         <HeadingDivider text="Corporate" className="max-w-4xl" />
         <EventsGrid events={page.data?.corporate} />
-      </div>
+      </div> */}
       <SliceZone slices={page.data.slices} components={components} />
       {/* UNCOMMENT TO DEBUG DATA PAYLOAD */}
       {/* {page?.data && (

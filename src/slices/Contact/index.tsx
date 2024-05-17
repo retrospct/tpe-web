@@ -21,7 +21,7 @@ const Contact = ({ slice }: ContactProps): JSX.Element => {
       {slice.variation === 'default' && (
         <div className="flex flex-col items-center justify-center text-red lg:flex-row">
           <div className="flex w-full flex-col items-center justify-between">
-            <Heading richText={slice.primary.title} />
+            <Heading richText={slice.primary.title} accents sectionTitle />
             <ContactForm />
           </div>
           <div className="relative mx-3 mt-12 w-full max-w-[360px] text-center lg:mx-6 lg:mt-0 lg:max-w-[500px]">
