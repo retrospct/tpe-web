@@ -16,14 +16,14 @@ export default async function Page({ params }: { params: Params }) {
   const page = await client.getByUID('event', params.uid).catch(() => notFound())
 
   return (
-    <div className="my-14">
-      <Heading richText={page.data.title} accents sectionTitle />
-      <Link href="/portfolio" className={cn(buttonVariants({ variant: 'link' }), 'mx-auto mt-6 w-full p-0 text-lg')}>
+    <div className="mb-14 mt-8">
+      <Link href="/portfolio" className={cn(buttonVariants({ variant: 'link' }), 'mx-auto mb-6 w-full p-0 text-lg')}>
         <ArrowLeft />
       </Link>
+      <Heading richText={page.data.title} accents sectionTitle className="text-pretty" />
       <SliceZone slices={page.data.slices} components={components} />
       <Link href="/portfolio" className={cn(buttonVariants({ variant: 'link' }), 'mx-auto w-full text-lg')}>
-        <ArrowLeft className="mr-2 inline-block h-4 w-4" /> Back to Portfolio
+        <ArrowLeft className="mr-2 inline-block h-4 w-4" /> PORTFOLIO
       </Link>
     </div>
   )
