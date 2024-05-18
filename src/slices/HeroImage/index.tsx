@@ -80,7 +80,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                 richText={slice.primary.title}
                 accentBefore
                 accentSize="lg"
-                className="self-start font-sans text-8xl font-light leading-none lg:text-9xl"
+                className="self-start font-sans text-7xl font-light leading-none sm:text-9xl lg:text-9xl"
               />
             )}
             {isFilled.richText(slice.primary.title_bottom) && (
@@ -88,7 +88,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                 richText={slice.primary.title_bottom}
                 accentAfter
                 accentSize="lg"
-                className="mb-6 ml-24 self-start text-right text-8xl leading-none lg:self-end lg:text-9xl"
+                className="mb-6 ml-0 self-end text-right text-7xl leading-none sm:ml-24 sm:self-start sm:text-9xl lg:mb-6 lg:text-9xl"
               />
             )}
             {isFilled.richText(slice.primary.description) && (
