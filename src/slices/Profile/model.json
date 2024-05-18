@@ -1,0 +1,35 @@
+{
+  "id": "profile",
+  "type": "SharedSlice",
+  "name": "Profile",
+  "description": "Profile",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {},
+      "items": {
+        "member": {
+          "type": "Link",
+          "config": {
+            "label": "Member",
+            "select": "document"
+          }
+        },
+        "full_width": {
+          "type": "Boolean",
+          "config": {
+            "label": "Full Width",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
+        }
+      }
+    }
+  ]
+}

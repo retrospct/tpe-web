@@ -227,6 +227,116 @@ export type FooterDocument<Lang extends string = string> = prismic.PrismicDocume
   Lang
 >
 
+type MemberDocumentDataSlicesSlice = never
+
+/**
+ * Content for Member documents
+ */
+interface MemberDocumentData {
+  /**
+   * Image field in *Member*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: member.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+
+  /**
+   * First Name field in *Member*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: member.first_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  first_name: prismic.RichTextField
+
+  /**
+   * Last Name field in *Member*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: member.last_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  last_name: prismic.RichTextField
+
+  /**
+   * Pronouns field in *Member*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: member.pronouns
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  pronouns: prismic.RichTextField
+
+  /**
+   * Title field in *Member*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: member.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Bio field in *Member*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: member.bio
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  bio: prismic.RichTextField
+
+  /**
+   * Likes field in *Member*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: member.likes
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  likes: prismic.RichTextField
+
+  /**
+   * Slice Zone field in *Member*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: member.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<MemberDocumentDataSlicesSlice>
+}
+
+/**
+ * Member document from Prismic
+ *
+ * - **API ID**: `member`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type MemberDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<MemberDocumentData>,
+  'member',
+  Lang
+>
+
 type NavDocumentDataSlicesSlice = NavItemSlice
 
 /**
@@ -272,6 +382,7 @@ export type NavDocument<Lang extends string = string> = prismic.PrismicDocumentW
 >
 
 type PageDocumentDataSlicesSlice =
+  | ProfileSlice
   | ImageGridSlice
   | CalloutSlice
   | ContactSlice
@@ -518,6 +629,7 @@ export type PostDocument<Lang extends string = string> = prismic.PrismicDocument
 export type AllDocumentTypes =
   | EventDocument
   | FooterDocument
+  | MemberDocument
   | NavDocument
   | PageDocument
   | PortfolioDocument
@@ -1726,6 +1838,59 @@ type NavItemSliceVariation = NavItemSliceDefault
 export type NavItemSlice = prismic.SharedSlice<'nav_item', NavItemSliceVariation>
 
 /**
+ * Primary content in *Profile → Items*
+ */
+export interface ProfileSliceDefaultItem {
+  /**
+   * Member field in *Profile → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: profile.items[].member
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  member: prismic.ContentRelationshipField
+
+  /**
+   * Full Width field in *Profile → Items*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: profile.items[].full_width
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  full_width: prismic.BooleanField
+}
+
+/**
+ * Default variation for Profile Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProfileSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Record<string, never>,
+  Simplify<ProfileSliceDefaultItem>
+>
+
+/**
+ * Slice variation for *Profile*
+ */
+type ProfileSliceVariation = ProfileSliceDefault
+
+/**
+ * Profile Shared Slice
+ *
+ * - **API ID**: `profile`
+ * - **Description**: Profile
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProfileSlice = prismic.SharedSlice<'profile', ProfileSliceVariation>
+
+/**
  * Primary content in *Services → Primary*
  */
 export interface ServicesSliceDefaultPrimary {
@@ -1967,6 +2132,9 @@ declare module '@prismicio/client' {
       FooterDocumentData,
       FooterDocumentDataStatementsItem,
       FooterDocumentDataSlicesSlice,
+      MemberDocument,
+      MemberDocumentData,
+      MemberDocumentDataSlicesSlice,
       NavDocument,
       NavDocumentData,
       NavDocumentDataSlicesSlice,
@@ -2041,6 +2209,10 @@ declare module '@prismicio/client' {
       NavItemSliceDefaultItem,
       NavItemSliceVariation,
       NavItemSliceDefault,
+      ProfileSlice,
+      ProfileSliceDefaultItem,
+      ProfileSliceVariation,
+      ProfileSliceDefault,
       ServicesSlice,
       ServicesSliceDefaultPrimary,
       ServicesSliceDefaultItem,

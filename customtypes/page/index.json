@@ -36,6 +36,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "profile": {
+              "type": "SharedSlice"
+            },
             "image_grid": {
               "type": "SharedSlice"
             },

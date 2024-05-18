@@ -8,7 +8,20 @@ type Params = { uid: string }
 
 export default async function Page({ params }: { params: Params }) {
   const client = createClient()
-  const page = await client.getByUID('page', params.uid).catch(() => notFound())
+  const page = await client
+    .getByUID('page', params.uid, {
+      fetchLinks: [
+        'member',
+        'member.first_name',
+        'member.last_name',
+        'member.image',
+        'member.pronouns',
+        'member.title',
+        'member.bio',
+        'member.likes'
+      ]
+    })
+    .catch(() => notFound())
 
   return <SliceZone slices={page.data.slices} components={components} />
 }
