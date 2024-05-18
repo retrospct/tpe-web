@@ -1,5 +1,5 @@
 'use client'
-import { cn } from '@/lib/utils'
+import { cn, pathEquals } from '@/lib/utils'
 import { Dialog, Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import { Bars3Icon } from '@heroicons/react/24/outline'
@@ -62,28 +62,34 @@ function NavLinks({ slices, ...rest }: { slices: SliceZone<NavItemSlice> }) {
 
 function NavLink({ slice, className }: { slice: NavItemSlice; className?: string }) {
   const pathname = usePathname()
-  if (!isFilled.link(slice.primary.link)) return null
+  if (!isFilled.link(slice.primary.link) || !isFilled.richText(slice.primary.name) || !slice.primary.link?.url) {
+    return null
+  }
   return (
     <PrismicNextLink
       key={slice.id}
       field={slice.primary.link}
       className={cn('relative text-lg font-medium text-primary hover:text-primary/80', className)} // underline-offset-8 hover:underline
     >
-      {isFilled.richText(slice.primary.name) && <PrismicText field={slice.primary.name} />}
-      {pathname === slice.primary.link.url && <TpStar className="absolute left-[calc(50%-5px)] h-[10px] w-[10px]" />}
+      <PrismicText field={slice.primary.name} />
+      {pathEquals(pathname, slice.primary.link.url) && (
+        <TpStar className="absolute left-[calc(50%-5px)] h-[10px] w-[10px]" />
+      )}
     </PrismicNextLink>
   )
 }
 
 function NavLinksGroup({ slice }: { slice: NavItemSlice }) {
   const pathname = usePathname()
+  if (!isFilled.link(slice.primary.link) || !slice.primary.link?.url) return null
+
   return (
     <Popover.Group key={slice.id} className="hidden lg:flex lg:gap-x-12">
       <Popover className="relative">
         <Popover.Button className="relative flex items-center gap-x-1 text-lg font-medium leading-6 text-primary hover:text-primary/80">
           <PrismicText field={slice.primary.name} />
           <ChevronDownIcon className="h-5 w-5 flex-none" aria-hidden="true" />
-          {(pathname === '/design' || (isFilled.link(slice.primary.link) && pathname === slice.primary.link.url)) && (
+          {pathEquals(pathname, slice.primary.link.url) && (
             <TpStar className="absolute left-[calc(50%-5px)] top-6 h-[10px] w-[10px]" />
           )}
         </Popover.Button>

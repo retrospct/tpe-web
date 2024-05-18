@@ -1473,9 +1473,98 @@ export type HeroImageSliceDefault = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *HeroImage → Primary*
+ */
+export interface HeroImageSliceTextImagePrimary {
+  /**
+   * Image field in *HeroImage → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_image.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+
+  /**
+   * Title field in *HeroImage → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Perferendis Repellendus Magnam Nemo
+   * - **API ID Path**: hero_image.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Title Bottom field in *HeroImage → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_image.primary.title_bottom
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title_bottom: prismic.RichTextField
+
+  /**
+   * Description field in *HeroImage → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Officia ex cupidatat et anim ut ullamco tempor laboris pariatur ex officia sint.
+   * - **API ID Path**: hero_image.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
+
+  /**
+   * CTA Text field in *HeroImage → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: CLICK ME
+   * - **API ID Path**: hero_image.primary.cta_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  cta_text: prismic.RichTextField
+
+  /**
+   * CTA Link field in *HeroImage → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Link to another page
+   * - **API ID Path**: hero_image.primary.cta_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta_link: prismic.LinkField
+
+  /**
+   * Max Width field in *HeroImage → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: default
+   * - **API ID Path**: hero_image.primary.max_width
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  max_width: prismic.SelectField<'default' | 'full' | 'tight' | 'loose', 'filled'>
+}
+
+/**
+ * Text Image variation for HeroImage Slice
+ *
+ * - **API ID**: `textImage`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroImageSliceTextImage = prismic.SharedSliceVariation<
+  'textImage',
+  Simplify<HeroImageSliceTextImagePrimary>,
+  never
+>
+
+/**
  * Slice variation for *HeroImage*
  */
-type HeroImageSliceVariation = HeroImageSliceDefault
+type HeroImageSliceVariation = HeroImageSliceDefault | HeroImageSliceTextImage
 
 /**
  * HeroImage Shared Slice
@@ -1939,8 +2028,10 @@ declare module '@prismicio/client' {
       HeroSliceImageRight,
       HeroImageSlice,
       HeroImageSliceDefaultPrimary,
+      HeroImageSliceTextImagePrimary,
       HeroImageSliceVariation,
       HeroImageSliceDefault,
+      HeroImageSliceTextImage,
       ImageGridSlice,
       ImageGridSliceDefaultItem,
       ImageGridSliceVariation,

@@ -26,7 +26,7 @@
             "label": "Title",
             "placeholder": "Perferendis Repellendus Magnam Nemo",
             "allowTargetBlank": false,
-            "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong,em"
+            "single": "heading1,heading2,heading3,strong,em"
           }
         },
         "description": {
@@ -36,6 +36,84 @@
             "placeholder": "Officia ex cupidatat et anim ut ullamco tempor laboris pariatur ex officia sint.",
             "allowTargetBlank": true,
             "single": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "cta_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "CTA Text",
+            "placeholder": "CLICK ME",
+            "allowTargetBlank": false,
+            "single": "paragraph,em"
+          }
+        },
+        "cta_link": {
+          "type": "Link",
+          "config": {
+            "label": "CTA Link",
+            "placeholder": "Link to another page",
+            "allowTargetBlank": false,
+            "select": null
+          }
+        },
+        "max_width": {
+          "type": "Select",
+          "config": {
+            "label": "Max Width",
+            "placeholder": "",
+            "options": [
+              "default",
+              "full",
+              "tight",
+              "loose"
+            ],
+            "default_value": "default"
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "textImage",
+      "name": "Text Image",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "Perferendis Repellendus Magnam Nemo",
+            "allowTargetBlank": false,
+            "single": "heading1,heading2,heading3,strong,em"
+          }
+        },
+        "title_bottom": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title Bottom",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "Officia ex cupidatat et anim ut ullamco tempor laboris pariatur ex officia sint.",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,heading1,heading2,heading3"
           }
         },
         "cta_text": {

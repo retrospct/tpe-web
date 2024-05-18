@@ -6,30 +6,47 @@ import { PrismicRichText } from '@prismicio/react'
 export const Heading = ({
   richText,
   className,
+  sectionTitle = false,
   accents = false,
-  sectionTitle = false
+  accentBefore = false,
+  accentAfter = false,
+  accentSize = 'md'
 }: {
   richText?: RichTextField | null
   className?: string
-  accents?: boolean
   sectionTitle?: boolean
+  accents?: boolean
+  accentBefore?: boolean
+  accentAfter?: boolean
+  accentSize?: 'sm' | 'md' | 'lg'
 }) => {
   return (
     isFilled.richText(richText) && (
       <div
         className={cn(
           'font-serif text-4xl font-normal tracking-wider text-primary lg:text-5xl',
-          accents && 'flex items-center justify-center',
+          (accents || accentBefore || accentAfter) && 'flex items-center justify-center',
           sectionTitle && 'mx-3 text-center lg:mx-6',
           className
         )}
       >
-        {accents && <TpStar className="mr-5 text-primary" />}
+        {(accents || accentBefore) && <TpStar className={cn('mr-5 text-primary', getAccentSize(accentSize))} />}
         <PrismicRichText field={richText} />
-        {accents && <TpStar className="ml-5 text-primary" />}
+        {(accents || accentAfter) && <TpStar className={cn('ml-5 text-primary', getAccentSize(accentSize))} />}
       </div>
     )
   )
+}
+
+const getAccentSize = (size: 'sm' | 'md' | 'lg') => {
+  switch (size) {
+    case 'sm':
+      return 'h-4 w-4'
+    case 'md':
+      return 'h-6 w-6'
+    case 'lg':
+      return 'h-8 w-8'
+  }
 }
 
 export const HeadingDivider = ({

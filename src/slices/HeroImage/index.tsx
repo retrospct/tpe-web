@@ -1,4 +1,6 @@
 // import { TpSquiggle } from '@/components/icons'
+import { Heading, Text } from '@/components'
+import { TpSquiggle } from '@/components/icons/TpSquiggle'
 import { buttonVariants } from '@/components/ui/button'
 import { isFilled, type Content } from '@prismicio/client'
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
@@ -28,13 +30,11 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative isolate pt-0"
+      className="relative isolate pb-12 pt-0 sm:pb-16 lg:pb-20"
     >
-      <div className="pb-12 sm:pb-16 lg:pb-20">
-        {/* mt-16 flow-root sm:mt-24 */}
-        <div className="flow-root">
-          {/* -m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4 */}
-          <div className="relative h-[calc(66dvh-120px)] max-h-[652px] min-w-full overflow-hidden sm:h-[652px] sm:min-h-[652px]">
+      {slice.variation === 'default' && (
+        <>
+          <div className="relative flow-root h-[calc(66dvh-120px)] max-h-[652px] min-w-full overflow-hidden sm:h-[652px] sm:min-h-[652px]">
             {isFilled.image(slice.primary.image) && (
               <PrismicNextImage
                 field={slice.primary.image}
@@ -45,9 +45,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
               />
             )}
           </div>
-        </div>
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto mt-16 flow-root max-w-5xl text-left sm:mt-24">
+          <div className="mx-auto mt-16 flow-root max-w-5xl px-6 text-left sm:mt-24 lg:px-8">
             {isFilled.richText(slice.primary.title) && (
               <div className="max-w-4xl text-pretty font-serif text-4xl font-normal tracking-wider text-primary sm:text-5xl">
                 <PrismicRichText field={slice.primary.title} />
@@ -71,8 +69,64 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
               )}
             </div>
           </div>
+        </>
+      )}
+      {slice.variation === 'textImage' && (
+        <div className="relative mt-8 flex w-full flex-col items-center justify-center gap-6 bg-foreground px-6 py-10 text-left sm:py-28 lg:flex-row lg:px-8">
+          {/* <div className="mx-auto max-w-5xl px-6 text-left lg:px-8"> */}
+          <div className="flex w-full max-w-xl flex-col">
+            {isFilled.richText(slice.primary.title) && (
+              <Heading
+                richText={slice.primary.title}
+                accentBefore
+                accentSize="lg"
+                className="self-start font-sans text-8xl font-light leading-none lg:text-9xl"
+              />
+            )}
+            {isFilled.richText(slice.primary.title_bottom) && (
+              <Heading
+                richText={slice.primary.title_bottom}
+                accentAfter
+                accentSize="lg"
+                className="mb-6 ml-24 self-start text-right text-8xl leading-none lg:self-end lg:text-9xl"
+              />
+            )}
+            {isFilled.richText(slice.primary.description) && (
+              <Text
+                richText={slice.primary.description}
+                className="mb-3 text-left font-sans text-lg font-normal text-secondary lg:mb-6 lg:text-lg"
+              />
+            )}
+            {/* <TpSquiggle className="w-full text-accent sm:w-auto" /> */}
+          </div>
+
+          {/* <div className="mt-8 flex flex-col-reverse items-center justify-center gap-x-12 sm:mt-10 sm:flex-row">
+              <div className="mt-8 sm:mt-0">
+                {isFilled.link(slice.primary.cta_link) && (
+                  <PrismicNextLink field={slice.primary.cta_link} className={buttonVariants({ variant: 'default' })}>
+                    {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
+                  </PrismicNextLink>
+                )}
+              </div>
+              {isFilled.richText(slice.primary.description) && (
+                <div className="text-left text-2xl font-medium leading-8 text-brown">
+                  <PrismicRichText field={slice.primary.description} components={components} />
+                </div>
+              )}
+            </div> */}
+          {/* </div> */}
+          <TpSquiggle className="block h-auto w-full px-4 text-accent sm:max-w-xl lg:absolute lg:bottom-8 lg:px-0" />
+          {isFilled.image(slice.primary.image) && (
+            <div className="relative mx-3 mt-3 w-full max-w-[360px] text-center lg:mx-6 lg:mt-0 lg:max-w-[584px]">
+              <PrismicNextImage
+                field={slice.primary.image}
+                imgixParams={{ crop: 'faces,edges', fit: 'crop', w: 1, h: 1 }}
+                className="object-cover"
+              />
+            </div>
+          )}
         </div>
-      </div>
+      )}
     </section>
   )
 }

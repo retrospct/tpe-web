@@ -22,7 +22,7 @@ export default async function Page({ params }: { params: Params }) {
       </Link>
       <Heading richText={page.data.title} accents sectionTitle className="text-pretty" />
       <SliceZone slices={page.data.slices} components={components} />
-      <Link href="/portfolio" className={cn(buttonVariants({ variant: 'link' }), 'mx-auto w-full text-lg')}>
+      <Link href="/portfolio" className={cn(buttonVariants({ variant: 'link' }), 'mx-auto mt-6 w-full text-lg')}>
         <ArrowLeft className="mr-2 inline-block h-4 w-4" /> PORTFOLIO
       </Link>
     </div>
