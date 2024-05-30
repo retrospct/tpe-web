@@ -8,7 +8,7 @@ export const EventsGrid = ({ events }: { events: any }) => {
   if (events?.length === 0)
     return (
       <div className="flex w-full flex-col items-center justify-center px-6 py-10">
-        <TpLogoCircle />
+        <TpLogoCircle className="text-accent opacity-60" />
       </div>
     )
 
