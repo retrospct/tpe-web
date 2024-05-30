@@ -636,45 +636,45 @@ export type AllDocumentTypes =
   | PostDocument
 
 /**
- * Primary content in *AlternateGrid → Primary*
+ * Primary content in *AlternateGrid → Default → Primary*
  */
 export interface AlternateGridSliceDefaultPrimary {
   /**
-   * eyebrowHeadline field in *AlternateGrid → Primary*
+   * eyebrowHeadline field in *AlternateGrid → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Eyebrow
-   * - **API ID Path**: alternate_grid.primary.eyebrowHeadline
+   * - **API ID Path**: alternate_grid.default.primary.eyebrowHeadline
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   eyebrowHeadline: prismic.KeyTextField
 
   /**
-   * title field in *AlternateGrid → Primary*
+   * title field in *AlternateGrid → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: alternate_grid.primary.title
+   * - **API ID Path**: alternate_grid.default.primary.title
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.RichTextField
 
   /**
-   * description field in *AlternateGrid → Primary*
+   * description field in *AlternateGrid → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: alternate_grid.primary.description
+   * - **API ID Path**: alternate_grid.default.primary.description
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField
 
   /**
-   * image field in *AlternateGrid → Primary*
+   * image field in *AlternateGrid → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: alternate_grid.primary.image
+   * - **API ID Path**: alternate_grid.default.primary.image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>
@@ -719,45 +719,45 @@ export type AlternateGridSliceDefault = prismic.SharedSliceVariation<
 >
 
 /**
- * Primary content in *AlternateGrid → Primary*
+ * Primary content in *AlternateGrid → Image Right → Primary*
  */
 export interface AlternateGridSliceImageRightPrimary {
   /**
-   * eyebrowHeadline field in *AlternateGrid → Primary*
+   * eyebrowHeadline field in *AlternateGrid → Image Right → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Eyebrow
-   * - **API ID Path**: alternate_grid.primary.eyebrowHeadline
+   * - **API ID Path**: alternate_grid.imageRight.primary.eyebrowHeadline
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   eyebrowHeadline: prismic.KeyTextField
 
   /**
-   * title field in *AlternateGrid → Primary*
+   * title field in *AlternateGrid → Image Right → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: alternate_grid.primary.title
+   * - **API ID Path**: alternate_grid.imageRight.primary.title
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.RichTextField
 
   /**
-   * description field in *AlternateGrid → Primary*
+   * description field in *AlternateGrid → Image Right → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: alternate_grid.primary.description
+   * - **API ID Path**: alternate_grid.imageRight.primary.description
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField
 
   /**
-   * image field in *AlternateGrid → Primary*
+   * image field in *AlternateGrid → Image Right → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: alternate_grid.primary.image
+   * - **API ID Path**: alternate_grid.imageRight.primary.image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>
@@ -940,55 +940,55 @@ type BannerSliceVariation = BannerSliceDefault
 export type BannerSlice = prismic.SharedSlice<'banner', BannerSliceVariation>
 
 /**
- * Primary content in *CallToAction → Primary*
+ * Primary content in *CallToAction → Default → Primary*
  */
 export interface CallToActionSliceDefaultPrimary {
   /**
-   * Image field in *CallToAction → Primary*
+   * Image field in *CallToAction → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: call_to_action.primary.image
+   * - **API ID Path**: call_to_action.default.primary.image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>
 
   /**
-   * title field in *CallToAction → Primary*
+   * title field in *CallToAction → Default → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: *None*
-   * - **API ID Path**: call_to_action.primary.title
+   * - **API ID Path**: call_to_action.default.primary.title
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.TitleField
 
   /**
-   * paragraph field in *CallToAction → Primary*
+   * paragraph field in *CallToAction → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: call_to_action.primary.paragraph
+   * - **API ID Path**: call_to_action.default.primary.paragraph
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   paragraph: prismic.RichTextField
 
   /**
-   * buttonLink field in *CallToAction → Primary*
+   * buttonLink field in *CallToAction → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: Redirect URL for CTA button
-   * - **API ID Path**: call_to_action.primary.buttonLink
+   * - **API ID Path**: call_to_action.default.primary.buttonLink
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   buttonLink: prismic.LinkField
 
   /**
-   * buttonLabel field in *CallToAction → Primary*
+   * buttonLabel field in *CallToAction → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Label for CTA button
-   * - **API ID Path**: call_to_action.primary.buttonLabel
+   * - **API ID Path**: call_to_action.default.primary.buttonLabel
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   buttonLabel: prismic.KeyTextField
@@ -1008,55 +1008,55 @@ export type CallToActionSliceDefault = prismic.SharedSliceVariation<
 >
 
 /**
- * Primary content in *CallToAction → Primary*
+ * Primary content in *CallToAction → AlignLeft → Primary*
  */
 export interface CallToActionSliceAlignLeftPrimary {
   /**
-   * Image field in *CallToAction → Primary*
+   * Image field in *CallToAction → AlignLeft → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: call_to_action.primary.image
+   * - **API ID Path**: call_to_action.alignLeft.primary.image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>
 
   /**
-   * title field in *CallToAction → Primary*
+   * title field in *CallToAction → AlignLeft → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: *None*
-   * - **API ID Path**: call_to_action.primary.title
+   * - **API ID Path**: call_to_action.alignLeft.primary.title
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.TitleField
 
   /**
-   * paragraph field in *CallToAction → Primary*
+   * paragraph field in *CallToAction → AlignLeft → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: call_to_action.primary.paragraph
+   * - **API ID Path**: call_to_action.alignLeft.primary.paragraph
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   paragraph: prismic.RichTextField
 
   /**
-   * buttonLink field in *CallToAction → Primary*
+   * buttonLink field in *CallToAction → AlignLeft → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: Redirect URL for CTA button
-   * - **API ID Path**: call_to_action.primary.buttonLink
+   * - **API ID Path**: call_to_action.alignLeft.primary.buttonLink
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   buttonLink: prismic.LinkField
 
   /**
-   * buttonLabel field in *CallToAction → Primary*
+   * buttonLabel field in *CallToAction → AlignLeft → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Label for CTA button
-   * - **API ID Path**: call_to_action.primary.buttonLabel
+   * - **API ID Path**: call_to_action.alignLeft.primary.buttonLabel
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   buttonLabel: prismic.KeyTextField
@@ -1090,25 +1090,25 @@ type CallToActionSliceVariation = CallToActionSliceDefault | CallToActionSliceAl
 export type CallToActionSlice = prismic.SharedSlice<'call_to_action', CallToActionSliceVariation>
 
 /**
- * Primary content in *Callout → Primary*
+ * Primary content in *Callout → Default → Primary*
  */
 export interface CalloutSliceDefaultPrimary {
   /**
-   * Title field in *Callout → Primary*
+   * Title field in *Callout → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: callout.primary.title
+   * - **API ID Path**: callout.default.primary.title
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.RichTextField
 
   /**
-   * Body field in *Callout → Primary*
+   * Body field in *Callout → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: callout.primary.body
+   * - **API ID Path**: callout.default.primary.body
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   body: prismic.RichTextField
@@ -1138,25 +1138,25 @@ type CalloutSliceVariation = CalloutSliceDefault
 export type CalloutSlice = prismic.SharedSlice<'callout', CalloutSliceVariation>
 
 /**
- * Primary content in *Contact → Primary*
+ * Primary content in *Contact → Default → Primary*
  */
 export interface ContactSliceDefaultPrimary {
   /**
-   * Title field in *Contact → Primary*
+   * Title field in *Contact → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: contact.primary.title
+   * - **API ID Path**: contact.default.primary.title
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.RichTextField
 
   /**
-   * Image field in *Contact → Primary*
+   * Image field in *Contact → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: contact.primary.image
+   * - **API ID Path**: contact.default.primary.image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>
@@ -1186,35 +1186,35 @@ type ContactSliceVariation = ContactSliceDefault
 export type ContactSlice = prismic.SharedSlice<'contact', ContactSliceVariation>
 
 /**
- * Primary content in *CustomerLogos → Primary*
+ * Primary content in *CustomerLogos → Default → Primary*
  */
 export interface CustomerLogosSliceDefaultPrimary {
   /**
-   * eyebrowHeadline field in *CustomerLogos → Primary*
+   * eyebrowHeadline field in *CustomerLogos → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: customer_logos.primary.eyebrowHeadline
+   * - **API ID Path**: customer_logos.default.primary.eyebrowHeadline
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   eyebrowHeadline: prismic.RichTextField
 
   /**
-   * callToActionLabel field in *CustomerLogos → Primary*
+   * callToActionLabel field in *CustomerLogos → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: customer_logos.primary.callToActionLabel
+   * - **API ID Path**: customer_logos.default.primary.callToActionLabel
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   callToActionLabel: prismic.KeyTextField
 
   /**
-   * callToActionLink field in *CustomerLogos → Primary*
+   * callToActionLink field in *CustomerLogos → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: customer_logos.primary.callToActionLink
+   * - **API ID Path**: customer_logos.default.primary.callToActionLink
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   callToActionLink: prismic.LinkField
@@ -1273,25 +1273,25 @@ type CustomerLogosSliceVariation = CustomerLogosSliceDefault
 export type CustomerLogosSlice = prismic.SharedSlice<'customer_logos', CustomerLogosSliceVariation>
 
 /**
- * Primary content in *EventsList → Primary*
+ * Primary content in *EventsList → Default → Primary*
  */
 export interface EventsListSliceDefaultPrimary {
   /**
-   * Title field in *EventsList → Primary*
+   * Title field in *EventsList → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: events_list.primary.title
+   * - **API ID Path**: events_list.default.primary.title
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.RichTextField
 
   /**
-   * Anchor Link field in *EventsList → Primary*
+   * Anchor Link field in *EventsList → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Used to link or jump to this section within a page.
-   * - **API ID Path**: events_list.primary.anchor_link
+   * - **API ID Path**: events_list.default.primary.anchor_link
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   anchor_link: prismic.KeyTextField
@@ -1340,65 +1340,65 @@ type EventsListSliceVariation = EventsListSliceDefault
 export type EventsListSlice = prismic.SharedSlice<'events_list', EventsListSliceVariation>
 
 /**
- * Primary content in *Hero → Primary*
+ * Primary content in *Hero → Default → Primary*
  */
 export interface HeroSliceDefaultPrimary {
   /**
-   * eyebrowHeadline field in *Hero → Primary*
+   * eyebrowHeadline field in *Hero → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Eyebrow
-   * - **API ID Path**: hero.primary.eyebrowHeadline
+   * - **API ID Path**: hero.default.primary.eyebrowHeadline
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   eyebrowHeadline: prismic.KeyTextField
 
   /**
-   * title field in *Hero → Primary*
+   * title field in *Hero → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.title
+   * - **API ID Path**: hero.default.primary.title
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.RichTextField
 
   /**
-   * description field in *Hero → Primary*
+   * description field in *Hero → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.description
+   * - **API ID Path**: hero.default.primary.description
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField
 
   /**
-   * image field in *Hero → Primary*
+   * image field in *Hero → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.image
+   * - **API ID Path**: hero.default.primary.image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>
 
   /**
-   * callToActionLabel field in *Hero → Primary*
+   * callToActionLabel field in *Hero → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.callToActionLabel
+   * - **API ID Path**: hero.default.primary.callToActionLabel
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   callToActionLabel: prismic.KeyTextField
 
   /**
-   * callToActionLink field in *Hero → Primary*
+   * callToActionLink field in *Hero → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.callToActionLink
+   * - **API ID Path**: hero.default.primary.callToActionLink
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   callToActionLink: prismic.LinkField
@@ -1414,65 +1414,65 @@ export interface HeroSliceDefaultPrimary {
 export type HeroSliceDefault = prismic.SharedSliceVariation<'default', Simplify<HeroSliceDefaultPrimary>, never>
 
 /**
- * Primary content in *Hero → Primary*
+ * Primary content in *Hero → Image Right → Primary*
  */
 export interface HeroSliceImageRightPrimary {
   /**
-   * eyebrowHeadline field in *Hero → Primary*
+   * eyebrowHeadline field in *Hero → Image Right → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Eyebrow
-   * - **API ID Path**: hero.primary.eyebrowHeadline
+   * - **API ID Path**: hero.imageRight.primary.eyebrowHeadline
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   eyebrowHeadline: prismic.KeyTextField
 
   /**
-   * title field in *Hero → Primary*
+   * title field in *Hero → Image Right → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.title
+   * - **API ID Path**: hero.imageRight.primary.title
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.RichTextField
 
   /**
-   * description field in *Hero → Primary*
+   * description field in *Hero → Image Right → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.description
+   * - **API ID Path**: hero.imageRight.primary.description
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField
 
   /**
-   * image field in *Hero → Primary*
+   * image field in *Hero → Image Right → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.image
+   * - **API ID Path**: hero.imageRight.primary.image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>
 
   /**
-   * callToActionLabel field in *Hero → Primary*
+   * callToActionLabel field in *Hero → Image Right → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.callToActionLabel
+   * - **API ID Path**: hero.imageRight.primary.callToActionLabel
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   callToActionLabel: prismic.KeyTextField
 
   /**
-   * callToActionLink field in *Hero → Primary*
+   * callToActionLink field in *Hero → Image Right → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.callToActionLink
+   * - **API ID Path**: hero.imageRight.primary.callToActionLink
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   callToActionLink: prismic.LinkField
@@ -1506,66 +1506,66 @@ type HeroSliceVariation = HeroSliceDefault | HeroSliceImageRight
 export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>
 
 /**
- * Primary content in *HeroImage → Primary*
+ * Primary content in *HeroImage → Default → Primary*
  */
 export interface HeroImageSliceDefaultPrimary {
   /**
-   * Image field in *HeroImage → Primary*
+   * Image field in *HeroImage → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero_image.primary.image
+   * - **API ID Path**: hero_image.default.primary.image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>
 
   /**
-   * Title field in *HeroImage → Primary*
+   * Title field in *HeroImage → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Perferendis Repellendus Magnam Nemo
-   * - **API ID Path**: hero_image.primary.title
+   * - **API ID Path**: hero_image.default.primary.title
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.RichTextField
 
   /**
-   * Description field in *HeroImage → Primary*
+   * Description field in *HeroImage → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Officia ex cupidatat et anim ut ullamco tempor laboris pariatur ex officia sint.
-   * - **API ID Path**: hero_image.primary.description
+   * - **API ID Path**: hero_image.default.primary.description
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField
 
   /**
-   * CTA Text field in *HeroImage → Primary*
+   * CTA Text field in *HeroImage → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: CLICK ME
-   * - **API ID Path**: hero_image.primary.cta_text
+   * - **API ID Path**: hero_image.default.primary.cta_text
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   cta_text: prismic.RichTextField
 
   /**
-   * CTA Link field in *HeroImage → Primary*
+   * CTA Link field in *HeroImage → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: Link to another page
-   * - **API ID Path**: hero_image.primary.cta_link
+   * - **API ID Path**: hero_image.default.primary.cta_link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   cta_link: prismic.LinkField
 
   /**
-   * Max Width field in *HeroImage → Primary*
+   * Max Width field in *HeroImage → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **Default Value**: default
-   * - **API ID Path**: hero_image.primary.max_width
+   * - **API ID Path**: hero_image.default.primary.max_width
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   max_width: prismic.SelectField<'default' | 'full' | 'tight' | 'loose', 'filled'>
@@ -1585,76 +1585,76 @@ export type HeroImageSliceDefault = prismic.SharedSliceVariation<
 >
 
 /**
- * Primary content in *HeroImage → Primary*
+ * Primary content in *HeroImage → Text Image → Primary*
  */
 export interface HeroImageSliceTextImagePrimary {
   /**
-   * Image field in *HeroImage → Primary*
+   * Image field in *HeroImage → Text Image → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero_image.primary.image
+   * - **API ID Path**: hero_image.textImage.primary.image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>
 
   /**
-   * Title field in *HeroImage → Primary*
+   * Title field in *HeroImage → Text Image → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Perferendis Repellendus Magnam Nemo
-   * - **API ID Path**: hero_image.primary.title
+   * - **API ID Path**: hero_image.textImage.primary.title
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.RichTextField
 
   /**
-   * Title Bottom field in *HeroImage → Primary*
+   * Title Bottom field in *HeroImage → Text Image → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero_image.primary.title_bottom
+   * - **API ID Path**: hero_image.textImage.primary.title_bottom
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title_bottom: prismic.RichTextField
 
   /**
-   * Description field in *HeroImage → Primary*
+   * Description field in *HeroImage → Text Image → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Officia ex cupidatat et anim ut ullamco tempor laboris pariatur ex officia sint.
-   * - **API ID Path**: hero_image.primary.description
+   * - **API ID Path**: hero_image.textImage.primary.description
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField
 
   /**
-   * CTA Text field in *HeroImage → Primary*
+   * CTA Text field in *HeroImage → Text Image → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: CLICK ME
-   * - **API ID Path**: hero_image.primary.cta_text
+   * - **API ID Path**: hero_image.textImage.primary.cta_text
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   cta_text: prismic.RichTextField
 
   /**
-   * CTA Link field in *HeroImage → Primary*
+   * CTA Link field in *HeroImage → Text Image → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: Link to another page
-   * - **API ID Path**: hero_image.primary.cta_link
+   * - **API ID Path**: hero_image.textImage.primary.cta_link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   cta_link: prismic.LinkField
 
   /**
-   * Max Width field in *HeroImage → Primary*
+   * Max Width field in *HeroImage → Text Image → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **Default Value**: default
-   * - **API ID Path**: hero_image.primary.max_width
+   * - **API ID Path**: hero_image.textImage.primary.max_width
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   max_width: prismic.SelectField<'default' | 'full' | 'tight' | 'loose', 'filled'>
@@ -1751,25 +1751,25 @@ type ImageGridSliceVariation = ImageGridSliceDefault
 export type ImageGridSlice = prismic.SharedSlice<'image_grid', ImageGridSliceVariation>
 
 /**
- * Primary content in *NavItem → Primary*
+ * Primary content in *NavItem → Default → Primary*
  */
 export interface NavItemSliceDefaultPrimary {
   /**
-   * Name field in *NavItem → Primary*
+   * Name field in *NavItem → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Name of the link
-   * - **API ID Path**: nav_item.primary.name
+   * - **API ID Path**: nav_item.default.primary.name
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   name: prismic.RichTextField
 
   /**
-   * Link field in *NavItem → Primary*
+   * Link field in *NavItem → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: Link for the item
-   * - **API ID Path**: nav_item.primary.link
+   * - **API ID Path**: nav_item.default.primary.link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   link: prismic.LinkField
@@ -1891,25 +1891,25 @@ type ProfileSliceVariation = ProfileSliceDefault
 export type ProfileSlice = prismic.SharedSlice<'profile', ProfileSliceVariation>
 
 /**
- * Primary content in *Services → Primary*
+ * Primary content in *Services → Default → Primary*
  */
 export interface ServicesSliceDefaultPrimary {
   /**
-   * Title field in *Services → Primary*
+   * Title field in *Services → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Optional section title.
-   * - **API ID Path**: services.primary.title
+   * - **API ID Path**: services.default.primary.title
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.RichTextField
 
   /**
-   * Description field in *Services → Primary*
+   * Description field in *Services → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Optional description section text.
-   * - **API ID Path**: services.primary.description
+   * - **API ID Path**: services.default.primary.description
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField
@@ -1999,15 +1999,15 @@ type ServicesSliceVariation = ServicesSliceDefault
 export type ServicesSlice = prismic.SharedSlice<'services', ServicesSliceVariation>
 
 /**
- * Primary content in *SocialItem → Primary*
+ * Primary content in *SocialItem → Default → Primary*
  */
 export interface SocialItemSliceDefaultPrimary {
   /**
-   * UTM field in *SocialItem → Primary*
+   * UTM field in *SocialItem → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: UTM string to append to each links for analytics (optional)
-   * - **API ID Path**: social_item.primary.utm
+   * - **API ID Path**: social_item.default.primary.utm
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   utm: prismic.RichTextField
@@ -2067,25 +2067,25 @@ type SocialItemSliceVariation = SocialItemSliceDefault
 export type SocialItemSlice = prismic.SharedSlice<'social_item', SocialItemSliceVariation>
 
 /**
- * Primary content in *Testimonials → Primary*
+ * Primary content in *Testimonials → Default → Primary*
  */
 export interface TestimonialsSliceDefaultPrimary {
   /**
-   * Quote field in *Testimonials → Primary*
+   * Quote field in *Testimonials → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: testimonials.primary.quote
+   * - **API ID Path**: testimonials.default.primary.quote
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   quote: prismic.RichTextField
 
   /**
-   * Image field in *Testimonials → Primary*
+   * Image field in *Testimonials → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: testimonials.primary.image
+   * - **API ID Path**: testimonials.default.primary.image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>
