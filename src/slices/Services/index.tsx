@@ -60,6 +60,41 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
           </div>
         </>
       )}
+      {slice.variation === 'mainServices' && (
+        <>
+          <Heading richText={slice.primary.title} accents sectionTitle />
+          <div className="flex w-full flex-col items-center justify-center lg:flex-row lg:items-start">
+            {slice.items.length > 0 &&
+              slice.items.map((item) => (
+                <div key={JSON.stringify(item)} className="mt-8 flex flex-col items-center lg:mt-12">
+                  {isFilled.link(item.link) && (
+                    <PrismicNextLink field={item.link} className="group">
+                      {isFilled.image(item.image) && (
+                        <div className="relative mx-2 w-full max-w-60 overflow-hidden border-[3px] border-solid border-primary text-center transition-transform group-hover:scale-105 lg:mx-5">
+                          <PrismicNextImage
+                            field={item.image}
+                            imgixParams={{ crop: 'faces,edges', fit: 'crop', w: 1, h: 1 }}
+                            className="object-cover"
+                          />
+                        </div>
+                      )}
+                      {isFilled.richText(item.link_text) && (
+                        <div className="relative mx-2 mt-5 w-full max-w-60 text-center font-serif text-2xl font-normal tracking-wider lg:mx-5">
+                          <PrismicRichText field={item.link_text} />
+                        </div>
+                      )}
+                    </PrismicNextLink>
+                  )}
+                  {/* {isFilled.richText(item.list) && (
+                    <div className="mx-0 mt-6 text-center text-xl font-medium leading-loose text-brown lg:mt-0 xl:mx-12">
+                      <PrismicRichText field={item.list} />
+                    </div>
+                  )} */}
+                </div>
+              ))}
+          </div>
+        </>
+      )}
     </section>
   )
 }
