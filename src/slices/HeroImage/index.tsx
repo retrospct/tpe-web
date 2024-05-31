@@ -2,6 +2,7 @@
 import { Heading, Text } from '@/components'
 import { TpSquiggle } from '@/components/icons/TpSquiggle'
 import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import { isFilled, type Content } from '@prismicio/client'
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from '@prismicio/react'
@@ -34,8 +35,15 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
     >
       {slice.variation === 'default' && (
         <>
-          <div className="relative flow-root h-[calc(66dvh-120px)] max-h-[652px] min-w-full overflow-hidden sm:h-[652px] sm:min-h-[652px]">
-            {isFilled.image(slice.primary.image) && (
+          {isFilled.image(slice.primary.image) && (
+            <div
+              className={cn(
+                'relative flow-root min-w-full overflow-hidden',
+                isFilled.select(slice.primary.image_height) && slice.primary.image_height === 'short'
+                  ? 'h-[calc(66dvh-120px)] max-h-[431px] sm:h-[431px] sm:min-h-[431px]'
+                  : 'h-[calc(66dvh-120px)] max-h-[652px] sm:h-[652px] sm:min-h-[652px]'
+              )}
+            >
               <PrismicNextImage
                 field={slice.primary.image}
                 imgixParams={{ crop: 'faces,edges', fit: 'crop', w: 1, h: 1 }}
@@ -43,31 +51,33 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                 fill
                 priority
               />
-            )}
-          </div>
+            </div>
+          )}
           <div className="mx-auto mt-16 flow-root max-w-5xl px-6 text-left sm:mt-24 lg:px-8">
             {isFilled.richText(slice.primary.title) && (
               <div className="max-w-4xl text-pretty font-serif text-4xl font-normal tracking-wider text-primary sm:text-5xl">
                 <PrismicRichText field={slice.primary.title} />
-                <div className="after:bg-squiggle w-full after:mb-0 after:ml-0 after:mt-2 after:block after:h-[12px] after:w-full after:md:ml-28 after:md:h-[20px] after:md:w-[400px]" />
+                <div className="w-full after:mb-0 after:ml-0 after:mt-2 after:block after:h-[12px] after:w-full after:bg-squiggle after:md:ml-28 after:md:h-[20px] after:md:w-[400px]" />
                 {/* <TpSquiggle className="w-full text-accent sm:w-auto" /> */}
               </div>
             )}
 
-            <div className="mt-8 flex flex-col-reverse items-center justify-center gap-x-12 sm:mt-10 sm:flex-row">
-              <div className="mt-8 sm:mt-0">
+            {(isFilled.link(slice.primary.cta_link) || isFilled.richText(slice.primary.description)) && (
+              <div className="mt-8 flex flex-col-reverse items-center justify-center gap-x-12 sm:mt-10 sm:flex-row">
                 {isFilled.link(slice.primary.cta_link) && (
-                  <PrismicNextLink field={slice.primary.cta_link} className={buttonVariants({ variant: 'default' })}>
-                    {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
-                  </PrismicNextLink>
+                  <div className="mt-8 sm:mt-0">
+                    <PrismicNextLink field={slice.primary.cta_link} className={buttonVariants({ variant: 'default' })}>
+                      {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
+                    </PrismicNextLink>
+                  </div>
+                )}
+                {isFilled.richText(slice.primary.description) && (
+                  <div className="text-left text-2xl font-medium leading-8 text-brown">
+                    <PrismicRichText field={slice.primary.description} components={components} />
+                  </div>
                 )}
               </div>
-              {isFilled.richText(slice.primary.description) && (
-                <div className="text-left text-2xl font-medium leading-8 text-brown">
-                  <PrismicRichText field={slice.primary.description} components={components} />
-                </div>
-              )}
-            </div>
+            )}
           </div>
         </>
       )}

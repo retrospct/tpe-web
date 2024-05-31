@@ -1569,6 +1569,17 @@ export interface HeroImageSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   max_width: prismic.SelectField<'default' | 'full' | 'tight' | 'loose', 'filled'>
+
+  /**
+   * Image Height field in *HeroImage → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: default
+   * - **API ID Path**: hero_image.default.primary.image_height
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  image_height: prismic.SelectField<'default' | 'short', 'filled'>
 }
 
 /**
@@ -1985,9 +1996,82 @@ export type ServicesSliceDefault = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *Services → Main Services → Primary*
+ */
+export interface ServicesSliceMainServicesPrimary {
+  /**
+   * Title field in *Services → Main Services → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Optional section title.
+   * - **API ID Path**: services.mainServices.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Description field in *Services → Main Services → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Optional description section text.
+   * - **API ID Path**: services.mainServices.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
+}
+
+/**
+ * Primary content in *Services → Items*
+ */
+export interface ServicesSliceMainServicesItem {
+  /**
+   * Image field in *Services → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+
+  /**
+   * Link Text field in *Services → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Page to link to.
+   * - **API ID Path**: services.items[].link_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  link_text: prismic.RichTextField
+
+  /**
+   * Link field in *Services → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.items[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField
+}
+
+/**
+ * Main Services variation for Services Slice
+ *
+ * - **API ID**: `mainServices`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ServicesSliceMainServices = prismic.SharedSliceVariation<
+  'mainServices',
+  Simplify<ServicesSliceMainServicesPrimary>,
+  Simplify<ServicesSliceMainServicesItem>
+>
+
+/**
  * Slice variation for *Services*
  */
-type ServicesSliceVariation = ServicesSliceDefault
+type ServicesSliceVariation = ServicesSliceDefault | ServicesSliceMainServices
 
 /**
  * Services Shared Slice
@@ -2216,8 +2300,11 @@ declare module '@prismicio/client' {
       ServicesSlice,
       ServicesSliceDefaultPrimary,
       ServicesSliceDefaultItem,
+      ServicesSliceMainServicesPrimary,
+      ServicesSliceMainServicesItem,
       ServicesSliceVariation,
       ServicesSliceDefault,
+      ServicesSliceMainServices,
       SocialItemSlice,
       SocialItemSliceDefaultPrimary,
       SocialItemSliceDefaultItem,

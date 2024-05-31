@@ -122,6 +122,11 @@
 					"url": "https://google.com",
 					"target": "_blank"
 				}
+			},
+			"image_height": {
+				"__TYPE__": "FieldContent",
+				"value": "default",
+				"type": "Select"
 			}
 		},
 		"items": [

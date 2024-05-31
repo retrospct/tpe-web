@@ -69,6 +69,18 @@
             ],
             "default_value": "default"
           }
+        },
+        "image_height": {
+          "type": "Select",
+          "config": {
+            "label": "Image Height",
+            "placeholder": "",
+            "options": [
+              "default",
+              "short"
+            ],
+            "default_value": "default"
+          }
         }
       },
       "items": {}

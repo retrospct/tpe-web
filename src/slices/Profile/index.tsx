@@ -26,7 +26,7 @@ const Profile = ({ slice }: ProfileProps): JSX.Element => {
               <div
                 key={member.uid}
                 className={cn(
-                  'relative flex h-auto w-72 flex-col gap-1',
+                  'relative mb-12 flex h-auto w-72 flex-col gap-1',
                   member.full_width && 'col-span-3 h-auto w-full'
                 )}
               >
