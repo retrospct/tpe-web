@@ -127,6 +127,10 @@
 				"__TYPE__": "FieldContent",
 				"value": "default",
 				"type": "Select"
+			},
+			"padding": {
+				"__TYPE__": "BooleanContent",
+				"value": false
 			}
 		},
 		"items": [

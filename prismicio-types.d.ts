@@ -382,6 +382,7 @@ export type NavDocument<Lang extends string = string> = prismic.PrismicDocumentW
 >
 
 type PageDocumentDataSlicesSlice =
+  | CallToActionSlice
   | ProfileSlice
   | ImageGridSlice
   | CalloutSlice
@@ -940,6 +941,21 @@ type BannerSliceVariation = BannerSliceDefault
 export type BannerSlice = prismic.SharedSlice<'banner', BannerSliceVariation>
 
 /**
+ * Item in *CallToAction → Default → Primary → Packages*
+ */
+export interface CallToActionSliceDefaultPrimaryPackagesItem {
+  /**
+   * Text field in *CallToAction → Default → Primary → Packages*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.default.primary.packages[].text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField
+}
+
+/**
  * Primary content in *CallToAction → Default → Primary*
  */
 export interface CallToActionSliceDefaultPrimary {
@@ -954,7 +970,7 @@ export interface CallToActionSliceDefaultPrimary {
   image: prismic.ImageField<never>
 
   /**
-   * title field in *CallToAction → Default → Primary*
+   * Title field in *CallToAction → Default → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: *None*
@@ -964,34 +980,44 @@ export interface CallToActionSliceDefaultPrimary {
   title: prismic.TitleField
 
   /**
-   * paragraph field in *CallToAction → Default → Primary*
+   * Description field in *CallToAction → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: call_to_action.default.primary.paragraph
+   * - **API ID Path**: call_to_action.default.primary.description
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  paragraph: prismic.RichTextField
+  description: prismic.RichTextField
 
   /**
-   * buttonLink field in *CallToAction → Default → Primary*
+   * CTA Link field in *CallToAction → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: Redirect URL for CTA button
-   * - **API ID Path**: call_to_action.default.primary.buttonLink
+   * - **API ID Path**: call_to_action.default.primary.cta_link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  buttonLink: prismic.LinkField
+  cta_link: prismic.LinkField
 
   /**
-   * buttonLabel field in *CallToAction → Default → Primary*
+   * CTA Text field in *CallToAction → Default → Primary*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Rich Text
    * - **Placeholder**: Label for CTA button
-   * - **API ID Path**: call_to_action.default.primary.buttonLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **API ID Path**: call_to_action.default.primary.cta_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  buttonLabel: prismic.KeyTextField
+  cta_text: prismic.RichTextField
+
+  /**
+   * Packages field in *CallToAction → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.default.primary.packages[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  packages: prismic.GroupField<Simplify<CallToActionSliceDefaultPrimaryPackagesItem>>
 }
 
 /**
@@ -1008,77 +1034,9 @@ export type CallToActionSliceDefault = prismic.SharedSliceVariation<
 >
 
 /**
- * Primary content in *CallToAction → AlignLeft → Primary*
- */
-export interface CallToActionSliceAlignLeftPrimary {
-  /**
-   * Image field in *CallToAction → AlignLeft → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: call_to_action.alignLeft.primary.image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  image: prismic.ImageField<never>
-
-  /**
-   * title field in *CallToAction → AlignLeft → Primary*
-   *
-   * - **Field Type**: Title
-   * - **Placeholder**: *None*
-   * - **API ID Path**: call_to_action.alignLeft.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  title: prismic.TitleField
-
-  /**
-   * paragraph field in *CallToAction → AlignLeft → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: call_to_action.alignLeft.primary.paragraph
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  paragraph: prismic.RichTextField
-
-  /**
-   * buttonLink field in *CallToAction → AlignLeft → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: Redirect URL for CTA button
-   * - **API ID Path**: call_to_action.alignLeft.primary.buttonLink
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  buttonLink: prismic.LinkField
-
-  /**
-   * buttonLabel field in *CallToAction → AlignLeft → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: Label for CTA button
-   * - **API ID Path**: call_to_action.alignLeft.primary.buttonLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  buttonLabel: prismic.KeyTextField
-}
-
-/**
- * AlignLeft variation for CallToAction Slice
- *
- * - **API ID**: `alignLeft`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type CallToActionSliceAlignLeft = prismic.SharedSliceVariation<
-  'alignLeft',
-  Simplify<CallToActionSliceAlignLeftPrimary>,
-  never
->
-
-/**
  * Slice variation for *CallToAction*
  */
-type CallToActionSliceVariation = CallToActionSliceDefault | CallToActionSliceAlignLeft
+type CallToActionSliceVariation = CallToActionSliceDefault
 
 /**
  * CallToAction Shared Slice
@@ -1580,6 +1538,17 @@ export interface HeroImageSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   image_height: prismic.SelectField<'default' | 'short', 'filled'>
+
+  /**
+   * Padding field in *HeroImage → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: hero_image.default.primary.padding
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  padding: prismic.BooleanField
 }
 
 /**
@@ -2249,11 +2218,10 @@ declare module '@prismicio/client' {
       BannerSliceVariation,
       BannerSliceDefault,
       CallToActionSlice,
+      CallToActionSliceDefaultPrimaryPackagesItem,
       CallToActionSliceDefaultPrimary,
-      CallToActionSliceAlignLeftPrimary,
       CallToActionSliceVariation,
       CallToActionSliceDefault,
-      CallToActionSliceAlignLeft,
       CalloutSlice,
       CalloutSliceDefaultPrimary,
       CalloutSliceVariation,

@@ -81,6 +81,15 @@
             ],
             "default_value": "default"
           }
+        },
+        "padding": {
+          "type": "Boolean",
+          "config": {
+            "label": "Padding",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": true
+          }
         }
       },
       "items": {}

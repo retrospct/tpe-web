@@ -23,88 +23,55 @@
         "title": {
           "type": "StructuredText",
           "config": {
-            "label": "title",
+            "label": "Title",
             "placeholder": "",
             "allowTargetBlank": true,
             "single": "heading1,heading2,heading3,heading4,heading5,heading6"
           }
         },
-        "paragraph": {
+        "description": {
           "type": "StructuredText",
           "config": {
-            "label": "paragraph",
+            "label": "Description",
             "placeholder": "",
             "allowTargetBlank": true,
             "single": "paragraph,preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
           }
         },
-        "buttonLink": {
+        "cta_link": {
           "type": "Link",
           "config": {
-            "label": "buttonLink",
+            "label": "CTA Link",
             "placeholder": "Redirect URL for CTA button",
             "allowTargetBlank": true,
             "select": null
           }
         },
-        "buttonLabel": {
-          "type": "Text",
-          "config": {
-            "label": "buttonLabel",
-            "placeholder": "Label for CTA button"
-          }
-        }
-      },
-      "items": {}
-    },
-    {
-      "id": "alignLeft",
-      "name": "AlignLeft",
-      "docURL": "...",
-      "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
-      "primary": {
-        "image": {
-          "type": "Image",
-          "config": {
-            "label": "Image",
-            "constraint": {},
-            "thumbnails": []
-          }
-        },
-        "title": {
+        "cta_text": {
           "type": "StructuredText",
           "config": {
-            "label": "title",
-            "placeholder": "",
-            "allowTargetBlank": true,
-            "single": "heading1,heading2,heading3,heading4,heading5,heading6"
+            "label": "CTA Text",
+            "placeholder": "Label for CTA button",
+            "allowTargetBlank": false,
+            "single": "paragraph,strong,em"
           }
         },
-        "paragraph": {
-          "type": "StructuredText",
+        "packages": {
+          "type": "Group",
           "config": {
-            "label": "paragraph",
-            "placeholder": "",
-            "allowTargetBlank": true,
-            "single": "paragraph,preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-          }
-        },
-        "buttonLink": {
-          "type": "Link",
-          "config": {
-            "label": "buttonLink",
-            "placeholder": "Redirect URL for CTA button",
-            "allowTargetBlank": true,
-            "select": null
-          }
-        },
-        "buttonLabel": {
-          "type": "Text",
-          "config": {
-            "label": "buttonLabel",
-            "placeholder": "Label for CTA button"
+            "label": "Packages",
+            "repeat": true,
+            "fields": {
+              "text": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Text",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,heading2,heading3,strong,em,hyperlink,image,list-item,o-list-item"
+                }
+              }
+            }
           }
         }
       },
