@@ -17,9 +17,6 @@ importers:
       '@hookform/resolvers':
         specifier: ^3.4.2
         version: 3.4.2(react-hook-form@7.51.5(react@18.3.1))
-      '@prismicio/api-renderer':
-        specifier: ^3.1.0
-        version: 3.1.0(@types/uuid@9.0.8)(fp-ts@2.16.6)(io-ts-types@0.5.19(fp-ts@2.16.6)(io-ts@2.2.21(fp-ts@2.16.6))(monocle-ts@2.3.13(fp-ts@2.16.6))(newtype-ts@0.3.5(fp-ts@2.16.6)(monocle-ts@2.3.13(fp-ts@2.16.6))))(io-ts@2.2.21(fp-ts@2.16.6))
       '@prismicio/client':
         specifier: ^7.5.0
         version: 7.5.0
@@ -392,14 +389,6 @@ packages:
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
-
-  '@prismicio/api-renderer@3.1.0':
-    resolution: {integrity: sha512-pqEA8uL0bz7y2cG/b7lRRhtkwcoWGz38otGjDq3JIrvZDm5cwtaBLDtUKdnRAELtMhsqG28D66doEYgF6BLZwQ==}
-    engines: {node: '>=12.7.0'}
-    peerDependencies:
-      fp-ts: ^2.11.8
-      io-ts: ^2.2.16
-      io-ts-types: ^0.5.16
 
   '@prismicio/api-renderer@3.1.0-alpha.0':
     resolution: {integrity: sha512-lH+qS/yn+Dcgz7zbG1+AS/aMWtTxArLp+BDDTymReqZegKRJ7XS6t1lpHoSfxIYVya3EY3xuboKjdtTIo9AcMA==}
@@ -3263,17 +3252,6 @@ snapshots:
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
-
-  '@prismicio/api-renderer@3.1.0(@types/uuid@9.0.8)(fp-ts@2.16.6)(io-ts-types@0.5.19(fp-ts@2.16.6)(io-ts@2.2.21(fp-ts@2.16.6))(monocle-ts@2.3.13(fp-ts@2.16.6))(newtype-ts@0.3.5(fp-ts@2.16.6)(monocle-ts@2.3.13(fp-ts@2.16.6))))(io-ts@2.2.21(fp-ts@2.16.6))':
-    dependencies:
-      '@prismicio/types-internal': 2.4.1(@types/uuid@9.0.8)(fp-ts@2.16.6)(io-ts-types@0.5.19(fp-ts@2.16.6)(io-ts@2.2.21(fp-ts@2.16.6))(monocle-ts@2.3.13(fp-ts@2.16.6))(newtype-ts@0.3.5(fp-ts@2.16.6)(monocle-ts@2.3.13(fp-ts@2.16.6))))(io-ts@2.2.21(fp-ts@2.16.6))(uuid@9.0.1)
-      fp-ts: 2.16.6
-      io-ts: 2.2.21(fp-ts@2.16.6)
-      io-ts-types: 0.5.19(fp-ts@2.16.6)(io-ts@2.2.21(fp-ts@2.16.6))(monocle-ts@2.3.13(fp-ts@2.16.6))(newtype-ts@0.3.5(fp-ts@2.16.6)(monocle-ts@2.3.13(fp-ts@2.16.6)))
-      tslib: 2.6.2
-      uuid: 9.0.1
-    transitivePeerDependencies:
-      - '@types/uuid'
 
   '@prismicio/api-renderer@3.1.0-alpha.0(@types/uuid@9.0.8)(fp-ts@2.16.6)(io-ts-types@0.5.19(fp-ts@2.16.6)(io-ts@2.2.21(fp-ts@2.16.6))(monocle-ts@2.3.13(fp-ts@2.16.6))(newtype-ts@0.3.5(fp-ts@2.16.6)(monocle-ts@2.3.13(fp-ts@2.16.6))))(io-ts@2.2.21(fp-ts@2.16.6))':
     dependencies:
