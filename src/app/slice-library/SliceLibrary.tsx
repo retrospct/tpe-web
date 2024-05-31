@@ -42,7 +42,7 @@ function SliceList({ libraries }: { libraries: SliceLibrary[] }) {
 
   return libraries.map((library) =>
     library.slices.map(({ model, mocks }) =>
-      model.variations.map((variation) => {
+      model.variations.map((variation: any) => {
         const id = model.id
         const key = `${library.name}-${id}-${variation.id}`
 
