@@ -23,6 +23,25 @@
           }
         }
       }
+    },
+    {
+      "id": "simple",
+      "name": "Simple",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,heading1,heading2,heading3,strong,em,hyperlink,image"
+          }
+        }
+      }
     }
   ]
 }

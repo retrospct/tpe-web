@@ -13,14 +13,12 @@ export type ServicesProps = SliceComponentProps<Content.ServicesSlice>
  * Component for "Services" Slices.
  */
 const Services = ({ slice }: ServicesProps): JSX.Element => {
+  const styles = slice.variation === 'default' ? 'py-16 sm:py-24' : 'bg-foreground pt-16 pb-8 sm:pt-24 sm:pb-14'
   return (
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={cn(
-        'flex w-full flex-col py-16 text-red sm:py-24',
-        slice.variation === 'mainServices' && 'bg-foreground'
-      )}
+      className={cn('flex w-full flex-col text-primary', styles)}
     >
       {slice.variation === 'default' && (
         <>

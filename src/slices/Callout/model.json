@@ -29,6 +29,20 @@
             "allowTargetBlank": true,
             "multi": "paragraph,strong,em,hyperlink"
           }
+        },
+        "background": {
+          "type": "Select",
+          "config": {
+            "label": "Background",
+            "placeholder": "",
+            "options": [
+              "background",
+              "foreground",
+              "primary",
+              "secondary",
+              "accent"
+            ]
+          }
         }
       },
       "items": {}

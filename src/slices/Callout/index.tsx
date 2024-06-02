@@ -1,5 +1,6 @@
 import { Heading, Text } from '@/components'
-import { Content } from '@prismicio/client'
+import { cn } from '@/lib/utils'
+import { Content, isFilled } from '@prismicio/client'
 import { SliceComponentProps } from '@prismicio/react'
 
 /**
@@ -11,11 +12,13 @@ export type CalloutProps = SliceComponentProps<Content.CalloutSlice>
  * Component for "Callout" Slices.
  */
 const Callout = ({ slice }: CalloutProps): JSX.Element => {
+  const background = isFilled.select(slice.primary.background) ? `bg-${slice.primary.background}` : 'bg-foreground'
+
   return (
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="flex w-full flex-col items-center justify-center bg-foreground"
+      className={cn('flex w-full flex-col items-center justify-center', background)}
     >
       {slice.variation === 'default' && (
         <div className="flex w-full max-w-5xl flex-col items-center justify-center text-balance px-6 py-16 text-center md:flex-row md:text-left">

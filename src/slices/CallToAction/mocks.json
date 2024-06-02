@@ -71,6 +71,16 @@
 					}
 				]
 			},
+			"background": {
+				"__TYPE__": "FieldContent",
+				"value": "coffee",
+				"type": "Select"
+			},
+			"text_align": {
+				"__TYPE__": "FieldContent",
+				"value": "center",
+				"type": "Select"
+			},
 			"packages": {
 				"__TYPE__": "GroupContentType",
 				"value": [
@@ -85,7 +95,7 @@
 										{
 											"type": "paragraph",
 											"content": {
-												"text": "Anim laborum Lorem enim mollit Lorem do duis cillum esse tempor velit cupidatat. Tempor exercitation id culpa aliquip esse anim duis laborum."
+												"text": "Nostrud cillum Lorem ad enim commodo magna quis dolore aliquip aute."
 											}
 										}
 									]
@@ -94,13 +104,93 @@
 						]
 					}
 				]
-			},
-			"background": {
-				"__TYPE__": "FieldContent",
-				"value": "coffee",
-				"type": "Select"
 			}
 		},
 		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "imageText",
+		"primary": {
+			"image": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1589321578146-4c1ba445cc88",
+					"width": 3168,
+					"height": 4752
+				},
+				"url": "https://images.unsplash.com/photo-1589321578146-4c1ba445cc88",
+				"width": 3168,
+				"height": 4752,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Everyone"
+						}
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ipsum nulla dolor adipisicing labore consectetur ad ad sunt amet consequat consectetur dolore. Ipsum id officia cupidatat excepteur duis labore."
+						}
+					}
+				]
+			},
+			"cta_link": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com"
+				}
+			},
+			"cta_text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Reprehenderit elit cupidatat cillum."
+						}
+					}
+				]
+			},
+			"background": {
+				"__TYPE__": "FieldContent",
+				"value": "ivory",
+				"type": "Select"
+			},
+			"text_align": {
+				"__TYPE__": "FieldContent",
+				"value": "center",
+				"type": "Select"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]

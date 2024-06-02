@@ -927,9 +927,33 @@ export type BannerSliceDefault = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *Banner → Simple → Primary*
+ */
+export interface BannerSliceSimplePrimary {
+  /**
+   * Text field in *Banner → Simple → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner.simple.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField
+}
+
+/**
+ * Simple variation for Banner Slice
+ *
+ * - **API ID**: `simple`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BannerSliceSimple = prismic.SharedSliceVariation<'simple', Simplify<BannerSliceSimplePrimary>, never>
+
+/**
  * Slice variation for *Banner*
  */
-type BannerSliceVariation = BannerSliceDefault
+type BannerSliceVariation = BannerSliceDefault | BannerSliceSimple
 
 /**
  * Banner Shared Slice
@@ -1030,6 +1054,17 @@ export interface CallToActionSliceDefaultPrimary {
   background: prismic.SelectField<
     'ivory' | 'beige' | 'sienna' | 'blush' | 'coffee' | 'background' | 'foreground' | 'primary' | 'secondary' | 'text'
   >
+
+  /**
+   * Text Align field in *CallToAction → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: center
+   * - **API ID Path**: call_to_action.default.primary.text_align
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  text_align: prismic.SelectField<'center' | 'left' | 'right', 'filled'>
 }
 
 /**
@@ -1046,9 +1081,100 @@ export type CallToActionSliceDefault = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *CallToAction → Image + Text → Primary*
+ */
+export interface CallToActionSliceImageTextPrimary {
+  /**
+   * Image field in *CallToAction → Image + Text → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.imageText.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+
+  /**
+   * Title field in *CallToAction → Image + Text → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.imageText.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField
+
+  /**
+   * Description field in *CallToAction → Image + Text → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.imageText.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
+
+  /**
+   * CTA Link field in *CallToAction → Image + Text → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Redirect URL for CTA button
+   * - **API ID Path**: call_to_action.imageText.primary.cta_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta_link: prismic.LinkField
+
+  /**
+   * CTA Text field in *CallToAction → Image + Text → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Label for CTA button
+   * - **API ID Path**: call_to_action.imageText.primary.cta_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  cta_text: prismic.RichTextField
+
+  /**
+   * Background field in *CallToAction → Image + Text → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: Optionally select a background color.
+   * - **API ID Path**: call_to_action.imageText.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background: prismic.SelectField<
+    'ivory' | 'beige' | 'sienna' | 'blush' | 'coffee' | 'background' | 'foreground' | 'primary' | 'secondary' | 'text'
+  >
+
+  /**
+   * Text Align field in *CallToAction → Image + Text → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: center
+   * - **API ID Path**: call_to_action.imageText.primary.text_align
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  text_align: prismic.SelectField<'center' | 'left' | 'right', 'filled'>
+}
+
+/**
+ * Image + Text variation for CallToAction Slice
+ *
+ * - **API ID**: `imageText`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CallToActionSliceImageText = prismic.SharedSliceVariation<
+  'imageText',
+  Simplify<CallToActionSliceImageTextPrimary>,
+  never
+>
+
+/**
  * Slice variation for *CallToAction*
  */
-type CallToActionSliceVariation = CallToActionSliceDefault
+type CallToActionSliceVariation = CallToActionSliceDefault | CallToActionSliceImageText
 
 /**
  * CallToAction Shared Slice
@@ -1082,6 +1208,16 @@ export interface CalloutSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   body: prismic.RichTextField
+
+  /**
+   * Background field in *Callout → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: callout.default.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background: prismic.SelectField<'background' | 'foreground' | 'primary' | 'secondary' | 'accent'>
 }
 
 /**
@@ -2154,6 +2290,28 @@ export interface TestimonialsSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>
+
+  /**
+   * Quote Position field in *Testimonials → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: left
+   * - **API ID Path**: testimonials.default.primary.quote_position
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  quote_position: prismic.SelectField<'left' | 'center' | 'right', 'filled'>
+
+  /**
+   * Background field in *Testimonials → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: background
+   * - **API ID Path**: testimonials.default.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background: prismic.SelectField<'background' | 'foreground' | 'primary' | 'secondary' | 'accent', 'filled'>
 }
 
 /**
@@ -2227,13 +2385,17 @@ declare module '@prismicio/client' {
       AwardsSliceDefault,
       BannerSlice,
       BannerSliceDefaultItem,
+      BannerSliceSimplePrimary,
       BannerSliceVariation,
       BannerSliceDefault,
+      BannerSliceSimple,
       CallToActionSlice,
       CallToActionSliceDefaultPrimaryPackagesItem,
       CallToActionSliceDefaultPrimary,
+      CallToActionSliceImageTextPrimary,
       CallToActionSliceVariation,
       CallToActionSliceDefault,
+      CallToActionSliceImageText,
       CalloutSlice,
       CalloutSliceDefaultPrimary,
       CalloutSliceVariation,

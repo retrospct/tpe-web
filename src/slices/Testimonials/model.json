@@ -28,6 +28,34 @@
             "constraint": {},
             "thumbnails": []
           }
+        },
+        "quote_position": {
+          "type": "Select",
+          "config": {
+            "label": "Quote Position",
+            "placeholder": "",
+            "options": [
+              "left",
+              "center",
+              "right"
+            ],
+            "default_value": "left"
+          }
+        },
+        "background": {
+          "type": "Select",
+          "config": {
+            "label": "Background",
+            "placeholder": "",
+            "options": [
+              "background",
+              "foreground",
+              "primary",
+              "secondary",
+              "accent"
+            ],
+            "default_value": "background"
+          }
         }
       },
       "items": {}
