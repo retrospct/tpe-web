@@ -8,7 +8,7 @@ import { PrismicRichText, SliceComponentProps } from '@prismicio/react'
 export type CallToActionProps = SliceComponentProps<Content.CallToActionSlice>
 
 const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
-  const styles = slice.variation === 'default' ? 'pb-16 pt-8' : 'py-16 lg:py-16'
+  // const styles = slice.variation === 'default' ? 'pb-16 pt-8' : 'py-16'
   const background = isFilled.select(slice.primary.background) && `bg-${slice.primary.background}`
 
   return (
@@ -18,12 +18,12 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
       className={cn(
         'flex w-full flex-col items-center gap-6 text-primary',
         `text-${slice.primary.text_align}`,
-        styles,
         background
+        // styles,
       )}
     >
       {slice.variation === 'default' && (
-        <>
+        <div className="flex w-full max-w-7xl flex-col items-center justify-center gap-6 py-16">
           <Heading richText={slice.primary.title} accents sectionTitle />
           {isFilled.image(slice.primary.image) && (
             <div className="relative max-h-[466px] min-h-fit w-full max-w-6xl lg:max-h-[562px]">
@@ -41,19 +41,19 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
           )}
           <Text
             richText={slice.primary.description}
-            className="mb-3 text-balance font-sans text-lg font-normal text-secondary lg:mb-6"
+            className="text-balance font-sans text-lg font-normal text-secondary"
           />
           {isFilled.link(slice.primary.cta_link) && (
-            <div className="mt-8 sm:mt-0">
+            <div className="mt-8">
               <PrismicNextLink field={slice.primary.cta_link} className={buttonVariants({ variant: 'default' })}>
                 {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
               </PrismicNextLink>
             </div>
           )}
-        </>
+        </div>
       )}
       {slice.variation === 'imageText' && (
-        <div className="flex w-full max-w-7xl flex-col items-center justify-center gap-12 lg:flex-row">
+        <div className="flex w-full max-w-7xl flex-col items-center justify-center gap-12 py-16 lg:flex-row">
           {isFilled.image(slice.primary.image) && (
             <div className="relative max-h-[466px] max-w-xl lg:max-h-[562px]">
               <PrismicNextImage field={slice.primary.image} />
