@@ -73,6 +73,25 @@
               }
             }
           }
+        },
+        "background": {
+          "type": "Select",
+          "config": {
+            "label": "Background",
+            "placeholder": "Optionally select a background color.",
+            "options": [
+              "ivory",
+              "beige",
+              "sienna",
+              "blush",
+              "coffee",
+              "background",
+              "foreground",
+              "primary",
+              "secondary",
+              "text"
+            ]
+          }
         }
       },
       "items": {}

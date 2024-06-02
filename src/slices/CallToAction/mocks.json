@@ -94,6 +94,11 @@
 						]
 					}
 				]
+			},
+			"background": {
+				"__TYPE__": "FieldContent",
+				"value": "coffee",
+				"type": "Select"
 			}
 		},
 		"items": []

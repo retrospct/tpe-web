@@ -9,15 +9,13 @@ export type CallToActionProps = SliceComponentProps<Content.CallToActionSlice>
 
 const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
   // const alignment = slice.variation === 'alignLeft' ? 'left' : 'center'
+  const background = isFilled.select(slice.primary.background) && `bg-${slice.primary.background}`
 
   return (
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={cn(
-        'flex w-full flex-col items-center gap-6 py-8 text-primary sm:py-16',
-        slice.variation === 'default' && 'bg-foreground'
-      )}
+      className={cn('flex w-full flex-col items-center gap-6 py-8 text-primary sm:py-16', background)}
     >
       {slice.variation === 'default' && (
         <>

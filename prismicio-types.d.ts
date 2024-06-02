@@ -1018,6 +1018,18 @@ export interface CallToActionSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   packages: prismic.GroupField<Simplify<CallToActionSliceDefaultPrimaryPackagesItem>>
+
+  /**
+   * Background field in *CallToAction → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: Optionally select a background color.
+   * - **API ID Path**: call_to_action.default.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background: prismic.SelectField<
+    'ivory' | 'beige' | 'sienna' | 'blush' | 'coffee' | 'background' | 'foreground' | 'primary' | 'secondary' | 'text'
+  >
 }
 
 /**
