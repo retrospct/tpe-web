@@ -23,7 +23,7 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
       )}
     >
       {slice.variation === 'default' && (
-        <div className="flex w-full max-w-7xl flex-col items-center justify-center gap-6 py-16">
+        <div className="my-16 flex w-full max-w-7xl flex-col items-center justify-center gap-6">
           <Heading richText={slice.primary.title} accents sectionTitle />
           {isFilled.image(slice.primary.image) && (
             <div className="relative max-h-[466px] min-h-fit w-full max-w-6xl lg:max-h-[562px]">
