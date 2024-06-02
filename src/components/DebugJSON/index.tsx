@@ -1,4 +1,4 @@
-export const Debug = ({ data }: { data: any }) => {
+export const DebugJSON = ({ data }: { data: any }) => {
   if (!data) return null
   return (
     <code className="text-left text-secondary">

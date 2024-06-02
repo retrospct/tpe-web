@@ -55,9 +55,7 @@ export default async function Page({ params }: { params: Params }) {
       {/* UNCOMMENT TO DEBUG DATA PAYLOAD */}
       {/* {page?.data && (
         <div className="mx-auto flex w-full flex-col items-center justify-center px-6 text-center text-red lg:flex-row lg:justify-between lg:px-12">
-          <code className="text-left">
-            <pre>{JSON.stringify(page.data, null, 2)}</pre>
-          </code>
+          <DebugJSON data={page.data} />
         </div>
       )} */}
     </div>

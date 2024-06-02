@@ -1,5 +1,5 @@
 export * from './ContactForm'
-export * from './Debug'
+export * from './DebugJSON'
 export * from './EventsGrid'
 export * from './Heading'
 export * from './Nav'
