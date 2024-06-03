@@ -76,7 +76,7 @@ export const HeadingDivider = ({
   bg?: string
 }) => {
   return (
-    <div id={anchor} className={cn('relative mb-6 w-full', className)}>
+    <div id={anchor} className={cn('relative mb-6 w-[calc(100%-0.5rem)] xl:w-[calc(100%-2rem)]', className)}>
       <div className="absolute inset-0 flex items-center" aria-hidden="true">
         <div className="w-full border-2 border-accent" />
       </div>

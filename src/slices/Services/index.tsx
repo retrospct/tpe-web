@@ -20,7 +20,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={cn('flex w-full flex-col items-center justify-start text-primary', styles, background)}
+      className={cn('relative flex w-full flex-col items-center justify-start text-primary', styles, background)}
     >
       {slice.variation === 'default' && (
         <>
@@ -152,7 +152,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
       )}
       {slice.variation === 'designServices' && (
         <>
-          <HeadingDivider richText={slice.primary.title} bg={background} className="max-w-5xl" />
+          <HeadingDivider richText={slice.primary.title} bg={background} className="max-w-4xl" />
           <div className="flex w-full flex-col items-center justify-center gap-10 lg:flex-row lg:items-start">
             {isFilled.group(slice.primary.services) &&
               slice.primary.services.map((service) => (
