@@ -1,0 +1,49 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Slabs"
+						}
+					}
+				]
+			},
+			"timeline": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"name",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Cillum adipisicing labore amet consectetur consectetur sunt et eiusmod laborum nisi. Elit ea amet enim proident et minim aute laboris ea in enim et dolor do nisi."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			},
+			"background": {
+				"__TYPE__": "FieldContent",
+				"value": "background",
+				"type": "Select"
+			}
+		},
+		"items": []
+	}
+]

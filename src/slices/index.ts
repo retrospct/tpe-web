@@ -3,7 +3,6 @@
 import dynamic from 'next/dynamic'
 
 export const components = {
-  alternate_grid: dynamic(() => import('./AlternateGrid')),
   awards: dynamic(() => import('./Awards')),
   banner: dynamic(() => import('./Banner')),
   call_to_action: dynamic(() => import('./CallToAction')),
@@ -18,5 +17,6 @@ export const components = {
   profile: dynamic(() => import('./Profile')),
   services: dynamic(() => import('./Services')),
   social_item: dynamic(() => import('./SocialItem')),
-  testimonials: dynamic(() => import('./Testimonials'))
+  testimonials: dynamic(() => import('./Testimonials')),
+  timeline: dynamic(() => import('./Timeline'))
 }

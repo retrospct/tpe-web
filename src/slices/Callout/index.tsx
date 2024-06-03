@@ -34,7 +34,7 @@ const Callout = ({ slice }: CalloutProps): JSX.Element => {
         </div>
       )}
       {slice.variation === 'partners' && (
-        <div className="flex w-full flex-col items-center justify-center divide-x-0 divide-y-2 divide-accent text-balance px-6 py-16 text-center md:flex-row md:divide-x-2 md:divide-y-0 md:text-left">
+        <div className="flex w-full flex-col items-center justify-center divide-x-0 divide-y-2 divide-accent px-6 py-16 text-center md:flex-row md:divide-x-2 md:divide-y-0 md:text-left">
           <Heading
             richText={slice.primary.title}
             accents={slice.primary.accents}
@@ -53,14 +53,14 @@ const Callout = ({ slice }: CalloutProps): JSX.Element => {
                   <PrismicNextLink field={venue.link}>
                     <Text
                       richText={venue.name}
-                      className="w-28 leading-tight text-primary md:w-28 lg:w-32 lg:leading-tight"
+                      className="w-32 leading-tight text-primary md:w-28 lg:w-32 lg:leading-tight"
                       size="md"
                     />
                   </PrismicNextLink>
                 ) : (
                   <Text
                     richText={venue.name}
-                    className="w-28 leading-tight text-primary md:w-28 lg:w-32 lg:leading-tight"
+                    className="w-32 leading-tight text-primary md:w-28 lg:w-32 lg:leading-tight"
                     size="md"
                   />
                 )
