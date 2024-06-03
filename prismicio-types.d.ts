@@ -1191,6 +1191,16 @@ export interface ContactSliceDefaultPrimary {
   title: prismic.RichTextField
 
   /**
+   * Description field in *Contact → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
+
+  /**
    * Image field in *Contact → Default → Primary*
    *
    * - **Field Type**: Image

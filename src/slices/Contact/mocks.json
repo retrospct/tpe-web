@@ -38,6 +38,17 @@
 				"alt": null,
 				"__TYPE__": "ImageContent",
 				"thumbnails": {}
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Cupidatat commodo cupidatat anim dolore qui ad nulla nostrud ut ea pariatur officia veniam voluptate. Enim ad sit laboris."
+						}
+					}
+				]
 			}
 		},
 		"items": []

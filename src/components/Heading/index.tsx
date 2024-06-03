@@ -76,12 +76,15 @@ export const HeadingDivider = ({
   bg?: string
 }) => {
   return (
-    <div id={anchor} className={cn('relative mb-6 w-[calc(100%-0.5rem)] xl:w-[calc(100%-2rem)]', className)}>
-      <div className="absolute inset-0 flex items-center" aria-hidden="true">
-        <div className="w-full border-2 border-accent" />
+    <div
+      id={anchor}
+      className={cn('relative mb-6 w-[calc(100%-0.5rem)] max-w-full overflow-hidden xl:w-[calc(100%-2rem)]', className)}
+    >
+      <div className="absolute inset-0 ml-2 flex max-w-full items-center xl:ml-8" aria-hidden="true">
+        <div className="relative w-full border-2 border-accent" />
       </div>
       <div className="relative flex items-center justify-start">
-        <TpStar className={cn('-ml-2 text-primary xl:-ml-8', bg)} />
+        <TpStar className={cn('ml-2 text-primary xl:ml-8', bg)} />
         <div className={cn('bg-background px-4 font-serif text-2xl uppercase leading-8 text-primary lg:text-3xl', bg)}>
           {isFilled.richText(richText) ? <PrismicRichText field={richText} /> : text}
         </div>

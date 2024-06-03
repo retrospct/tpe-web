@@ -21,6 +21,15 @@
             "single": "paragraph,heading1,heading2,heading3,strong,em,hyperlink"
           }
         },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+          }
+        },
         "image": {
           "type": "Image",
           "config": {

@@ -98,7 +98,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
         </>
       )}
       {slice.variation === 'mainServices' && (
-        <div className="flex w-full max-w-6xl flex-col items-center justify-center lg:flex-row">
+        <div className="flex w-full max-w-6xl flex-col items-center justify-center">
           <Heading richText={slice.primary.title} accents className="text-center" />
           <div className="flex w-full flex-col items-center justify-center lg:flex-row lg:items-start">
             {isFilled.group(slice.primary.services) &&

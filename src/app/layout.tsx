@@ -24,7 +24,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn('min-h-screen bg-background font-sans antialiased', crimson.variable, belgant.variable)}
+      className={cn(
+        'min-h-screen overflow-x-hidden bg-background font-sans antialiased',
+        crimson.variable,
+        belgant.variable
+      )}
     >
       <body>
         <Nav />
