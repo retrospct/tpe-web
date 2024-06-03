@@ -43,6 +43,85 @@
               "accent"
             ]
           }
+        },
+        "accents": {
+          "type": "Boolean",
+          "config": {
+            "label": "Accents",
+            "default_value": false,
+            "placeholder_true": "true",
+            "placeholder_false": "false"
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "partners",
+      "name": "Partners",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading2,heading3,heading1,strong,em,hyperlink"
+          }
+        },
+        "background": {
+          "type": "Select",
+          "config": {
+            "label": "Background",
+            "placeholder": "",
+            "options": [
+              "background",
+              "foreground",
+              "primary",
+              "secondary",
+              "accent"
+            ]
+          }
+        },
+        "accents": {
+          "type": "Boolean",
+          "config": {
+            "label": "Accents",
+            "default_value": false,
+            "placeholder_true": "true",
+            "placeholder_false": "false"
+          }
+        },
+        "venues": {
+          "type": "Group",
+          "config": {
+            "label": "Venues",
+            "repeat": true,
+            "fields": {
+              "name": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Name",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "single": "paragraph,heading3,strong,em,hyperlink"
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link",
+                  "placeholder": "Optional link to venue website or other url.",
+                  "allowTargetBlank": true,
+                  "select": null
+                }
+              }
+            }
+          }
         }
       },
       "items": {}

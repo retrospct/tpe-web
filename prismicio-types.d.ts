@@ -1186,6 +1186,31 @@ type CallToActionSliceVariation = CallToActionSliceDefault | CallToActionSliceIm
 export type CallToActionSlice = prismic.SharedSlice<'call_to_action', CallToActionSliceVariation>
 
 /**
+ * Item in *Callout → Partners → Primary → Venues*
+ */
+export interface CalloutSlicePartnersPrimaryVenuesItem {
+  /**
+   * Name field in *Callout → Partners → Primary → Venues*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: callout.partners.primary.venues[].name
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  name: prismic.RichTextField
+
+  /**
+   * Link field in *Callout → Partners → Primary → Venues*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Optional link to venue website or other url.
+   * - **API ID Path**: callout.partners.primary.venues[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField
+}
+
+/**
  * Primary content in *Callout → Default → Primary*
  */
 export interface CalloutSliceDefaultPrimary {
@@ -1218,6 +1243,17 @@ export interface CalloutSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   background: prismic.SelectField<'background' | 'foreground' | 'primary' | 'secondary' | 'accent'>
+
+  /**
+   * Accents field in *Callout → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: callout.default.primary.accents
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  accents: prismic.BooleanField
 }
 
 /**
@@ -1230,9 +1266,68 @@ export interface CalloutSliceDefaultPrimary {
 export type CalloutSliceDefault = prismic.SharedSliceVariation<'default', Simplify<CalloutSliceDefaultPrimary>, never>
 
 /**
+ * Primary content in *Callout → Partners → Primary*
+ */
+export interface CalloutSlicePartnersPrimary {
+  /**
+   * Title field in *Callout → Partners → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: callout.partners.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Background field in *Callout → Partners → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: callout.partners.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background: prismic.SelectField<'background' | 'foreground' | 'primary' | 'secondary' | 'accent'>
+
+  /**
+   * Accents field in *Callout → Partners → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: callout.partners.primary.accents
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  accents: prismic.BooleanField
+
+  /**
+   * Venues field in *Callout → Partners → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: callout.partners.primary.venues[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  venues: prismic.GroupField<Simplify<CalloutSlicePartnersPrimaryVenuesItem>>
+}
+
+/**
+ * Partners variation for Callout Slice
+ *
+ * - **API ID**: `partners`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CalloutSlicePartners = prismic.SharedSliceVariation<
+  'partners',
+  Simplify<CalloutSlicePartnersPrimary>,
+  never
+>
+
+/**
  * Slice variation for *Callout*
  */
-type CalloutSliceVariation = CalloutSliceDefault
+type CalloutSliceVariation = CalloutSliceDefault | CalloutSlicePartners
 
 /**
  * Callout Shared Slice
@@ -2398,8 +2493,11 @@ declare module '@prismicio/client' {
       CallToActionSliceImageText,
       CalloutSlice,
       CalloutSliceDefaultPrimary,
+      CalloutSlicePartnersPrimaryVenuesItem,
+      CalloutSlicePartnersPrimary,
       CalloutSliceVariation,
       CalloutSliceDefault,
+      CalloutSlicePartners,
       ContactSlice,
       ContactSliceDefaultPrimary,
       ContactSliceVariation,

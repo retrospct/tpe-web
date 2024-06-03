@@ -67,8 +67,78 @@
 				"__TYPE__": "FieldContent",
 				"value": "accent",
 				"type": "Select"
+			},
+			"accents": {
+				"__TYPE__": "BooleanContent",
+				"value": true
 			}
 		},
 		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "partners",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Plane"
+						}
+					}
+				]
+			},
+			"background": {
+				"__TYPE__": "FieldContent",
+				"value": "secondary",
+				"type": "Select"
+			},
+			"accents": {
+				"__TYPE__": "BooleanContent",
+				"value": false
+			},
+			"venues": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"name",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Voluptate pariatur enim nostrud mollit dolor sint irure tempor enim Lorem reprehenderit aute cupidatat cillum nostrud. Consectetur eiusmod nostrud Lorem pariatur occaecat non ipsum ad veniam."
+											}
+										}
+									]
+								}
+							],
+							[
+								"link",
+								{
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "http://twitter.com"
+									}
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]

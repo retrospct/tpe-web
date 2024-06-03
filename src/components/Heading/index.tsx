@@ -7,6 +7,7 @@ export const Heading = ({
   richText,
   className,
   sectionTitle = false,
+  size = 'lg',
   accents = false,
   accentBefore = false,
   accentAfter = false,
@@ -15,6 +16,7 @@ export const Heading = ({
   richText?: RichTextField | null
   className?: string
   sectionTitle?: boolean
+  size?: 'sm' | 'md' | 'lg'
   accents?: boolean
   accentBefore?: boolean
   accentAfter?: boolean
@@ -24,7 +26,8 @@ export const Heading = ({
     isFilled.richText(richText) && (
       <div
         className={cn(
-          'font-serif text-4xl font-normal tracking-wider text-primary lg:text-5xl',
+          'font-serif font-normal tracking-wider text-primary',
+          getTitleSize(size),
           (accents || accentBefore || accentAfter) && 'flex items-center justify-center',
           sectionTitle && 'mx-3 text-center lg:mx-6',
           className
@@ -36,6 +39,17 @@ export const Heading = ({
       </div>
     )
   )
+}
+
+const getTitleSize = (size: 'sm' | 'md' | 'lg') => {
+  switch (size) {
+    case 'sm':
+      return 'text-2xl lg:text-3xl'
+    case 'md':
+      return 'text-3xl lg:text-4xl'
+    default:
+      return 'text-4xl lg:text-5xl'
+  }
 }
 
 const getAccentSize = (size: 'sm' | 'md' | 'lg') => {
