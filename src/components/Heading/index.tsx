@@ -6,7 +6,6 @@ import { PrismicRichText } from '@prismicio/react'
 export const Heading = ({
   richText,
   className,
-  sectionTitle = false,
   size = 'lg',
   accents = false,
   accentBefore = false,
@@ -15,7 +14,6 @@ export const Heading = ({
 }: {
   richText?: RichTextField | null
   className?: string
-  sectionTitle?: boolean
   size?: 'sm' | 'md' | 'lg'
   accents?: boolean
   accentBefore?: boolean
@@ -29,7 +27,6 @@ export const Heading = ({
           'font-serif font-normal tracking-wider text-primary',
           getTitleSize(size),
           (accents || accentBefore || accentAfter) && 'flex items-center justify-center',
-          sectionTitle && 'mx-3 text-center lg:mx-6',
           className
         )}
       >

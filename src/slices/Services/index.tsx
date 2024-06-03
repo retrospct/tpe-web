@@ -22,7 +22,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
     >
       {slice.variation === 'default' && (
         <>
-          <Heading richText={slice.primary.title} accents sectionTitle />
+          <Heading richText={slice.primary.title} size="md" accents className="text-center" />
           <div className="flex w-full flex-col items-center justify-center lg:flex-row">
             {slice.items.length > 0 &&
               slice.items.map((item) => (
@@ -63,7 +63,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
       )}
       {slice.variation === 'mainServices' && (
         <>
-          <Heading richText={slice.primary.title} accents sectionTitle />
+          <Heading richText={slice.primary.title} accents className="text-center" />
           <div className="flex w-full flex-col items-center justify-center lg:flex-row lg:items-start">
             {slice.items.length > 0 &&
               slice.items.map((item) => (

@@ -21,7 +21,7 @@ export default async function Page({ params }: { params: Params }) {
       {/* <div className="inset-0 mx-auto my-8 flex w-full max-w-xl items-center" aria-hidden="true">
         <div className="w-full border-t-2 border-accent px-6" />
       </div> */}
-      <Heading richText={page.data.title} accents sectionTitle />
+      <Heading richText={page.data.title} accents className="text-center" />
       <ul className="mt-3 flex w-full max-w-xl justify-between text-center text-primary sm:text-lg">
         <li className="hover:text-primary/80">
           <Link href="#weddings" shallow>

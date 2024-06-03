@@ -24,7 +24,7 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
     >
       {slice.variation === 'default' && (
         <div className="my-16 flex w-full max-w-7xl flex-col items-center justify-center gap-6">
-          <Heading richText={slice.primary.title} size="md" accents sectionTitle />
+          <Heading richText={slice.primary.title} size="md" accents className="text-center" />
           {isFilled.image(slice.primary.image) && (
             <div className="relative max-h-[466px] min-h-fit w-full max-w-6xl lg:max-h-[562px]">
               <PrismicNextImage field={slice.primary.image} />
@@ -60,7 +60,7 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
             </div>
           )}
           <div className="flex max-w-xl flex-col items-center">
-            <Heading richText={slice.primary.title} size="md" accents sectionTitle />
+            <Heading richText={slice.primary.title} size="md" accents className="text-center" />
             <Text
               richText={slice.primary.description}
               className="my-8 text-balance font-sans text-lg font-normal text-secondary"
