@@ -872,9 +872,7 @@ export interface CallToActionSliceDefaultPrimary {
    * - **API ID Path**: call_to_action.default.primary.background
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  background: prismic.SelectField<
-    'ivory' | 'beige' | 'sienna' | 'blush' | 'coffee' | 'background' | 'foreground' | 'primary' | 'secondary' | 'text'
-  >
+  background: prismic.SelectField<'background' | 'foreground' | 'primary' | 'secondary' | 'accent'>
 
   /**
    * Text Align field in *CallToAction → Default → Primary*
@@ -886,6 +884,16 @@ export interface CallToActionSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   text_align: prismic.SelectField<'center' | 'left' | 'right', 'filled'>
+
+  /**
+   * Title Size field in *CallToAction → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.default.primary.title_size
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  title_size: prismic.SelectField<'md' | 'sm' | 'lg'>
 }
 
 /**
@@ -963,9 +971,7 @@ export interface CallToActionSliceImageTextPrimary {
    * - **API ID Path**: call_to_action.imageText.primary.background
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  background: prismic.SelectField<
-    'ivory' | 'beige' | 'sienna' | 'blush' | 'coffee' | 'background' | 'foreground' | 'primary' | 'secondary' | 'text'
-  >
+  background: prismic.SelectField<'background' | 'foreground' | 'primary' | 'secondary' | 'accent'>
 
   /**
    * Text Align field in *CallToAction → Image + Text → Primary*
@@ -977,6 +983,17 @@ export interface CallToActionSliceImageTextPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   text_align: prismic.SelectField<'center' | 'left' | 'right', 'filled'>
+
+  /**
+   * Title Size field in *CallToAction → Image + Text → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: md
+   * - **API ID Path**: call_to_action.imageText.primary.title_size
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  title_size: prismic.SelectField<'md' | 'sm' | 'lg', 'filled'>
 }
 
 /**
@@ -1935,6 +1952,132 @@ type ProfileSliceVariation = ProfileSliceDefault
 export type ProfileSlice = prismic.SharedSlice<'profile', ProfileSliceVariation>
 
 /**
+ * Item in *Services → Default → Primary → Services*
+ */
+export interface ServicesSliceDefaultPrimaryServicesItem {
+  /**
+   * Image field in *Services → Default → Primary → Services*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.default.primary.services[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+
+  /**
+   * Title field in *Services → Default → Primary → Services*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.default.primary.services[].title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Link field in *Services → Default → Primary → Services*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Page to link to.
+   * - **API ID Path**: services.default.primary.services[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField
+
+  /**
+   * List field in *Services → Default → Primary → Services*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: List of items to detail out.
+   * - **API ID Path**: services.default.primary.services[].list
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  list: prismic.RichTextField
+
+  /**
+   * Image Left field in *Services → Default → Primary → Services*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: services.default.primary.services[].image_left
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  image_left: prismic.BooleanField
+}
+
+/**
+ * Item in *Services → Main Services → Primary → Services*
+ */
+export interface ServicesSliceMainServicesPrimaryServicesItem {
+  /**
+   * Image field in *Services → Main Services → Primary → Services*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.mainServices.primary.services[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+
+  /**
+   * Title field in *Services → Main Services → Primary → Services*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.mainServices.primary.services[].title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Link field in *Services → Main Services → Primary → Services*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.mainServices.primary.services[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField
+}
+
+/**
+ * Item in *Services → Design Services → Primary → services*
+ */
+export interface ServicesSliceDesignServicesPrimaryServicesItem {
+  /**
+   * Image field in *Services → Design Services → Primary → services*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.designServices.primary.services[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+
+  /**
+   * Title field in *Services → Design Services → Primary → services*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Title of design service.
+   * - **API ID Path**: services.designServices.primary.services[].title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Description field in *Services → Design Services → Primary → services*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.designServices.primary.services[].description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
+}
+
+/**
  * Primary content in *Services → Default → Primary*
  */
 export interface ServicesSliceDefaultPrimary {
@@ -1957,6 +2100,26 @@ export interface ServicesSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField
+
+  /**
+   * Services field in *Services → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.default.primary.services[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  services: prismic.GroupField<Simplify<ServicesSliceDefaultPrimaryServicesItem>>
+
+  /**
+   * Background field in *Services → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.default.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background: prismic.SelectField<'background' | 'foreground' | 'primary' | 'secondary' | 'accent'>
 }
 
 /**
@@ -2051,6 +2214,26 @@ export interface ServicesSliceMainServicesPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField
+
+  /**
+   * Services field in *Services → Main Services → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.mainServices.primary.services[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  services: prismic.GroupField<Simplify<ServicesSliceMainServicesPrimaryServicesItem>>
+
+  /**
+   * Background field in *Services → Main Services → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.mainServices.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background: prismic.SelectField<'background' | 'foreground' | 'primary' | 'secondary' | 'accent'>
 }
 
 /**
@@ -2102,9 +2285,129 @@ export type ServicesSliceMainServices = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *Services → Design Services → Primary*
+ */
+export interface ServicesSliceDesignServicesPrimary {
+  /**
+   * Title field in *Services → Design Services → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Optional section title.
+   * - **API ID Path**: services.designServices.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Description field in *Services → Design Services → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Optional description section text.
+   * - **API ID Path**: services.designServices.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
+
+  /**
+   * services field in *Services → Design Services → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.designServices.primary.services[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  services: prismic.GroupField<Simplify<ServicesSliceDesignServicesPrimaryServicesItem>>
+
+  /**
+   * Background field in *Services → Design Services → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.designServices.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background: prismic.SelectField<'background' | 'foreground' | 'primary' | 'secondary' | 'accent'>
+}
+
+/**
+ * Design Services variation for Services Slice
+ *
+ * - **API ID**: `designServices`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ServicesSliceDesignServices = prismic.SharedSliceVariation<
+  'designServices',
+  Simplify<ServicesSliceDesignServicesPrimary>,
+  never
+>
+
+/**
+ * Primary content in *Services → Graphic Design → Primary*
+ */
+export interface ServicesSliceGraphicDesignPrimary {
+  /**
+   * Title field in *Services → Graphic Design → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Optional section title.
+   * - **API ID Path**: services.graphicDesign.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Description field in *Services → Graphic Design → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Optional description section text.
+   * - **API ID Path**: services.graphicDesign.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
+
+  /**
+   * Image field in *Services → Graphic Design → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.graphicDesign.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+
+  /**
+   * Background field in *Services → Graphic Design → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.graphicDesign.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background: prismic.SelectField<'background' | 'foreground' | 'primary' | 'secondary' | 'accent'>
+}
+
+/**
+ * Graphic Design variation for Services Slice
+ *
+ * - **API ID**: `graphicDesign`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ServicesSliceGraphicDesign = prismic.SharedSliceVariation<
+  'graphicDesign',
+  Simplify<ServicesSliceGraphicDesignPrimary>,
+  never
+>
+
+/**
  * Slice variation for *Services*
  */
-type ServicesSliceVariation = ServicesSliceDefault | ServicesSliceMainServices
+type ServicesSliceVariation =
+  | ServicesSliceDefault
+  | ServicesSliceMainServices
+  | ServicesSliceDesignServices
+  | ServicesSliceGraphicDesign
 
 /**
  * Services Shared Slice
@@ -2424,13 +2727,20 @@ declare module '@prismicio/client' {
       ProfileSliceVariation,
       ProfileSliceDefault,
       ServicesSlice,
+      ServicesSliceDefaultPrimaryServicesItem,
       ServicesSliceDefaultPrimary,
       ServicesSliceDefaultItem,
+      ServicesSliceMainServicesPrimaryServicesItem,
       ServicesSliceMainServicesPrimary,
       ServicesSliceMainServicesItem,
+      ServicesSliceDesignServicesPrimaryServicesItem,
+      ServicesSliceDesignServicesPrimary,
+      ServicesSliceGraphicDesignPrimary,
       ServicesSliceVariation,
       ServicesSliceDefault,
       ServicesSliceMainServices,
+      ServicesSliceDesignServices,
+      ServicesSliceGraphicDesign,
       SocialItemSlice,
       SocialItemSliceDefaultPrimary,
       SocialItemSliceDefaultItem,

@@ -24,7 +24,7 @@ const Timeline = ({ slice }: TimelineProps): JSX.Element => {
         <div className="flex w-full max-w-7xl flex-col items-center justify-center px-6 py-16 lg:px-12 lg:py-24">
           <Heading richText={slice.primary.title} className="mb-14 text-center text-3xl lg:text-4xl" accents />
           {isFilled.group(slice.primary.timeline) && (
-            <div className="grid grid-cols-2 items-start justify-center gap-x-6 gap-y-9 overflow-hidden text-left md:grid-cols-3 lg:grid-cols-4 lg:gap-x-4">
+            <div className="grid grid-cols-2 grid-rows-1 items-start justify-center gap-x-6 gap-y-9 overflow-hidden text-left md:grid-cols-3 lg:grid-cols-4 lg:gap-x-4">
               {slice.primary.timeline.map((item, i) => (
                 <div className="max-w-1/3 flex flex-col items-start justify-start gap-x-4 gap-y-1 sm:max-w-44 md:flex-row lg:max-w-60">
                   <Text

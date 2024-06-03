@@ -73,7 +73,7 @@
 			},
 			"background": {
 				"__TYPE__": "FieldContent",
-				"value": "coffee",
+				"value": "accent",
 				"type": "Select"
 			},
 			"text_align": {
@@ -104,6 +104,11 @@
 						]
 					}
 				]
+			},
+			"title_size": {
+				"__TYPE__": "FieldContent",
+				"value": "md",
+				"type": "Select"
 			}
 		},
 		"items": []
@@ -177,12 +182,17 @@
 			},
 			"background": {
 				"__TYPE__": "FieldContent",
-				"value": "ivory",
+				"value": "primary",
 				"type": "Select"
 			},
 			"text_align": {
 				"__TYPE__": "FieldContent",
 				"value": "center",
+				"type": "Select"
+			},
+			"title_size": {
+				"__TYPE__": "FieldContent",
+				"value": "sm",
 				"type": "Select"
 			}
 		},

@@ -14,7 +14,7 @@ export const Heading = ({
 }: {
   richText?: RichTextField | null
   className?: string
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'xs' | 'sm' | 'md' | 'lg'
   accents?: boolean
   accentBefore?: boolean
   accentAfter?: boolean
@@ -38,8 +38,10 @@ export const Heading = ({
   )
 }
 
-const getTitleSize = (size: 'sm' | 'md' | 'lg') => {
+const getTitleSize = (size: 'xs' | 'sm' | 'md' | 'lg') => {
   switch (size) {
+    case 'xs':
+      return 'text-xl lg:text-2xl'
     case 'sm':
       return 'text-2xl lg:text-3xl'
     case 'md':
@@ -64,12 +66,14 @@ export const HeadingDivider = ({
   text,
   richText,
   className,
-  anchor = text?.toLowerCase().replace(/\s/g, '-')
+  anchor = text?.toLowerCase().replace(/\s/g, '-'),
+  bg = 'bg-background'
 }: {
   text?: string
   richText?: RichTextField | null
   className?: string
   anchor?: string
+  bg?: string
 }) => {
   return (
     <div id={anchor} className={cn('relative mb-6 w-full', className)}>
@@ -77,8 +81,8 @@ export const HeadingDivider = ({
         <div className="w-full border-2 border-accent" />
       </div>
       <div className="relative flex items-center justify-start">
-        <TpStar className="-ml-2 bg-background text-primary xl:-ml-8" />
-        <div className="bg-background px-4 font-serif text-2xl uppercase leading-8 text-primary lg:text-3xl">
+        <TpStar className={cn('-ml-2 text-primary xl:-ml-8', bg)} />
+        <div className={cn('bg-background px-4 font-serif text-2xl uppercase leading-8 text-primary lg:text-3xl', bg)}>
           {isFilled.richText(richText) ? <PrismicRichText field={richText} /> : text}
         </div>
       </div>

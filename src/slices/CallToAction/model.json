@@ -80,16 +80,11 @@
             "label": "Background",
             "placeholder": "Optionally select a background color.",
             "options": [
-              "ivory",
-              "beige",
-              "sienna",
-              "blush",
-              "coffee",
               "background",
               "foreground",
               "primary",
               "secondary",
-              "text"
+              "accent"
             ]
           }
         },
@@ -104,6 +99,18 @@
               "right"
             ],
             "default_value": "center"
+          }
+        },
+        "title_size": {
+          "type": "Select",
+          "config": {
+            "label": "Title Size",
+            "placeholder": "",
+            "options": [
+              "md",
+              "sm",
+              "lg"
+            ]
           }
         }
       },
@@ -167,16 +174,11 @@
             "label": "Background",
             "placeholder": "Optionally select a background color.",
             "options": [
-              "ivory",
-              "beige",
-              "sienna",
-              "blush",
-              "coffee",
               "background",
               "foreground",
               "primary",
               "secondary",
-              "text"
+              "accent"
             ]
           }
         },
@@ -191,6 +193,19 @@
               "right"
             ],
             "default_value": "center"
+          }
+        },
+        "title_size": {
+          "type": "Select",
+          "config": {
+            "label": "Title Size",
+            "placeholder": "",
+            "options": [
+              "md",
+              "sm",
+              "lg"
+            ],
+            "default_value": "md"
           }
         }
       },

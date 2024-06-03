@@ -29,6 +29,73 @@
             "allowTargetBlank": true,
             "single": "paragraph,strong,em,hyperlink,list-item,o-list-item"
           }
+        },
+        "services": {
+          "type": "Group",
+          "config": {
+            "label": "Services",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Title",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "single": "paragraph,heading2,heading3,strong,em"
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link",
+                  "placeholder": "Page to link to.",
+                  "allowTargetBlank": true,
+                  "select": null
+                }
+              },
+              "list": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "List",
+                  "placeholder": "List of items to detail out.",
+                  "allowTargetBlank": true,
+                  "single": "hyperlink,list-item,o-list-item"
+                }
+              },
+              "image_left": {
+                "type": "Boolean",
+                "config": {
+                  "label": "Image Left",
+                  "default_value": false,
+                  "placeholder_true": "true",
+                  "placeholder_false": "false"
+                }
+              }
+            }
+          }
+        },
+        "background": {
+          "type": "Select",
+          "config": {
+            "label": "Background",
+            "placeholder": "",
+            "options": [
+              "background",
+              "foreground",
+              "primary",
+              "secondary",
+              "accent"
+            ]
+          }
         }
       },
       "items": {
@@ -103,6 +170,54 @@
             "allowTargetBlank": true,
             "single": "paragraph,strong,em,hyperlink,list-item,o-list-item"
           }
+        },
+        "services": {
+          "type": "Group",
+          "config": {
+            "label": "Services",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Title",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "single": "paragraph,heading2,heading3,strong,em"
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link",
+                  "placeholder": "",
+                  "select": null
+                }
+              }
+            }
+          }
+        },
+        "background": {
+          "type": "Select",
+          "config": {
+            "label": "Background",
+            "placeholder": "",
+            "options": [
+              "background",
+              "foreground",
+              "primary",
+              "secondary",
+              "accent"
+            ]
+          }
         }
       },
       "items": {
@@ -130,6 +245,133 @@
             "placeholder": "",
             "allowTargetBlank": false,
             "select": null
+          }
+        }
+      }
+    },
+    {
+      "id": "designServices",
+      "name": "Design Services",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "Optional section title.",
+            "allowTargetBlank": true,
+            "single": "heading2,heading3,hyperlink,strong,em"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "Optional description section text.",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+          }
+        },
+        "services": {
+          "type": "Group",
+          "config": {
+            "label": "services",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Title",
+                  "placeholder": "Title of design service.",
+                  "allowTargetBlank": true,
+                  "single": "paragraph,heading2,heading3,strong,em,hyperlink,list-item,o-list-item"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Description",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "single": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+                }
+              }
+            }
+          }
+        },
+        "background": {
+          "type": "Select",
+          "config": {
+            "label": "Background",
+            "placeholder": "",
+            "options": [
+              "background",
+              "foreground",
+              "primary",
+              "secondary",
+              "accent"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "graphicDesign",
+      "name": "Graphic Design",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "Optional section title.",
+            "allowTargetBlank": true,
+            "single": "heading2,heading3,hyperlink,strong,em"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "Optional description section text.",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "background": {
+          "type": "Select",
+          "config": {
+            "label": "Background",
+            "placeholder": "",
+            "options": [
+              "background",
+              "foreground",
+              "primary",
+              "secondary",
+              "accent"
+            ]
           }
         }
       }
