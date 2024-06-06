@@ -25,7 +25,7 @@ const Faq = ({ slice }: FaqProps): JSX.Element => {
           <Heading richText={slice.primary.title} className="mb-14 text-center text-3xl lg:text-4xl" accents />
           <div
             className={cn(
-              'grid w-full grid-cols-1 gap-9',
+              'grid w-full grid-cols-1 gap-0 lg:gap-9',
               isFilled.group(slice.primary.first_group) &&
                 isFilled.group(slice.primary.second_group) &&
                 'lg:grid-cols-2'
@@ -46,7 +46,11 @@ const Faq = ({ slice }: FaqProps): JSX.Element => {
             {isFilled.group(slice.primary.second_group) && (
               <Accordion type="single" collapsible className="w-full">
                 {slice.primary.second_group.map((item, i) => (
-                  <AccordionItem key={JSON.stringify(item.question)} value={`faq-2-${i}`}>
+                  <AccordionItem
+                    key={JSON.stringify(item.question)}
+                    value={`faq-2-${i}`}
+                    className="first:border-t-0 lg:first:border-t-2"
+                  >
                     <AccordionTrigger>{asText(item.question)}</AccordionTrigger>
                     <AccordionContent>
                       <Text richText={item.answer} size="md" />
