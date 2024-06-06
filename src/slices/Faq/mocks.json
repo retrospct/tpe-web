@@ -1,0 +1,101 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Coast"
+						}
+					}
+				]
+			},
+			"background": {
+				"__TYPE__": "FieldContent",
+				"value": "background",
+				"type": "Select"
+			},
+			"second_group": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"question",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Culpa non eiusmod tempor nostrud voluptate ex amet laboris. Amet sit cupidatat sit culpa duis do aliquip et consectetur id adipisicing velit ipsum reprehenderit incididunt. Do amet nostrud commodo ex pariatur do nulla esse non cillum voluptate occaecat ut."
+											}
+										}
+									]
+								}
+							],
+							[
+								"answer",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Minim laborum laborum nostrud ea culpa. Tempor ut duis dolore adipisicing nostrud. Esse proident ut officia esse minim enim irure quis."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			},
+			"first_group": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"question",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Consequat culpa sit reprehenderit consequat culpa laborum in."
+											}
+										}
+									]
+								}
+							],
+							[
+								"answer",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Sit commodo ea est sunt tempor deserunt incididunt quis exercitation adipisicing velit velit. Anim fugiat enim qui exercitation."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

@@ -2,6 +2,7 @@ import { TpStar } from '@/components/icons'
 import { cn } from '@/lib/utils'
 import { RichTextField, isFilled } from '@prismicio/client'
 import { PrismicRichText } from '@prismicio/react'
+import { ReactNode } from 'react'
 
 export const Heading = ({
   richText,
@@ -20,18 +21,28 @@ export const Heading = ({
   accentAfter?: boolean
   accentSize?: 'sm' | 'md' | 'lg'
 }) => {
+  const components = {
+    heading1: ({ children }: { children: ReactNode }) => (
+      <h1 className={cn('mb-0', getTitleSize(size !== 'lg' ? size : 'lg'))}>{children}</h1>
+    ),
+    heading2: ({ children }: { children: ReactNode }) => (
+      <h2 className={cn('mb-0', getTitleSize(size !== 'lg' ? size : 'md'))}>{children}</h2>
+    ),
+    heading3: ({ children }: { children: ReactNode }) => (
+      <h3 className={cn('mb-0', getTitleSize(size !== 'lg' ? size : 'sm'))}>{children}</h3>
+    )
+  }
   return (
     isFilled.richText(richText) && (
       <div
         className={cn(
           'font-serif font-normal tracking-wider text-primary',
-          getTitleSize(size),
           (accents || accentBefore || accentAfter) && 'flex items-center justify-center',
           className
         )}
       >
         {(accents || accentBefore) && <TpStar className={cn('mr-5 text-primary', getAccentSize(accentSize))} />}
-        <PrismicRichText field={richText} />
+        <PrismicRichText field={richText} components={components} />
         {(accents || accentAfter) && <TpStar className={cn('ml-5 text-primary', getAccentSize(accentSize))} />}
       </div>
     )

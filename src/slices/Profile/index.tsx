@@ -37,11 +37,8 @@ const Profile = ({ slice }: ProfileProps): JSX.Element => {
                   />
                 )}
                 <div className="mt-6 flex items-center gap-1">
-                  <Heading
-                    richText={member.data?.first_name}
-                    className="text-left text-xl tracking-normal lg:text-xl"
-                  />
-                  <Heading richText={member.data?.last_name} className="text-left text-xl tracking-normal lg:text-xl" />
+                  <Heading richText={member.data?.first_name} className="tracking-normal" size="xs" />
+                  <Heading richText={member.data?.last_name} className="tracking-normal" size="xs" />
                   <Text
                     richText={member.data?.pronouns}
                     className="text-left text-sm tracking-normal text-primary lg:text-sm"

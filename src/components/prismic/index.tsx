@@ -3,7 +3,11 @@ import { JSXMapSerializer } from '@prismicio/react'
 
 export const components: JSXMapSerializer = {
   hyperlink: ({ node, children }) => {
-    return <PrismicNextLink field={node.data}>{children}</PrismicNextLink>
+    return (
+      <span className="underline">
+        <PrismicNextLink field={node.data}>{children}</PrismicNextLink>
+      </span>
+    )
   }
   // label: ({ node, children }) => {
   //   if (node.data.label === 'codespan') {

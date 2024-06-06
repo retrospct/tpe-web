@@ -10,6 +10,7 @@ export const components = {
   contact: dynamic(() => import('./Contact')),
   customer_logos: dynamic(() => import('./CustomerLogos')),
   events_list: dynamic(() => import('./EventsList')),
+  faq: dynamic(() => import('./Faq')),
   hero: dynamic(() => import('./Hero')),
   hero_image: dynamic(() => import('./HeroImage')),
   image_grid: dynamic(() => import('./ImageGrid')),

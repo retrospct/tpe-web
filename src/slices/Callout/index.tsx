@@ -23,7 +23,7 @@ const Callout = ({ slice }: CalloutProps): JSX.Element => {
     >
       {slice.variation === 'default' && (
         <div className="flex w-full max-w-5xl flex-col items-center justify-center text-balance px-6 py-16 text-center md:flex-row md:text-left">
-          <Heading richText={slice.primary.title} accents={slice.primary.accents} className="text-3xl lg:text-4xl" />
+          <Heading richText={slice.primary.title} accents={slice.primary.accents} />
           <div
             className="inset-0 mx-auto my-8 flex w-full max-w-20 items-center md:mx-10 md:w-[2px]"
             aria-hidden="true"
@@ -38,7 +38,7 @@ const Callout = ({ slice }: CalloutProps): JSX.Element => {
           <Heading
             richText={slice.primary.title}
             accents={slice.primary.accents}
-            className="w-full pb-10 pr-0 text-center text-3xl md:w-64 md:pb-0 md:pr-8 lg:w-fit lg:pr-14 lg:text-4xl"
+            className="w-full pb-10 pr-0 text-center md:w-64 md:pb-0 md:pr-8 lg:w-fit lg:pr-14"
           />
           {/* <div
             className="inset-0 mx-auto my-8 flex w-full max-w-20 items-stretch md:mx-10 md:h-full md:min-h-full md:w-[2px]"

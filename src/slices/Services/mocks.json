@@ -9,16 +9,8 @@
 					{
 						"type": "heading2",
 						"content": {
-							"text": "OUR SERVICES",
-							"spans": [
-								{
-									"type": "em",
-									"start": 0,
-									"end": 12
-								}
-							]
-						},
-						"direction": "ltr"
+							"text": "Throw"
+						}
 					}
 				]
 			},
@@ -315,7 +307,7 @@
 					{
 						"type": "heading2",
 						"content": {
-							"text": "Front"
+							"text": "Future"
 						}
 					}
 				]

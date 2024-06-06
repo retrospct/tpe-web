@@ -382,6 +382,7 @@ export type NavDocument<Lang extends string = string> = prismic.PrismicDocumentW
 >
 
 type PageDocumentDataSlicesSlice =
+  | FaqSlice
   | TimelineSlice
   | CallToActionSlice
   | ProfileSlice
@@ -1387,6 +1388,124 @@ type EventsListSliceVariation = EventsListSliceDefault
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type EventsListSlice = prismic.SharedSlice<'events_list', EventsListSliceVariation>
+
+/**
+ * Item in *Faq → Default → Primary → First Group*
+ */
+export interface FaqSliceDefaultPrimaryFirstGroupItem {
+  /**
+   * Question field in *Faq → Default → Primary → First Group*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.default.primary.first_group[].question
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  question: prismic.RichTextField
+
+  /**
+   * Answer field in *Faq → Default → Primary → First Group*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.default.primary.first_group[].answer
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  answer: prismic.RichTextField
+}
+
+/**
+ * Item in *Faq → Default → Primary → Second Group*
+ */
+export interface FaqSliceDefaultPrimarySecondGroupItem {
+  /**
+   * Question field in *Faq → Default → Primary → Second Group*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.default.primary.second_group[].question
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  question: prismic.RichTextField
+
+  /**
+   * Answer field in *Faq → Default → Primary → Second Group*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.default.primary.second_group[].answer
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  answer: prismic.RichTextField
+}
+
+/**
+ * Primary content in *Faq → Default → Primary*
+ */
+export interface FaqSliceDefaultPrimary {
+  /**
+   * Title field in *Faq → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * First Group field in *Faq → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.default.primary.first_group[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  first_group: prismic.GroupField<Simplify<FaqSliceDefaultPrimaryFirstGroupItem>>
+
+  /**
+   * Second Group field in *Faq → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.default.primary.second_group[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  second_group: prismic.GroupField<Simplify<FaqSliceDefaultPrimarySecondGroupItem>>
+
+  /**
+   * Background field in *Faq → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.default.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background: prismic.SelectField<'background' | 'foreground' | 'primary' | 'secondary' | 'accent'>
+}
+
+/**
+ * Default variation for Faq Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FaqSliceDefault = prismic.SharedSliceVariation<'default', Simplify<FaqSliceDefaultPrimary>, never>
+
+/**
+ * Slice variation for *Faq*
+ */
+type FaqSliceVariation = FaqSliceDefault
+
+/**
+ * Faq Shared Slice
+ *
+ * - **API ID**: `faq`
+ * - **Description**: Faq
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FaqSlice = prismic.SharedSlice<'faq', FaqSliceVariation>
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -2711,6 +2830,12 @@ declare module '@prismicio/client' {
       EventsListSliceDefaultItem,
       EventsListSliceVariation,
       EventsListSliceDefault,
+      FaqSlice,
+      FaqSliceDefaultPrimaryFirstGroupItem,
+      FaqSliceDefaultPrimarySecondGroupItem,
+      FaqSliceDefaultPrimary,
+      FaqSliceVariation,
+      FaqSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceImageRightPrimary,

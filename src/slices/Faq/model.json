@@ -1,0 +1,96 @@
+{
+  "id": "faq",
+  "type": "SharedSlice",
+  "name": "Faq",
+  "description": "Faq",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading2,heading3,strong,em"
+          }
+        },
+        "first_group": {
+          "type": "Group",
+          "config": {
+            "label": "First Group",
+            "repeat": true,
+            "fields": {
+              "question": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Question",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "single": "paragraph,strong,em"
+                }
+              },
+              "answer": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Answer",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,strong,em,hyperlink,image,list-item,o-list-item"
+                }
+              }
+            }
+          }
+        },
+        "second_group": {
+          "type": "Group",
+          "config": {
+            "label": "Second Group",
+            "repeat": true,
+            "fields": {
+              "question": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Question",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "single": "paragraph,strong,em"
+                }
+              },
+              "answer": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Answer",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,strong,em,hyperlink,image,list-item,o-list-item"
+                }
+              }
+            }
+          }
+        },
+        "background": {
+          "type": "Select",
+          "config": {
+            "label": "Background",
+            "placeholder": "",
+            "options": [
+              "background",
+              "foreground",
+              "primary",
+              "secondary",
+              "accent"
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
