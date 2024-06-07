@@ -34,7 +34,7 @@ const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
       {/* <SliceZone slices={navigation.data.slices} components={components} /> */}
       <div className="mb-8 w-full px-6 md:px-8">
         <NavigationMenu className="w-full">
-          <NavigationMenuList className="w-full flex-none flex-col justify-between md:flex-row">
+          <NavigationMenuList className="w-full flex-none flex-col justify-between gap-1 md:flex-row md:gap-6">
             {navigation.data.slices.map((slice) => {
               if (slice.slice_type !== 'nav_item') return null
               const link = isFilled.link(slice.primary.link) && slice.primary.link?.url ? slice.primary.link.url : ''
