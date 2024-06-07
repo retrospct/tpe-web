@@ -1,11 +1,21 @@
 'use client'
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle
+} from '@/components/ui/navigation-menu'
 import { cn } from '@/lib/utils'
 import { Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { isFilled } from '@prismicio/client'
+import { asText, isFilled } from '@prismicio/client'
 import { PrismicNextLink } from '@prismicio/next'
 import { PrismicText } from '@prismicio/react'
-import { Fragment } from 'react'
+import Link from 'next/link'
+import { Fragment, forwardRef } from 'react'
 import { FooterDocument, NavItemSlice, NavItemSliceDefaultItem, Simplify } from '../../../prismicio-types'
 import { TpBrandFacebook, TpBrandInstagram, TpBrandPinterest, TpBrandTikTok, TpBrandYelp } from '../icons'
 
@@ -20,19 +30,49 @@ const platforms = new Map([
 
 const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
   return (
-    <div className="mx-auto mt-6 flex max-w-4xl flex-col items-center justify-between">
+    <div className="mx-auto mt-6 flex w-full max-w-4xl flex-col items-center justify-between">
       {/* <SliceZone slices={navigation.data.slices} components={components} /> */}
-      <div className="mx-auto mb-8 flex w-full flex-col items-center justify-between px-6 md:flex-row md:px-8">
-        {navigation.data.slices.map((slice) => {
-          if (slice.slice_type === 'nav_item') {
-            return slice.items.length > 0 ? (
-              <NavLinksGroup key={slice.id} slice={slice} />
-            ) : (
-              <NavLink key={slice.id} slice={slice} className="py-2 md:py-0" />
-            )
-          }
-          return null
-        })}
+      <div className="mb-8 w-full px-6 md:px-8">
+        <NavigationMenu className="w-full">
+          <NavigationMenuList className="w-full flex-none flex-col justify-between md:flex-row">
+            {navigation.data.slices.map((slice) => {
+              if (slice.slice_type !== 'nav_item') return null
+              const link = isFilled.link(slice.primary.link) && slice.primary.link?.url ? slice.primary.link.url : ''
+              if (slice.items.length > 0) {
+                return (
+                  <NavigationMenuItem className="relative">
+                    <NavigationMenuTrigger>
+                      {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent className="relative left-0">
+                      <ul className="relative flex w-full flex-col items-center justify-between gap-1 p-3">
+                        {slice.items.map((item) => (
+                          <ListItem
+                            key={asText(item.name)}
+                            title={asText(item.name)}
+                            href={isFilled.link(item.link) ? item.link.url : '/'}
+                          >
+                            {asText(item.description)}
+                          </ListItem>
+                        ))}
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                )
+              } else {
+                return (
+                  <NavigationMenuItem className="relative">
+                    <Link href={link} legacyBehavior passHref>
+                      <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                        {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
+                      </NavigationMenuLink>
+                    </Link>
+                  </NavigationMenuItem>
+                )
+              }
+            })}
+          </NavigationMenuList>
+        </NavigationMenu>
       </div>
 
       {navigation.data.slices.map((slice) => {
@@ -60,6 +100,36 @@ const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
 }
 
 export default NavItems
+
+const ListItem = forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(
+  ({ className, title, href, children, ...props }, ref) => {
+    return (
+      <li>
+        <NavigationMenuLink asChild>
+          <Link
+            ref={ref}
+            href={href || '/'}
+            legacyBehavior
+            passHref
+            // className={cn('block select-none space-y-2 px-6 py-8', className)}
+            {...props}
+          >
+            <div
+              className={cn(
+                'flex cursor-pointer items-center justify-center gap-1 px-6 py-4 text-lg font-medium leading-none text-primary outline-none transition-colors hover:bg-accent/50 hover:text-primary/80 disabled:pointer-events-none disabled:opacity-50',
+                className
+              )}
+            >
+              {title}
+              {children && <p className="text-md line-clamp-2 leading-snug">{children}</p>}
+            </div>
+          </Link>
+        </NavigationMenuLink>
+      </li>
+    )
+  }
+)
+ListItem.displayName = 'ListItem'
 
 function NavLink({ slice, className }: { slice: NavItemSlice; className?: string }) {
   if (!isFilled.link(slice.primary.link)) return null
