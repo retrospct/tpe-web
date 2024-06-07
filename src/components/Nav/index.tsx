@@ -11,7 +11,7 @@ export default async function Nav() {
   const navigation = await client.getByUID('nav', 'main-nav')
 
   return (
-    <header className="flex w-full flex-row items-center justify-center overflow-hidden lg:flex-col">
+    <header className="flex w-full flex-row items-center justify-center lg:flex-col">
       <NavLogo />
       <div className="hidden md:block">
         <NavItems navigation={navigation} />
@@ -26,31 +26,6 @@ export default async function Nav() {
           <SheetContent>
             <NavLogo />
             <NavItems navigation={navigation} />
-            {/* <SheetHeader>
-          <SheetTitle>Edit profile</SheetTitle>
-          <SheetDescription>
-            Make changes to your profile here. Click save when you're done.
-          </SheetDescription>
-        </SheetHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input id="name" value="Pedro Duarte" className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
-            </Label>
-            <Input id="username" value="@peduarte" className="col-span-3" />
-          </div>
-        </div>
-        <SheetFooter>
-          <SheetClose asChild>
-            <Button type="submit">Save changes</Button>
-          </SheetClose>
-        </SheetFooter> */}
           </SheetContent>
         </Sheet>
       </div>

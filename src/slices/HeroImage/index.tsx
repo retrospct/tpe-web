@@ -88,7 +88,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
       )}
       {slice.variation === 'textImage' && (
         <div className="relative pb-12 pt-0 sm:pb-16 lg:pb-20">
-          <div className="relative mt-8 flex w-full flex-col items-center justify-center gap-6 bg-foreground px-6 py-10 text-left sm:py-28 lg:flex-row lg:px-8">
+          <div className="relative flex w-full flex-col items-center justify-center gap-6 bg-foreground px-6 py-10 text-left sm:py-28 lg:flex-row lg:px-8">
             {/* <div className="mx-auto max-w-5xl px-6 text-left lg:px-8"> */}
             <div className="flex w-full max-w-xl flex-col">
               {isFilled.richText(slice.primary.title) && (
