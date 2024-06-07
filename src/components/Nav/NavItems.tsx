@@ -1,14 +1,22 @@
 'use client'
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle
+} from '@/components/ui/navigation-menu'
 import { cn, pathEquals } from '@/lib/utils'
 import { Dialog, Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import { Bars3Icon } from '@heroicons/react/24/outline'
-import { SliceZone, isFilled } from '@prismicio/client'
+import { SliceZone, asText, isFilled } from '@prismicio/client'
 import { PrismicNextLink } from '@prismicio/next'
 import { PrismicText } from '@prismicio/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Fragment, useState } from 'react'
+import { Fragment, forwardRef } from 'react'
 import { NavDocument, NavItemSlice, NavItemSliceDefaultItem, Simplify } from '../../../prismicio-types'
 import { TpStar } from '../icons'
 import NavLogo from './NavLogo'
@@ -19,31 +27,117 @@ const callsToAction = [
 ]
 
 const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
+  const pathname = usePathname()
   return (
-    <>
-      <nav className="mx-auto flex w-full max-w-3xl items-center justify-between p-6 lg:px-8" aria-label="Global">
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-primary"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">Open main menu</span>
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-          </button>
-        </div>
-        <NavLinks slices={navigation.data.slices} />
-      </nav>
-      <NavDialog
-        slices={navigation.data.slices}
-        mobileMenuOpen={mobileMenuOpen}
-        setMobileMenuOpen={() => setMobileMenuOpen(false)}
-      />
-    </>
+    <div className="mx-auto flex w-full max-w-3xl items-center justify-center p-6 lg:px-8">
+      {/* <div className="text-primary">
+        <DebugJSON data={navigation.data.slices} />
+      </div> */}
+      <NavigationMenu>
+        <NavigationMenuList>
+          {navigation.data.slices.map((slice) => {
+            const link = isFilled.link(slice.primary.link) && slice.primary.link?.url ? slice.primary.link.url : ''
+            if (slice.items.length > 0) {
+              return (
+                <NavigationMenuItem className="relative">
+                  <NavigationMenuTrigger>
+                    {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="relative">
+                    <ul className="relative flex flex-col gap-1 p-3">
+                      {slice.items.map((item) => (
+                        <ListItem
+                          key={asText(item.name)}
+                          title={asText(item.name)}
+                          href={isFilled.link(item.link) ? item.link.url : '/'}
+                        >
+                          {asText(item.description)}
+                        </ListItem>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                  {pathname === link && (
+                    <TpStar className="absolute left-[calc(50%-6px)] h-[12px] w-[12px] text-primary" />
+                  )}
+                </NavigationMenuItem>
+              )
+            } else {
+              return (
+                <NavigationMenuItem className="relative">
+                  <Link href={link} legacyBehavior passHref>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                      {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
+                    </NavigationMenuLink>
+                  </Link>
+                  {pathname === link && (
+                    <TpStar className="absolute -bottom-1 left-[calc(50%-6px)] h-[12px] w-[12px] text-primary" />
+                  )}
+                </NavigationMenuItem>
+              )
+            }
+          })}
+        </NavigationMenuList>
+      </NavigationMenu>
+    </div>
   )
 }
+
+const ListItem = forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(
+  ({ className, title, href, children, ...props }, ref) => {
+    return (
+      <li>
+        <NavigationMenuLink asChild>
+          <Link
+            ref={ref}
+            href={href || '/'}
+            legacyBehavior
+            passHref
+            // className={cn('block select-none space-y-2 px-6 py-8', className)}
+            {...props}
+          >
+            <div
+              className={cn(
+                'flex cursor-pointer items-center justify-center gap-1 px-6 py-4 text-lg font-medium leading-none text-primary outline-none transition-colors hover:bg-accent/50 hover:text-primary/80 disabled:pointer-events-none disabled:opacity-50',
+                className
+              )}
+            >
+              {title}
+              {children && <p className="text-md line-clamp-2 leading-snug">{children}</p>}
+            </div>
+          </Link>
+        </NavigationMenuLink>
+      </li>
+    )
+  }
+)
+ListItem.displayName = 'ListItem'
+
+// const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
+//   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+//   return (
+//     <>
+//       <nav className="mx-auto flex w-full max-w-3xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+//         <div className="flex lg:hidden">
+//           <button
+//             type="button"
+//             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-primary"
+//             onClick={() => setMobileMenuOpen(true)}
+//           >
+//             <span className="sr-only">Open main menu</span>
+//             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+//           </button>
+//         </div>
+//         <NavLinks slices={navigation.data.slices} />
+//       </nav>
+//       <NavDialog
+//         slices={navigation.data.slices}
+//         mobileMenuOpen={mobileMenuOpen}
+//         setMobileMenuOpen={() => setMobileMenuOpen(false)}
+//       />
+//     </>
+//   )
+// }
 
 export default NavItems
 
