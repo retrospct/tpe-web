@@ -37,7 +37,7 @@ const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
             if (slice.items.length > 0) {
               return (
                 <NavigationMenuItem className="relative">
-                  <NavigationMenuTrigger className="px-5">
+                  <NavigationMenuTrigger className="px-5 text-primary">
                     {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="relative">
