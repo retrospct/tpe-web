@@ -24,8 +24,17 @@ export default async function Nav() {
             </Button>
           </SheetTrigger>
           <SheetContent>
-            <NavLogo />
-            <NavItems navigation={navigation} />
+            <div className="flex h-full w-full flex-col items-center justify-between">
+              <div className="w-full">
+                <NavLogo />
+                <NavItems navigation={navigation} />
+              </div>
+              {/* {navigation.data.slices.map((slice) => {
+              if (slice.slice_type === 'social_item') {
+                return <SocialItems slice={slice} />
+              }
+            })} */}
+            </div>
           </SheetContent>
         </Sheet>
       </div>
