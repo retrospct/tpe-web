@@ -171,6 +171,102 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "textImageStats",
+      "name": "Text Image Stats",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "Perferendis Repellendus Magnam Nemo",
+            "allowTargetBlank": false,
+            "single": "heading1,heading2,heading3,strong,em"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "Officia ex cupidatat et anim ut ullamco tempor laboris pariatur ex officia sint.",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,heading1,heading2,heading3"
+          }
+        },
+        "cta_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "CTA Text",
+            "placeholder": "CLICK ME",
+            "allowTargetBlank": false,
+            "single": "paragraph,em"
+          }
+        },
+        "cta_link": {
+          "type": "Link",
+          "config": {
+            "label": "CTA Link",
+            "placeholder": "Link to another page",
+            "allowTargetBlank": false,
+            "select": null
+          }
+        },
+        "highlights": {
+          "type": "Group",
+          "config": {
+            "label": "Highlights",
+            "repeat": true,
+            "fields": {
+              "stat": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Stat",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "single": "paragraph,strong,em"
+                }
+              },
+              "label": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Label",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "single": "paragraph,strong,em"
+                }
+              }
+            }
+          }
+        },
+        "max_width": {
+          "type": "Select",
+          "config": {
+            "label": "Max Width",
+            "placeholder": "",
+            "options": [
+              "default",
+              "full",
+              "tight",
+              "loose"
+            ],
+            "default_value": "default"
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }

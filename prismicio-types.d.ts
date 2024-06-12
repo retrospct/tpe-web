@@ -802,6 +802,41 @@ export interface CallToActionSliceDefaultPrimaryPackagesItem {
 }
 
 /**
+ * Item in *CallToAction → Image Text Featured → Primary → Featured*
+ */
+export interface CallToActionSliceImageTextFeaturedPrimaryFeaturedItem {
+  /**
+   * Logo field in *CallToAction → Image Text Featured → Primary → Featured*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.imageTextFeatured.primary.featured[].logo
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo: prismic.ImageField<never>
+
+  /**
+   * Logo Link field in *CallToAction → Image Text Featured → Primary → Featured*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.imageTextFeatured.primary.featured[].logo_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  logo_link: prismic.LinkField
+
+  /**
+   * Text field in *CallToAction → Image Text Featured → Primary → Featured*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.imageTextFeatured.primary.featured[].text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField
+}
+
+/**
  * Primary content in *CallToAction → Default → Primary*
  */
 export interface CallToActionSliceDefaultPrimary {
@@ -1011,9 +1046,232 @@ export type CallToActionSliceImageText = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *CallToAction → Button Only → Primary*
+ */
+export interface CallToActionSliceButtonOnlyPrimary {
+  /**
+   * Back Link field in *CallToAction → Button Only → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.buttonOnly.primary.back_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  back_link: prismic.LinkField
+
+  /**
+   * Back Text field in *CallToAction → Button Only → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.buttonOnly.primary.back_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  back_text: prismic.RichTextField
+
+  /**
+   * CTA Link field in *CallToAction → Button Only → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Redirect URL for CTA button
+   * - **API ID Path**: call_to_action.buttonOnly.primary.cta_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta_link: prismic.LinkField
+
+  /**
+   * CTA Text field in *CallToAction → Button Only → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Label for CTA button
+   * - **API ID Path**: call_to_action.buttonOnly.primary.cta_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  cta_text: prismic.RichTextField
+
+  /**
+   * Forward Link field in *CallToAction → Button Only → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.buttonOnly.primary.forward_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  forward_link: prismic.LinkField
+
+  /**
+   * Forward Text field in *CallToAction → Button Only → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.buttonOnly.primary.forward_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  forward_text: prismic.RichTextField
+
+  /**
+   * Background field in *CallToAction → Button Only → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: Optionally select a background color.
+   * - **API ID Path**: call_to_action.buttonOnly.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background: prismic.SelectField<'background' | 'foreground' | 'primary' | 'secondary' | 'accent'>
+
+  /**
+   * Text Align field in *CallToAction → Button Only → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: center
+   * - **API ID Path**: call_to_action.buttonOnly.primary.text_align
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  text_align: prismic.SelectField<'center' | 'left' | 'right', 'filled'>
+
+  /**
+   * Title Size field in *CallToAction → Button Only → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.buttonOnly.primary.title_size
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  title_size: prismic.SelectField<'md' | 'sm' | 'lg'>
+}
+
+/**
+ * Button Only variation for CallToAction Slice
+ *
+ * - **API ID**: `buttonOnly`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CallToActionSliceButtonOnly = prismic.SharedSliceVariation<
+  'buttonOnly',
+  Simplify<CallToActionSliceButtonOnlyPrimary>,
+  never
+>
+
+/**
+ * Primary content in *CallToAction → Image Text Featured → Primary*
+ */
+export interface CallToActionSliceImageTextFeaturedPrimary {
+  /**
+   * Image field in *CallToAction → Image Text Featured → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.imageTextFeatured.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+
+  /**
+   * Title field in *CallToAction → Image Text Featured → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.imageTextFeatured.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField
+
+  /**
+   * Description field in *CallToAction → Image Text Featured → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.imageTextFeatured.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
+
+  /**
+   * CTA Link field in *CallToAction → Image Text Featured → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Redirect URL for CTA button
+   * - **API ID Path**: call_to_action.imageTextFeatured.primary.cta_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta_link: prismic.LinkField
+
+  /**
+   * CTA Text field in *CallToAction → Image Text Featured → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Label for CTA button
+   * - **API ID Path**: call_to_action.imageTextFeatured.primary.cta_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  cta_text: prismic.RichTextField
+
+  /**
+   * Featured field in *CallToAction → Image Text Featured → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.imageTextFeatured.primary.featured[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  featured: prismic.GroupField<Simplify<CallToActionSliceImageTextFeaturedPrimaryFeaturedItem>>
+
+  /**
+   * Background field in *CallToAction → Image Text Featured → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: Optionally select a background color.
+   * - **API ID Path**: call_to_action.imageTextFeatured.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background: prismic.SelectField<'background' | 'foreground' | 'primary' | 'secondary' | 'accent'>
+
+  /**
+   * Text Align field in *CallToAction → Image Text Featured → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: center
+   * - **API ID Path**: call_to_action.imageTextFeatured.primary.text_align
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  text_align: prismic.SelectField<'center' | 'left' | 'right', 'filled'>
+
+  /**
+   * Title Size field in *CallToAction → Image Text Featured → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: md
+   * - **API ID Path**: call_to_action.imageTextFeatured.primary.title_size
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  title_size: prismic.SelectField<'md' | 'sm' | 'lg', 'filled'>
+}
+
+/**
+ * Image Text Featured variation for CallToAction Slice
+ *
+ * - **API ID**: `imageTextFeatured`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CallToActionSliceImageTextFeatured = prismic.SharedSliceVariation<
+  'imageTextFeatured',
+  Simplify<CallToActionSliceImageTextFeaturedPrimary>,
+  never
+>
+
+/**
  * Slice variation for *CallToAction*
  */
-type CallToActionSliceVariation = CallToActionSliceDefault | CallToActionSliceImageText
+type CallToActionSliceVariation =
+  | CallToActionSliceDefault
+  | CallToActionSliceImageText
+  | CallToActionSliceButtonOnly
+  | CallToActionSliceImageTextFeatured
 
 /**
  * CallToAction Shared Slice
@@ -1674,6 +1932,31 @@ type HeroSliceVariation = HeroSliceDefault | HeroSliceImageRight
 export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>
 
 /**
+ * Item in *HeroImage → Text Image Stats → Primary → Highlights*
+ */
+export interface HeroImageSliceTextImageStatsPrimaryHighlightsItem {
+  /**
+   * Stat field in *HeroImage → Text Image Stats → Primary → Highlights*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_image.textImageStats.primary.highlights[].stat
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  stat: prismic.RichTextField
+
+  /**
+   * Label field in *HeroImage → Text Image Stats → Primary → Highlights*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_image.textImageStats.primary.highlights[].label
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  label: prismic.RichTextField
+}
+
+/**
  * Primary content in *HeroImage → Default → Primary*
  */
 export interface HeroImageSliceDefaultPrimary {
@@ -1864,9 +2147,98 @@ export type HeroImageSliceTextImage = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *HeroImage → Text Image Stats → Primary*
+ */
+export interface HeroImageSliceTextImageStatsPrimary {
+  /**
+   * Image field in *HeroImage → Text Image Stats → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_image.textImageStats.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+
+  /**
+   * Title field in *HeroImage → Text Image Stats → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Perferendis Repellendus Magnam Nemo
+   * - **API ID Path**: hero_image.textImageStats.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Description field in *HeroImage → Text Image Stats → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Officia ex cupidatat et anim ut ullamco tempor laboris pariatur ex officia sint.
+   * - **API ID Path**: hero_image.textImageStats.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
+
+  /**
+   * CTA Text field in *HeroImage → Text Image Stats → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: CLICK ME
+   * - **API ID Path**: hero_image.textImageStats.primary.cta_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  cta_text: prismic.RichTextField
+
+  /**
+   * CTA Link field in *HeroImage → Text Image Stats → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Link to another page
+   * - **API ID Path**: hero_image.textImageStats.primary.cta_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta_link: prismic.LinkField
+
+  /**
+   * Highlights field in *HeroImage → Text Image Stats → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_image.textImageStats.primary.highlights[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  highlights: prismic.GroupField<Simplify<HeroImageSliceTextImageStatsPrimaryHighlightsItem>>
+
+  /**
+   * Max Width field in *HeroImage → Text Image Stats → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: default
+   * - **API ID Path**: hero_image.textImageStats.primary.max_width
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  max_width: prismic.SelectField<'default' | 'full' | 'tight' | 'loose', 'filled'>
+}
+
+/**
+ * Text Image Stats variation for HeroImage Slice
+ *
+ * - **API ID**: `textImageStats`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroImageSliceTextImageStats = prismic.SharedSliceVariation<
+  'textImageStats',
+  Simplify<HeroImageSliceTextImageStatsPrimary>,
+  never
+>
+
+/**
  * Slice variation for *HeroImage*
  */
-type HeroImageSliceVariation = HeroImageSliceDefault | HeroImageSliceTextImage
+type HeroImageSliceVariation = HeroImageSliceDefault | HeroImageSliceTextImage | HeroImageSliceTextImageStats
 
 /**
  * HeroImage Shared Slice
@@ -1876,6 +2248,21 @@ type HeroImageSliceVariation = HeroImageSliceDefault | HeroImageSliceTextImage
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type HeroImageSlice = prismic.SharedSlice<'hero_image', HeroImageSliceVariation>
+
+/**
+ * Primary content in *ImageGrid → Default → Primary*
+ */
+export interface ImageGridSliceDefaultPrimary {
+  /**
+   * Photo Credits field in *ImageGrid → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_grid.default.primary.photo_credits
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  photo_credits: prismic.RichTextField
+}
 
 /**
  * Primary content in *ImageGrid → Items*
@@ -1922,7 +2309,7 @@ export interface ImageGridSliceDefaultItem {
  */
 export type ImageGridSliceDefault = prismic.SharedSliceVariation<
   'default',
-  Record<string, never>,
+  Simplify<ImageGridSliceDefaultPrimary>,
   Simplify<ImageGridSliceDefaultItem>
 >
 
@@ -2806,9 +3193,14 @@ declare module '@prismicio/client' {
       CallToActionSliceDefaultPrimaryPackagesItem,
       CallToActionSliceDefaultPrimary,
       CallToActionSliceImageTextPrimary,
+      CallToActionSliceButtonOnlyPrimary,
+      CallToActionSliceImageTextFeaturedPrimaryFeaturedItem,
+      CallToActionSliceImageTextFeaturedPrimary,
       CallToActionSliceVariation,
       CallToActionSliceDefault,
       CallToActionSliceImageText,
+      CallToActionSliceButtonOnly,
+      CallToActionSliceImageTextFeatured,
       CalloutSlice,
       CalloutSliceDefaultPrimary,
       CalloutSlicePartnersPrimaryVenuesItem,
@@ -2845,10 +3237,14 @@ declare module '@prismicio/client' {
       HeroImageSlice,
       HeroImageSliceDefaultPrimary,
       HeroImageSliceTextImagePrimary,
+      HeroImageSliceTextImageStatsPrimaryHighlightsItem,
+      HeroImageSliceTextImageStatsPrimary,
       HeroImageSliceVariation,
       HeroImageSliceDefault,
       HeroImageSliceTextImage,
+      HeroImageSliceTextImageStats,
       ImageGridSlice,
+      ImageGridSliceDefaultPrimary,
       ImageGridSliceDefaultItem,
       ImageGridSliceVariation,
       ImageGridSliceDefault,

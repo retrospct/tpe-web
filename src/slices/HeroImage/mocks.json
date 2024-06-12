@@ -230,5 +230,123 @@
 				"value": []
 			}
 		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "textImageStats",
+		"primary": {
+			"image": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5",
+					"width": 5848,
+					"height": 3899
+				},
+				"url": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5",
+				"width": 5848,
+				"height": 3899,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Behind"
+						}
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Excepteur ut pariatur elit id quis consectetur ipsum amet anim ad esse irure."
+						}
+					}
+				]
+			},
+			"cta_text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Consectetur adipisicing incididunt do enim et nulla officia nisi voluptate aliqua esse elit nisi."
+						}
+					}
+				]
+			},
+			"cta_link": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com"
+				}
+			},
+			"highlights": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"stat",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Enim aute est minim non et aliquip culpa."
+											}
+										}
+									]
+								}
+							],
+							[
+								"label",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Occaecat do veniam aute sint. Consequat ullamco mollit sint laborum aute consectetur nostrud quis laboris Lorem labore."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			},
+			"max_width": {
+				"__TYPE__": "FieldContent",
+				"value": "default",
+				"type": "Select"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]
