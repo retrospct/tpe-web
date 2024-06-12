@@ -11,7 +11,17 @@
       "version": "initial",
       "description": "Default",
       "imageUrl": "",
-      "primary": {},
+      "primary": {
+        "photo_credits": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Photo Credits",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em,hyperlink"
+          }
+        }
+      },
       "items": {
         "layout": {
           "type": "Select",

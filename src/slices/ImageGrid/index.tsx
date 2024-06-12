@@ -1,3 +1,4 @@
+import { Text } from '@/components'
 import { cn } from '@/lib/utils'
 import { Content, isFilled } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
@@ -41,6 +42,7 @@ const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
                 {/* <p>{item.layout}</p> */}
               </div>
             ))}
+          <Text richText={slice.primary.photo_credits} className="w-full text-center" size="sm" />
         </div>
       )}
     </section>
