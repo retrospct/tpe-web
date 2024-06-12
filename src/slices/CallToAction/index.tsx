@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import { isFilled, type Content } from '@prismicio/client'
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import { PrismicRichText, SliceComponentProps } from '@prismicio/react'
+import { ArrowLeft } from 'lucide-react'
 
 export type CallToActionProps = SliceComponentProps<Content.CallToActionSlice>
 
@@ -75,6 +76,83 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
               richText={slice.primary.description}
               className="my-8 text-balance font-sans text-lg font-normal text-secondary"
             />
+            {isFilled.link(slice.primary.cta_link) && (
+              <PrismicNextLink field={slice.primary.cta_link} className={buttonVariants({ variant: 'default' })}>
+                {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
+              </PrismicNextLink>
+            )}
+          </div>
+        </div>
+      )}
+      {slice.variation === 'buttonOnly' && (
+        <div className="my-16 flex w-full max-w-7xl flex-col items-center justify-center gap-6 lg:flex-row">
+          {isFilled.link(slice.primary.back_link) ? (
+            <div className="order-2 mt-8 flex flex-1 lg:order-1">
+              <ArrowLeft className="mr-3 h-4 w-4 text-primary" />
+              <PrismicNextLink field={slice.primary.back_link} className={buttonVariants({ variant: 'link' })}>
+                {isFilled.richText(slice.primary.back_text) && <PrismicRichText field={slice.primary.back_text} />}
+              </PrismicNextLink>
+            </div>
+          ) : (
+            <div className="order-2 mt-8 flex-1 lg:order-1" />
+          )}
+          {isFilled.link(slice.primary.cta_link) && (
+            <div className="order-1 mt-8 flex-1 lg:order-2">
+              <PrismicNextLink field={slice.primary.cta_link} className={buttonVariants({ variant: 'default' })}>
+                {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
+              </PrismicNextLink>
+            </div>
+          )}
+          {isFilled.link(slice.primary.forward_link) ? (
+            <div className="order-3 mt-8 flex flex-1">
+              <PrismicNextLink field={slice.primary.forward_link} className={buttonVariants({ variant: 'link' })}>
+                {isFilled.richText(slice.primary.forward_text) && (
+                  <PrismicRichText field={slice.primary.forward_text} />
+                )}
+              </PrismicNextLink>
+            </div>
+          ) : (
+            <div className="order-3 mt-8 flex-1" />
+          )}
+        </div>
+      )}
+      {slice.variation === 'imageTextFeatured' && (
+        <div className="flex w-full max-w-7xl flex-col items-center justify-center gap-12 py-16 lg:flex-row">
+          {isFilled.image(slice.primary.image) && (
+            <div className="relative max-h-[466px] max-w-xl lg:max-h-[562px]">
+              <PrismicNextImage field={slice.primary.image} />
+            </div>
+          )}
+          <div className="flex max-w-xl flex-col items-center">
+            <Heading
+              richText={slice.primary.title}
+              size={isFilled.select(slice.primary.title_size) ? slice.primary.title_size : 'md'}
+              accents
+              className="text-center"
+            />
+            <Text
+              richText={slice.primary.description}
+              className="my-8 text-balance font-sans text-lg font-normal text-secondary"
+            />
+            {isFilled.group(slice.primary.featured) && (
+              <div className="grid grid-cols-2 md:grid-cols-3">
+                {slice.primary.featured.map((feature) => (
+                  <div key={JSON.stringify(feature)} className="flex flex-col items-center justify-center gap-3">
+                    {isFilled.image(feature.logo) && !isFilled.link(feature.logo_link) && (
+                      <PrismicNextLink field={feature.logo_link} className="relative max-h-[120px] lg:max-h-[140px]">
+                        <PrismicNextImage field={feature.logo} />
+                      </PrismicNextLink>
+                    )}
+                    {isFilled.image(feature.logo) && isFilled.link(feature.logo_link) && (
+                      <div className="relative max-h-[120px] lg:max-h-[140px]">
+                        <PrismicNextImage field={feature.logo} />
+                      </div>
+                    )}
+                    <Text richText={feature.text} />
+                  </div>
+                ))}
+              </div>
+            )}
             {isFilled.link(slice.primary.cta_link) && (
               <PrismicNextLink field={slice.primary.cta_link} className={buttonVariants({ variant: 'default' })}>
                 {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
