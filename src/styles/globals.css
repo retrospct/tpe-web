@@ -4,10 +4,15 @@
 
 @layer base {
   :root {
+    /* almond #EFE4D9 */
     --background: 27 100% 98%;
+    /* beige #F8F3EE */
     --foreground: 30 73% 96%;
     /* --background: 30 41% 89%; */
     /* --foreground: 30 42% 95%; */
+
+    /* brown #5B3613 */
+    /* --text: 29 65% 22%; */
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
@@ -15,15 +20,18 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
 
+    /* crimson #9E3811 */
     --primary: 17 81% 34%;
     --primary-foreground: 17 81% 98%;
 
+    /* brown #5B3613 */
     --secondary: 29 65% 22%;
     --secondary-foreground: 29 65% 9%;
 
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
 
+    /* rose #EEC8CB */
     --accent: 355 53% 86%;
     --accent-foreground: 355 53% 9%;
 
