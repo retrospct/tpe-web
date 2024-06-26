@@ -4,7 +4,7 @@ import type * as prismic from '@prismicio/client'
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] }
 
-type EventDocumentDataSlicesSlice = ImageGridSlice
+type EventDocumentDataSlicesSlice = CallToActionSlice | ImageGridSlice
 
 /**
  * Content for Event documents
@@ -479,7 +479,7 @@ export type PageDocument<Lang extends string = string> = prismic.PrismicDocument
   Lang
 >
 
-type PortfolioDocumentDataSlicesSlice = EventsListSlice
+type PortfolioDocumentDataSlicesSlice = CallToActionSlice | EventsListSlice
 
 /**
  * Content for Portfolio documents

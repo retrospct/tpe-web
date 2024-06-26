@@ -17,14 +17,27 @@ export default async function Page({ params }: { params: Params }) {
 
   return (
     <div className="mb-14 mt-8">
-      <Link href="/portfolio" className={cn(buttonVariants({ variant: 'link' }), 'mx-auto mb-6 w-full p-0 text-lg')}>
-        <ArrowLeft />
-      </Link>
       <Heading richText={page.data.title} accents className="text-pretty text-center uppercase" />
       <SliceZone slices={page.data.slices} components={components} />
-      <Link href="/portfolio" className={cn(buttonVariants({ variant: 'link' }), 'mx-auto mt-6 w-full text-lg')}>
-        <ArrowLeft className="mr-2 inline-block h-4 w-4" /> PORTFOLIO
-      </Link>
+      <section className="flex w-full flex-col items-center gap-6 text-center text-primary">
+        <div className="my-16 flex w-full max-w-6xl flex-col items-center justify-center gap-6 lg:flex-row">
+          <div className="order-2 mt-8 flex flex-1 items-center justify-center gap-3 lg:order-1">
+            <ArrowLeft className="h-4 w-4 text-primary" />
+            <Link
+              href="/portfolio"
+              className={cn(buttonVariants({ variant: 'link' }), 'w-fit p-0 text-xl font-medium italic tracking-wider')}
+            >
+              BACK TO PORTFOLIO
+            </Link>
+          </div>
+          <div className="order-1 mt-8 flex-1 lg:order-2">
+            <Link href="/contact" className={cn(buttonVariants({ variant: 'default' }), 'italic')}>
+              BOOK NOW
+            </Link>
+          </div>
+          <div className="order-3 mt-8 flex-1" />
+        </div>
+      </section>
     </div>
   )
 }

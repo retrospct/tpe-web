@@ -128,25 +128,24 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
         <div className="relative pb-12 pt-0 sm:pb-16 lg:pb-20">
           <div className="relative flex w-full flex-col items-center justify-center gap-6 bg-foreground px-6 py-10 text-left sm:py-28 lg:flex-row lg:px-8">
             <div className="flex w-full max-w-xl flex-col items-center">
-              <Heading
-                richText={slice.primary.title}
-                accents
-                // accentSize="lg"
-                className="text-7xl leading-none sm:text-9xl lg:text-9xl"
-              />
+              <Heading richText={slice.primary.title} accents size="7xl" className="mb-6 text-center leading-none" />
               <Text
                 richText={slice.primary.description}
-                className="mb-3 text-left font-sans text-lg font-normal text-secondary lg:mb-6 lg:text-lg"
+                className="mb-6 text-left font-sans text-lg font-normal text-secondary lg:text-lg"
               />
-              {isFilled.group(slice.primary.highlights) &&
-                slice.primary.highlights.map((highlight) => (
-                  <div key={JSON.stringify(highlight)} className="flex gap-3 lg:gap-6">
-                    <div className="flex flex-col items-center justify-center gap-3 rounded-full border-2 border-solid border-primary p-6 text-primary">
+              {isFilled.group(slice.primary.highlights) && (
+                <div className="flex gap-3 lg:gap-6">
+                  {slice.primary.highlights.map((highlight) => (
+                    <div
+                      key={JSON.stringify(highlight)}
+                      className="flex h-24 w-24 flex-col items-center justify-center rounded-full border-2 border-solid border-primary p-6 text-primary lg:h-36 lg:w-36"
+                    >
                       <Text richText={highlight.stat} size="4xl" />
                       <Text richText={highlight.label} size="sm" />
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+              )}
             </div>
             {isFilled.image(slice.primary.image) && (
               <div className="relative mx-3 mt-3 w-full max-w-[360px] text-center lg:mx-6 lg:mt-0 lg:max-w-[584px]">

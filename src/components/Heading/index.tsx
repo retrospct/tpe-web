@@ -15,7 +15,7 @@ export const Heading = ({
 }: {
   richText?: RichTextField | null
   className?: string
-  size?: 'xs' | 'sm' | 'md' | 'lg'
+  size?: 'xs' | 'sm' | 'md' | 'lg' | '7xl'
   accents?: boolean
   accentBefore?: boolean
   accentAfter?: boolean
@@ -49,7 +49,7 @@ export const Heading = ({
   )
 }
 
-const getTitleSize = (size: 'xs' | 'sm' | 'md' | 'lg') => {
+const getTitleSize = (size: 'xs' | 'sm' | 'md' | 'lg' | '7xl') => {
   switch (size) {
     case 'xs':
       return 'text-xl lg:text-2xl'
@@ -57,6 +57,8 @@ const getTitleSize = (size: 'xs' | 'sm' | 'md' | 'lg') => {
       return 'text-2xl lg:text-3xl'
     case 'md':
       return 'text-3xl lg:text-4xl'
+    case '7xl':
+      return 'text-5xl lg:text-7xl'
     default:
       return 'text-4xl lg:text-5xl'
   }
