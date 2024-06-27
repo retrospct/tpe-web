@@ -62,7 +62,7 @@
           "label": "Bio",
           "placeholder": "",
           "allowTargetBlank": true,
-          "single": "paragraph,heading1,heading2,heading3,strong,em,hyperlink"
+          "multi": "paragraph,heading1,heading2,heading3,strong,em,hyperlink"
         }
       },
       "likes": {
