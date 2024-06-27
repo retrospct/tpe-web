@@ -21,7 +21,7 @@ export default async function Page({ params }: { params: Params }) {
       <SliceZone slices={page.data.slices} components={components} />
       <section className="flex w-full flex-col items-center gap-6 text-center text-primary">
         <div className="my-16 flex w-full max-w-6xl flex-col items-center justify-center gap-6 lg:flex-row">
-          <div className="order-2 mt-8 flex flex-1 items-center justify-center gap-3 lg:order-1">
+          <div className="order-2 flex flex-1 items-center justify-center gap-3 lg:order-1">
             <ArrowLeft className="h-4 w-4 text-primary" />
             <Link
               href="/portfolio"
@@ -30,12 +30,12 @@ export default async function Page({ params }: { params: Params }) {
               BACK TO PORTFOLIO
             </Link>
           </div>
-          <div className="order-1 mt-8 flex-1 lg:order-2">
+          <div className="order-1 flex-1 lg:order-2">
             <Link href="/contact" className={cn(buttonVariants({ variant: 'default' }), 'italic')}>
               BOOK NOW
             </Link>
           </div>
-          <div className="order-3 mt-8 flex-1" />
+          <div className="order-3 flex-1" />
         </div>
       </section>
     </div>

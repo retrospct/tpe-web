@@ -92,24 +92,24 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
       {slice.variation === 'buttonOnly' && (
         <div className="my-16 flex w-full max-w-7xl flex-col items-center justify-center gap-6 lg:flex-row">
           {isFilled.link(slice.primary.back_link) ? (
-            <div className="order-2 mt-8 flex flex-1 lg:order-1">
+            <div className="order-2 flex flex-1 lg:order-1">
               <ArrowLeft className="mr-3 h-4 w-4 text-primary" />
               <PrismicNextLink field={slice.primary.back_link} className={buttonVariants({ variant: 'link' })}>
                 {isFilled.richText(slice.primary.back_text) && <PrismicRichText field={slice.primary.back_text} />}
               </PrismicNextLink>
             </div>
           ) : (
-            <div className="order-2 mt-8 flex-1 lg:order-1" />
+            <div className="order-2 flex-1 lg:order-1" />
           )}
           {isFilled.link(slice.primary.cta_link) && (
-            <div className="order-1 mt-8 flex-1 lg:order-2">
+            <div className="order-1 flex-1 lg:order-2">
               <PrismicNextLink field={slice.primary.cta_link} className={buttonVariants({ variant: 'default' })}>
                 {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
               </PrismicNextLink>
             </div>
           )}
           {isFilled.link(slice.primary.forward_link) ? (
-            <div className="order-3 mt-8 flex flex-1">
+            <div className="order-3 flex flex-1">
               <PrismicNextLink field={slice.primary.forward_link} className={buttonVariants({ variant: 'link' })}>
                 {isFilled.richText(slice.primary.forward_text) && (
                   <PrismicRichText field={slice.primary.forward_text} />
@@ -117,7 +117,7 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
               </PrismicNextLink>
             </div>
           ) : (
-            <div className="order-3 mt-8 flex-1" />
+            <div className="order-3 flex-1" />
           )}
         </div>
       )}
