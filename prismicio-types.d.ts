@@ -930,6 +930,27 @@ export interface CallToActionSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   title_size: prismic.SelectField<'md' | 'sm' | 'lg'>
+
+  /**
+   * Show Divider field in *CallToAction → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: call_to_action.default.primary.show_divider
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  show_divider: prismic.BooleanField
+
+  /**
+   * Text Color field in *CallToAction → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.default.primary.text_color
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  text_color: prismic.SelectField<'primary' | 'secondary' | 'background' | 'foreground' | 'accent'>
 }
 
 /**

@@ -109,6 +109,15 @@
 				"__TYPE__": "FieldContent",
 				"value": "md",
 				"type": "Select"
+			},
+			"show_divider": {
+				"__TYPE__": "BooleanContent",
+				"value": true
+			},
+			"text_color": {
+				"__TYPE__": "FieldContent",
+				"value": "foreground",
+				"type": "Select"
 			}
 		},
 		"items": []

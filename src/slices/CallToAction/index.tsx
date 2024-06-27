@@ -1,4 +1,5 @@
 import { Heading, Text } from '@/components'
+import { TpSquiggle } from '@/components/icons/TpSquiggle'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { isFilled, type Content } from '@prismicio/client'
@@ -47,7 +48,10 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
           )}
           <Text
             richText={slice.primary.description}
-            className="max-w-4xl text-balance font-sans text-lg font-normal text-secondary"
+            className={cn(
+              'max-w-4xl text-balance font-sans text-lg font-normal text-secondary',
+              `text-${slice.primary?.text_color || 'secondary'}`
+            )}
           />
           {isFilled.link(slice.primary.cta_link) && (
             <div className="mt-8">
@@ -56,6 +60,7 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
               </PrismicNextLink>
             </div>
           )}
+          {slice.primary?.show_divider && <TpSquiggle className="w-full text-accent sm:w-auto" />}
         </div>
       )}
       {slice.variation === 'imageText' && (
@@ -119,8 +124,8 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
       {slice.variation === 'imageTextFeatured' && (
         <div className="flex w-full max-w-7xl flex-col items-center justify-center gap-12 py-16 lg:flex-row">
           {isFilled.image(slice.primary.image) && (
-            <div className="relative max-h-[466px] max-w-xl lg:max-h-[562px]">
-              <PrismicNextImage field={slice.primary.image} />
+            <div className="relative max-h-[466px] max-w-xl overflow-hidden lg:max-h-[562px]">
+              <PrismicNextImage field={slice.primary.image} className="object-cover" />
             </div>
           )}
           <div className="flex max-w-xl flex-col items-center">
@@ -128,36 +133,39 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
               richText={slice.primary.title}
               size={isFilled.select(slice.primary.title_size) ? slice.primary.title_size : 'md'}
               accents
-              className="text-center"
+              className="mb-8 text-center"
             />
             <Text
               richText={slice.primary.description}
-              className="my-8 text-balance font-sans text-lg font-normal text-secondary"
+              className="mb-8 text-balance font-sans text-lg font-normal text-secondary"
             />
             {isFilled.group(slice.primary.featured) && (
               <div className="grid grid-cols-2 md:grid-cols-3">
                 {slice.primary.featured.map((feature) => (
-                  <div key={JSON.stringify(feature)} className="flex flex-col items-center justify-center gap-3">
-                    {isFilled.image(feature.logo) && isFilled.link(feature.logo_link) && (
+                  <div key={JSON.stringify(feature)} className="flex items-center justify-center">
+                    {isFilled.image(feature.logo) && (
                       <PrismicNextLink
-                        field={feature.logo_link}
-                        className="relative flex h-36 w-36 items-center justify-center"
+                        field={isFilled.link(feature.logo_link) ? feature.logo_link : null}
+                        className="relative flex h-32 w-32 items-center justify-center"
+                        scroll={isFilled.link(feature.logo_link)}
                       >
                         <PrismicNextImage field={feature.logo} />
                       </PrismicNextLink>
                     )}
-                    {isFilled.image(feature.logo) && !isFilled.link(feature.logo_link) && (
-                      <div className="relative flex h-36 w-36 items-center justify-center">
-                        <PrismicNextImage field={feature.logo} />
-                      </div>
-                    )}
-                    <Text richText={feature.text} />
                   </div>
                 ))}
+                <div className="col-span-2 mt-3 flex w-full flex-wrap items-start justify-center gap-6 pl-3 md:col-span-3 md:flex-nowrap md:gap-3">
+                  {slice.primary.featured.map((feature) => (
+                    <Text key={JSON.stringify(feature)} richText={feature.text} size="md" />
+                  ))}
+                </div>
               </div>
             )}
             {isFilled.link(slice.primary.cta_link) && (
-              <PrismicNextLink field={slice.primary.cta_link} className={buttonVariants({ variant: 'default' })}>
+              <PrismicNextLink
+                field={slice.primary.cta_link}
+                className={cn(buttonVariants({ variant: 'default' }), 'mt-8')}
+              >
                 {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
               </PrismicNextLink>
             )}

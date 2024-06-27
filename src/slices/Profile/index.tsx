@@ -17,16 +17,16 @@ const Profile = ({ slice }: ProfileProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative mx-auto my-14 flex w-full max-w-7xl flex-col items-center justify-start px-6 lg:px-8"
+      className="relative mx-auto mt-14 flex w-full max-w-7xl flex-col items-center justify-start px-6 lg:px-8"
     >
       {slice.variation === 'default' && (
-        <div className="grid auto-cols-auto grid-cols-1 items-center justify-start gap-8 self-center text-center font-medium text-primary md:grid-cols-2 md:items-start md:justify-start md:gap-4 lg:grid-cols-3">
+        <div className="grid auto-cols-auto grid-cols-1 items-center justify-start gap-x-6 gap-y-12 self-center text-center font-medium text-primary md:grid-cols-2 md:items-start md:justify-start lg:grid-cols-3">
           {slice.items?.length > 0 &&
             slice.items.map(({ member }: { member: any }) => (
               <div
                 key={member.uid}
                 className={cn(
-                  'relative mb-12 flex h-auto w-72 flex-col gap-1',
+                  'relative flex h-auto w-72 flex-col gap-1',
                   member.full_width && 'col-span-3 h-auto w-full'
                 )}
               >
@@ -36,7 +36,7 @@ const Profile = ({ slice }: ProfileProps): JSX.Element => {
                     className={cn('h-72 w-72', member.full_width && 'h-96 w-96')}
                   />
                 )}
-                <div className="mt-6 flex items-center gap-1">
+                <div className="mt-4 flex items-center gap-1">
                   <Heading richText={member.data?.first_name} className="tracking-normal" size="xs" />
                   <Heading richText={member.data?.last_name} className="tracking-normal" size="xs" />
                   <Text

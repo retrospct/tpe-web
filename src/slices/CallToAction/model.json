@@ -112,6 +112,29 @@
               "lg"
             ]
           }
+        },
+        "show_divider": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Divider",
+            "default_value": false,
+            "placeholder_true": "true",
+            "placeholder_false": "false"
+          }
+        },
+        "text_color": {
+          "type": "Select",
+          "config": {
+            "label": "Text Color",
+            "placeholder": "",
+            "options": [
+              "primary",
+              "secondary",
+              "background",
+              "foreground",
+              "accent"
+            ]
+          }
         }
       },
       "items": {}
