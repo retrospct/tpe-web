@@ -38,15 +38,6 @@
           "single": "heading2,strong,em"
         }
       },
-      "credits": {
-        "type": "StructuredText",
-        "config": {
-          "label": "Credits",
-          "placeholder": "Photo or other credits",
-          "allowTargetBlank": true,
-          "single": "paragraph,strong,em,hyperlink"
-        }
-      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

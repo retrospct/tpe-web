@@ -28,23 +28,16 @@ const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
                   {isFilled.image(item.image) && (
                     <PrismicNextImage
                       field={item.image}
-                      // fill={item.layout !== 'portrait'}
                       className={cn(
                         'h-auto w-auto object-cover',
                         item.layout === 'portrait' ? 'w-80' : item.layout === 'square' ? 'h-80 w-80' : 'h-60 w-80'
                       )}
                     />
                   )}
-                  {/* {isFilled.richText(item.caption) && (
-                  <div className="m-0 h-4 leading-none">
-                    <PrismicRichText field={item.caption} />
-                  </div>
-                )} */}
-                  {/* <p>{item.layout}</p> */}
                 </div>
               ))}
           </div>
-          <Text richText={slice.primary.photo_credits} className="mt-4 w-full text-center text-primary" size="md" />
+          <Text richText={slice.primary.credits} className="mt-4 w-full text-center text-primary" size="md" />
         </>
       )}
     </section>

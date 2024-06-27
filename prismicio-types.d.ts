@@ -45,17 +45,6 @@ interface EventDocumentData {
   title: prismic.RichTextField
 
   /**
-   * Credits field in *Event*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Photo or other credits
-   * - **API ID Path**: event.credits
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  credits: prismic.RichTextField
-
-  /**
    * Slice Zone field in *Event*
    *
    * - **Field Type**: Slice Zone
@@ -2275,14 +2264,14 @@ export type HeroImageSlice = prismic.SharedSlice<'hero_image', HeroImageSliceVar
  */
 export interface ImageGridSliceDefaultPrimary {
   /**
-   * Photo Credits field in *ImageGrid → Default → Primary*
+   * Credits field in *ImageGrid → Default → Primary*
    *
    * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: image_grid.default.primary.photo_credits
+   * - **Placeholder**: Event credits for photos, video, and vendors.
+   * - **API ID Path**: image_grid.default.primary.credits
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  photo_credits: prismic.RichTextField
+  credits: prismic.RichTextField
 }
 
 /**

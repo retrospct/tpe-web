@@ -3,13 +3,13 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
-			"photo_credits": {
+			"credits": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "Ad amet proident aliquip do veniam excepteur. Officia sint sunt quis adipisicing. Ad velit in velit magna sint ullamco nisi id ex aute consectetur dolor incididunt."
+							"text": "Nulla deserunt occaecat velit eiusmod enim est excepteur ullamco elit voluptate eu cillum et et. Consequat voluptate laborum ex sint ex excepteur ut mollit nisi anim in labore aliquip."
 						}
 					}
 				]

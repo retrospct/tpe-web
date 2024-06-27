@@ -12,11 +12,11 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "photo_credits": {
+        "credits": {
           "type": "StructuredText",
           "config": {
-            "label": "Photo Credits",
-            "placeholder": "",
+            "label": "Credits",
+            "placeholder": "Event credits for photos, video, and vendors.",
             "allowTargetBlank": true,
             "single": "paragraph,strong,em,hyperlink"
           }
