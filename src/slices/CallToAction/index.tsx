@@ -138,13 +138,16 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
               <div className="grid grid-cols-2 md:grid-cols-3">
                 {slice.primary.featured.map((feature) => (
                   <div key={JSON.stringify(feature)} className="flex flex-col items-center justify-center gap-3">
-                    {isFilled.image(feature.logo) && !isFilled.link(feature.logo_link) && (
-                      <PrismicNextLink field={feature.logo_link} className="relative max-h-[120px] lg:max-h-[140px]">
+                    {isFilled.image(feature.logo) && isFilled.link(feature.logo_link) && (
+                      <PrismicNextLink
+                        field={feature.logo_link}
+                        className="relative flex h-36 w-36 items-center justify-center"
+                      >
                         <PrismicNextImage field={feature.logo} />
                       </PrismicNextLink>
                     )}
-                    {isFilled.image(feature.logo) && isFilled.link(feature.logo_link) && (
-                      <div className="relative max-h-[120px] lg:max-h-[140px]">
+                    {isFilled.image(feature.logo) && !isFilled.link(feature.logo_link) && (
+                      <div className="relative flex h-36 w-36 items-center justify-center">
                         <PrismicNextImage field={feature.logo} />
                       </div>
                     )}
