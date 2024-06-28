@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 import { isFilled, type Content } from '@prismicio/client'
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import { PrismicRichText, SliceComponentProps } from '@prismicio/react'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 export type CallToActionProps = SliceComponentProps<Content.CallToActionSlice>
 
@@ -90,11 +90,17 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
         </div>
       )}
       {slice.variation === 'buttonOnly' && (
-        <div className="my-16 flex w-full max-w-7xl flex-col items-center justify-center gap-6 lg:flex-row">
+        <div className="my-16 flex w-full max-w-6xl flex-col items-center justify-center gap-6 lg:flex-row">
           {isFilled.link(slice.primary.back_link) ? (
-            <div className="order-2 flex flex-1 lg:order-1">
-              <ArrowLeft className="mr-3 h-4 w-4 text-primary" />
-              <PrismicNextLink field={slice.primary.back_link} className={buttonVariants({ variant: 'link' })}>
+            <div className="order-2 flex flex-1 items-center justify-center gap-3 lg:order-1">
+              <ArrowLeft className="h-4 w-4 text-primary" />
+              <PrismicNextLink
+                field={slice.primary.back_link}
+                className={cn(
+                  buttonVariants({ variant: 'link' }),
+                  'w-fit p-0 text-xl font-medium italic tracking-wider'
+                )}
+              >
                 {isFilled.richText(slice.primary.back_text) && <PrismicRichText field={slice.primary.back_text} />}
               </PrismicNextLink>
             </div>
@@ -109,12 +115,19 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
             </div>
           )}
           {isFilled.link(slice.primary.forward_link) ? (
-            <div className="order-3 flex flex-1">
-              <PrismicNextLink field={slice.primary.forward_link} className={buttonVariants({ variant: 'link' })}>
+            <div className="order-3 flex flex-1 items-center justify-center gap-3">
+              <PrismicNextLink
+                field={slice.primary.forward_link}
+                className={cn(
+                  buttonVariants({ variant: 'link' }),
+                  'w-fit p-0 text-xl font-medium italic tracking-wider'
+                )}
+              >
                 {isFilled.richText(slice.primary.forward_text) && (
                   <PrismicRichText field={slice.primary.forward_text} />
                 )}
               </PrismicNextLink>
+              <ArrowRight className="h-4 w-4 text-primary" />
             </div>
           ) : (
             <div className="order-3 flex-1" />
@@ -155,9 +168,11 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
                   </div>
                 ))}
                 <div className="col-span-2 mt-3 flex w-full flex-wrap items-start justify-center gap-6 pl-3 md:col-span-3 md:flex-nowrap md:gap-3">
-                  {slice.primary.featured.map((feature) => (
-                    <Text key={JSON.stringify(feature)} richText={feature.text} size="md" />
-                  ))}
+                  {slice.primary.featured.map((feature) => {
+                    if (isFilled.richText(feature.text))
+                      return <Text key={JSON.stringify(feature)} richText={feature.text} size="md" />
+                    else return null
+                  })}
                 </div>
               </div>
             )}
