@@ -13,6 +13,17 @@ Want to quickly get started building your own project with [Prismic][prismic], [
 
 ## 🚀 Quick Start
 
+```json
+{
+  "scripts": {
+    "build": "email build",
+    "dev": "email dev -p 3001",
+    "export": "email export",
+    "email": "email"
+  }
+}
+```
+
 To start a new project using this starter, run the following commands in your terminal:
 
 ```sh
