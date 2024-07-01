@@ -29,19 +29,21 @@ export const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND
 export const sendEmail = async ({
   to,
   subject,
-  from,
+  from = 'team@email.twoperfectevents.com',
+  reply_to = 'noreply@mail.twoperfectevents.com',
   bcc,
   text = 'ERROR: No email template provided.',
-  react,
-  marketing
+  react
+  // marketing
 }: {
   to: string | string[]
   subject: string
   from?: string
+  reply_to?: string
   bcc?: string
   text?: string
   react?: ReactElement<any, string | JSXElementConstructor<any>> | ReactNode
-  marketing?: boolean
+  // marketing?: boolean
 }) => {
   if (process.env.NODE_ENV === 'development' && !resend) {
     // Set up a fake email client for development
@@ -52,25 +54,11 @@ export const sendEmail = async ({
     return Promise.resolve()
   }
 
-  // await resend.emails.send({
-  //   from: 'you@example.com',
-  //   to: 'user@gmail.com',
-  //   subject: 'hello world',
-  //   react: <Email url="https://example.com" />,
-  // });
   return resend.emails.send({
-    from:
-      from || marketing
-        ? 'leah@email.twoperfectevents.com'
-        : process.env.NEXT_PUBLIC_IS_DUB
-          ? 'system@email.twoperfectevents.com'
-          : `${process.env.NEXT_PUBLIC_APP_NAME} <system@${process.env.NEXT_PUBLIC_APP_DOMAIN}>`,
+    from,
     to,
     bcc,
-    reply_to: from,
-    // reply_to: process.env.NEXT_PUBLIC_IS_DUB
-    //   ? 'team@email.twoperfectevents.com'
-    //   : `team@${process.env.NEXT_PUBLIC_APP_DOMAIN}`,
+    reply_to,
     subject,
     ...(react ? { react } : { text })
     // ...(text && { text }),

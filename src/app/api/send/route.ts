@@ -4,7 +4,7 @@ import { EmailContactConfirm } from '@/emails/contact-confirm'
 
 // const resend = new Resend(process.env.RESEND_API_KEY)
 
-export async function POST() {
+export async function POST(req: Request) {
   try {
     // const { data, error } = await resend.emails.send({
     //   from: 'Acme <onboarding@resend.dev>',
@@ -12,11 +12,11 @@ export async function POST() {
     //   subject: 'Hello world',
     //   react: EmailContactConfirm({ firstName: 'Justin' }),
     // });
+    const body = await req.json()
     const email = await sendEmail({
-      // email: user.email as string,
-      to: ['delivered@resend.dev'],
-      from: 'Acme <onboarding@resend.dev>',
-      subject: `Hello world!`,
+      to: body?.email ? body.email : ['delivered@resend.dev'],
+      from: body?.from ? body.from : 'Two Perfect Events <team@email.twoperfectevents.com>',
+      subject: body.subject ? body.subject : 'Thank you for contacting Two Perfect Events!',
       react: EmailContactConfirm({ firstName: 'Justin' })
     })
     console.log('email', email)
