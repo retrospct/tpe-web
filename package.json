@@ -18,6 +18,7 @@
     "@headlessui/react": "^2.1.1",
     "@heroicons/react": "^2.1.4",
     "@hookform/resolvers": "^3.6.0",
+    "@million/lint": "1.0.0-rc.76",
     "@prismicio/client": "^7.6.0",
     "@prismicio/next": "^1.6.0",
     "@prismicio/react": "^2.8.0",
