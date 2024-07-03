@@ -27,11 +27,11 @@ const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
     <div className="mx-auto flex w-full max-w-3xl items-center justify-center p-6 lg:px-8">
       <NavigationMenu>
         <NavigationMenuList className="w-full flex-none flex-col justify-between gap-4 md:flex-row md:gap-0">
-          {navigation.data.slices.map((slice) => {
+          {navigation.data.slices.map((slice, i) => {
             const link = isFilled.link(slice.primary.link) && slice.primary.link?.url ? slice.primary.link.url : ''
             if (slice.items.length > 0) {
               return (
-                <NavigationMenuItem className="relative">
+                <NavigationMenuItem key={`nav-item-${i}`} className="relative">
                   <NavigationMenuTrigger className="px-5 text-primary">
                     {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
                   </NavigationMenuTrigger>
@@ -55,7 +55,7 @@ const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
               )
             } else {
               return (
-                <NavigationMenuItem className="relative">
+                <NavigationMenuItem key={`nav-item-${i}`} className="relative">
                   <Link href={link} legacyBehavior passHref>
                     <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), 'px-5')}>
                       {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
