@@ -14,7 +14,7 @@ export const EmailContactConfirm: React.FC<Readonly<EmailContactConfirmProps>> =
 }) => (
   <Html lang="en">
     <Head />
-    <Preview>{`Thank you for reaching out, we will get back to you asap. - TPE Team<${replyTo}>`}</Preview>
+    <Preview>{`Thank you for contacting Two Perfect Events - TPE Team<${replyTo}>`}</Preview>
     <Body>
       <Heading as="h2">Thank you for reaching out, {name}!</Heading>
       <Text>We'll get back to you as soon as we can.</Text>
