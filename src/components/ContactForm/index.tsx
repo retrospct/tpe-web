@@ -7,35 +7,25 @@ import { Input } from '@/components/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Textarea } from '@/components/ui/textarea'
 import { cn } from '@/lib/utils'
+import { contactFormSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { format } from 'date-fns'
-import { CalendarIcon } from 'lucide-react'
+import { CalendarIcon, XIcon } from 'lucide-react'
+import { useRef } from 'react'
+import { useFormState, useFormStatus } from 'react-dom'
 import { useForm } from 'react-hook-form'
-import { toast } from 'sonner'
 import { z } from 'zod'
-
-const phoneValidation = new RegExp(/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/)
-
-const formSchema = z.object({
-  email: z.string().min(1, { message: 'Email address is required.' }).max(100).email(),
-  name: z.string().min(1, { message: 'Name is required.' }).max(100),
-  // lastName: z.string().min(1, { message: 'Last name is required.' }).max(50),
-  phone: z
-    .string()
-    .min(1, { message: 'Phone number is required.' })
-    .max(20, { message: 'Phone number must not be longer than 20 characters please.' })
-    .regex(phoneValidation, { message: 'Invalid phone number' }),
-  // eventDate: z.date().optional(),
-  // eventDate: z.date().optional(),
-  eventDate: z.date().optional(),
-  comments: z.string().max(240, { message: 'Reply must not be longer than 240 characters please.' }).optional(),
-  referral: z.string().max(80, { message: 'Reply must not be longer than 80 characters please.' }).optional(),
-  newsletter: z.boolean().default(false).optional()
-})
+import { submitContactAction } from '../../app/actions'
 
 export function ContactForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  // const [isPending, startTransition] = useTransition()
+  const [state, formAction] = useFormState(submitContactAction, {
+    message: ''
+  })
+
+  const { pending } = useFormStatus()
+  const form = useForm<z.infer<typeof contactFormSchema>>({
+    resolver: zodResolver(contactFormSchema),
     defaultValues: {
       email: '',
       name: '',
@@ -44,24 +34,79 @@ export function ContactForm() {
       eventDate: undefined,
       comments: '',
       referral: '',
+      // newsletter: 'false'
       newsletter: false
+      // ...(state?.fields ?? {}),
     }
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
-    toast.message('Form has been submitted', {
-      description: JSON.stringify(values, null, 2)
-    })
-  }
+  const formRef = useRef<HTMLFormElement>(null)
+
+  // function onSubmit(values: z.infer<typeof contactFormSchema>) {
+  //   // Do something with the form values.
+  //   // ✅ This will be type-safe and validated.
+  //   console.log(values)
+  //   toast.message('Form has been submitted', {
+  //     description: JSON.stringify(values, null, 2)
+  //   })
+  // }
+
+  // const onSubmit = form.handleSubmit((data, e) => {
+  //   // startTransition(() => {
+  //   const formData = new FormData(e?.currentTarget)
+  //   console.log('form data', formData)
+  //   formData.set('newsletter', data?.newsletter ? data.newsletter.toString() : 'false')
+  //   data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
+  //   formAction(formData)
+  //   // })
+  // })
 
   return (
     <Form {...form}>
+      {state?.message !== '' && !state.issues && <div className="text-red-500">{state.message}</div>}
+      {state?.issues && (
+        <div className="text-red-500">
+          <ul>
+            {state.issues.map((issue) => (
+              <li key={issue} className="flex gap-1">
+                <XIcon fill="red" />
+                {issue}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       <form
         id="contact-form"
-        onSubmit={form.handleSubmit(onSubmit)}
+        ref={formRef}
+        // action={onSubmit}
+        action={(evt) => {
+          form.handleSubmit(async (data) => {
+            const formData = new FormData(formRef.current!)
+            formData.set('newsletter', data?.newsletter ? data.newsletter.toString() : 'false')
+            data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
+            formAction(formData)
+          })
+        }}
+        onSubmit={(evt) => {
+          evt.preventDefault()
+          // console.log('client side submitting form', formRef.current!)
+          form.handleSubmit(async (data) => {
+            const formData = new FormData(formRef.current!)
+            formData.set('newsletter', data?.newsletter ? data.newsletter.toString() : 'false')
+            data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
+            formAction(formData)
+          })(evt)
+        }}
+        // action={submitContact}
+        // onSubmit={async (e) => {
+        //   if (!form.formState.isValid) {
+        //     e.preventDefault()
+        //     await form.trigger()
+        //     return
+        //   }
+        //   e.currentTarget?.requestSubmit()
+        // }}
         className="my-11 w-full max-w-md space-y-4 px-2 text-center"
       >
         <FormField
@@ -85,7 +130,7 @@ export function ContactForm() {
             <FormItem>
               <FormLabel hidden>Name</FormLabel>
               <FormControl>
-                <Input placeholder="Name*" {...field} />
+                <Input placeholder="Full Name*" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -204,7 +249,18 @@ export function ContactForm() {
           render={({ field }) => (
             <FormItem className="flex flex-row items-center justify-center space-x-3 space-y-0 p-4 text-primary">
               <FormControl>
-                <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                <Checkbox
+                  // value={field?.value}
+                  // checked={field.value === 'false' ? false : true}
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                  // onCheckedChange={(value) =>
+                  //   field.onChange(() => {
+                  //     console.log('change value', value)
+                  //     return !value
+                  //   })
+                  // }
+                />
               </FormControl>
               <div className="space-y-1 leading-none">
                 <FormLabel>Join our email list for tips, tricks, and all things TPE!</FormLabel>
@@ -212,7 +268,7 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="italic">
+        <Button type="submit" className="italic" disabled={pending}>
           SUBMIT
         </Button>
       </form>
