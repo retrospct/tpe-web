@@ -49,7 +49,8 @@ export function ContactForm() {
       data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
       formAction(formData)
       toast.success('Thank you for contacting Two Perfect Events!', {
-        description: `We will get back to you as soon as possible.`
+        description: `We will get back to you as soon as possible.`,
+        duration: 8000
       })
     })
   }
@@ -167,7 +168,10 @@ export function ContactForm() {
                       onSelect={field.onChange}
                       disabled={(date) => date < new Date() || date < new Date('1900-01-01')}
                       fromYear={new Date().getFullYear()}
+                      // toYear={new Date().getFullYear() + 10}
                       fromMonth={new Date()}
+                      defaultMonth={field.value ?? new Date()}
+                      // captionLayout="dropdown-buttons"
                       footer={
                         <div className="pt-2 text-center">
                           <Button
