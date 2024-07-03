@@ -12,7 +12,7 @@ export const contactFormSchema = z.object({
     .max(20, { message: 'Phone number must not be longer than 20 characters please.' })
     .regex(phoneValidation, { message: 'Invalid phone number' }),
   eventDate: z.date().optional(),
-  comments: z.string().max(240, { message: 'Reply must not be longer than 240 characters please.' }).optional(),
+  comments: z.string().max(1000, { message: 'Reply must not be longer than 1000 characters please.' }).optional(),
   referral: z.string().max(80, { message: 'Reply must not be longer than 80 characters please.' }).optional(),
   // newsletter: z.string().default('false').optional()
   newsletter: z.boolean().default(false).optional()
@@ -28,7 +28,7 @@ export const contactFormSchemaServer = z.object({
     .max(20, { message: 'Phone number must not be longer than 20 characters please.' })
     .regex(phoneValidation, { message: 'Invalid phone number' }),
   eventDate: z.string().datetime().optional(),
-  comments: z.string().max(240, { message: 'Reply must not be longer than 240 characters please.' }).optional(),
+  comments: z.string().max(1000, { message: 'Reply must not be longer than 1000 characters please.' }).optional(),
   referral: z.string().max(80, { message: 'Reply must not be longer than 80 characters please.' }).optional(),
   // newsletter: z.string().default('false').optional()
   newsletter: z.string().or(z.boolean()).default(false).optional()
