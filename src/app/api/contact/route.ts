@@ -6,7 +6,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json()
 
-    // Send new submission email to TPE team
+    // Send new email to TPE team
     const emailAdmin = await sendEmail({
       to: 'me@jlee.cool', // || ['delivered@resend.dev'],
       from: 'Two Perfect Events <team@email.twoperfectevents.com>',

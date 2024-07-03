@@ -41,7 +41,7 @@ export async function submitContactAction(prevState: FormState, data: FormData):
 
   try {
     // Send new submission email to TPE team
-    const emailAdmin = await sendEmail({
+    await sendEmail({
       to: 'leah@twoperfectevents.com', // || ['delivered@resend.dev'],
       from: 'Two Perfect Events <team@email.twoperfectevents.com>',
       subject: `TPE form submission from ${parsed.data.name}`,
@@ -49,16 +49,14 @@ export async function submitContactAction(prevState: FormState, data: FormData):
         payload: { ...parsed.data, eventDate: formatLocalDate(parsed.data?.eventDate) }
       })
     })
-    console.log('emailAdmin', emailAdmin)
 
     // Send confirmation email to user
-    const email = await sendEmail({
+    await sendEmail({
       to: parsed.data.email, // || ['delivered@resend.dev'],
       from: 'Two Perfect Events <team@email.twoperfectevents.com>',
       subject: 'Thank you for contacting Two Perfect Events!',
       react: EmailContactConfirm({ name: parsed.data.name })
     })
-    console.log('email', email)
 
     return { message: `Thank you for contacting us! We will get back to you as soon as possible.` }
   } catch (error) {
