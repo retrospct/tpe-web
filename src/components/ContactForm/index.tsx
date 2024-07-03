@@ -10,15 +10,16 @@ import { cn } from '@/lib/utils'
 import { contactFormSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { format } from 'date-fns'
-import { CalendarIcon, XIcon } from 'lucide-react'
-import { useRef } from 'react'
+import { CalendarIcon, Loader2, XIcon } from 'lucide-react'
+import { useRef, useTransition } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { z } from 'zod'
 import { submitContactAction } from '../../app/actions'
 
 export function ContactForm() {
-  // const [isPending, startTransition] = useTransition()
+  const [isPending, startTransition] = useTransition()
   const [state, formAction] = useFormState(submitContactAction, {
     message: ''
   })
@@ -34,7 +35,6 @@ export function ContactForm() {
       eventDate: undefined,
       comments: '',
       referral: '',
-      // newsletter: 'false'
       newsletter: false
       // ...(state?.fields ?? {}),
     }
@@ -42,24 +42,24 @@ export function ContactForm() {
 
   const formRef = useRef<HTMLFormElement>(null)
 
-  // function onSubmit(values: z.infer<typeof contactFormSchema>) {
-  //   // Do something with the form values.
-  //   // ✅ This will be type-safe and validated.
-  //   console.log(values)
-  //   toast.message('Form has been submitted', {
-  //     description: JSON.stringify(values, null, 2)
-  //   })
-  // }
+  const submitForm = async (data: z.infer<typeof contactFormSchema>) => {
+    startTransition(() => {
+      const formData = new FormData(formRef.current!)
+      formData.set('newsletter', data?.newsletter ? data.newsletter.toString() : 'false')
+      data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
+      formAction(formData)
+      toast.success('Thank you for contacting Two Perfect Events!', {
+        description: `We will get back to you as soon as possible.`
+      })
+    })
+  }
 
-  // const onSubmit = form.handleSubmit((data, e) => {
-  //   // startTransition(() => {
-  //   const formData = new FormData(e?.currentTarget)
-  //   console.log('form data', formData)
-  //   formData.set('newsletter', data?.newsletter ? data.newsletter.toString() : 'false')
-  //   data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
-  //   formAction(formData)
-  //   // })
-  // })
+  const resetForm = () => {
+    if (state?.message !== '' && !state.issues && process.env.NODE_ENV !== 'development') {
+      formRef.current?.reset()
+      form.reset()
+    }
+  }
 
   return (
     <Form {...form}>
@@ -69,21 +69,16 @@ export function ContactForm() {
         // action={onSubmit}
         action={(evt) => {
           form.handleSubmit(async (data) => {
-            const formData = new FormData(formRef.current!)
-            formData.set('newsletter', data?.newsletter ? data.newsletter.toString() : 'false')
-            data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
-            formAction(formData)
+            await submitForm(data)
           })
+          resetForm()
         }}
         onSubmit={(evt) => {
           evt.preventDefault()
-          // console.log('client side submitting form', formRef.current!)
           form.handleSubmit(async (data) => {
-            const formData = new FormData(formRef.current!)
-            formData.set('newsletter', data?.newsletter ? data.newsletter.toString() : 'false')
-            data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
-            formAction(formData)
+            await submitForm(data)
           })(evt)
+          resetForm()
         }}
         className="my-11 w-full max-w-md space-y-4 px-2 text-center"
       >
@@ -235,10 +230,11 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="italic" disabled={pending}>
+        <Button type="submit" className="italic" disabled={pending || isPending}>
           SUBMIT
+          {pending || (isPending && <Loader2 className="ml-2 h-6 w-6 animate-spin" />)}
         </Button>
-        {state?.message !== '' && !state.issues && <div className="text-balance text-primary">{state.message}</div>}
+        {/* {state?.message !== '' && !state.issues && <div className="text-balance text-primary">{state.message}</div>} */}
         {state?.issues && (
           <div className="text-primary">
             <ul>

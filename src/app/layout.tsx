@@ -35,7 +35,7 @@ export default function RootLayout({
         {children}
         <Footer />
       </body>
-      <Toaster />
+      <Toaster position="bottom-center" richColors />
       <PrismicPreview repositoryName={repositoryName ?? 'tpe-web'} />
     </html>
   )

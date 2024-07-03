@@ -1,5 +1,7 @@
 'use server'
 
+import { createContactForm } from '@/drizzle/db'
+import { InsertContactForm } from '@/drizzle/schema'
 import { sendEmail } from '@/emails'
 import { EmailContactConfirm } from '@/emails/contact-confirm'
 import { EmailContactSubmit } from '@/emails/contact-submit'
@@ -15,7 +17,7 @@ export type FormState = {
 export async function submitContactAction(prevState: FormState, data: FormData): Promise<FormState> {
   const formData = Object.fromEntries(data)
   const parsed = contactFormSchemaServer.safeParse(formData)
-  console.log('Submitted contact form data', parsed)
+  console.log('contact_form', parsed)
   // console.log('prevState', prevState)
 
   if (!parsed.success) {
@@ -40,11 +42,16 @@ export async function submitContactAction(prevState: FormState, data: FormData):
   // }
 
   try {
+    // TODO: add a step to filter out only needed fields from body
+
+    // Add new contact form submission to database
+    await createContactForm({ ...(parsed.data as InsertContactForm), raw: JSON.stringify(parsed.data) })
+
     // Send new submission email to TPE team
     await sendEmail({
-      to: 'leah@twoperfectevents.com', // || ['delivered@resend.dev'],
-      from: 'Two Perfect Events <team@email.twoperfectevents.com>',
-      subject: `TPE form submission from ${parsed.data.name}`,
+      to: process.env.NODE_ENV === 'development' ? ['delivered@resend.dev'] : 'leah@twoperfectevents.com',
+      from: 'Two Perfect Events <no-reply@email.twoperfectevents.com>',
+      subject: `TPE form submission from ${parsed.data.name}<${parsed.data.email}>`,
       react: EmailContactSubmit({
         payload: { ...parsed.data, eventDate: formatLocalDate(parsed.data?.eventDate) }
       })
@@ -52,8 +59,8 @@ export async function submitContactAction(prevState: FormState, data: FormData):
 
     // Send confirmation email to user
     await sendEmail({
-      to: parsed.data.email, // || ['delivered@resend.dev'],
-      from: 'Two Perfect Events <team@email.twoperfectevents.com>',
+      to: parsed.data?.email || 'leah@twoperfectevents.com',
+      from: 'Two Perfect Events <no-reply@email.twoperfectevents.com>',
       subject: 'Thank you for contacting Two Perfect Events!',
       react: EmailContactConfirm({ name: parsed.data.name })
     })
