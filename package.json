@@ -12,7 +12,8 @@
     "start": "next start",
     "lint": "next lint",
     "slicemachine": "start-slicemachine",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "email:dev": "email dev -p 3001 -d src/emails"
   },
   "dependencies": {
     "@headlessui/react": "^2.1.1",

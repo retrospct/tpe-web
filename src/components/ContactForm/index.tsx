@@ -63,19 +63,6 @@ export function ContactForm() {
 
   return (
     <Form {...form}>
-      {state?.message !== '' && !state.issues && <div className="text-red-500">{state.message}</div>}
-      {state?.issues && (
-        <div className="text-red-500">
-          <ul>
-            {state.issues.map((issue) => (
-              <li key={issue} className="flex gap-1">
-                <XIcon fill="red" />
-                {issue}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
       <form
         id="contact-form"
         ref={formRef}
@@ -98,15 +85,6 @@ export function ContactForm() {
             formAction(formData)
           })(evt)
         }}
-        // action={submitContact}
-        // onSubmit={async (e) => {
-        //   if (!form.formState.isValid) {
-        //     e.preventDefault()
-        //     await form.trigger()
-        //     return
-        //   }
-        //   e.currentTarget?.requestSubmit()
-        // }}
         className="my-11 w-full max-w-md space-y-4 px-2 text-center"
       >
         <FormField
@@ -249,18 +227,7 @@ export function ContactForm() {
           render={({ field }) => (
             <FormItem className="flex flex-row items-center justify-center space-x-3 space-y-0 p-4 text-primary">
               <FormControl>
-                <Checkbox
-                  // value={field?.value}
-                  // checked={field.value === 'false' ? false : true}
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                  // onCheckedChange={(value) =>
-                  //   field.onChange(() => {
-                  //     console.log('change value', value)
-                  //     return !value
-                  //   })
-                  // }
-                />
+                <Checkbox checked={field.value} onCheckedChange={field.onChange} />
               </FormControl>
               <div className="space-y-1 leading-none">
                 <FormLabel>Join our email list for tips, tricks, and all things TPE!</FormLabel>
@@ -271,6 +238,19 @@ export function ContactForm() {
         <Button type="submit" className="italic" disabled={pending}>
           SUBMIT
         </Button>
+        {state?.message !== '' && !state.issues && <div className="text-balance text-primary">{state.message}</div>}
+        {state?.issues && (
+          <div className="text-primary">
+            <ul>
+              {state.issues.map((issue) => (
+                <li key={issue} className="flex gap-1">
+                  <XIcon fill="var(--primary)" />
+                  {issue}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </form>
     </Form>
   )
