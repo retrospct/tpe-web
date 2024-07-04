@@ -75,8 +75,7 @@ export async function submitContactAction(prevState: FormState, data: FormData):
       const subscriptionId = '61941de4-1d7d-4230-a9e3-13409c94cbb7'
       const { name, email, phone, eventDate, comments, referral } = parsed.data
       // Call resend Audience & Contacts APIs
-      const contact = await fetch('/api/resend', { method: 'POST', body: JSON.stringify({ email, name }) })
-      console.log('contact action', contact)
+      await subscribeResend({ email, name })
       // Add user to subscriptions list
       const [person] = await createPerson({ name, email, phone, eventDate, comments, referral })
       await createPersonsToSubscriptions({
@@ -107,22 +106,11 @@ export async function subscribeAction(prevState: FormState, data: FormData): Pro
   }
 
   try {
+    // Add user to subscriptions list
     const subscriptionId = '61941de4-1d7d-4230-a9e3-13409c94cbb7'
     const { email } = parsed.data
     // Call resend Audience & Contacts APIs
-    // const contact = await fetch('/api/resend', { method: 'POST', body: JSON.stringify({ email }) })
-    const resend = new Resend(process.env.RESEND_ADMIN_API_KEY!)
-    // if (!resend || !email) {
-    //   console.error('Resend is not configured. You need to add a RESEND_ADMIN_API_KEY in your .env file for emails to work.')
-    // }
-    // Create contact with user data
-    const contact = await resend.contacts.create({
-      email,
-      unsubscribed: false,
-      audienceId: 'a4ebedf1-1f0e-4bd8-9a2d-dcb0516f9b90'
-    })
-    console.log('contact', contact)
-
+    await subscribeResend({ email })
     // Add user to subscriptions list
     const [person] = await createPerson({ email })
     await createPersonsToSubscriptions({
@@ -144,4 +132,28 @@ export async function subscribeAction(prevState: FormState, data: FormData): Pro
       message: `Opps, we had an issue with your newsletter form submission. Please reach out to admin@twoperfectevents.com for assistance if the issue persists.`
     }
   }
+}
+
+// Call resend Audience & Contacts APIs
+const subscribeResend = async ({ email, name }: { email: string; name?: string }) => {
+  // const contact = await fetch('/api/resend', { method: 'POST', body: JSON.stringify({ email }) })
+  const resend = new Resend(process.env.RESEND_ADMIN_API_KEY!)
+  if (!resend || !email) {
+    console.error(
+      'Resend is not configured. You need to add a RESEND_ADMIN_API_KEY in your .env file for emails to work.'
+    )
+  }
+
+  // Create contact with user data
+  const names = name ? name.trim()?.split(' ') : []
+  const firstName = names?.length > 0 ? names[0] : ''
+  const lastName = names?.length > 1 ? names.slice(1).join(' ') : ''
+  const contact = await resend.contacts.create({
+    email,
+    ...(firstName && { firstName }),
+    ...(lastName && { lastName }),
+    unsubscribed: false,
+    audienceId: 'a4ebedf1-1f0e-4bd8-9a2d-dcb0516f9b90'
+  })
+  console.log('contact', contact)
 }
