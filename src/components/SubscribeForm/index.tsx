@@ -1,22 +1,17 @@
 'use client'
+import { subscribeAction } from '@/app/actions'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
+import { subscribeFormSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ReactNode } from 'react'
+import { Loader2 } from 'lucide-react'
+import { ReactNode, useRef, useTransition } from 'react'
+import { useFormState, useFormStatus } from 'react-dom'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
-
-const formSchema = z.object({
-  email: z
-    .string()
-    .min(1, { message: 'Email address is required.' })
-    .max(100)
-    .email()
-    .describe('Email address provided by the user.')
-})
 
 export function SubscribeForm({
   placeholder = 'Email',
@@ -27,27 +22,55 @@ export function SubscribeForm({
   cta?: ReactNode
   className?: string
 }) {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const [isPending, startTransition] = useTransition()
+  const [state, formAction] = useFormState(subscribeAction, {
+    message: ''
+  })
+  const { pending } = useFormStatus()
+  const form = useForm<z.infer<typeof subscribeFormSchema>>({
+    resolver: zodResolver(subscribeFormSchema),
     defaultValues: {
       email: ''
     }
   })
+  const formRef = useRef<HTMLFormElement>(null)
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
-    toast.message('Form has been submitted', {
-      description: JSON.stringify(values, null, 2)
+  const submitForm = async (data: z.infer<typeof subscribeFormSchema>) => {
+    startTransition(() => {
+      const formData = new FormData(formRef.current!)
+      formAction(formData || data)
+      toast.success('Thank you for subscribing!', {
+        description: `We'll periodically send you interesting newsletters.`,
+        duration: 8000
+      })
     })
+  }
+
+  const resetForm = () => {
+    if (state?.message !== '' && !state.issues && process.env.NODE_ENV !== 'development') {
+      formRef.current?.reset()
+      form.reset()
+    }
   }
 
   return (
     <Form {...form}>
       <form
         id="subscribe-form"
-        onSubmit={form.handleSubmit(onSubmit)}
+        ref={formRef}
+        action={(evt) => {
+          form.handleSubmit(async (data) => {
+            await submitForm(data)
+          })
+          resetForm()
+        }}
+        onSubmit={(evt) => {
+          evt.preventDefault()
+          form.handleSubmit(async (data) => {
+            await submitForm(data)
+          })(evt)
+          resetForm()
+        }}
         className={cn('my-2 flex items-start justify-center gap-2', className)}
       >
         <FormField
@@ -64,8 +87,9 @@ export function SubscribeForm({
             </FormItem>
           )}
         />
-        <Button type="submit" size="md">
+        <Button type="submit" size="md" disabled={pending || isPending}>
           {cta}
+          {pending || (isPending && <Loader2 className="ml-2 h-4 w-4 animate-spin" />)}
         </Button>
       </form>
     </Form>

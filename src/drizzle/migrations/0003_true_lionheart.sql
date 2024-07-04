@@ -1,1 +1,0 @@
-DROP INDEX IF EXISTS "contact_idx";

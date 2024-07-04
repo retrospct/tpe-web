@@ -23,7 +23,6 @@ export function ContactForm() {
   const [state, formAction] = useFormState(submitContactAction, {
     message: ''
   })
-
   const { pending } = useFormStatus()
   const form = useForm<z.infer<typeof contactFormSchema>>({
     resolver: zodResolver(contactFormSchema),
@@ -39,7 +38,6 @@ export function ContactForm() {
       // ...(state?.fields ?? {}),
     }
   })
-
   const formRef = useRef<HTMLFormElement>(null)
 
   const submitForm = async (data: z.infer<typeof contactFormSchema>) => {
