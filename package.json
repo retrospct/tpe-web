@@ -36,7 +36,6 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@react-email/components": "^0.0.21",
     "@react-email/render": "^0.0.16",
-    "@react-email/tailwind": "^0.0.18",
     "@sindresorhus/slugify": "^2.2.1",
     "@vercel/postgres": "^0.9.0",
     "chrono-node": "^2.7.6",

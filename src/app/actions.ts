@@ -71,7 +71,7 @@ export async function submitContactAction(prevState: FormState, data: FormData):
     }
   } finally {
     // If newsletter is checked
-    if (parsed.data?.newsletter) {
+    if (parsed.data?.newsletter === 'true') {
       const subscriptionId = '61941de4-1d7d-4230-a9e3-13409c94cbb7'
       const { name, email, phone, eventDate, comments, referral } = parsed.data
       // Call resend Audience & Contacts APIs

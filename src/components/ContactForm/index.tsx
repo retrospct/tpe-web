@@ -54,7 +54,7 @@ export function ContactForm() {
     })
   }
 
-  const resetForm = () => {
+  const resetForm = async () => {
     if (state?.message !== '' && !state.issues && process.env.NODE_ENV !== 'development') {
       formRef.current?.reset()
       form.reset()
