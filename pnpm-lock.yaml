@@ -9,14 +9,14 @@ importers:
   .:
     dependencies:
       '@headlessui/react':
-        specifier: ^2.1.1
-        version: 2.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^2.1.2
+        version: 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroicons/react':
         specifier: ^2.1.4
         version: 2.1.4(react@18.3.1)
       '@hookform/resolvers':
-        specifier: ^3.7.0
-        version: 3.7.0(react-hook-form@7.52.1(react@18.3.1))
+        specifier: ^3.8.0
+        version: 3.8.0(react-hook-form@7.52.1(react@18.3.1))
       '@million/lint':
         specifier: 1.0.0-rc.76
         version: 1.0.0-rc.76(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@6.0.4)
@@ -60,8 +60,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(@types/react@18.3.3)(react@18.3.1)
       '@react-email/components':
-        specifier: ^0.0.20
-        version: 0.0.20(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^0.0.21
+        version: 0.0.21(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-email/render':
         specifier: ^0.0.16
         version: 0.0.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -154,8 +154,8 @@ importers:
         specifier: ^0.7.34
         version: 0.7.34
       '@types/node':
-        specifier: ^20.14.9
-        version: 20.14.9
+        specifier: ^20.14.10
+        version: 20.14.10
       '@types/punycode':
         specifier: ^2.1.4
         version: 2.1.4
@@ -798,14 +798,17 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
-  '@floating-ui/react@0.26.18':
-    resolution: {integrity: sha512-enDDX09Jpi3kmhcXXpvs+fvRXOfBj1jUV2KF6uDMf5HjS+SOZJzNTFUW71lKbFcxz0BkmQqwbvqdmHIxMq/fyQ==}
+  '@floating-ui/react@0.26.19':
+    resolution: {integrity: sha512-Jk6zITdjjIvjO/VdQFvpRaD3qPwOHH6AoDHxjhpy+oK4KFgaSP871HYWUAPdnLmx1gQ+w/pB312co3tVml+BXA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
   '@floating-ui/utils@0.2.3':
     resolution: {integrity: sha512-XGndio0l5/Gvd6CLIABvsav9HHezgDFFhDfHk1bvLfr9ni8dojqLSvBbotJEjmIwNHL7vK4QzBJTdBRoB+c1ww==}
+
+  '@floating-ui/utils@0.2.4':
+    resolution: {integrity: sha512-dWO2pw8hhi+WrXq1YJy2yCuWoL20PddgGaqTgVe4cOS9Q6qklXCiA1tJEqX6BEwRNSCP84/afac9hd4MS+zEUA==}
 
   '@formatjs/intl-localematcher@0.5.4':
     resolution: {integrity: sha512-zTwEpWOzZ2CiKcB93BLngUX59hQkuZjT2+SAQEscSm52peDW/getsawMcWF1rGRpMCX6D7nSJA3CzJ8gn13N/g==}
@@ -816,8 +819,8 @@ packages:
   '@hapi/topo@5.1.0':
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
 
-  '@headlessui/react@2.1.1':
-    resolution: {integrity: sha512-808gVNUbRDbDR3GMNPHy+ON0uvR8b9H7IA+Q2UbhOsNCIjgwuwb2Iuv8VPT/1AW0UzLX8g10tN6LhF15GaUJCQ==}
+  '@headlessui/react@2.1.2':
+    resolution: {integrity: sha512-Kb3hgk9gRNRcTZktBrKdHhF3xFhYkca1Rk6e1/im2ENf83dgN54orMW0uSKTXFnUpZOUFZ+wcY05LlipwgZIFQ==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^18
@@ -838,8 +841,8 @@ packages:
     resolution: {integrity: sha512-8TOiiiAqcFC6f62P7M9p6adQREAlWdVi1awehAwgWW+3R65/rKzHnLARO/Hu/466z01VNViBoogqatqXJMyItA==}
     engines: {node: '>=18.14.1'}
 
-  '@hookform/resolvers@3.7.0':
-    resolution: {integrity: sha512-42p5X18noBV3xqOpTlf2V5qJZwzNgO4eLzHzmKGh/w7z4+4XqRw5AsESVkqE+qwAuRRlg2QG12EVEjPkrRIbeg==}
+  '@hookform/resolvers@3.8.0':
+    resolution: {integrity: sha512-8BY7nM+QhMlGgYOb5Mxa6ZuHRYRvAZJ5LQ7+SxMv1CFGrqvNZajoa1ipEvdnIPllEcQ9R90oBNiRUUi8rj6KPQ==}
     peerDependencies:
       react-hook-form: ^7.0.0
 
@@ -1585,8 +1588,8 @@ packages:
     peerDependencies:
       react: ^18.2.0
 
-  '@react-email/code-block@0.0.4':
-    resolution: {integrity: sha512-xjVLi/9dFNJ70N7hYme+21eQWa3b9/kgp4V+FKQJkQCuIMobxPRCIGM5jKD/0Vo2OqrE5chYv/dkg/aP8a8sPg==}
+  '@react-email/code-block@0.0.5':
+    resolution: {integrity: sha512-mmInpZsSIkNaYC1y40/S0XXrIqbTzrpllP6J1JMJuDOBG8l5T7pNl4V+gwfsSTvy9hVsuzQFmhHK8kVb1UXv3A==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^18.2.0
@@ -1603,8 +1606,8 @@ packages:
     peerDependencies:
       react: ^18.2.0
 
-  '@react-email/components@0.0.20':
-    resolution: {integrity: sha512-9grJ90RLv5ZPXq07YyQZ9A/OaM6QvGOD41Pl31I6s3UjFp7Jmxqr0wSUpuPhl0eKWriJU42E48okt4ugz29/hQ==}
+  '@react-email/components@0.0.21':
+    resolution: {integrity: sha512-fwGfH7FF+iuq+IdPcbEO5HoF0Pakk9big+fFW9+3kiyvbSNuo8Io1rhPTMLd8q41XomN4g7mgWovdAeS/8PHrA==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^18.2.0
@@ -1870,14 +1873,14 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
 
-  '@tanstack/react-virtual@3.5.0':
-    resolution: {integrity: sha512-rtvo7KwuIvqK9zb0VZ5IL7fiJAEnG+0EiFZz8FUOs+2mhGqdGmjKIaT1XU7Zq0eFqL0jonLlhbayJI/J2SA/Bw==}
+  '@tanstack/react-virtual@3.8.1':
+    resolution: {integrity: sha512-dP5a7giEM4BQWLJ7K07ToZv8rF51mzbrBMkf0scg1QNYuFx3utnPUBPUHdzaowZhIez1K2XS78amuzD+YGRA5Q==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
 
-  '@tanstack/virtual-core@3.5.0':
-    resolution: {integrity: sha512-KnPRCkQTyqhanNC0K63GBG3wA8I+D1fQuVnAvcBF8f13akOKeQp1gSbu6f77zCxhEk727iV5oQnbHLYzHrECLg==}
+  '@tanstack/virtual-core@3.8.1':
+    resolution: {integrity: sha512-uNtAwenT276M9QYCjTBoHZ8X3MUeCRoGK59zPi92hMIxdfS9AyHjkDWJ94WroDxnv48UE+hIeo21BU84jKc8aQ==}
 
   '@tokenizer/token@0.3.0':
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
@@ -1909,8 +1912,8 @@ packages:
   '@types/ms@0.7.34':
     resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
 
-  '@types/node@20.14.9':
-    resolution: {integrity: sha512-06OCtnTXtWOZBJlRApleWndH4JsRVs1pDCc8dLSQp+7PpUpX3ePdHyeNSFTeSe7FtKyQkrlPvHwJOW3SLd8Oyg==}
+  '@types/node@20.14.10':
+    resolution: {integrity: sha512-MdiXf+nDuMvY0gJKxyfZ7/6UFsETO7mGKF54MVD/ekJS6HdFtpZFBgrh6Pseu64XTb2MLyFPlbW6hj8HYRQNOQ==}
 
   '@types/pg@8.11.6':
     resolution: {integrity: sha512-/2WmmBXHLsfRqzfHW7BNZ8SbYzE8OSk7i3WjFYvfgRHj7S1xj+16Je5fUKv3lVdVzk/zn9TXOqf+avFCFIE0yQ==}
@@ -5464,15 +5467,17 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@floating-ui/react@0.26.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@floating-ui/react@0.26.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@floating-ui/react-dom': 2.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@floating-ui/utils': 0.2.3
+      '@floating-ui/utils': 0.2.4
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       tabbable: 6.2.0
 
   '@floating-ui/utils@0.2.3': {}
+
+  '@floating-ui/utils@0.2.4': {}
 
   '@formatjs/intl-localematcher@0.5.4':
     dependencies:
@@ -5484,12 +5489,12 @@ snapshots:
     dependencies:
       '@hapi/hoek': 9.3.0
 
-  '@headlessui/react@2.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@headlessui/react@2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@floating-ui/react': 0.26.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@floating-ui/react': 0.26.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/focus': 3.17.1(react@18.3.1)
       '@react-aria/interactions': 3.21.3(react@18.3.1)
-      '@tanstack/react-virtual': 3.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@tanstack/react-virtual': 3.8.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
@@ -5503,7 +5508,7 @@ snapshots:
 
   '@hono/node-server@1.11.4': {}
 
-  '@hookform/resolvers@3.7.0(react-hook-form@7.52.1(react@18.3.1))':
+  '@hookform/resolvers@3.8.0(react-hook-form@7.52.1(react@18.3.1))':
     dependencies:
       react-hook-form: 7.52.1(react@18.3.1)
 
@@ -5553,7 +5558,7 @@ snapshots:
       '@antfu/ni': 0.21.12
       '@axiomhq/js': 1.0.0-rc.3
       '@babel/core': 7.24.6
-      '@babel/types': 7.24.7
+      '@babel/types': 7.24.6
       '@clack/prompts': 0.7.0
       cli-high: 0.4.2
       diff: 5.2.0
@@ -6467,7 +6472,7 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  '@react-email/code-block@0.0.4(react@18.3.1)':
+  '@react-email/code-block@0.0.5(react@18.3.1)':
     dependencies:
       prismjs: 1.29.0
       react: 18.3.1
@@ -6480,11 +6485,11 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  '@react-email/components@0.0.20(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@react-email/components@0.0.21(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@react-email/body': 0.0.8(react@18.3.1)
       '@react-email/button': 0.0.15(react@18.3.1)
-      '@react-email/code-block': 0.0.4(react@18.3.1)
+      '@react-email/code-block': 0.0.5(react@18.3.1)
       '@react-email/code-inline': 0.0.2(react@18.3.1)
       '@react-email/column': 0.0.10(react@18.3.1)
       '@react-email/container': 0.0.12(react@18.3.1)
@@ -6786,13 +6791,13 @@ snapshots:
       mini-svg-data-uri: 1.4.4
       tailwindcss: 3.4.4
 
-  '@tanstack/react-virtual@3.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@tanstack/react-virtual@3.8.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@tanstack/virtual-core': 3.5.0
+      '@tanstack/virtual-core': 3.8.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@tanstack/virtual-core@3.5.0': {}
+  '@tanstack/virtual-core@3.8.1': {}
 
   '@tokenizer/token@0.3.0': {}
 
@@ -6800,7 +6805,7 @@ snapshots:
 
   '@types/cors@2.8.17':
     dependencies:
-      '@types/node': 20.14.9
+      '@types/node': 20.14.10
 
   '@types/eslint-scope@3.7.7':
     dependencies:
@@ -6816,7 +6821,7 @@ snapshots:
 
   '@types/http-proxy@1.17.14':
     dependencies:
-      '@types/node': 20.14.9
+      '@types/node': 20.14.10
 
   '@types/json-schema@7.0.15': {}
 
@@ -6824,13 +6829,13 @@ snapshots:
 
   '@types/ms@0.7.34': {}
 
-  '@types/node@20.14.9':
+  '@types/node@20.14.10':
     dependencies:
       undici-types: 5.26.5
 
   '@types/pg@8.11.6':
     dependencies:
-      '@types/node': 20.14.9
+      '@types/node': 20.14.10
       pg-protocol: 1.6.1
       pg-types: 4.0.2
 
@@ -6863,7 +6868,7 @@ snapshots:
 
   '@types/webpack@5.28.5(@swc/core@1.3.101(@swc/helpers@0.5.11))(esbuild@0.19.11)':
     dependencies:
-      '@types/node': 20.14.9
+      '@types/node': 20.14.10
       tapable: 2.2.1
       webpack: 5.92.1(@swc/core@1.3.101(@swc/helpers@0.5.11))(esbuild@0.19.11)
     transitivePeerDependencies:
@@ -7648,7 +7653,7 @@ snapshots:
     dependencies:
       '@types/cookie': 0.4.1
       '@types/cors': 2.8.17
-      '@types/node': 20.14.9
+      '@types/node': 20.14.10
       accepts: 1.3.8
       base64id: 2.0.0
       cookie: 0.4.2
@@ -8658,7 +8663,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 20.14.9
+      '@types/node': 20.14.10
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
