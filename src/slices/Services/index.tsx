@@ -1,4 +1,5 @@
 import { Heading, HeadingDivider, Text } from '@/components'
+import { ImageCarousel } from '@/components/ImageCarousel'
 import { cn } from '@/lib/utils'
 import { Content, isFilled } from '@prismicio/client'
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
@@ -120,11 +121,12 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
         <div className="flex w-full max-w-5xl flex-col items-center justify-center gap-8">
           <HeadingDivider richText={slice.primary.title} bg={background} className="mb-0" />
           <Text richText={slice.primary.description} size="md" className="max-w-4xl text-center" />
-          {isFilled.image(slice.primary.image) && (
+          {/* {isFilled.image(slice.primary.image) && (
             <div className="relative max-h-[466px] min-h-fit max-w-6xl lg:max-h-[562px]">
               <PrismicNextImage field={slice.primary.image} />
             </div>
-          )}
+          )} */}
+          {isFilled.group(slice.primary.images) && <ImageCarousel images={slice.primary.images} controls />}
         </div>
       )}
     </section>

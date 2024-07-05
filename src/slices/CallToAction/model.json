@@ -346,6 +346,23 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "images": {
+          "type": "Group",
+          "config": {
+            "label": "Images",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        },
         "image": {
           "type": "Image",
           "config": {

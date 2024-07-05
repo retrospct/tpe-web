@@ -1,5 +1,6 @@
 import { Heading, Text } from '@/components'
 import { TpSquiggle } from '@/components/icons/TpSquiggle'
+import { ImageCarousel } from '@/components/ImageCarousel'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { isFilled, type Content } from '@prismicio/client'
@@ -136,10 +137,8 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
       )}
       {slice.variation === 'imageTextFeatured' && (
         <div className="flex w-full max-w-7xl flex-col items-center justify-center gap-12 py-16 lg:flex-row">
-          {isFilled.image(slice.primary.image) && (
-            <div className="relative max-h-[466px] max-w-xl overflow-hidden lg:max-h-[562px]">
-              <PrismicNextImage field={slice.primary.image} className="object-cover" />
-            </div>
+          {isFilled.group(slice.primary.images) && (
+            <ImageCarousel images={slice.primary.images} className="max-w-xl overflow-hidden" />
           )}
           <div className="flex max-w-xl flex-col items-center">
             <Heading

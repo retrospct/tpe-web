@@ -353,14 +353,6 @@
             "single": "paragraph,strong,em,hyperlink,list-item,o-list-item"
           }
         },
-        "image": {
-          "type": "Image",
-          "config": {
-            "label": "Image",
-            "constraint": {},
-            "thumbnails": []
-          }
-        },
         "background": {
           "type": "Select",
           "config": {
@@ -373,6 +365,23 @@
               "secondary",
               "accent"
             ]
+          }
+        },
+        "images": {
+          "type": "Group",
+          "config": {
+            "label": "Images",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
           }
         }
       },

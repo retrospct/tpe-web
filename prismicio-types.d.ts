@@ -791,6 +791,21 @@ export interface CallToActionSliceDefaultPrimaryPackagesItem {
 }
 
 /**
+ * Item in *CallToAction → Image Text Featured → Primary → Images*
+ */
+export interface CallToActionSliceImageTextFeaturedPrimaryImagesItem {
+  /**
+   * Image field in *CallToAction → Image Text Featured → Primary → Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.imageTextFeatured.primary.images[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+}
+
+/**
  * Item in *CallToAction → Image Text Featured → Primary → Featured*
  */
 export interface CallToActionSliceImageTextFeaturedPrimaryFeaturedItem {
@@ -1168,6 +1183,16 @@ export type CallToActionSliceButtonOnly = prismic.SharedSliceVariation<
  * Primary content in *CallToAction → Image Text Featured → Primary*
  */
 export interface CallToActionSliceImageTextFeaturedPrimary {
+  /**
+   * Images field in *CallToAction → Image Text Featured → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.imageTextFeatured.primary.images[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  images: prismic.GroupField<Simplify<CallToActionSliceImageTextFeaturedPrimaryImagesItem>>
+
   /**
    * Image field in *CallToAction → Image Text Featured → Primary*
    *
@@ -2604,6 +2629,21 @@ export interface ServicesSliceDesignServicesPrimaryServicesItem {
 }
 
 /**
+ * Item in *Services → Graphic Design → Primary → Images*
+ */
+export interface ServicesSliceGraphicDesignPrimaryImagesItem {
+  /**
+   * Image field in *Services → Graphic Design → Primary → Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.graphicDesign.primary.images[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+}
+
+/**
  * Primary content in *Services → Default → Primary*
  */
 export interface ServicesSliceDefaultPrimary {
@@ -2893,16 +2933,6 @@ export interface ServicesSliceGraphicDesignPrimary {
   description: prismic.RichTextField
 
   /**
-   * Image field in *Services → Graphic Design → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: services.graphicDesign.primary.image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  image: prismic.ImageField<never>
-
-  /**
    * Background field in *Services → Graphic Design → Primary*
    *
    * - **Field Type**: Select
@@ -2911,6 +2941,16 @@ export interface ServicesSliceGraphicDesignPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   background: prismic.SelectField<'background' | 'foreground' | 'primary' | 'secondary' | 'accent'>
+
+  /**
+   * Images field in *Services → Graphic Design → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.graphicDesign.primary.images[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  images: prismic.GroupField<Simplify<ServicesSliceGraphicDesignPrimaryImagesItem>>
 }
 
 /**
@@ -3204,6 +3244,7 @@ declare module '@prismicio/client' {
       CallToActionSliceDefaultPrimary,
       CallToActionSliceImageTextPrimary,
       CallToActionSliceButtonOnlyPrimary,
+      CallToActionSliceImageTextFeaturedPrimaryImagesItem,
       CallToActionSliceImageTextFeaturedPrimaryFeaturedItem,
       CallToActionSliceImageTextFeaturedPrimary,
       CallToActionSliceVariation,
@@ -3276,6 +3317,7 @@ declare module '@prismicio/client' {
       ServicesSliceMainServicesItem,
       ServicesSliceDesignServicesPrimaryServicesItem,
       ServicesSliceDesignServicesPrimary,
+      ServicesSliceGraphicDesignPrimaryImagesItem,
       ServicesSliceGraphicDesignPrimary,
       ServicesSliceVariation,
       ServicesSliceDefault,
