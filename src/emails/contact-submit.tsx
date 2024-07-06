@@ -54,9 +54,9 @@ export const EmailContactSubmit: React.FC<Readonly<EmailContactSubmitProps>> = (
         </Head>
         <Preview>{previewText}</Preview>
         <Tailwind>
-          <Body className="mx-auto my-auto bg-white px-2 font-sans">
-            <Container className="mx-auto my-[40px] max-w-[465px] rounded border border-solid border-[#eaeaea] px-5 pb-5">
-              <Section className="bg-white p-3">
+          <Body className="mx-auto my-auto bg-white px-1 font-sans">
+            <Container className="mx-auto my-8 max-w-[465px] rounded border border-solid border-[#eaeaea] pb-5">
+              <Section className="bg-[#FFFAF6] p-3">
                 <Link href="https://twoperfectevents.com">
                   <Img
                     src={`${baseUrl}/img/logo-tpe@2x.png`}
@@ -67,12 +67,12 @@ export const EmailContactSubmit: React.FC<Readonly<EmailContactSubmitProps>> = (
                   />
                 </Link>
               </Section>
-              <Heading as="h2" className="mx-0 my-8 text-balance p-0 text-[24px] font-normal text-black">
+              <Heading as="h2" className="mx-0 my-8 text-balance px-5 py-0 text-[24px] font-normal text-black">
                 New contact form submission!
               </Heading>
               {payload &&
                 Object.keys(payload).map((key) => (
-                  <Section key={key}>
+                  <Section key={key} className="px-5">
                     <div className="mb-3 flex w-full items-center p-1">
                       <Heading as="h3" className="m-0 text-base">
                         {capitalize(key)}:&nbsp;

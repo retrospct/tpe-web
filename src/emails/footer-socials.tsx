@@ -4,7 +4,7 @@ const baseUrl = process.env.APP_URL ? `https://${process.env.APP_URL}` : '/stati
 
 export const FooterSocials = () => {
   return (
-    <Section>
+    <Section className="px-5">
       <Row>
         <Column width={40}>
           <Link href="https://www.yelp.com/biz/two-perfect-events-palo-alto">
@@ -13,7 +13,7 @@ export const FooterSocials = () => {
               width="28"
               height="28"
               alt="Yelp logo"
-              className="rounded-full bg-white p-[5px]"
+              className="rounded-full bg-[#FFFAF6] p-[5px]"
             />
           </Link>
         </Column>
@@ -24,7 +24,7 @@ export const FooterSocials = () => {
               width="28"
               height="28"
               alt="Instagram logo"
-              className="rounded-full bg-white p-[5px]"
+              className="rounded-full bg-[#FFFAF6] p-[5px]"
             />
           </Link>
         </Column>
@@ -35,7 +35,7 @@ export const FooterSocials = () => {
               width="28"
               height="28"
               alt="Facebook logo"
-              className="rounded-full bg-white p-[5px]"
+              className="rounded-full bg-[#FFFAF6] p-[5px]"
             />
           </Link>
         </Column>
@@ -46,7 +46,7 @@ export const FooterSocials = () => {
               width="28"
               height="28"
               alt="Tiktok logo"
-              className="rounded-full bg-white p-[5px]"
+              className="rounded-full bg-[#FFFAF6] p-[5px]"
             />
           </Link>
         </Column>
@@ -57,7 +57,7 @@ export const FooterSocials = () => {
               width="28"
               height="28"
               alt="Pinterest logo"
-              className="rounded-full bg-white p-[5px]"
+              className="rounded-full bg-[#FFFAF6] p-[5px]"
             />
           </Link>
         </Column>

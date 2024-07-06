@@ -38,9 +38,9 @@ export const EmailContactConfirm = ({
       <Head />
       <Preview>{previewText}</Preview>
       <Tailwind>
-        <Body className="mx-auto my-auto bg-white px-2 font-sans">
-          <Container className="mx-auto my-[40px] max-w-[465px] rounded border border-solid border-[#eaeaea] px-5 pb-5">
-            <Section className="bg-white p-3">
+        <Body className="mx-auto my-auto bg-white px-1 font-sans">
+          <Container className="mx-auto my-[40px] max-w-[465px] rounded border border-solid border-[#eaeaea] pb-5">
+            <Section className="bg-[#FFFAF6] p-3">
               <Link href="https://twoperfectevents.com">
                 <Img
                   src={`${baseUrl}/img/logo-tpe@2x.png`}
@@ -51,14 +51,16 @@ export const EmailContactConfirm = ({
                 />
               </Link>
             </Section>
-            <Heading className="mx-0 my-8 text-balance p-0 text-[24px] font-normal text-black">{subject}</Heading>
-            <Text className="text-[14px] leading-[24px] text-black">Hello {firstName},</Text>
-            <Text className="text-pretty text-[14px] leading-[24px] text-black">{body}</Text>
-            <Text className="text-[14px] leading-[24px] text-black">
-              Sincerely,
-              <br />
-              <strong>The TPE team</strong>
-            </Text>
+            <Section className="px-5">
+              <Heading className="mx-0 my-8 text-balance p-0 text-[24px] font-normal text-black">{subject}</Heading>
+              <Text className="text-[14px] leading-[24px] text-black">Hello {firstName},</Text>
+              <Text className="text-pretty text-[14px] leading-[24px] text-black">{body}</Text>
+              <Text className="text-[14px] leading-[24px] text-black">
+                Sincerely,
+                <br />
+                <strong>The TPE team</strong>
+              </Text>
+            </Section>
             <Hr className="mx-0 my-[26px] w-full border border-solid border-[#eaeaea]" />
             <FooterSocials />
           </Container>
