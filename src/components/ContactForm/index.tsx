@@ -46,11 +46,6 @@ export function ContactForm() {
       formData.set('newsletter', data?.newsletter ? data.newsletter.toString() : 'false')
       data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
       formAction(formData)
-      resetForm()
-      toast.success('Thank you for contacting Two Perfect Events!', {
-        description: `We will get back to you as soon as possible.`,
-        duration: 8000
-      })
     })
   }
 
@@ -59,6 +54,10 @@ export function ContactForm() {
       formRef.current?.reset()
       form.reset()
     }
+    toast.success('Thank you for contacting Two Perfect Events!', {
+      description: `We will get back to you as soon as possible.`,
+      duration: 8000
+    })
   }
 
   return (
@@ -70,12 +69,14 @@ export function ContactForm() {
         action={(evt) => {
           form.handleSubmit(async (data) => {
             await submitForm(data)
+            await resetForm()
           })
         }}
         onSubmit={(evt) => {
           evt.preventDefault()
           form.handleSubmit(async (data) => {
             await submitForm(data)
+            await resetForm()
           })(evt)
         }}
         className="my-11 w-full max-w-md space-y-4 px-2 text-center"
