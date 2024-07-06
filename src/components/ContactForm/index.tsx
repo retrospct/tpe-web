@@ -46,7 +46,6 @@ export function ContactForm() {
       formData.set('newsletter', data?.newsletter ? data.newsletter.toString() : 'false')
       data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
       formAction(formData)
-      resetForm()
     })
   }
 
@@ -71,12 +70,14 @@ export function ContactForm() {
           form.handleSubmit(async (data) => {
             await submitForm(data)
           })
+          resetForm()
         }}
         onSubmit={(evt) => {
           evt.preventDefault()
           form.handleSubmit(async (data) => {
             await submitForm(data)
           })(evt)
+          resetForm()
         }}
         className="my-11 w-full max-w-md space-y-4 px-2 text-center"
       >
