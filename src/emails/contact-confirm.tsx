@@ -19,7 +19,7 @@ interface EmailContactConfirmProps {
   replyTo?: string
 }
 
-const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '/static'
+const baseUrl = process.env.APP_URL ? `https://${process.env.APP_URL}` : '/static'
 
 export const EmailContactConfirm = ({
   name = 'guest',

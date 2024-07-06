@@ -1,6 +1,6 @@
 import { Column, Img, Link, Row, Section } from '@react-email/components'
 
-const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '/static'
+const baseUrl = process.env.APP_URL ? `https://${process.env.APP_URL}` : '/static'
 
 export const FooterSocials = () => {
   return (

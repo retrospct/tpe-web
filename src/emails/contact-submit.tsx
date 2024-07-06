@@ -28,7 +28,7 @@ const defaultPayload = {
   newsletter: true
 }
 
-const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '/static'
+const baseUrl = process.env.APP_URL ? `https://${process.env.APP_URL}` : '/static'
 
 export const EmailContactSubmit: React.FC<Readonly<EmailContactSubmitProps>> = ({ payload = defaultPayload }) => {
   const previewText = `New form submission - ${payload?.name}<${payload?.email}>`
