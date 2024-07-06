@@ -55,8 +55,8 @@ export const EmailContactSubmit: React.FC<Readonly<EmailContactSubmitProps>> = (
         <Preview>{previewText}</Preview>
         <Tailwind>
           <Body className="mx-auto my-auto bg-white px-2 font-sans">
-            <Container className="mx-auto my-[40px] max-w-[465px] rounded border border-solid border-[#eaeaea] p-5">
-              <Section className="mt-5 bg-white p-3">
+            <Container className="mx-auto my-[40px] max-w-[465px] rounded border border-solid border-[#eaeaea] px-5 pb-5">
+              <Section className="bg-white p-3">
                 <Link href="https://twoperfectevents.com">
                   <Img
                     src={`${baseUrl}/img/logo-tpe@2x.png`}
