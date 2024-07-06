@@ -19,7 +19,7 @@ interface EmailContactConfirmProps {
   replyTo?: string
 }
 
-const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : ''
+const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '/static'
 
 export const EmailContactConfirm = ({
   name = 'guest',
@@ -36,7 +36,7 @@ export const EmailContactConfirm = ({
             <Section className="mt-[32px]">
               <Link href="https://twoperfectevents.com">
                 <Img
-                  src={`${baseUrl}/static/img/logo-tpe.png`}
+                  src={`${baseUrl}/img/logo-tpe.png`}
                   width="266"
                   height="124"
                   alt="Two Perfect Events"

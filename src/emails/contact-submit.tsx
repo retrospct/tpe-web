@@ -28,7 +28,7 @@ const defaultPayload = {
   newsletter: true
 }
 
-const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : ''
+const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '/static'
 
 export const EmailContactSubmit: React.FC<Readonly<EmailContactSubmitProps>> = ({ payload = defaultPayload }) => {
   const previewText = `New form submission - ${payload?.name}<${payload?.email}>`
@@ -59,7 +59,7 @@ export const EmailContactSubmit: React.FC<Readonly<EmailContactSubmitProps>> = (
               <Section className="mt-[32px]">
                 <Link href="https://twoperfectevents.com">
                   <Img
-                    src={`${baseUrl}/static/img/logo-tpe.png`}
+                    src={`${baseUrl}/img/logo-tpe.png`}
                     width="266"
                     height="124"
                     alt="Two Perfect Events"
