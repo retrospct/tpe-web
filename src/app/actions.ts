@@ -123,7 +123,12 @@ export async function subscribeAction(prevState: FormState, data: FormData): Pro
       to: parsed.data?.email || 'leah@twoperfectevents.com',
       from: 'Two Perfect Events <no-reply@email.twoperfectevents.com>',
       subject: 'Thank you for contacting Two Perfect Events!',
-      react: EmailContactConfirm({ name: parsed.data.email })
+      react: EmailContactConfirm({
+        previewText: 'Thanks for subscribing to our newsletter!',
+        subject: 'Thank you for subscribing!',
+        body: `We'll periodically send interesting content and updates on what the Two Perfect Events team are up to.`,
+        name: parsed.data.email
+      })
     })
 
     return { message: `Thank you for subscribing to our newsletter!` }

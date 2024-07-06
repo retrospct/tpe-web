@@ -16,16 +16,22 @@ import { FooterSocials } from './footer-socials'
 
 interface EmailContactConfirmProps {
   name: string
-  replyTo?: string
+  // replyTo?: string
+  previewText?: string
+  subject?: string
+  body?: string
 }
 
 const baseUrl = process.env.APP_URL ? `https://${process.env.APP_URL}` : '/static'
 
 export const EmailContactConfirm = ({
   name = 'guest',
-  replyTo = 'team@twoperfectevents.com'
+  // replyTo = 'team@twoperfectevents.com',
+  previewText = 'Thank you for contacting Two Perfect Events!',
+  subject = 'Thank you for reaching out!',
+  body = 'We will get back to you as soon as we can.'
 }: EmailContactConfirmProps) => {
-  const previewText = `Thank you for contacting Two Perfect Events - TPE Team<${replyTo}>`
+  // const previewText = `Thank you for contacting Two Perfect Events! - TPE Team<${replyTo}>`
   const firstName = name.trim().split(' ')[0]
   return (
     <Html lang="en">
@@ -45,13 +51,9 @@ export const EmailContactConfirm = ({
                 />
               </Link>
             </Section>
-            <Heading className="mx-0 my-9 text-balance p-0 text-[24px] font-normal text-black">
-              Thank you for reaching out!
-            </Heading>
+            <Heading className="mx-0 my-9 text-balance p-0 text-[24px] font-normal text-black">{subject}</Heading>
             <Text className="text-[14px] leading-[24px] text-black">Hello {firstName},</Text>
-            <Text className="text-pretty text-[14px] leading-[24px] text-black">
-              We will get back to you as soon as we can.
-            </Text>
+            <Text className="text-pretty text-[14px] leading-[24px] text-black">{body}</Text>
             <Text className="text-[14px] leading-[24px] text-black">
               Sincerely,
               <br />
@@ -68,7 +70,10 @@ export const EmailContactConfirm = ({
 
 EmailContactConfirm.PreviewProps = {
   name: 'Justin',
-  replyTo: 'no-reply@email.twoperfectevents.com'
+  // replyTo: 'no-reply@email.twoperfectevents.com',
+  previewText: 'Thank you for contacting Two Perfect Events!',
+  subject: 'Thank you for reaching out!',
+  body: 'We will get back to you as soon as we can.'
 } as EmailContactConfirmProps
 
 export default EmailContactConfirm
