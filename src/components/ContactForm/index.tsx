@@ -47,18 +47,18 @@ export function ContactForm() {
       data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
       formAction(formData)
       resetForm()
-      toast.success('Thank you for contacting Two Perfect Events!', {
-        description: `We will get back to you as soon as possible.`,
-        duration: 8000
-      })
     })
   }
 
   const resetForm = () => {
-    // if (state?.message !== '' && !state.issues && process.env.NODE_ENV !== 'development') {
-    formRef.current?.reset()
-    form.reset()
-    // }
+    if (state?.message !== '' && !state.issues && (!pending || !isPending)) {
+      formRef.current?.reset()
+      form.reset()
+      toast.success('Thank you for contacting Two Perfect Events!', {
+        description: `We will get back to you as soon as possible.`,
+        duration: 8000
+      })
+    }
   }
 
   return (
@@ -70,14 +70,12 @@ export function ContactForm() {
         action={(evt) => {
           form.handleSubmit(async (data) => {
             await submitForm(data)
-            await resetForm()
           })
         }}
         onSubmit={(evt) => {
           evt.preventDefault()
           form.handleSubmit(async (data) => {
             await submitForm(data)
-            await resetForm()
           })(evt)
         }}
         className="my-11 w-full max-w-md space-y-4 px-2 text-center"
@@ -235,9 +233,11 @@ export function ContactForm() {
         />
         <Button type="submit" className="italic" disabled={pending || isPending}>
           SUBMIT
-          {pending || (isPending && <Loader2 className="ml-2 h-6 w-6 animate-spin" />)}
+          {(pending || isPending) && <Loader2 className="ml-2 h-6 w-6 animate-spin" />}
         </Button>
-        {/* {state?.message !== '' && !state.issues && <div className="text-balance text-primary">{state.message}</div>} */}
+        {state?.message !== '' && !state.issues && (!pending || !isPending) && (
+          <div className="text-balance text-primary">{state.message}</div>
+        )}
         {state?.issues && (
           <div className="text-primary">
             <ul>
