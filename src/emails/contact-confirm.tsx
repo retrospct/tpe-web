@@ -40,7 +40,7 @@ export const EmailContactConfirm = ({
       <Tailwind>
         <Body className="mx-auto my-auto bg-white px-2 font-sans">
           <Container className="mx-auto my-[40px] max-w-[465px] rounded border border-solid border-[#eaeaea] p-5">
-            <Section className="mt-[32px]">
+            <Section className="mt-5 bg-white p-3">
               <Link href="https://twoperfectevents.com">
                 <Img
                   src={`${baseUrl}/img/logo-tpe@2x.png`}
@@ -51,7 +51,7 @@ export const EmailContactConfirm = ({
                 />
               </Link>
             </Section>
-            <Heading className="mx-0 my-9 text-balance p-0 text-[24px] font-normal text-black">{subject}</Heading>
+            <Heading className="mx-0 my-8 text-balance p-0 text-[24px] font-normal text-black">{subject}</Heading>
             <Text className="text-[14px] leading-[24px] text-black">Hello {firstName},</Text>
             <Text className="text-pretty text-[14px] leading-[24px] text-black">{body}</Text>
             <Text className="text-[14px] leading-[24px] text-black">

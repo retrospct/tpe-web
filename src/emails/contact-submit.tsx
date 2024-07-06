@@ -56,7 +56,7 @@ export const EmailContactSubmit: React.FC<Readonly<EmailContactSubmitProps>> = (
         <Tailwind>
           <Body className="mx-auto my-auto bg-white px-2 font-sans">
             <Container className="mx-auto my-[40px] max-w-[465px] rounded border border-solid border-[#eaeaea] p-5">
-              <Section className="mt-[32px]">
+              <Section className="mt-5 bg-white p-3">
                 <Link href="https://twoperfectevents.com">
                   <Img
                     src={`${baseUrl}/img/logo-tpe@2x.png`}
@@ -67,7 +67,7 @@ export const EmailContactSubmit: React.FC<Readonly<EmailContactSubmitProps>> = (
                   />
                 </Link>
               </Section>
-              <Heading as="h2" className="mx-0 my-9 text-balance p-0 text-[24px] font-normal text-black">
+              <Heading as="h2" className="mx-0 my-8 text-balance p-0 text-[24px] font-normal text-black">
                 New contact form submission!
               </Heading>
               {payload &&
