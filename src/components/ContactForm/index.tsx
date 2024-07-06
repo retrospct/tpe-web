@@ -46,18 +46,19 @@ export function ContactForm() {
       formData.set('newsletter', data?.newsletter ? data.newsletter.toString() : 'false')
       data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
       formAction(formData)
+      resetForm()
+      toast.success('Thank you for contacting Two Perfect Events!', {
+        description: `We will get back to you as soon as possible.`,
+        duration: 8000
+      })
     })
   }
 
-  const resetForm = async () => {
-    if (state?.message !== '' && !state.issues && process.env.NODE_ENV !== 'development') {
-      formRef.current?.reset()
-      form.reset()
-    }
-    toast.success('Thank you for contacting Two Perfect Events!', {
-      description: `We will get back to you as soon as possible.`,
-      duration: 8000
-    })
+  const resetForm = () => {
+    // if (state?.message !== '' && !state.issues && process.env.NODE_ENV !== 'development') {
+    formRef.current?.reset()
+    form.reset()
+    // }
   }
 
   return (
