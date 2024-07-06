@@ -59,7 +59,7 @@ export const EmailContactSubmit: React.FC<Readonly<EmailContactSubmitProps>> = (
               <Section className="mt-[32px]">
                 <Link href="https://twoperfectevents.com">
                   <Img
-                    src={`${baseUrl}/img/logo-tpe.png`}
+                    src={`${baseUrl}/img/logo-tpe@2x.png`}
                     width="266"
                     height="124"
                     alt="Two Perfect Events"
