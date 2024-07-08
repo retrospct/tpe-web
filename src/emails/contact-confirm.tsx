@@ -34,7 +34,9 @@ export const EmailContactConfirm = ({
   const firstName = name.trim().split(' ')[0]
   return (
     <Html lang="en">
-      <Head />
+      <Head>
+        <title>Two Perfect Events - Thank you for contacting us!</title>
+      </Head>
       <Preview>{previewText}</Preview>
       <Tailwind>
         <Body className="mx-auto my-auto bg-white px-1 font-sans">
