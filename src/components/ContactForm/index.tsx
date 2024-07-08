@@ -6,6 +6,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Textarea } from '@/components/ui/textarea'
+import { submitContactAction } from '@/lib/actions'
 import { cn } from '@/lib/utils'
 import { contactFormSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -16,7 +17,6 @@ import { useFormState, useFormStatus } from 'react-dom'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
-import { submitContactAction } from '../../app/actions'
 
 export function ContactForm() {
   const [isPending, startTransition] = useTransition()

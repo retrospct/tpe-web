@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import { isFilled } from '@prismicio/client'
 import { PrismicRichText } from '@prismicio/react'
 import { SubscribeForm } from '../SubscribeForm'
+import { Text } from '../Text'
 import NavItems from './NavItems'
 import NavLogo from './NavLogo'
 
@@ -61,8 +62,8 @@ export default async function Footer() {
         </div>
       )}
       {isFilled.richText(navigation.data.copyright) && (
-        <div className="mx-auto mt-6 max-w-xs px-6 text-center text-xs text-red lg:mt-1 lg:max-w-full lg:px-12">
-          <PrismicRichText field={navigation.data.copyright} />
+        <div className="mx-auto mt-6 max-w-xs px-6 lg:mt-1 lg:max-w-full lg:px-12">
+          <Text richText={navigation.data.copyright} size="xs" className="text-center text-primary lg:text-primary" />
         </div>
       )}
     </footer>

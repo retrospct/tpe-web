@@ -6,7 +6,7 @@ import { sendEmail } from '@/emails'
 import { EmailContactConfirm } from '@/emails/contact-confirm'
 import { EmailContactSubmit } from '@/emails/contact-submit'
 import { formatLocalDate } from '@/lib/utils'
-import { contactFormSchemaServer, subscribeFormSchema } from '@/lib/validations'
+import { contactFormSchema, subscribeFormSchema } from '@/lib/validations'
 import { Resend } from 'resend'
 
 export type FormState = {
@@ -17,7 +17,7 @@ export type FormState = {
 
 export async function submitContactAction(prevState: FormState, data: FormData): Promise<FormState> {
   const formData = Object.fromEntries(data)
-  const parsed = contactFormSchemaServer.safeParse(formData)
+  const parsed = contactFormSchema.safeParse(formData)
   console.log('contact_form', parsed)
   // console.log('prevState', prevState)
 
@@ -71,13 +71,20 @@ export async function submitContactAction(prevState: FormState, data: FormData):
     }
   } finally {
     // If newsletter is checked
-    if (parsed.data?.newsletter === 'true') {
+    if (parsed.data?.newsletter === true) {
       const subscriptionId = '61941de4-1d7d-4230-a9e3-13409c94cbb7'
       const { name, email, phone, eventDate, comments, referral } = parsed.data
       // Call resend Audience & Contacts APIs
       await subscribeResend({ email, name })
       // Add user to subscriptions list
-      const [person] = await createPerson({ name, email, phone, eventDate, comments, referral })
+      const [person] = await createPerson({
+        name,
+        email,
+        phone,
+        ...(eventDate && { eventDate: eventDate?.toISOString() }),
+        comments,
+        referral
+      })
       await createPersonsToSubscriptions({
         personId: person.id,
         subscriptionId

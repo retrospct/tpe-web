@@ -11,26 +11,10 @@ export const contactFormSchema = z.object({
     .min(1, { message: 'Phone number is required.' })
     .max(20, { message: 'Phone number must not be longer than 20 characters please.' })
     .regex(phoneValidation, { message: 'Invalid phone number' }),
-  eventDate: z.date().optional(),
+  eventDate: z.coerce.date().optional(),
   comments: z.string().max(2000, { message: 'Reply must not be longer than 2000 characters please.' }).optional(),
   referral: z.string().max(256, { message: 'Reply must not be longer than 256 characters please.' }).optional(),
-  newsletter: z.boolean().default(false).optional()
-})
-
-export const contactFormSchemaServer = z.object({
-  email: z.string().min(1, { message: 'Email address is required.' }).max(256).email(),
-  name: z.string().min(1, { message: 'Full name is required.' }).max(256),
-  // lastName: z.string().min(1, { message: 'Last name is required.' }).max(50),
-  phone: z
-    .string()
-    .min(1, { message: 'Phone number is required.' })
-    .max(20, { message: 'Phone number must not be longer than 20 characters please.' })
-    .regex(phoneValidation, { message: 'Invalid phone number' }),
-  eventDate: z.string().datetime().optional(),
-  comments: z.string().max(2000, { message: 'Reply must not be longer than 2000 characters please.' }).optional(),
-  referral: z.string().max(256, { message: 'Reply must not be longer than 256 characters please.' }).optional(),
-  newsletter: z.string().or(z.boolean()).default(false).optional()
-  // newsletter: z.string().default('false').optional()
+  newsletter: z.coerce.boolean().default(false).optional()
 })
 
 export const subscribeFormSchema = z.object({
