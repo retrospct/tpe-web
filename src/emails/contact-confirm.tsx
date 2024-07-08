@@ -31,7 +31,6 @@ export const EmailContactConfirm = ({
   subject = 'Thank you for reaching out!',
   body = 'We will get back to you as soon as we can.'
 }: EmailContactConfirmProps) => {
-  // const previewText = `Thank you for contacting Two Perfect Events! - TPE Team<${replyTo}>`
   const firstName = name.trim().split(' ')[0]
   return (
     <Html lang="en">
@@ -39,7 +38,7 @@ export const EmailContactConfirm = ({
       <Preview>{previewText}</Preview>
       <Tailwind>
         <Body className="mx-auto my-auto bg-white px-1 font-sans">
-          <Container className="mx-auto my-[40px] max-w-[465px] rounded border border-solid border-[#eaeaea] pb-5">
+          <Container className="mx-auto my-8 max-w-[465px] rounded border border-solid border-[#eaeaea] pb-5">
             <Section className="bg-[#FFFAF6] p-3">
               <Link href="https://twoperfectevents.com">
                 <Img
