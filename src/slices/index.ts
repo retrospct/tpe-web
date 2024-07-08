@@ -5,10 +5,10 @@ import dynamic from 'next/dynamic'
 export const components = {
   awards: dynamic(() => import('./Awards')),
   banner: dynamic(() => import('./Banner')),
+  blog_list: dynamic(() => import('./BlogList')),
   call_to_action: dynamic(() => import('./CallToAction')),
   callout: dynamic(() => import('./Callout')),
   contact: dynamic(() => import('./Contact')),
-  customer_logos: dynamic(() => import('./CustomerLogos')),
   events_list: dynamic(() => import('./EventsList')),
   faq: dynamic(() => import('./Faq')),
   hero: dynamic(() => import('./Hero')),

@@ -74,7 +74,9 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
 export async function generateStaticParams() {
   const client = createClient()
-  const pages = await client.getAllByType('portfolio')
+  const pages = await client.getAllByType('portfolio', {
+    fetchLinks: ['event', 'weddings', 'event.uid', 'event.title', 'event.thumbnail']
+  })
 
   return pages.map((page) => {
     return { uid: page.uid }

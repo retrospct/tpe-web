@@ -371,6 +371,7 @@ export type NavDocument<Lang extends string = string> = prismic.PrismicDocumentW
 >
 
 type PageDocumentDataSlicesSlice =
+  | BlogListSlice
   | FaqSlice
   | TimelineSlice
   | CallToActionSlice
@@ -560,6 +561,50 @@ type PostDocumentDataSlicesSlice = never
  * Content for Post documents
  */
 interface PostDocumentData {
+  /**
+   * Title field in *Post*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField
+
+  /**
+   * Preview field in *Post*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.preview
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  preview: prismic.RichTextField
+
+  /**
+   * Thumbnail field in *Post*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.thumbnail
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  thumbnail: prismic.ImageField<never>
+
+  /**
+   * Content field in *Post*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.content
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField
+
   /**
    * Slice Zone field in *Post*
    *
@@ -774,6 +819,59 @@ type BannerSliceVariation = BannerSliceDefault | BannerSliceSimple
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type BannerSlice = prismic.SharedSlice<'banner', BannerSliceVariation>
+
+/**
+ * Item in *BlogList → Default → Primary → Posts*
+ */
+export interface BlogListSliceDefaultPrimaryPostsItem {
+  /**
+   * Post field in *BlogList → Default → Primary → Posts*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_list.default.primary.posts[].post
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  post: prismic.ContentRelationshipField<'post'>
+}
+
+/**
+ * Primary content in *BlogList → Default → Primary*
+ */
+export interface BlogListSliceDefaultPrimary {
+  /**
+   * Posts field in *BlogList → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_list.default.primary.posts[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  posts: prismic.GroupField<Simplify<BlogListSliceDefaultPrimaryPostsItem>>
+}
+
+/**
+ * Default variation for BlogList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogListSliceDefault = prismic.SharedSliceVariation<'default', Simplify<BlogListSliceDefaultPrimary>, never>
+
+/**
+ * Slice variation for *BlogList*
+ */
+type BlogListSliceVariation = BlogListSliceDefault
+
+/**
+ * BlogList Shared Slice
+ *
+ * - **API ID**: `blog_list`
+ * - **Description**: BlogList
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogListSlice = prismic.SharedSlice<'blog_list', BlogListSliceVariation>
 
 /**
  * Item in *CallToAction → Default → Primary → Packages*
@@ -1527,93 +1625,6 @@ type ContactSliceVariation = ContactSliceDefault
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type ContactSlice = prismic.SharedSlice<'contact', ContactSliceVariation>
-
-/**
- * Primary content in *CustomerLogos → Default → Primary*
- */
-export interface CustomerLogosSliceDefaultPrimary {
-  /**
-   * eyebrowHeadline field in *CustomerLogos → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: customer_logos.default.primary.eyebrowHeadline
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  eyebrowHeadline: prismic.RichTextField
-
-  /**
-   * callToActionLabel field in *CustomerLogos → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: customer_logos.default.primary.callToActionLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  callToActionLabel: prismic.KeyTextField
-
-  /**
-   * callToActionLink field in *CustomerLogos → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: customer_logos.default.primary.callToActionLink
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  callToActionLink: prismic.LinkField
-}
-
-/**
- * Primary content in *CustomerLogos → Items*
- */
-export interface CustomerLogosSliceDefaultItem {
-  /**
-   * image field in *CustomerLogos → Items*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: customer_logos.items[].image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  image: prismic.ImageField<never>
-
-  /**
-   * link field in *CustomerLogos → Items*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: customer_logos.items[].link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  link: prismic.LinkField
-}
-
-/**
- * Default variation for CustomerLogos Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type CustomerLogosSliceDefault = prismic.SharedSliceVariation<
-  'default',
-  Simplify<CustomerLogosSliceDefaultPrimary>,
-  Simplify<CustomerLogosSliceDefaultItem>
->
-
-/**
- * Slice variation for *CustomerLogos*
- */
-type CustomerLogosSliceVariation = CustomerLogosSliceDefault
-
-/**
- * CustomerLogos Shared Slice
- *
- * - **API ID**: `customer_logos`
- * - **Description**: CustomerLogos
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type CustomerLogosSlice = prismic.SharedSlice<'customer_logos', CustomerLogosSliceVariation>
 
 /**
  * Primary content in *EventsList → Default → Primary*
@@ -3239,6 +3250,11 @@ declare module '@prismicio/client' {
       BannerSliceVariation,
       BannerSliceDefault,
       BannerSliceSimple,
+      BlogListSlice,
+      BlogListSliceDefaultPrimaryPostsItem,
+      BlogListSliceDefaultPrimary,
+      BlogListSliceVariation,
+      BlogListSliceDefault,
       CallToActionSlice,
       CallToActionSliceDefaultPrimaryPackagesItem,
       CallToActionSliceDefaultPrimary,
@@ -3263,11 +3279,6 @@ declare module '@prismicio/client' {
       ContactSliceDefaultPrimary,
       ContactSliceVariation,
       ContactSliceDefault,
-      CustomerLogosSlice,
-      CustomerLogosSliceDefaultPrimary,
-      CustomerLogosSliceDefaultItem,
-      CustomerLogosSliceVariation,
-      CustomerLogosSliceDefault,
       EventsListSlice,
       EventsListSliceDefaultPrimary,
       EventsListSliceDefaultItem,

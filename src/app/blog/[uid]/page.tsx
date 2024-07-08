@@ -1,16 +1,46 @@
+import { Heading, Text } from '@/components'
+import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
 import { SliceZone } from '@prismicio/react'
+import { ArrowLeft } from 'lucide-react'
 import { Metadata } from 'next'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 type Params = { uid: string }
 
 export default async function Page({ params }: { params: Params }) {
   const client = createClient()
-  const post = await client.getByUID('post', params.uid).catch(() => notFound())
+  const page = await client.getByUID('post', params.uid).catch(() => notFound())
 
-  return <SliceZone slices={post.data.slices} components={components} />
+  return (
+    <div className="mx-auto mb-14 mt-8 max-w-5xl px-3">
+      <Heading richText={page.data.title} accents className="mb-12 text-pretty text-center uppercase" />
+      <SliceZone slices={page.data.slices} components={components} />
+      <Text richText={page.data.content} />
+      <section className="flex w-full flex-col items-center gap-6 text-center text-primary">
+        <div className="my-16 flex w-full max-w-6xl flex-col items-center justify-center gap-6 lg:flex-row">
+          <div className="order-2 flex flex-1 items-center justify-center gap-3 lg:order-1">
+            <ArrowLeft className="h-4 w-4 text-primary" />
+            <Link
+              href="/blog"
+              className={cn(buttonVariants({ variant: 'link' }), 'w-fit p-0 text-xl font-medium italic tracking-wider')}
+            >
+              BACK TO BLOG
+            </Link>
+          </div>
+          <div className="order-1 flex-1 lg:order-2">
+            <Link href="/contact" className={cn(buttonVariants({ variant: 'default' }), 'italic')}>
+              BOOK NOW
+            </Link>
+          </div>
+          <div className="order-3 flex-1" />
+        </div>
+      </section>
+    </div>
+  )
 }
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {

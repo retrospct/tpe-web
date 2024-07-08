@@ -8,7 +8,11 @@ import { notFound } from 'next/navigation'
 
 export default async function Page() {
   const client = createClient()
-  const page = await client.getByUID('page', 'blog').catch(() => notFound())
+  const page = await client
+    .getByUID('page', 'blog', {
+      fetchLinks: ['posts', 'post', 'post.uid', 'post.title', 'post.preview', 'post.thumbnail']
+    })
+    .catch(() => notFound())
 
   return <SliceZone slices={page.data.slices} components={components} />
 }
@@ -25,7 +29,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export async function generateStaticParams() {
   const client = createClient()
-  const pages = await client.getAllByType('page')
+  const pages = await client.getAllByType('page', {
+    fetchLinks: ['posts', 'post', 'post.uid', 'post.title', 'post.preview', 'post.thumbnail']
+  })
 
   return pages.map((page) => {
     return { uid: page.uid }
