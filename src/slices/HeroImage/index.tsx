@@ -57,7 +57,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                 <div className="max-w-4xl text-pretty font-serif text-4xl font-normal tracking-wider text-primary sm:text-5xl">
                   <PrismicRichText field={slice.primary.title} />
                   {/* <div className="w-full after:mb-0 after:ml-0 after:mt-2 after:block after:h-[12px] after:w-full after:bg-squiggle after:md:ml-28 after:md:h-[20px] after:md:w-[400px]" /> */}
-                  <div className="mt-6 flex w-full items-center justify-center">
+                  <div className="mt-6 flex w-full items-center justify-start">
                     <TpSquiggle className="w-3/4 text-accent sm:w-auto" />
                   </div>
                 </div>
