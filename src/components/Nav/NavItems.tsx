@@ -60,7 +60,8 @@ const NavItems = ({ navigation, ...props }: { navigation: NavDocument<string> })
                     <NavigationMenuLink
                       className={cn(
                         navigationMenuTriggerStyle(),
-                        'px-5 underline-offset-8 transition-transform hover:underline'
+                        'px-5',
+                        pathname !== link && 'underline-offset-8 transition-transform hover:underline'
                       )}
                     >
                       {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
