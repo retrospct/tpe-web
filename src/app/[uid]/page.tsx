@@ -11,14 +11,14 @@ export default async function Page({ params }: { params: Params }) {
   const page = await client
     .getByUID('page', params.uid, {
       fetchLinks: [
-        'member',
-        'member.first_name',
-        'member.last_name',
-        'member.image',
-        'member.pronouns',
-        'member.title',
-        'member.bio',
-        'member.likes'
+        'person',
+        'person.first_name',
+        'person.last_name',
+        'person.image',
+        'person.pronouns',
+        'person.title',
+        'person.bio',
+        'person.likes'
       ]
     })
     .catch(() => notFound())

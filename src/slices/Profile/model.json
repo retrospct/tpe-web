@@ -11,22 +11,33 @@
       "version": "initial",
       "description": "Default",
       "imageUrl": "",
-      "primary": {},
-      "items": {
-        "member": {
-          "type": "Link",
+      "primary": {
+        "persons": {
+          "type": "Group",
           "config": {
-            "label": "Member",
-            "select": "document"
-          }
-        },
-        "full_width": {
-          "type": "Boolean",
-          "config": {
-            "label": "Full Width",
-            "placeholder_false": "false",
-            "placeholder_true": "true",
-            "default_value": false
+            "label": "Persons",
+            "repeat": true,
+            "fields": {
+              "person": {
+                "type": "Link",
+                "config": {
+                  "label": "Person",
+                  "select": "document",
+                  "customtypes": [
+                    "person"
+                  ]
+                }
+              },
+              "full_width": {
+                "type": "Boolean",
+                "config": {
+                  "label": "Full Width",
+                  "default_value": false,
+                  "placeholder_true": "true",
+                  "placeholder_false": "false"
+                }
+              }
+            }
           }
         }
       }

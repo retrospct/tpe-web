@@ -16,11 +16,6 @@ import { forwardRef } from 'react'
 import { NavDocument } from '../../../prismicio-types'
 import { TpStar } from '../icons'
 
-// const callsToAction = [
-//   { name: 'Our portfolio', href: '/portfolio', icon: PlayCircleIcon },
-//   { name: 'Contact us', href: '/contact', icon: PhoneIcon }
-// ]
-
 const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
   const pathname = usePathname()
   return (
@@ -36,7 +31,7 @@ const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
                     {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="relative">
-                    <ul className="relative flex flex-col gap-1 p-3">
+                    <ul className="grid w-[400px] grid-cols-1 gap-3 p-4">
                       {slice.items.map((item) => (
                         <ListItem
                           key={asText(item.name)}
@@ -81,22 +76,22 @@ const ListItem = forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRe
     return (
       <li>
         <NavigationMenuLink asChild>
-          <Link
-            ref={ref}
-            href={href || '/'}
-            legacyBehavior
-            passHref
-            // className={cn('block select-none space-y-2 px-6 py-8', className)}
-            {...props}
-          >
+          <Link ref={ref} href={href || '/'} legacyBehavior passHref {...props}>
             <div
               className={cn(
-                'flex cursor-pointer items-center justify-center gap-1 px-6 py-4 text-lg font-medium leading-none text-primary outline-none transition-colors hover:bg-accent/50 hover:text-primary/80 disabled:pointer-events-none disabled:opacity-50',
+                'block cursor-pointer select-none space-y-1 p-3 leading-none no-underline outline-none transition-colors hover:bg-accent/50 hover:text-accent-foreground focus:bg-accent/50 focus:text-accent-foreground disabled:opacity-5',
                 className
               )}
             >
-              {title}
-              {children && <p className="text-md line-clamp-2 leading-snug">{children}</p>}
+              {/* <div className="flex items-center justify-between gap-6"> */}
+              {/* <ListItemIcon icon={title} /> */}
+              {/* <div className="block"> */}
+              <div className="mb-3 text-lg font-medium leading-none text-primary">{title}</div>
+              {children && (
+                <p className="text-md line-clamp-2 text-pretty font-normal leading-snug text-secondary">{children}</p>
+              )}
+              {/* </div> */}
+              {/* </div> */}
             </div>
           </Link>
         </NavigationMenuLink>
@@ -105,6 +100,17 @@ const ListItem = forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRe
   }
 )
 ListItem.displayName = 'ListItem'
+
+// const ListItemIcon = ({ icon }: { icon?: string }) => {
+//   switch (icon?.toLowerCase()) {
+//     case 'events':
+//       return <PartyPopper className="h-20 w-20 text-primary" />
+//     case 'design':
+//       return <Origami className="h-20 w-20 text-primary" />
+//     default:
+//       return <Image className="h-20 w-20 text-primary" />
+//   }
+// }
 
 // const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
 //   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
