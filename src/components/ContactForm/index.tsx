@@ -224,10 +224,12 @@ export function ContactForm() {
           render={({ field }) => (
             <FormItem className="flex flex-row items-center justify-center space-x-3 space-y-0 p-4 text-primary">
               <FormControl>
-                <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                <Checkbox checked={field.value} onCheckedChange={field.onChange} id="newsletter" />
               </FormControl>
               <div className="space-y-1 leading-none">
-                <FormLabel>Join our email list for tips, tricks, and all things TPE!</FormLabel>
+                <FormLabel htmlFor="newsletter" className="cursor-pointer">
+                  Join our email list for tips, tricks, and all things TPE!
+                </FormLabel>
               </div>
             </FormItem>
           )}
