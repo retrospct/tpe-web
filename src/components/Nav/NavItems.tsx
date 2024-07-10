@@ -1,4 +1,5 @@
 'use client'
+import { Button } from '@/components/ui/button'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -8,18 +9,21 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle
 } from '@/components/ui/navigation-menu'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { cn } from '@/lib/utils'
 import { asText, isFilled } from '@prismicio/client'
+import { ChevronDownIcon, Menu } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { forwardRef } from 'react'
+import React, { forwardRef, useState } from 'react'
 import { NavDocument } from '../../../prismicio-types'
 import { TpStar } from '../icons'
+import NavLogo from './NavLogo'
 
-const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
+const NavItems = ({ navigation, ...props }: { navigation: NavDocument<string> }) => {
   const pathname = usePathname()
   return (
-    <div className="mx-auto flex w-full max-w-3xl items-center justify-center p-6 lg:px-8">
+    <nav className="mx-auto flex w-full max-w-3xl items-center justify-center p-6 lg:px-8">
       <NavigationMenu>
         <NavigationMenuList className="w-full flex-none flex-col justify-between gap-4 md:flex-row md:gap-0">
           {navigation.data.slices.map((slice, i) => {
@@ -37,6 +41,7 @@ const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
                           key={asText(item.name)}
                           title={asText(item.name)}
                           href={isFilled.link(item.link) ? item.link.url : '/'}
+                          {...props}
                         >
                           {asText(item.description)}
                         </ListItem>
@@ -51,8 +56,13 @@ const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
             } else {
               return (
                 <NavigationMenuItem key={`nav-item-${i}`} className="relative">
-                  <Link href={link} legacyBehavior passHref>
-                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), 'px-5')}>
+                  <Link href={link} legacyBehavior passHref {...props}>
+                    <NavigationMenuLink
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        'px-5 underline-offset-8 transition-transform hover:underline'
+                      )}
+                    >
                       {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
                     </NavigationMenuLink>
                   </Link>
@@ -65,30 +75,127 @@ const NavItems = ({ navigation }: { navigation: NavDocument<string> }) => {
           })}
         </NavigationMenuList>
       </NavigationMenu>
-    </div>
+    </nav>
   )
 }
 
 export default NavItems
 
-const ListItem = forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(
+export const NavItemsSheet = ({
+  navigation
+  // closeSheet,
+  // ...props
+}: {
+  navigation: NavDocument<string>
+  // closeSheet: () => void
+}) => {
+  const pathname = usePathname()
+  const [sheetOpen, setSheetOpen] = useState(false)
+
+  return (
+    <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+      <SheetTrigger asChild>
+        <Button variant="link">
+          <Menu className="h-8 w-8" />
+        </Button>
+      </SheetTrigger>
+      <SheetContent>
+        <div className="flex h-full w-full flex-col items-center justify-between">
+          <div className="w-full">
+            {/* <SheetClose asChild> */}
+            <NavLogo onClick={() => setSheetOpen(false)} />
+            {/* </SheetClose> */}
+            <nav className="mx-auto flex w-full max-w-3xl items-center justify-center px-2 py-6">
+              <NavigationMenu>
+                <NavigationMenuList className="mx-1 flex w-full flex-col items-start justify-between gap-4 space-x-0 text-center">
+                  {navigation.data.slices.map((slice, i) => {
+                    const link =
+                      isFilled.link(slice.primary.link) && slice.primary.link?.url ? slice.primary.link.url : ''
+                    if (slice.items.length > 0) {
+                      return (
+                        <NavigationMenuItem
+                          key={`nav-item-${i}`}
+                          className="relative flex flex-col items-start justify-center gap-3"
+                        >
+                          <div className={cn(navigationMenuTriggerStyle(), 'px-0 text-left')}>
+                            {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
+                            <ChevronDownIcon className="ml-1 h-5 w-5" />
+                          </div>
+                          <ul className="grid max-w-[400px] grid-cols-1 gap-0 pl-3">
+                            {slice.items.map((item) => (
+                              <ListItem
+                                key={asText(item.name)}
+                                title={asText(item.name)}
+                                href={isFilled.link(item.link) ? item.link.url : '/'}
+                                onClick={() => setSheetOpen(false)}
+                                className="relative px-0 text-left"
+                              >
+                                {isFilled.link(item.link) && pathname === item.link.url && (
+                                  <TpStar className="absolute -left-5 top-[15px] h-[12px] w-[12px] text-primary" />
+                                )}
+                                {asText(item.description)}
+                              </ListItem>
+                            ))}
+                          </ul>
+                        </NavigationMenuItem>
+                      )
+                    } else {
+                      return (
+                        <NavigationMenuItem
+                          key={`nav-item-${i}`}
+                          className="relative flex items-center justify-center gap-3"
+                        >
+                          {pathname === link && (
+                            <TpStar className="absolute -left-6 top-[calc(50%-5px)] h-[12px] w-[12px] text-primary" />
+                          )}
+                          {/* legacyBehavior */}
+                          <Link
+                            href={link}
+                            passHref
+                            onClick={() => setSheetOpen(false)}
+                            className="underline-offset-8 transition-transform hover:underline"
+                          >
+                            <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), 'px-0')}>
+                              {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
+                            </NavigationMenuLink>
+                          </Link>
+                        </NavigationMenuItem>
+                      )
+                    }
+                  })}
+                </NavigationMenuList>
+              </NavigationMenu>
+            </nav>
+          </div>
+        </div>
+      </SheetContent>
+    </Sheet>
+  )
+}
+
+export const ListItem = forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(
   ({ className, title, href, children, ...props }, ref) => {
     return (
-      <li>
+      <li className="isolate">
         <NavigationMenuLink asChild>
-          <Link ref={ref} href={href || '/'} legacyBehavior passHref {...props}>
+          {/* legacyBehavior */}
+          <Link ref={ref} href={href || '/'} passHref {...props}>
             <div
               className={cn(
-                'block cursor-pointer select-none space-y-1 p-3 leading-none no-underline outline-none transition-colors hover:bg-accent/50 hover:text-accent-foreground focus:bg-accent/50 focus:text-accent-foreground disabled:opacity-5',
+                'group block cursor-pointer select-none space-y-1 p-3 leading-none no-underline outline-none focus:bg-accent/50 focus:text-accent-foreground disabled:opacity-5',
                 className
               )}
             >
               {/* <div className="flex items-center justify-between gap-6"> */}
               {/* <ListItemIcon icon={title} /> */}
               {/* <div className="block"> */}
-              <div className="mb-3 text-lg font-medium leading-none text-primary">{title}</div>
+              <div className="mb-3 text-lg font-medium italic leading-none text-primary underline-offset-8 transition-transform group-hover:underline">
+                {title}
+              </div>
               {children && (
-                <p className="text-md line-clamp-2 text-pretty font-normal leading-snug text-secondary">{children}</p>
+                <p className="text-md important:no-underline relative line-clamp-2 text-pretty font-normal leading-snug text-secondary">
+                  {children}
+                </p>
               )}
               {/* </div> */}
               {/* </div> */}

@@ -1,9 +1,5 @@
 import { createClient } from '@/prismicio'
-
-import { Button } from '@/components/ui/button'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { Menu } from 'lucide-react'
-import NavItems from './NavItems'
+import NavItems, { NavItemsSheet } from './NavItems'
 import NavLogo from './NavLogo'
 
 export default async function Nav() {
@@ -12,31 +8,12 @@ export default async function Nav() {
 
   return (
     <header className="flex w-full flex-row items-center justify-center lg:flex-col">
-      <NavLogo />
+      <NavLogo className="pl-6" />
       <div className="hidden md:block">
         <NavItems navigation={navigation} />
       </div>
       <div className="flex items-center justify-center md:hidden">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="link">
-              <Menu className="h-8 w-8" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent>
-            <div className="flex h-full w-full flex-col items-center justify-between">
-              <div className="w-full">
-                <NavLogo />
-                <NavItems navigation={navigation} />
-              </div>
-              {/* {navigation.data.slices.map((slice) => {
-              if (slice.slice_type === 'social_item') {
-                return <SocialItems slice={slice} />
-              }
-            })} */}
-            </div>
-          </SheetContent>
-        </Sheet>
+        <NavItemsSheet navigation={navigation} />
       </div>
     </header>
   )

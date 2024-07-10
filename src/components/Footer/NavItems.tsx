@@ -11,8 +11,8 @@ import {
 import { cn } from '@/lib/utils'
 import { asText, isFilled } from '@prismicio/client'
 import Link from 'next/link'
-import { forwardRef } from 'react'
 import { FooterDocument } from '../../../prismicio-types'
+import { ListItem } from '../Nav/NavItems'
 import SocialItems from './SocialItems'
 
 const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
@@ -31,8 +31,8 @@ const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
                     <NavigationMenuTrigger>
                       {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className="relative left-0">
-                      <ul className="relative flex w-full flex-col items-center justify-between gap-1 p-3">
+                    <NavigationMenuContent className="relative">
+                      <ul className="grid w-[400px] grid-cols-1 gap-3 p-4">
                         {slice.items.map((item) => (
                           <ListItem
                             key={asText(item.name)}
@@ -50,7 +50,12 @@ const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
                 return (
                   <NavigationMenuItem key={`footer-item-${i}`} className="relative">
                     <Link href={link} legacyBehavior passHref>
-                      <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                      <NavigationMenuLink
+                        className={cn(
+                          navigationMenuTriggerStyle(),
+                          'underline-offset-8 transition-transform hover:underline'
+                        )}
+                      >
                         {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
                       </NavigationMenuLink>
                     </Link>
@@ -68,35 +73,35 @@ const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
 
 export default NavItems
 
-const ListItem = forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(
-  ({ className, title, href, children, ...props }, ref) => {
-    return (
-      <li>
-        <NavigationMenuLink asChild>
-          <Link
-            ref={ref}
-            href={href || '/'}
-            legacyBehavior
-            passHref
-            // className={cn('block select-none space-y-2 px-6 py-8', className)}
-            {...props}
-          >
-            <div
-              className={cn(
-                'flex cursor-pointer items-center justify-center gap-1 px-6 py-4 text-lg font-medium leading-none text-primary outline-none transition-colors hover:bg-accent/50 hover:text-primary/80 disabled:pointer-events-none disabled:opacity-50',
-                className
-              )}
-            >
-              {title}
-              {children && <p className="text-md line-clamp-2 leading-snug">{children}</p>}
-            </div>
-          </Link>
-        </NavigationMenuLink>
-      </li>
-    )
-  }
-)
-ListItem.displayName = 'ListItem'
+// const ListItem = forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(
+//   ({ className, title, href, children, ...props }, ref) => {
+//     return (
+//       <li>
+//         <NavigationMenuLink asChild>
+//           <Link
+//             ref={ref}
+//             href={href || '/'}
+//             legacyBehavior
+//             passHref
+//             // className={cn('block select-none space-y-2 px-6 py-8', className)}
+//             {...props}
+//           >
+//             <div
+//               className={cn(
+//                 'flex cursor-pointer items-center justify-center gap-1 px-6 py-4 text-lg font-medium leading-none text-primary outline-none transition-colors hover:bg-accent/50 hover:text-primary/80 disabled:pointer-events-none disabled:opacity-50',
+//                 className
+//               )}
+//             >
+//               {title}
+//               {children && <p className="text-md line-clamp-2 leading-snug">{children}</p>}
+//             </div>
+//           </Link>
+//         </NavigationMenuLink>
+//       </li>
+//     )
+//   }
+// )
+// ListItem.displayName = 'ListItem'
 
 // function NavLink({ slice, className }: { slice: NavItemSlice; className?: string }) {
 //   if (!isFilled.link(slice.primary.link)) return null
