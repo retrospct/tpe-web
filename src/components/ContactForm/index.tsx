@@ -11,12 +11,13 @@ import { cn } from '@/lib/utils'
 import { contactFormSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { format } from 'date-fns'
-import { CalendarIcon, Loader2, XIcon } from 'lucide-react'
-import { useRef, useTransition } from 'react'
+import { CalendarIcon, Loader2, X, XIcon } from 'lucide-react'
+import { useEffect, useRef, useState, useTransition } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 
 export function ContactForm() {
   const [isPending, startTransition] = useTransition()
@@ -39,6 +40,16 @@ export function ContactForm() {
     }
   })
   const formRef = useRef<HTMLFormElement>(null)
+  const [isOther, setIsOther] = useState(false)
+  const watchReferral = form.watch('referral', '')
+
+  useEffect(() => {
+    if (watchReferral === 'other' && !isOther) {
+      setIsOther(true)
+      form.setValue('referral', '')
+    }
+    return () => {}
+  }, [watchReferral, isOther])
 
   const submitForm = async (data: z.infer<typeof contactFormSchema>) => {
     startTransition(() => {
@@ -46,18 +57,19 @@ export function ContactForm() {
       formData.set('newsletter', data?.newsletter ? data.newsletter.toString() : 'false')
       data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
       formAction(formData)
+      resetForm()
     })
   }
 
   const resetForm = () => {
-    if (state?.message !== '' && !state.issues && (!pending || !isPending)) {
-      formRef.current?.reset()
-      form.reset()
-      toast.success('Thank you for contacting Two Perfect Events!', {
-        description: `We will get back to you as soon as possible.`,
-        duration: 8000
-      })
-    }
+    // if (state?.message !== '' && !state.issues && (!pending || !isPending)) {
+    formRef.current?.reset()
+    form.reset()
+    toast.success('Thank you for contacting Two Perfect Events!', {
+      description: `We will get back to you as soon as possible.`,
+      duration: 8000
+    })
+    // }
   }
 
   return (
@@ -70,14 +82,14 @@ export function ContactForm() {
           form.handleSubmit(async (data) => {
             await submitForm(data)
           })
-          resetForm()
+          // resetForm()
         }}
         onSubmit={(evt) => {
           evt.preventDefault()
           form.handleSubmit(async (data) => {
             await submitForm(data)
           })(evt)
-          resetForm()
+          // resetForm()
         }}
         className="my-11 w-full max-w-md space-y-4 px-2 text-center"
       >
@@ -210,10 +222,41 @@ export function ContactForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel hidden>How did you hear about us?</FormLabel>
-              <FormControl>
-                <Input placeholder="How did you hear about us?" {...field} />
-                {/* <Textarea placeholder="How did you hear about us?" className="resize-none" {...field} /> */}
-              </FormControl>
+              {isOther ? (
+                <FormControl>
+                  <div className="relative">
+                    <Button
+                      variant="link"
+                      size="icon"
+                      onClick={() => {
+                        setIsOther(false)
+                        form.setValue('referral', '')
+                      }}
+                      className="absolute right-1 top-1"
+                    >
+                      <X className="h-4 w-4 text-muted-foreground" />
+                    </Button>
+                    <Input placeholder="How did you hear about us?" {...field} />
+                  </div>
+                </FormControl>
+              ) : (
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="How did you hear about us?" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="referral">Referral</SelectItem>
+                    <SelectItem value="google">Google</SelectItem>
+                    <SelectItem value="yelp">Yelp</SelectItem>
+                    <SelectItem value="tiktok">Tiktok</SelectItem>
+                    <SelectItem value="facebook">Facebook</SelectItem>
+                    <SelectItem value="pinterest">Pinterest</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+              )}
               <FormMessage />
             </FormItem>
           )}
@@ -224,7 +267,7 @@ export function ContactForm() {
           render={({ field }) => (
             <FormItem className="flex flex-row items-center justify-center space-x-3 space-y-0 p-4 text-primary">
               <FormControl>
-                <Checkbox checked={field.value} onCheckedChange={field.onChange} id="newsletter" />
+                <Checkbox checked={field.value as boolean} onCheckedChange={field.onChange} id="newsletter" />
               </FormControl>
               <div className="space-y-1 leading-none">
                 <FormLabel htmlFor="newsletter" className="cursor-pointer">

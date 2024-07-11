@@ -14,7 +14,7 @@ export const contactFormSchema = z.object({
   eventDate: z.coerce.date().optional(),
   comments: z.string().max(2000, { message: 'Reply must not be longer than 2000 characters please.' }).optional(),
   referral: z.string().max(256, { message: 'Reply must not be longer than 256 characters please.' }).optional(),
-  newsletter: z.coerce.boolean().default(false).optional()
+  newsletter: z.string().or(z.boolean()).default(false).optional()
 })
 
 export const subscribeFormSchema = z.object({
