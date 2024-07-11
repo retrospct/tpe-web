@@ -36,7 +36,7 @@ const Faq = ({ slice }: FaqProps): JSX.Element => {
                 {slice.primary.first_group.map((item, i) => (
                   <AccordionItem key={JSON.stringify(item.question)} value={`faq-1-${i}`}>
                     <AccordionTrigger>{asText(item.question)}</AccordionTrigger>
-                    <AccordionContent>
+                    <AccordionContent className="bg-foreground">
                       <Text richText={item.answer} size="md" />
                     </AccordionContent>
                   </AccordionItem>
@@ -52,7 +52,7 @@ const Faq = ({ slice }: FaqProps): JSX.Element => {
                     className="first:border-t-0 lg:first:border-t-2"
                   >
                     <AccordionTrigger>{asText(item.question)}</AccordionTrigger>
-                    <AccordionContent>
+                    <AccordionContent className="bg-foreground">
                       <Text richText={item.answer} size="md" />
                     </AccordionContent>
                   </AccordionItem>
