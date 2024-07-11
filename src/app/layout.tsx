@@ -3,6 +3,7 @@ import Nav from '@/components/Nav'
 import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
 import { repositoryName } from '@/prismicio'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { PrismicPreview } from '@prismicio/next'
 import { Crimson_Pro } from 'next/font/google'
 import localFont from 'next/font/local'
@@ -37,6 +38,7 @@ export default function RootLayout({
       </body>
       <Toaster position="bottom-center" richColors />
       <PrismicPreview repositoryName={repositoryName ?? 'tpe-web'} />
+      <GoogleAnalytics gaId="G-BK1E6E3S2L" />
     </html>
   )
 }
