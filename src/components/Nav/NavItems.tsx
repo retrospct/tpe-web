@@ -32,7 +32,7 @@ const NavItems = ({ navigation, ...props }: { navigation: NavDocument<string> })
               return (
                 <NavigationMenuItem key={`nav-item-${i}`} className="relative">
                   <NavigationMenuTrigger className="px-5 text-primary">
-                    {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
+                    <Link href={link}>{isFilled.richText(slice.primary.name) && asText(slice.primary.name)}</Link>
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="relative">
                     <ul className="grid w-[400px] grid-cols-1 gap-3 p-4">
@@ -61,7 +61,7 @@ const NavItems = ({ navigation, ...props }: { navigation: NavDocument<string> })
                       className={cn(
                         navigationMenuTriggerStyle(),
                         'px-5',
-                        pathname !== link && 'underline-offset-8 transition-transform hover:underline'
+                        pathname !== link && 'underline-offset-8 hover:underline'
                       )}
                     >
                       {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
@@ -118,10 +118,15 @@ export const NavItemsSheet = ({
                           key={`nav-item-${i}`}
                           className="relative flex flex-col items-start justify-center gap-3"
                         >
-                          <div className={cn(navigationMenuTriggerStyle(), 'px-0 text-left')}>
+                          <Link
+                            href={link}
+                            passHref
+                            onClick={() => setSheetOpen(false)}
+                            className={cn(navigationMenuTriggerStyle(), 'px-0 text-left')}
+                          >
                             {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
                             <ChevronDownIcon className="ml-1 h-5 w-5" />
-                          </div>
+                          </Link>
                           <ul className="grid max-w-[400px] grid-cols-1 gap-0 pl-3">
                             {slice.items.map((item) => (
                               <ListItem
@@ -154,7 +159,7 @@ export const NavItemsSheet = ({
                             href={link}
                             passHref
                             onClick={() => setSheetOpen(false)}
-                            className="underline-offset-8 transition-transform hover:underline"
+                            className="underline-offset-8 hover:underline"
                           >
                             <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), 'px-0')}>
                               {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
@@ -190,7 +195,7 @@ export const ListItem = forwardRef<React.ElementRef<'a'>, React.ComponentPropsWi
               {/* <div className="flex items-center justify-between gap-6"> */}
               {/* <ListItemIcon icon={title} /> */}
               {/* <div className="block"> */}
-              <div className="mb-3 text-lg font-medium italic leading-none text-primary underline-offset-8 transition-transform group-hover:underline">
+              <div className="mb-3 text-lg font-medium italic leading-none text-primary underline-offset-8 group-hover:underline">
                 {title}
               </div>
               {children && (

@@ -22,7 +22,6 @@ const Testimonials = ({ slice }: TestimonialsProps): JSX.Element => {
       data-slice-variation={slice.variation}
       className={cn('relative flex w-full flex-col items-center justify-center pb-24 pt-0 md:py-32', background)}
     >
-      {/* {<p className="text-black">{quoteStyles}</p>} */}
       <div className="relative flex h-96 w-full max-w-6xl flex-col items-center justify-center">
         <div className="relative max-h-[466px] min-h-fit max-w-6xl lg:max-h-[562px]">
           {isFilled.image(slice.primary.image) && <PrismicNextImage field={slice.primary.image} />}

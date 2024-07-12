@@ -14,6 +14,10 @@ export type CalloutProps = SliceComponentProps<Content.CalloutSlice>
  */
 const Callout = ({ slice }: CalloutProps): JSX.Element => {
   const background = isFilled.select(slice.primary.background) ? `bg-${slice.primary.background}` : 'bg-foreground'
+  const textColor =
+    slice.variation === 'partners' && isFilled.select(slice.primary.text_color)
+      ? `text-${slice.primary.text_color}`
+      : 'text-primary'
 
   return (
     <section
@@ -47,20 +51,20 @@ const Callout = ({ slice }: CalloutProps): JSX.Element => {
             <div className="w-full border-t-2 border-accent px-6 py-0 md:w-[2px] md:border-l-2 md:px-0 md:py-6" />
           </div> */}
           {isFilled.group(slice.primary.venues) && (
-            <div className="grid grid-cols-2 items-center gap-x-6 gap-y-5 overflow-hidden pl-0 pt-10 md:grid-cols-3 md:pl-8 md:pt-0 lg:grid-cols-4 lg:gap-x-12 lg:pl-14">
+            <div className="grid grid-cols-2 items-start gap-x-6 gap-y-5 overflow-hidden pl-0 pt-10 md:grid-cols-3 md:pl-8 md:pt-0 lg:grid-cols-4 lg:gap-x-12 lg:pl-14">
               {slice.primary.venues.map((venue) =>
                 isFilled.link(venue.link) ? (
                   <PrismicNextLink field={venue.link}>
                     <Text
                       richText={venue.name}
-                      className="w-32 leading-tight text-primary md:w-28 lg:w-32 lg:leading-tight"
+                      className={cn('w-32 leading-tight md:w-28 lg:w-32 lg:leading-tight', textColor)}
                       size="md"
                     />
                   </PrismicNextLink>
                 ) : (
                   <Text
                     richText={venue.name}
-                    className="w-32 leading-tight text-primary md:w-28 lg:w-32 lg:leading-tight"
+                    className={cn('w-32 leading-tight md:w-28 lg:w-32 lg:leading-tight', textColor)}
                     size="md"
                   />
                 )

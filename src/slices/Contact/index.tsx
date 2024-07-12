@@ -22,7 +22,7 @@ const Contact = ({ slice }: ContactProps): JSX.Element => {
         <div className="flex w-full max-w-7xl flex-col items-center justify-center px-3 text-primary lg:flex-row lg:px-0">
           <div className="flex w-full flex-col items-center justify-between">
             <Heading richText={slice.primary.title} accents className="text-center" />
-            <Text richText={slice.primary.description} className="max-w-96 text-center text-secondary" />
+            <Text richText={slice.primary.description} className="mt-7 max-w-96 text-center text-secondary" />
             <ContactForm />
           </div>
           {isFilled.image(slice.primary.image) && (

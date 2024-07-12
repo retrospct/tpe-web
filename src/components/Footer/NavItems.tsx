@@ -51,10 +51,7 @@ const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
                   <NavigationMenuItem key={`footer-item-${i}`} className="relative">
                     <Link href={link} legacyBehavior passHref>
                       <NavigationMenuLink
-                        className={cn(
-                          navigationMenuTriggerStyle(),
-                          'underline-offset-8 transition-transform hover:underline'
-                        )}
+                        className={cn(navigationMenuTriggerStyle(), 'underline-offset-8 hover:underline')}
                       >
                         {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
                       </NavigationMenuLink>

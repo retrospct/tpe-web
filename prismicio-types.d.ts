@@ -1507,6 +1507,16 @@ export interface CalloutSlicePartnersPrimary {
   background: prismic.SelectField<'background' | 'foreground' | 'primary' | 'secondary' | 'accent'>
 
   /**
+   * Text Color field in *Callout → Partners → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: callout.partners.primary.text_color
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  text_color: prismic.SelectField<'primary' | 'secondary' | 'accent' | 'background' | 'foreground'>
+
+  /**
    * Accents field in *Callout → Partners → Primary*
    *
    * - **Field Type**: Boolean

@@ -132,6 +132,11 @@
 						]
 					}
 				]
+			},
+			"text_color": {
+				"__TYPE__": "FieldContent",
+				"value": "foreground",
+				"type": "Select"
 			}
 		},
 		"items": [

@@ -91,7 +91,7 @@ export function ContactForm() {
           })(evt)
           // resetForm()
         }}
-        className="my-11 w-full max-w-md space-y-4 px-2 text-center"
+        className="my-8 w-full max-w-md space-y-4 px-2 text-center"
       >
         <FormField
           control={form.control}

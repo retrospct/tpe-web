@@ -17,7 +17,11 @@ export const Text = ({
   if (!isFilled.richText(richText) && !text) return null
   return (
     <div className={cn('font-medium text-secondary', getTextSize(size), className)}>
-      {text ? text : <PrismicRichText field={richText} components={components} />}
+      {text ? (
+        <p className={cn('font-medium text-secondary', getTextSize(size), className)}>{text}</p>
+      ) : (
+        <PrismicRichText field={richText} components={components} />
+      )}
     </div>
   )
 }

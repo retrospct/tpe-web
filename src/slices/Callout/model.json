@@ -87,6 +87,20 @@
             ]
           }
         },
+        "text_color": {
+          "type": "Select",
+          "config": {
+            "label": "Text Color",
+            "placeholder": "",
+            "options": [
+              "primary",
+              "secondary",
+              "accent",
+              "background",
+              "foreground"
+            ]
+          }
+        },
         "accents": {
           "type": "Boolean",
           "config": {

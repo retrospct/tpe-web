@@ -1,4 +1,4 @@
-import { Heading, Text } from '@/components'
+import { Heading, ImagePrismic, Text } from '@/components'
 import { TpSquiggle } from '@/components/icons/TpSquiggle'
 import { ImageCarousel } from '@/components/ImageCarousel'
 import { buttonVariants } from '@/components/ui/button'
@@ -10,7 +10,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 export type CallToActionProps = SliceComponentProps<Content.CallToActionSlice>
 
-const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
+const CallToAction = ({ slice, ...props }: CallToActionProps): JSX.Element => {
   // const styles = slice.variation === 'default' ? 'pb-16 pt-8' : 'py-16'
   const background = isFilled.select(slice.primary.background) && `bg-${slice.primary.background}`
 
@@ -25,71 +25,8 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
         // styles,
       )}
     >
-      {slice.variation === 'default' && (
-        <div className="my-16 flex w-full max-w-7xl flex-col items-center justify-center gap-6">
-          <Heading
-            richText={slice.primary.title}
-            size={isFilled.select(slice.primary.title_size) ? slice.primary.title_size : 'md'}
-            accents
-            className="text-center"
-          />
-          {isFilled.image(slice.primary.image) && (
-            <div className="relative max-h-[466px] min-h-fit w-full max-w-6xl lg:max-h-[562px]">
-              <PrismicNextImage field={slice.primary.image} />
-            </div>
-          )}
-          {isFilled.group(slice.primary.packages) && (
-            <div className="flex flex-col lg:flex-row">
-              {slice.primary.packages.map((item, i) => (
-                <div key={`${item.text}-${i}`} className="m-4 flex flex-col lg:m-6">
-                  <Text richText={item.text} className="text-pretty text-xl font-medium text-primary" />
-                </div>
-              ))}
-            </div>
-          )}
-          <Text
-            richText={slice.primary.description}
-            className={cn(
-              'max-w-4xl text-balance font-sans text-lg font-normal text-secondary',
-              `text-${slice.primary?.text_color || 'secondary'}`
-            )}
-          />
-          {isFilled.link(slice.primary.cta_link) && (
-            <div className="mt-8">
-              <PrismicNextLink field={slice.primary.cta_link} className={buttonVariants({ variant: 'default' })}>
-                {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
-              </PrismicNextLink>
-            </div>
-          )}
-          {slice.primary?.show_divider && <TpSquiggle className="w-full text-accent sm:w-auto" />}
-        </div>
-      )}
-      {slice.variation === 'imageText' && (
-        <div className="flex w-full max-w-7xl flex-col items-center justify-center gap-12 py-16 lg:flex-row">
-          {isFilled.image(slice.primary.image) && (
-            <div className="relative max-h-[466px] max-w-xl lg:max-h-[562px]">
-              <PrismicNextImage field={slice.primary.image} />
-            </div>
-          )}
-          <div className="flex max-w-xl flex-col items-center">
-            <Heading
-              richText={slice.primary.title}
-              size={isFilled.select(slice.primary.title_size) ? slice.primary.title_size : 'md'}
-              accents
-              className="text-center"
-            />
-            <Text
-              richText={slice.primary.description}
-              className="my-8 text-balance font-sans text-lg font-normal text-secondary"
-            />
-            {isFilled.link(slice.primary.cta_link) && (
-              <PrismicNextLink field={slice.primary.cta_link} className={buttonVariants({ variant: 'default' })}>
-                {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
-              </PrismicNextLink>
-            )}
-          </div>
-        </div>
-      )}
+      {slice.variation === 'default' && <DefaultCTASlice slice={slice} {...props} />}
+      {slice.variation === 'imageText' && <ImageText slice={slice} {...props} />}
       {slice.variation === 'buttonOnly' && (
         <div className="my-16 flex w-full max-w-6xl flex-col items-center justify-center gap-6 lg:flex-row">
           {isFilled.link(slice.primary.back_link) ? (
@@ -191,3 +128,71 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
 }
 
 export default CallToAction
+
+const DefaultCTASlice = ({ slice }: CallToActionProps) => {
+  if (slice.variation !== 'default') return null
+  return (
+    <div className="my-16 flex w-full max-w-7xl flex-col items-center justify-center gap-6">
+      <Heading
+        richText={slice.primary.title}
+        size={isFilled.select(slice.primary.title_size) ? slice.primary.title_size : 'md'}
+        accents
+        className="text-center"
+      />
+      <ImagePrismic image={slice.primary.image} className="max-h-[466px] min-h-fit w-full max-w-6xl lg:max-h-[562px]" />
+      {isFilled.group(slice.primary.packages) && (
+        <div className="flex flex-col lg:flex-row">
+          {slice.primary.packages.map((item, i) => (
+            <div key={`${item.text}-${i}`} className="m-4 flex flex-col lg:m-6">
+              <Text
+                richText={item.text}
+                className={cn('text-pretty text-xl font-medium', `text-${slice.primary?.text_color || 'primary'}`)}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+      <Text
+        richText={slice.primary.description}
+        className={cn(
+          'max-w-4xl text-balance font-sans text-lg font-normal',
+          `text-${slice.primary?.text_color || 'secondary'}`
+        )}
+      />
+      {isFilled.link(slice.primary.cta_link) && (
+        <div className="mt-8">
+          <PrismicNextLink field={slice.primary.cta_link} className={buttonVariants({ variant: 'default' })}>
+            {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
+          </PrismicNextLink>
+        </div>
+      )}
+      {slice.primary?.show_divider && <TpSquiggle className="w-full text-accent sm:w-auto" />}
+    </div>
+  )
+}
+
+const ImageText = ({ slice }: CallToActionProps) => {
+  if (slice.variation !== 'imageText') return null
+  return (
+    <div className="flex w-full max-w-7xl flex-col items-center justify-center gap-12 py-16 lg:flex-row">
+      <ImagePrismic image={slice.primary.image} className="max-h-[466px] max-w-xl lg:max-h-[562px]" />
+      <div className="flex max-w-xl flex-col items-center">
+        <Heading
+          richText={slice.primary.title}
+          size={isFilled.select(slice.primary.title_size) ? slice.primary.title_size : 'md'}
+          accents
+          className="text-center"
+        />
+        <Text
+          richText={slice.primary.description}
+          className="my-8 text-balance font-sans text-lg font-normal text-secondary"
+        />
+        {isFilled.link(slice.primary.cta_link) && (
+          <PrismicNextLink field={slice.primary.cta_link} className={buttonVariants({ variant: 'default' })}>
+            {isFilled.richText(slice.primary.cta_text) && <PrismicRichText field={slice.primary.cta_text} />}
+          </PrismicNextLink>
+        )}
+      </div>
+    </div>
+  )
+}

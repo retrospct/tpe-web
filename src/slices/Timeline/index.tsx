@@ -26,10 +26,13 @@ const Timeline = ({ slice }: TimelineProps): JSX.Element => {
           {isFilled.group(slice.primary.timeline) && (
             <div className="grid grid-cols-2 grid-rows-1 items-start justify-center gap-x-6 gap-y-9 overflow-hidden text-left md:grid-cols-3 lg:grid-cols-4 lg:gap-x-4">
               {slice.primary.timeline.map((item, i) => (
-                <div className="max-w-1/3 flex flex-col items-start justify-start gap-x-4 gap-y-1 sm:max-w-44 md:flex-row lg:max-w-60">
+                <div
+                  key={`venue-partner-${i}`}
+                  className="max-w-1/3 flex flex-col items-start justify-start gap-x-4 gap-y-1 sm:max-w-44 md:flex-row lg:max-w-60"
+                >
                   <Text
                     text={i < 9 ? `0${i + 1}` : `${i + 1}`}
-                    className="leading-none text-primary lg:leading-none"
+                    className="h-7 w-7 justify-self-end text-right leading-none text-primary lg:leading-none"
                     size="xl"
                   />
                   <Text
