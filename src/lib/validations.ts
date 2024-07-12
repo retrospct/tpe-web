@@ -4,8 +4,8 @@ const phoneValidation = new RegExp(/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[
 
 export const contactFormSchema = z.object({
   email: z.string().min(1, { message: 'Email address is required.' }).max(256).email(),
-  name: z.string().min(1, { message: 'Full name is required.' }).max(256),
-  // lastName: z.string().min(1, { message: 'Last name is required.' }).max(50),
+  firstName: z.string().min(1, { message: 'First name is required.' }).max(256),
+  lastName: z.string().min(1, { message: 'Last name is required.' }).max(256),
   phone: z
     .string()
     .min(1, { message: 'Phone number is required.' })
@@ -15,6 +15,7 @@ export const contactFormSchema = z.object({
   comments: z.string().max(2000, { message: 'Reply must not be longer than 2000 characters please.' }).optional(),
   referral: z.string().max(256, { message: 'Reply must not be longer than 256 characters please.' }).optional(),
   newsletter: z.string().or(z.boolean()).default(false).optional()
+  // cfTurnstileResponse: z.string().optional()
 })
 
 export const subscribeFormSchema = z.object({

@@ -9,12 +9,14 @@ import { Textarea } from '@/components/ui/textarea'
 import { submitContactAction } from '@/lib/actions'
 import { cn } from '@/lib/utils'
 import { contactFormSchema } from '@/lib/validations'
+// import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { format } from 'date-fns'
 import { CalendarIcon, Loader2, X, XIcon } from 'lucide-react'
 import { useEffect, useRef, useState, useTransition } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 import { useForm } from 'react-hook-form'
+import Turnstile, { useTurnstile } from 'react-turnstile'
 import { toast } from 'sonner'
 import { z } from 'zod'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
@@ -29,8 +31,8 @@ export function ContactForm() {
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
       email: '',
-      name: '',
-      // lastName: '',
+      firstName: '',
+      lastName: '',
       phone: '',
       eventDate: undefined,
       comments: '',
@@ -41,6 +43,7 @@ export function ContactForm() {
   })
   const formRef = useRef<HTMLFormElement>(null)
   const [isOther, setIsOther] = useState(false)
+  const turnstile = useTurnstile()
   const watchReferral = form.watch('referral', '')
 
   useEffect(() => {
@@ -65,6 +68,7 @@ export function ContactForm() {
     // if (state?.message !== '' && !state.issues && (!pending || !isPending)) {
     formRef.current?.reset()
     form.reset()
+    turnstile.reset() // ref: https://github.com/react-hook-form/react-hook-form/issues/1001#issuecomment-602428680
     toast.success('Thank you for contacting Two Perfect Events!', {
       description: `We will get back to you as soon as possible.`,
       duration: 8000
@@ -109,18 +113,18 @@ export function ContactForm() {
         />
         <FormField
           control={form.control}
-          name="name"
+          name="firstName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel hidden>Name</FormLabel>
+              <FormLabel hidden>First Name</FormLabel>
               <FormControl>
-                <Input placeholder="Full Name*" {...field} />
+                <Input placeholder="First Name*" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        {/* <div className="flex w-full justify-between gap-4">
+        <div className="flex w-full justify-between gap-4">
           <FormField
             control={form.control}
             name="lastName"
@@ -134,7 +138,7 @@ export function ContactForm() {
               </FormItem>
             )}
           />
-        </div> */}
+        </div>
         <div className="flex w-full justify-between gap-4">
           <FormField
             control={form.control}
@@ -296,7 +300,20 @@ export function ContactForm() {
             </ul>
           </div>
         )}
+        <div className="flex w-full items-center justify-center pt-5">
+          <Turnstile
+            sitekey={process.env.NEXT_PUBLIC_CFTS_SITE ?? '1x00000000000000000000AA'}
+            fixedSize={true}
+            appearance="execute"
+            onVerify={(token) => {
+              // console.log(`Challenge Success ${token}`)
+              // form.setValue('cfTurnstileResponse', token)
+              // if not token then error
+            }}
+          />
+        </div>
       </form>
+      {/* <DevTool control={form.control} /> */}
     </Form>
   )
 }

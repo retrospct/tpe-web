@@ -7,7 +7,10 @@ import { EmailContactConfirm } from '@/emails/contact-confirm'
 import { EmailContactSubmit } from '@/emails/contact-submit'
 import { formatLocalDate } from '@/lib/utils'
 import { contactFormSchema, subscribeFormSchema } from '@/lib/validations'
+import { headers } from 'next/headers'
 import { Resend } from 'resend'
+
+const subscriptionId = '61941de4-1d7d-4230-a9e3-13409c94cbb7'
 
 export type FormState = {
   message: string
@@ -15,8 +18,16 @@ export type FormState = {
   issues?: string[]
 }
 
+async function IP() {
+  const FALLBACK_IP_ADDRESS = '0.0.0.0'
+  const forwardedFor = headers().get('x-forwarded-for')
+  if (forwardedFor) return forwardedFor.split(',')[0] ?? FALLBACK_IP_ADDRESS
+  return headers().get('x-real-ip') ?? FALLBACK_IP_ADDRESS
+}
+
 export async function submitContactAction(prevState: FormState, data: FormData): Promise<FormState> {
   const formData = Object.fromEntries(data)
+  console.log('formData', formData)
   const parsed = contactFormSchema.safeParse(formData)
   console.log('contact_form', parsed)
   // console.log('prevState', prevState)
@@ -42,54 +53,70 @@ export async function submitContactAction(prevState: FormState, data: FormData):
   //   }
   // }
 
-  try {
-    // Add new contact form submission to database
-    await createContactForm({ ...(parsed.data as InsertContactForm), raw: JSON.stringify(parsed.data) })
+  const errorMessage = `Opps, we had an issue with your contact form submission. Please reach out to admin@twoperfectevents.com for assistance if the issue persists.`
+  const token = formData['cf-turnstile-response'] ?? ''
 
-    // Send new submission email to TPE team
-    await sendEmail({
-      to: process.env.NODE_ENV === 'development' ? ['delivered@resend.dev'] : 'leah@twoperfectevents.com',
-      from: 'Two Perfect Events <no-reply@email.twoperfectevents.com>',
-      subject: `TPE form submission from ${parsed.data.name}<${parsed.data.email}>`,
-      react: EmailContactSubmit({
-        payload: { ...parsed.data, eventDate: formatLocalDate(parsed.data?.eventDate) }
+  // Validate the token by calling the "/siteverify" API endpoint.
+  let formDataCf = new FormData()
+  formDataCf.append('secret', process.env.CFTS_SECRET!)
+  formDataCf.append('response', token)
+  formDataCf.append('remoteip', await IP())
+  // const idempotencyKey = crypto.randomUUID()
+  // formDataCf.append('idempotency_key', idempotencyKey)
+
+  const url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
+  const firstResult = await fetch(url, { body: formDataCf, method: 'POST' })
+  const outcome = await firstResult.json()
+  if (outcome.success) {
+    // console.log('CF Turnstile success...')
+    try {
+      // Add new contact form submission to database
+      await createContactForm({ ...(parsed.data as InsertContactForm), raw: JSON.stringify(parsed.data) })
+
+      // Send new submission email to TPE team
+      await sendEmail({
+        to: process.env.NODE_ENV === 'development' ? ['delivered@resend.dev'] : 'leah@twoperfectevents.com',
+        from: 'Two Perfect Events <no-reply@email.twoperfectevents.com>',
+        subject: `TPE form submission from ${parsed.data.firstName}<${parsed.data.email}>`,
+        react: EmailContactSubmit({
+          payload: { ...parsed.data, eventDate: formatLocalDate(parsed.data?.eventDate) }
+        })
       })
-    })
 
-    // Send confirmation email to user
-    await sendEmail({
-      to: parsed.data?.email || 'leah@twoperfectevents.com',
-      from: 'Two Perfect Events <no-reply@email.twoperfectevents.com>',
-      subject: 'Thank you for contacting Two Perfect Events!',
-      react: EmailContactConfirm({ name: parsed.data.name })
-    })
+      // Send confirmation email to user
+      await sendEmail({
+        to: parsed.data?.email || 'leah@twoperfectevents.com',
+        from: 'Two Perfect Events <no-reply@email.twoperfectevents.com>',
+        subject: 'Thank you for contacting Two Perfect Events!',
+        react: EmailContactConfirm({ name: parsed.data.firstName })
+      })
 
-    return { message: `Thank you for contacting us! We will get back to you as soon as possible.` }
-  } catch (error) {
-    return {
-      message: `Opps, we had an issue with your contact form submission. Please reach out to admin@twoperfectevents.com for assistance if the issue persists.`
+      return { message: `Thank you for contacting us! We will get back to you as soon as possible.` }
+    } catch (error) {
+      console.error('contact form error', error)
+      return { message: errorMessage }
+    } finally {
+      // If newsletter is checked
+      if (parsed.data?.newsletter === 'true') {
+        const { firstName, lastName, email, phone, eventDate, comments, referral } = parsed.data
+        // Call resend Audience & Contacts APIs
+        await subscribeResend({ email, firstName, lastName })
+        // Add user to subscriptions list
+        const [person] = await createPerson({
+          firstName,
+          lastName,
+          email,
+          phone,
+          ...(eventDate && { eventDate: eventDate?.toISOString() }),
+          comments,
+          referral
+        })
+        await createPersonsToSubscriptions({ personId: person.id, subscriptionId })
+      }
     }
-  } finally {
-    // If newsletter is checked
-    if (parsed.data?.newsletter === 'true') {
-      const subscriptionId = '61941de4-1d7d-4230-a9e3-13409c94cbb7'
-      const { name, email, phone, eventDate, comments, referral } = parsed.data
-      // Call resend Audience & Contacts APIs
-      await subscribeResend({ email, name })
-      // Add user to subscriptions list
-      const [person] = await createPerson({
-        name,
-        email,
-        phone,
-        ...(eventDate && { eventDate: eventDate?.toISOString() }),
-        comments,
-        referral
-      })
-      await createPersonsToSubscriptions({
-        personId: person.id,
-        subscriptionId
-      })
-    }
+  } else {
+    console.error('turnstile contact form error', outcome)
+    return { message: errorMessage }
   }
 }
 
@@ -112,18 +139,31 @@ export async function subscribeAction(prevState: FormState, data: FormData): Pro
     }
   }
 
+  const errorMessage = `Opps, we had an issue with your newsletter form submission. Please reach out to admin@twoperfectevents.com for assistance if the issue persists.`
+  // const token = formData['cf-turnstile-response'] ?? ''
+
+  // // Validate the token by calling the "/siteverify" API endpoint.
+  // let formDataCf = new FormData()
+  // formDataCf.append('secret', process.env.CFTS_SECRET!)
+  // formDataCf.append('response', token)
+  // formDataCf.append('remoteip', await IP())
+  // // const idempotencyKey = crypto.randomUUID()
+  // // formDataCf.append('idempotency_key', idempotencyKey)
+
+  // const url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
+  // const firstResult = await fetch(url, { body: formDataCf, method: 'POST' })
+  // const outcome = await firstResult.json()
+  // if (outcome.success) {
+  //   // console.log('CF Turnstile success...')
+
   try {
     // Add user to subscriptions list
-    const subscriptionId = '61941de4-1d7d-4230-a9e3-13409c94cbb7'
     const { email } = parsed.data
     // Call resend Audience & Contacts APIs
     await subscribeResend({ email })
     // Add user to subscriptions list
     const [person] = await createPerson({ email })
-    await createPersonsToSubscriptions({
-      personId: person.id,
-      subscriptionId
-    })
+    await createPersonsToSubscriptions({ personId: person.id, subscriptionId })
 
     // Send confirmation email to user
     await sendEmail({
@@ -140,14 +180,24 @@ export async function subscribeAction(prevState: FormState, data: FormData): Pro
 
     return { message: `Thank you for subscribing to our newsletter!` }
   } catch (error) {
-    return {
-      message: `Opps, we had an issue with your newsletter form submission. Please reach out to admin@twoperfectevents.com for assistance if the issue persists.`
-    }
+    return { message: errorMessage }
   }
+  // } else {
+  //   console.error('turnstile subscribe form error', outcome)
+  //   return { message: errorMessage }
+  // }
 }
 
 // Call resend Audience & Contacts APIs
-const subscribeResend = async ({ email, name }: { email: string; name?: string }) => {
+const subscribeResend = async ({
+  email,
+  firstName,
+  lastName
+}: {
+  email: string
+  firstName?: string
+  lastName?: string
+}) => {
   // const contact = await fetch('/api/resend', { method: 'POST', body: JSON.stringify({ email }) })
   const resend = new Resend(process.env.RESEND_ADMIN_API_KEY!)
   if (!resend || !email) {
@@ -157,9 +207,9 @@ const subscribeResend = async ({ email, name }: { email: string; name?: string }
   }
 
   // Create contact with user data
-  const names = name ? name.trim()?.split(' ') : []
-  const firstName = names?.length > 0 ? names[0] : ''
-  const lastName = names?.length > 1 ? names.slice(1).join(' ') : ''
+  // const names = name ? name.trim()?.split(' ') : []
+  // const firstName = names?.length > 0 ? names[0] : ''
+  // const lastName = names?.length > 1 ? names.slice(1).join(' ') : ''
   const contact = await resend.contacts.create({
     email,
     ...(firstName && { firstName }),

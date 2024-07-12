@@ -12,6 +12,7 @@ import { useFormState, useFormStatus } from 'react-dom'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
+// import Turnstile, { useTurnstile } from 'react-turnstile'
 
 export function SubscribeForm({
   placeholder = 'Email',
@@ -34,6 +35,7 @@ export function SubscribeForm({
     }
   })
   const formRef = useRef<HTMLFormElement>(null)
+  // const turnstile = useTurnstile()
 
   const submitForm = async (data: z.infer<typeof subscribeFormSchema>) => {
     startTransition(() => {
@@ -50,6 +52,7 @@ export function SubscribeForm({
     if (state?.message !== '' && !state.issues && process.env.NODE_ENV !== 'development') {
       formRef.current?.reset()
       form.reset()
+      // turnstile.reset() // ref: https://github.com/react-hook-form/react-hook-form/issues/1001#issuecomment-602428680
     }
   }
 
@@ -91,6 +94,17 @@ export function SubscribeForm({
           {cta}
           {pending || (isPending && <Loader2 className="ml-2 h-4 w-4 animate-spin" />)}
         </Button>
+        {/* <div className="flex w-full items-center justify-center pt-5">
+          <Turnstile
+            sitekey={process.env.NEXT_PUBLIC_CFTS_SITE ?? '1x00000000000000000000AA'}
+            fixedSize={true}
+            onVerify={(token) => {
+              // console.log(`Challenge Success ${token}`)
+              // form.setValue('cfTurnstileResponse', token)
+              // if not token then error
+            }}
+          />
+        </div> */}
       </form>
     </Form>
   )

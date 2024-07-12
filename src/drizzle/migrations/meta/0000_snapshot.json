@@ -1,5 +1,5 @@
 {
-  "id": "6e9fd583-86a6-4b4d-a655-8ad6c238a440",
+  "id": "f0b2f605-3ae9-4a55-9662-5afc49bfc0d8",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -21,8 +21,14 @@
           "primaryKey": false,
           "notNull": true
         },
-        "name": {
-          "name": "name",
+        "firstName": {
+          "name": "firstName",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lastName": {
+          "name": "lastName",
           "type": "varchar(256)",
           "primaryKey": false,
           "notNull": true
@@ -88,23 +94,29 @@
           "notNull": true,
           "default": "gen_random_uuid()"
         },
-        "name": {
-          "name": "name",
-          "type": "varchar(256)",
-          "primaryKey": false,
-          "notNull": true
-        },
         "email": {
           "name": "email",
           "type": "varchar(256)",
           "primaryKey": false,
           "notNull": true
         },
+        "name": {
+          "name": "name",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lastName": {
+          "name": "lastName",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
         "phone": {
           "name": "phone",
           "type": "varchar(256)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "eventDate": {
           "name": "eventDate",
@@ -229,51 +241,14 @@
           "notNull": true,
           "default": "gen_random_uuid()"
         },
-        "pid": {
-          "name": "pid",
-          "type": "uuid",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "email": {
-          "name": "email",
-          "type": "varchar(256)",
-          "primaryKey": false,
-          "notNull": true
-        },
         "name": {
           "name": "name",
           "type": "varchar(256)",
           "primaryKey": false,
           "notNull": true
         },
-        "phone": {
-          "name": "phone",
-          "type": "varchar(256)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "referral": {
-          "name": "referral",
-          "type": "varchar(256)",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "eventDate": {
-          "name": "eventDate",
-          "type": "date",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "newsletter": {
-          "name": "newsletter",
-          "type": "boolean",
-          "primaryKey": false,
-          "notNull": false,
-          "default": true
-        },
-        "comments": {
-          "name": "comments",
+        "description": {
+          "name": "description",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -287,21 +262,7 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {
-        "subscriptions_pid_persons_id_fk": {
-          "name": "subscriptions_pid_persons_id_fk",
-          "tableFrom": "subscriptions",
-          "tableTo": "persons",
-          "columnsFrom": [
-            "pid"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
+      "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
@@ -324,6 +285,12 @@
         },
         "name": {
           "name": "name",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lastName": {
+          "name": "lastName",
           "type": "varchar(256)",
           "primaryKey": false,
           "notNull": true
@@ -374,6 +341,7 @@
   },
   "enums": {},
   "schemas": {},
+  "sequences": {},
   "_meta": {
     "columns": {},
     "schemas": {},
