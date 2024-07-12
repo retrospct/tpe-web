@@ -39,7 +39,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
                   {isFilled.link(item.link) && (
                     <PrismicNextLink field={item.link} className="group">
                       {isFilled.image(item.image) && (
-                        <div className="relative mx-6 w-full max-w-60 overflow-hidden rounded-t-full border-[5px] border-solid border-primary text-center transition-transform group-hover:scale-105 lg:mx-12">
+                        <div className="relative mx-6 w-full max-w-60 overflow-hidden rounded-t-full border-[5px] border-solid border-primary text-center transition-transform group-hover:scale-105 group-hover:border-primary lg:mx-12">
                           <PrismicNextImage
                             field={item.image}
                             imgixParams={{ crop: 'faces,edges', fit: 'crop', w: 1, h: 1 }}
@@ -110,7 +110,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
                       />
                     </div>
                   )}
-                  <Heading richText={service.title} size="xs" className="mb-6 w-full text-left" />
+                  <Heading richText={service.title} size="xs" className="mb-2 w-full text-left font-sans" />
                   <Text richText={service.description} size="md" />
                 </div>
               ))}
@@ -120,7 +120,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
       {slice.variation === 'graphicDesign' && (
         <div className="flex w-full max-w-5xl flex-col items-center justify-center gap-8">
           <HeadingDivider richText={slice.primary.title} bg={background} className="mb-0" />
-          <Text richText={slice.primary.description} size="md" className="max-w-4xl text-center" />
+          <Text richText={slice.primary.description} size="md" className="max-w-4xl text-pretty text-center" />
           {/* {isFilled.image(slice.primary.image) && (
             <div className="relative max-h-[466px] min-h-fit max-w-6xl lg:max-h-[562px]">
               <PrismicNextImage field={slice.primary.image} />

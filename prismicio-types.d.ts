@@ -1040,6 +1040,16 @@ export interface CallToActionSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   text_color: prismic.SelectField<'primary' | 'secondary' | 'background' | 'foreground' | 'accent'>
+
+  /**
+   * Padding field in *CallToAction → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: Padding around the entire slice. (default: both)
+   * - **API ID Path**: call_to_action.default.primary.padding
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  padding: prismic.SelectField<'both' | 'top' | 'bottom'>
 }
 
 /**
@@ -2487,6 +2497,16 @@ export interface ProfileSliceDefaultPrimaryPersonsItem {
  * Primary content in *Profile → Default → Primary*
  */
 export interface ProfileSliceDefaultPrimary {
+  /**
+   * Title field in *Profile → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: profile.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
   /**
    * Persons field in *Profile → Default → Primary*
    *

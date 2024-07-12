@@ -31,21 +31,6 @@ export default async function Footer() {
         </div>
       )}
 
-      {/* {navigation.data?.newsletter?.length > 0 && (
-        <div className="mx-auto flex w-full flex-col items-center justify-center px-6 text-center text-red lg:flex-row lg:justify-between lg:px-12">
-          {navigation.data.newsletter.map((news) => {
-            if (isFilled.richText(news.text)) {
-              return <PrismicRichText key={JSON.stringify(news)} field={news.text} />
-            }
-            if (isFilled.richText(news.cta)) {
-              return <PrismicRichText key={JSON.stringify(news)} field={news.cta} />
-            }
-            if (isFilled.richText(news.input)) {
-              return <PrismicRichText key={JSON.stringify(news)} field={news.input} />
-            }
-          })}
-        </div>
-      )} */}
       {navigation.data?.statements?.length > 0 && (
         <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-6 text-center text-red lg:flex-row lg:justify-between lg:px-12">
           {navigation.data.statements.map(

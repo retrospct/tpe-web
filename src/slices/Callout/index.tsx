@@ -54,7 +54,7 @@ const Callout = ({ slice }: CalloutProps): JSX.Element => {
             <div className="grid grid-cols-2 items-start gap-x-6 gap-y-5 overflow-hidden pl-0 pt-10 md:grid-cols-3 md:pl-8 md:pt-0 lg:grid-cols-4 lg:gap-x-12 lg:pl-14">
               {slice.primary.venues.map((venue) =>
                 isFilled.link(venue.link) ? (
-                  <PrismicNextLink field={venue.link}>
+                  <PrismicNextLink key={`venue-${venue.name}`} field={venue.link}>
                     <Text
                       richText={venue.name}
                       className={cn('w-32 leading-tight md:w-28 lg:w-32 lg:leading-tight', textColor)}
@@ -63,6 +63,7 @@ const Callout = ({ slice }: CalloutProps): JSX.Element => {
                   </PrismicNextLink>
                 ) : (
                   <Text
+                    key={`venue-${venue.name}`}
                     richText={venue.name}
                     className={cn('w-32 leading-tight md:w-28 lg:w-32 lg:leading-tight', textColor)}
                     size="md"

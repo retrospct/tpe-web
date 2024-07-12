@@ -135,6 +135,18 @@
               "accent"
             ]
           }
+        },
+        "padding": {
+          "type": "Select",
+          "config": {
+            "label": "Padding",
+            "placeholder": "Padding around the entire slice. (default: both)",
+            "options": [
+              "both",
+              "top",
+              "bottom"
+            ]
+          }
         }
       },
       "items": {}

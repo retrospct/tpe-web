@@ -41,17 +41,17 @@ const routes: prismic.ClientConfig['routes'] = [
   //   path: '/services/design'
   // },
   {
-    type: 'page',
-    uid: 'blog',
-    path: '/blog'
-  },
-  {
     type: 'portfolio',
     path: '/portfolio'
   },
   {
     type: 'event',
     path: '/portfolio/:uid'
+  },
+  {
+    type: 'page',
+    uid: 'blog',
+    path: '/blog'
   },
   {
     type: 'post',

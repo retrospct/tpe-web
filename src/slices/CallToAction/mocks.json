@@ -118,6 +118,11 @@
 				"__TYPE__": "FieldContent",
 				"value": "foreground",
 				"type": "Select"
+			},
+			"padding": {
+				"__TYPE__": "FieldContent",
+				"value": "both",
+				"type": "Select"
 			}
 		},
 		"items": []
@@ -468,7 +473,6 @@
 							[
 								"image",
 								{
-									"__TYPE__": "ImageContent",
 									"origin": {
 										"id": "main",
 										"url": "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea",
@@ -486,6 +490,9 @@
 										},
 										"background": "transparent"
 									},
+									"credits": null,
+									"alt": null,
+									"__TYPE__": "ImageContent",
 									"thumbnails": {}
 								}
 							]

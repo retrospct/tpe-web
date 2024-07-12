@@ -52,7 +52,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
           {(isFilled.richText(slice.primary.title) ||
             isFilled.link(slice.primary.cta_link) ||
             isFilled.richText(slice.primary.description)) && (
-            <div className="mx-auto mt-16 flow-root max-w-5xl px-6 text-left sm:mt-24 lg:px-8">
+            <div className="mx-auto mt-16 flow-root max-w-6xl px-6 text-left sm:mt-24 lg:px-8">
               {isFilled.richText(slice.primary.title) && (
                 <div className="max-w-4xl text-pretty font-serif text-4xl font-normal tracking-wider text-primary sm:text-5xl">
                   <PrismicRichText field={slice.primary.title} />
@@ -78,7 +78,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                     </div>
                   )}
                   {isFilled.richText(slice.primary.description) && (
-                    <div className="text-left text-2xl font-medium leading-8 text-brown">
+                    <div className="text-left text-[23px] font-medium italic leading-7 tracking-wide text-brown">
                       <PrismicRichText field={slice.primary.description} components={components} />
                     </div>
                   )}
@@ -127,38 +127,37 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
         </div>
       )}
       {slice.variation === 'textImageStats' && (
-        <div className="relative pb-12 pt-0 sm:pb-16 lg:pb-20">
-          <div className="relative flex w-full flex-col items-center justify-center gap-6 bg-foreground px-6 py-10 text-left sm:py-28 lg:flex-row lg:px-8">
-            <div className="flex w-full max-w-xl flex-col items-center">
-              <Heading richText={slice.primary.title} accents size="7xl" className="mb-6 text-center leading-none" />
-              <Text
-                richText={slice.primary.description}
-                className="mb-6 text-left font-sans text-lg font-normal text-secondary lg:text-lg"
-              />
-              {isFilled.group(slice.primary.highlights) && (
-                <div className="flex gap-3 lg:gap-6">
-                  {slice.primary.highlights.map((highlight) => (
-                    <div
-                      key={JSON.stringify(highlight)}
-                      className="flex h-24 w-24 flex-col items-center justify-center rounded-full border-2 border-solid border-primary p-6 text-primary lg:h-36 lg:w-36"
-                    >
-                      <Text richText={highlight.stat} size="4xl" />
-                      <Text richText={highlight.label} size="sm" />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-            {isFilled.image(slice.primary.image) && (
-              <div className="relative mx-3 mt-3 w-full max-w-[360px] text-center lg:mx-6 lg:mt-0 lg:max-w-[584px]">
-                <PrismicNextImage
-                  field={slice.primary.image}
-                  imgixParams={{ crop: 'faces,edges', fit: 'crop', w: 1, h: 1 }}
-                  className="object-cover"
-                />
+        <div className="relative flex w-full flex-col items-center justify-center gap-6 bg-foreground px-6 py-10 text-left sm:py-28 lg:flex-row lg:px-8">
+          <div className="flex w-full max-w-xl flex-col items-center">
+            <Heading richText={slice.primary.title} accents size="7xl" className="mb-6 text-center leading-none" />
+            <Text
+              richText={slice.primary.description}
+              className="mb-6 text-left font-sans font-normal text-secondary"
+              size="lgg"
+            />
+            {isFilled.group(slice.primary.highlights) && (
+              <div className="flex gap-3 lg:gap-6">
+                {slice.primary.highlights.map((highlight) => (
+                  <div
+                    key={JSON.stringify(highlight)}
+                    className="flex h-24 w-24 flex-col items-center justify-center rounded-full border-2 border-solid border-primary p-6 text-primary lg:h-36 lg:w-36"
+                  >
+                    <Text richText={highlight.stat} size="4xl" />
+                    <Text richText={highlight.label} size="sm" />
+                  </div>
+                ))}
               </div>
             )}
           </div>
+          {isFilled.image(slice.primary.image) && (
+            <div className="relative mx-3 mt-3 w-full max-w-[360px] text-center lg:mx-6 lg:mt-0 lg:max-w-[584px]">
+              <PrismicNextImage
+                field={slice.primary.image}
+                imgixParams={{ crop: 'faces,edges', fit: 'crop', w: 1, h: 1 }}
+                className="object-cover"
+              />
+            </div>
+          )}
         </div>
       )}
     </section>

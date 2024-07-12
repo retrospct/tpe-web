@@ -131,8 +131,21 @@ export default CallToAction
 
 const DefaultCTASlice = ({ slice }: CallToActionProps) => {
   if (slice.variation !== 'default') return null
+
+  const padding = () => {
+    if (!isFilled.select(slice.primary.padding)) return 'my-16'
+    switch (slice.primary.padding) {
+      case 'top':
+        return 'mt-16'
+      case 'bottom':
+        return 'mb-16'
+      default:
+        return 'my-16'
+    }
+  }
+
   return (
-    <div className="my-16 flex w-full max-w-7xl flex-col items-center justify-center gap-6">
+    <div className={cn('flex w-full max-w-7xl flex-col items-center justify-center gap-6', padding())}>
       <Heading
         richText={slice.primary.title}
         size={isFilled.select(slice.primary.title_size) ? slice.primary.title_size : 'md'}
@@ -141,9 +154,9 @@ const DefaultCTASlice = ({ slice }: CallToActionProps) => {
       />
       <ImagePrismic image={slice.primary.image} className="max-h-[466px] min-h-fit w-full max-w-6xl lg:max-h-[562px]" />
       {isFilled.group(slice.primary.packages) && (
-        <div className="flex flex-col lg:flex-row">
+        <div className="mt-3 flex flex-col lg:flex-row">
           {slice.primary.packages.map((item, i) => (
-            <div key={`${item.text}-${i}`} className="m-4 flex flex-col lg:m-6">
+            <div key={`${item.text}-${i}`} className="m-4 flex flex-col lg:mt-6">
               <Text
                 richText={item.text}
                 className={cn('text-pretty text-xl font-medium', `text-${slice.primary?.text_color || 'primary'}`)}

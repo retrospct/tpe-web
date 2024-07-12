@@ -8,7 +8,7 @@ export default async function Nav() {
 
   return (
     <header className="flex w-full flex-row items-center justify-center lg:flex-col">
-      <NavLogo className="pl-6" />
+      <NavLogo className="pl-6 lg:pl-0 lg:pt-14" />
       <div className="hidden md:block">
         <NavItems navigation={navigation} />
       </div>

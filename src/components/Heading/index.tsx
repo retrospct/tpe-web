@@ -36,7 +36,7 @@ export const Heading = ({
     isFilled.richText(richText) && (
       <div
         className={cn(
-          'font-serif font-normal tracking-wider text-primary',
+          'font-serif font-normal tracking-widest text-primary',
           (accents || accentBefore || accentAfter) && 'flex items-center justify-center',
           className
         )}
@@ -91,11 +91,16 @@ export const HeadingDivider = ({
   return (
     <div id={anchor} className={cn('relative mb-6 w-full max-w-full overflow-hidden', className)}>
       <div className="absolute inset-0 ml-2 flex max-w-full items-center xl:ml-8" aria-hidden="true">
-        <div className="relative w-full border-2 border-accent" />
+        <div className="relative w-full border border-accent" />
       </div>
       <div className="relative flex items-center justify-start">
         <TpStar className={cn('ml-2 text-primary xl:ml-8', bg)} />
-        <div className={cn('bg-background px-4 font-serif text-2xl uppercase leading-8 text-primary lg:text-3xl', bg)}>
+        <div
+          className={cn(
+            'bg-background px-4 font-serif text-2xl uppercase leading-8 tracking-widest text-primary lg:text-3xl',
+            bg
+          )}
+        >
           {isFilled.richText(richText) ? <PrismicRichText field={richText} /> : text}
         </div>
       </div>

@@ -42,3 +42,10 @@ export default function RootLayout({
     </html>
   )
 }
+
+// import { sendGAEvent } from '@next/third-parties/google'
+// {/* <button
+//   onClick={() => sendGAEvent({ event: 'buttonClicked', value: 'xyz' })}
+// >
+//   Send Event
+// </button> */}

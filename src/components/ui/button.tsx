@@ -10,18 +10,18 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'relative bg-primary font-semibold tracking-widest text-accent before:absolute before:inset-2 before:block before:border-2 before:border-accent hover:bg-primary/80', //hover:bg-accent-hover
+          'relative bg-primary font-semibold tracking-widest text-accent before:absolute before:inset-1.5 before:block before:border-2 before:border-accent hover:bg-primary/80', //hover:bg-accent-hover
         destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-        outline: 'border-2 border-primary bg-background hover:bg-accent hover:text-accent-foreground',
+        outline: 'border-2 border-primary bg-background hover:bg-accent hover:text-primary/90',
         secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline hover:text-primary/90'
       },
       size: {
-        default: 'px-12 py-6',
+        default: 'px-12 py-6 text-lg',
         sm: 'px-3 py-1 text-[.875rem] before:inset-1',
         md: 'px-4 py-2 text-[.875rem] before:inset-1',
-        lg: 'px-8 py-3',
+        lg: 'px-8 py-3 text-lg',
         icon: 'h-10 w-10'
       }
     },

@@ -49,7 +49,7 @@ const NavItems = ({ navigation, ...props }: { navigation: NavDocument<string> })
                     </ul>
                   </NavigationMenuContent>
                   {pathname === link && (
-                    <TpStar className="absolute left-[calc(50%-6px)] h-[12px] w-[12px] text-primary" />
+                    <TpStar className="absolute -bottom-1 left-[calc(50%-13px)] h-[12px] w-[12px] text-primary" />
                   )}
                 </NavigationMenuItem>
               )
@@ -180,9 +180,9 @@ export const NavItemsSheet = ({
 }
 
 export const ListItem = forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(
-  ({ className, title, href, children, ...props }, ref) => {
+  ({ className, title, href, children, key, ...props }, ref) => {
     return (
-      <li className="isolate">
+      <li key={key} className="isolate">
         <NavigationMenuLink asChild>
           {/* legacyBehavior */}
           <Link ref={ref} href={href || '/'} passHref {...props}>
