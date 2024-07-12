@@ -162,8 +162,8 @@ export function ContactForm() {
                         variant="outline"
                         size="md"
                         className={cn(
-                          'h-11 bg-background px-3 text-left text-lg font-normal text-primary',
-                          !field.value && 'text-secondary'
+                          'h-11 bg-background px-3 text-left text-lg font-normal text-secondary hover:text-secondary',
+                          !field.value && 'text-secondary/85'
                         )}
                       >
                         {field.value ? format(field.value, 'PPP') : <span>Event Date</span>}
