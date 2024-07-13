@@ -88,7 +88,7 @@ export async function submitContactAction(prevState: FormState, data: FormData):
         react: EmailContactConfirm({ name: parsed.data.firstName })
       })
 
-      return { message: `Thank you for contacting us! We will get back to you as soon as possible.` }
+      return { message: `Thank you! We will get back to you as soon as possible.` }
     } catch (error) {
       console.error('contact form error', error)
       return { message: errorMessage }

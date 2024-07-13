@@ -9,8 +9,8 @@ import { Textarea } from '@/components/ui/textarea'
 import { submitContactAction } from '@/lib/actions'
 import { cn } from '@/lib/utils'
 import { contactFormSchema } from '@/lib/validations'
-// import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
+// import { Turnstile } from '@marsidev/react-turnstile'
 import { format } from 'date-fns'
 import { CalendarIcon, Loader2, X, XIcon } from 'lucide-react'
 import { useEffect, useRef, useState, useTransition } from 'react'
@@ -43,7 +43,9 @@ export function ContactForm() {
   })
   const formRef = useRef<HTMLFormElement>(null)
   const [isOther, setIsOther] = useState(false)
+  // const turnstileRef = useRef<TurnstileInstance>(null)
   const turnstile = useTurnstile()
+
   const watchReferral = form.watch('referral', '')
 
   useEffect(() => {
@@ -59,6 +61,7 @@ export function ContactForm() {
       const formData = new FormData(formRef.current!)
       formData.set('newsletter', data?.newsletter ? data.newsletter.toString() : 'false')
       data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
+      // turnstileRef.current?.execute()
       formAction(formData)
       resetForm()
     })
@@ -68,7 +71,8 @@ export function ContactForm() {
     // if (state?.message !== '' && !state.issues && (!pending || !isPending)) {
     formRef.current?.reset()
     form.reset()
-    turnstile.reset() // ref: https://github.com/react-hook-form/react-hook-form/issues/1001#issuecomment-602428680
+    // turnstileRef.current?.reset()
+    turnstile.reset()
     toast.success('Thank you for contacting Two Perfect Events!', {
       description: `We will get back to you as soon as possible.`,
       duration: 8000
@@ -269,13 +273,13 @@ export function ContactForm() {
           control={form.control}
           name="newsletter"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-center justify-center space-x-3 space-y-0 p-4 text-primary">
+            <FormItem className="flex flex-row items-center justify-center space-x-3 space-y-0 px-0 py-4 text-primary">
               <FormControl>
                 <Checkbox checked={field.value as boolean} onCheckedChange={field.onChange} id="newsletter" />
               </FormControl>
               <div className="space-y-1 leading-none">
                 <FormLabel htmlFor="newsletter" className="cursor-pointer">
-                  Join our email list for tips, tricks, and all things TPE!
+                  Join our newsletter for tips, tricks, & all things TPE!
                 </FormLabel>
               </div>
             </FormItem>
@@ -286,10 +290,10 @@ export function ContactForm() {
           {(pending || isPending) && <Loader2 className="ml-2 h-6 w-6 animate-spin" />}
         </Button>
         {state?.message !== '' && !state.issues && (!pending || !isPending) && (
-          <div className="text-balance text-primary">{state.message}</div>
+          <div className="w-full text-center text-primary">{state.message}</div>
         )}
         {state?.issues && (
-          <div className="text-primary">
+          <div className="w-full text-pretty text-primary">
             <ul>
               {state.issues.map((issue) => (
                 <li key={issue} className="flex gap-1">
@@ -301,19 +305,23 @@ export function ContactForm() {
           </div>
         )}
         <div className="flex w-full items-center justify-center pt-5">
+          {/* <Turnstile
+            ref={turnstileRef}
+            siteKey={process.env.NEXT_PUBLIC_CFTS_SITE ?? '1x00000000000000000000AA'}
+            options={{ execution: 'execute', size: 'invisible', appearance: 'interaction-only' }}
+          /> */}
           <Turnstile
             sitekey={process.env.NEXT_PUBLIC_CFTS_SITE ?? '1x00000000000000000000AA'}
             fixedSize={true}
             appearance="execute"
-            onVerify={(token) => {
-              // console.log(`Challenge Success ${token}`)
-              // form.setValue('cfTurnstileResponse', token)
-              // if not token then error
-            }}
+            // onVerify={(token) => {
+            // console.log(`Challenge Success ${token}`)
+            // form.setValue('cfTurnstileResponse', token)
+            // if not token then error
+            // }}
           />
         </div>
       </form>
-      {/* <DevTool control={form.control} /> */}
     </Form>
   )
 }
