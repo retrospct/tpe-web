@@ -240,7 +240,7 @@ export function ContactForm() {
                     >
                       <X className="h-4 w-4 text-muted-foreground" />
                     </Button>
-                    <Input placeholder="How did you hear about us?" {...field} />
+                    <Input autoFocus placeholder="How did you hear about us?" {...field} />
                   </div>
                 </FormControl>
               ) : (
