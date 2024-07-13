@@ -68,7 +68,7 @@ export const subscriptions = pgTable('subscriptions', {
   //   .references(() => persons.id, { onDelete: 'cascade' })
   //   .notNull(),
   // email: varchar('email', { length: 256 }).notNull(),
-  name: varchar('name', { length: 256 }).notNull(),
+  name: varchar('name', { length: 256 }).unique().notNull(),
   description: text('description'),
   // phone: varchar('phone', { length: 256 }).notNull(),
   // referral: varchar('referral', { length: 256 }),

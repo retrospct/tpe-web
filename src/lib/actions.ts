@@ -1,6 +1,6 @@
 'use server'
 
-import { createContactForm, createPerson, createPersonsToSubscriptions } from '@/drizzle/db'
+import { createContactForm, createPerson, createPersonsToSubscriptions, createSubscription } from '@/drizzle/db'
 import { InsertContactForm } from '@/drizzle/schema'
 import { sendEmail } from '@/emails'
 import { EmailContactConfirm } from '@/emails/contact-confirm'
@@ -9,8 +9,6 @@ import { formatLocalDate } from '@/lib/utils'
 import { contactFormSchema, subscribeFormSchema } from '@/lib/validations'
 import { headers } from 'next/headers'
 import { Resend } from 'resend'
-
-const subscriptionId = '61941de4-1d7d-4230-a9e3-13409c94cbb7'
 
 export type FormState = {
   message: string
@@ -27,7 +25,6 @@ async function IP() {
 
 export async function submitContactAction(prevState: FormState, data: FormData): Promise<FormState> {
   const formData = Object.fromEntries(data)
-  console.log('formData', formData)
   const parsed = contactFormSchema.safeParse(formData)
   console.log('contact_form', parsed)
   // console.log('prevState', prevState)
@@ -111,7 +108,8 @@ export async function submitContactAction(prevState: FormState, data: FormData):
           comments,
           referral
         })
-        await createPersonsToSubscriptions({ personId: person.id, subscriptionId })
+        const [subscription] = await createSubscription({ name: 'Newsletter' })
+        await createPersonsToSubscriptions({ personId: person.id, subscriptionId: subscription.id })
       }
     }
   } else {
@@ -163,7 +161,8 @@ export async function subscribeAction(prevState: FormState, data: FormData): Pro
     await subscribeResend({ email })
     // Add user to subscriptions list
     const [person] = await createPerson({ email })
-    await createPersonsToSubscriptions({ personId: person.id, subscriptionId })
+    const [subscription] = await createSubscription({ name: 'Newsletter' })
+    await createPersonsToSubscriptions({ personId: person.id, subscriptionId: subscription.id })
 
     // Send confirmation email to user
     await sendEmail({

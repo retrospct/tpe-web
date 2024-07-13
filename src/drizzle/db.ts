@@ -34,6 +34,8 @@ export const getPersons = async () => {
 }
 
 export const createSubscription = async (data: schema.InsertSubscriptions) => {
+  const subscriptionExists = await db.query.subscriptions.findMany({ where: eq(schema.subscriptions.name, data.name) })
+  if (subscriptionExists?.length > 0) return subscriptionExists
   return await db.insert(schema.subscriptions).values(data).returning()
 }
 
@@ -41,8 +43,11 @@ export const getSubscriptions = async () => {
   return await db.query.subscriptions.findMany({ with: { personsToSubscriptions: true } })
 }
 
-export const getSubscription = async ({ id }: { id: string }) => {
-  return await db.query.subscriptions.findMany({ where: eq(schema.subscriptions.id, id) })
+export const getSubscription = async ({ id, name }: { id?: string; name?: string }) => {
+  if (id && !name) return await db.query.subscriptions.findFirst({ where: eq(schema.subscriptions.id, id) })
+  if (!id && name) return await db.query.subscriptions.findFirst({ where: eq(schema.subscriptions.name, name) })
+  console.error('getSubscription error, possibly missing query parameter...')
+  return []
 }
 
 export const createPersonsToSubscriptions = async (data: schema.InsertPersonsToSubscriptions) => {
