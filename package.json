@@ -64,8 +64,6 @@
   },
   "devDependencies": {
     "@headlessui/tailwindcss": "^0.2.1",
-    "@hookform/devtools": "^4.3.1",
-    "@million/lint": "1.0.0-rc.76",
     "@slicemachine/adapter-next": "^0.3.42",
     "@tailwindcss/forms": "^0.5.7",
     "@types/ms": "^0.7.34",

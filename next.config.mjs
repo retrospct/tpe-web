@@ -1,4 +1,4 @@
-import MillionLint from '@million/lint'
+// import MillionLint from '@million/lint'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
@@ -7,7 +7,4 @@ const nextConfig = {
   },
   transpilePackages: ['lucide-react']
 }
-
-export default MillionLint.next({
-  rsc: true
-})(nextConfig)
+export default nextConfig
