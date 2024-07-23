@@ -1,12 +1,15 @@
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
 import { SliceZone } from '@prismicio/react'
-import { Metadata } from 'next'
+import type { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
 
-type Params = { uid: string }
+type Props = {
+  params: { uid: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
 
-export default async function Page({ params }: { params: Params }) {
+export default async function Page({ params, searchParams }: Props) {
   const client = createClient()
   const page = await client
     .getByUID('page', params.uid, {
@@ -26,13 +29,18 @@ export default async function Page({ params }: { params: Params }) {
   return <SliceZone slices={page.data.slices} components={components} />
 }
 
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const client = createClient()
   const page = await client.getByUID('page', params.uid).catch(() => notFound())
+  const previousImages = (await parent).openGraph?.images || []
 
   return {
     title: page.data.meta_title,
-    description: page.data.meta_description
+    description: page.data.meta_description,
+    openGraph: {
+      title: page.data.meta_title ?? undefined,
+      images: [{ url: page.data.meta_image.url ?? '' }, ...previousImages]
+    }
   }
 }
 
@@ -84,7 +92,7 @@ export async function generateStaticParams() {
 //   };
 // }
 
-// export default async function Page({ params }: { params: Params }) {
+// export default async function Page({ params, searchParams }: Props) {
 //   const client = createClient();
 //   const page = await client
 //     .getByUID("page", params.uid)

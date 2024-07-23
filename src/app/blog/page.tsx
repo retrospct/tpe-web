@@ -4,7 +4,10 @@ import { SliceZone } from '@prismicio/react'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-// type Params = { uid: string }
+// type Props = {
+  params: { uid: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
 
 export default async function Page() {
   const client = createClient()

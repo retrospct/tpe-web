@@ -5,13 +5,16 @@ import { createClient } from '@/prismicio'
 import { components } from '@/slices'
 import { SliceZone } from '@prismicio/react'
 import { ArrowLeft } from 'lucide-react'
-import { Metadata } from 'next'
+import type { Metadata, ResolvingMetadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-type Params = { uid: string }
+type Props = {
+  params: { uid: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
 
-export default async function Page({ params }: { params: Params }) {
+export default async function Page({ params, searchParams }: Props) {
   const client = createClient()
   const page = await client.getByUID('post', params.uid).catch(() => notFound())
 
@@ -43,13 +46,18 @@ export default async function Page({ params }: { params: Params }) {
   )
 }
 
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const client = createClient()
   const post = await client.getByUID('post', params.uid).catch(() => notFound())
+  const previousImages = (await parent).openGraph?.images || []
 
   return {
     title: post.data.meta_title,
-    description: post.data.meta_description
+    description: post.data.meta_description,
+    openGraph: {
+      title: post.data.meta_title ?? undefined,
+      images: [{ url: post.data.meta_image.url ?? '' }, ...previousImages]
+    }
   }
 }
 
