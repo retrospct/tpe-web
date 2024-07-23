@@ -4,6 +4,37 @@ import type * as prismic from '@prismicio/client'
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] }
 
+/**
+ * Content for Category documents
+ */
+interface CategoryDocumentData {
+  /**
+   * Name field in *Category*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: category.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  name: prismic.RichTextField
+}
+
+/**
+ * Category document from Prismic
+ *
+ * - **API ID**: `category`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CategoryDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<CategoryDocumentData>,
+  'category',
+  Lang
+>
+
 type EventDocumentDataSlicesSlice = CallToActionSlice | ImageGridSlice
 
 /**
@@ -542,14 +573,29 @@ export type PortfolioDocument<Lang extends string = string> = prismic.PrismicDoc
   Lang
 >
 
+/**
+ * Item in *Blog Post → Categories*
+ */
+export interface PostDocumentDataCategoriesItem {
+  /**
+   * Category field in *Blog Post → Categories*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.categories[].category
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  category: prismic.ContentRelationshipField<'category'>
+}
+
 type PostDocumentDataSlicesSlice = never
 
 /**
- * Content for Post documents
+ * Content for Blog Post documents
  */
 interface PostDocumentData {
   /**
-   * Title field in *Post*
+   * Title field in *Blog Post*
    *
    * - **Field Type**: Title
    * - **Placeholder**: *None*
@@ -560,7 +606,7 @@ interface PostDocumentData {
   title: prismic.TitleField
 
   /**
-   * Preview field in *Post*
+   * Preview field in *Blog Post*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -571,7 +617,7 @@ interface PostDocumentData {
   preview: prismic.RichTextField
 
   /**
-   * Thumbnail field in *Post*
+   * Thumbnail field in *Blog Post*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -582,7 +628,7 @@ interface PostDocumentData {
   thumbnail: prismic.ImageField<never>
 
   /**
-   * Content field in *Post*
+   * Content field in *Blog Post*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -593,7 +639,18 @@ interface PostDocumentData {
   content: prismic.RichTextField
 
   /**
-   * Slice Zone field in *Post*
+   * Categories field in *Blog Post*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.categories[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  categories: prismic.GroupField<Simplify<PostDocumentDataCategoriesItem>>
+
+  /**
+   * Slice Zone field in *Blog Post*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -602,7 +659,7 @@ interface PostDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
   slices: prismic.SliceZone<PostDocumentDataSlicesSlice> /**
-   * Meta Description field in *Post*
+   * Meta Description field in *Blog Post*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
@@ -613,7 +670,7 @@ interface PostDocumentData {
   meta_description: prismic.KeyTextField
 
   /**
-   * Meta Image field in *Post*
+   * Meta Image field in *Blog Post*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -624,7 +681,7 @@ interface PostDocumentData {
   meta_image: prismic.ImageField<never>
 
   /**
-   * Meta Title field in *Post*
+   * Meta Title field in *Blog Post*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
@@ -636,7 +693,7 @@ interface PostDocumentData {
 }
 
 /**
- * Post document from Prismic
+ * Blog Post document from Prismic
  *
  * - **API ID**: `post`
  * - **Repeatable**: `true`
@@ -651,6 +708,7 @@ export type PostDocument<Lang extends string = string> = prismic.PrismicDocument
 >
 
 export type AllDocumentTypes =
+  | CategoryDocument
   | EventDocument
   | FooterDocument
   | NavDocument
@@ -3245,6 +3303,8 @@ declare module '@prismicio/client' {
 
   namespace Content {
     export type {
+      CategoryDocument,
+      CategoryDocumentData,
       EventDocument,
       EventDocumentData,
       EventDocumentDataSlicesSlice,
@@ -3265,6 +3325,7 @@ declare module '@prismicio/client' {
       PortfolioDocumentDataSlicesSlice,
       PostDocument,
       PostDocumentData,
+      PostDocumentDataCategoriesItem,
       PostDocumentDataSlicesSlice,
       AllDocumentTypes,
       AwardsSlice,
