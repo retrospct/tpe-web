@@ -34,10 +34,10 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
           {isFilled.image(slice.primary.image) && (
             <div
               className={cn(
-                'relative flow-root min-w-full overflow-hidden',
+                'relative min-w-full overflow-hidden max-w-full',
                 isFilled.select(slice.primary.image_height) && slice.primary.image_height === 'short'
-                  ? 'h-[calc(66dvh-120px)] max-h-[431px] sm:h-[431px] sm:min-h-[431px]'
-                  : 'h-[calc(66dvh-120px)] max-h-[652px] sm:h-[652px] sm:min-h-[652px]'
+                  ? 'h-[calc(66vh-120px)] max-h-[431px] sm:h-[431px] sm:min-h-[431px]'
+                  : 'h-[calc(66vh-120px)] max-h-[652px] sm:h-[652px] sm:min-h-[652px]'
               )}
             >
               <PrismicNextImage
@@ -52,7 +52,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
           {(isFilled.richText(slice.primary.title) ||
             isFilled.link(slice.primary.cta_link) ||
             isFilled.richText(slice.primary.description)) && (
-            <div className="mx-auto mt-16 flow-root max-w-6xl px-6 text-left sm:mt-24 lg:px-8">
+            <div className="mx-auto mt-16 max-w-6xl px-6 text-left sm:mt-24 lg:px-8">
               {isFilled.richText(slice.primary.title) && (
                 <div className="max-w-4xl text-pretty font-serif text-4xl font-normal tracking-wider text-primary sm:text-5xl">
                   <PrismicRichText field={slice.primary.title} />
