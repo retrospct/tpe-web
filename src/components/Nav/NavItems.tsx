@@ -35,7 +35,7 @@ const NavItems = ({ navigation, ...props }: { navigation: NavDocument<string> })
                     <Link href={link}>{isFilled.richText(slice.primary.name) && asText(slice.primary.name)}</Link>
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="relative">
-                    <ul className="grid w-[400px] grid-cols-1 gap-3 p-4">
+                    <ul className="grid w-[160px] grid-cols-1 gap-2 px-2 py-5 justify-center items-center">
                       {slice.items.map((item) => (
                         <ListItem
                           key={asText(item.name)}
@@ -106,7 +106,7 @@ export const NavItemsSheet = ({
             {/* <SheetClose asChild> */}
             <NavLogo onClick={() => setSheetOpen(false)} />
             {/* </SheetClose> */}
-            <nav className="mx-auto flex w-full max-w-3xl items-center justify-center px-2 py-6">
+            <div className="flex w-full max-w-3xl items-center justify-start pl-6 pr-2 py-6">
               <NavigationMenu>
                 <NavigationMenuList className="mx-1 flex w-full flex-col items-start justify-between gap-4 space-x-0 text-center">
                   {navigation.data.slices.map((slice, i) => {
@@ -122,14 +122,14 @@ export const NavItemsSheet = ({
                             href={link}
                             passHref
                             onClick={() => setSheetOpen(false)}
-                            className={cn(navigationMenuTriggerStyle(), 'px-0 text-left')}
+                            className={cn(navigationMenuTriggerStyle(), 'px-0 text-left underline-offset-8 hover:underline')}
                           >
                             {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
                             <ChevronDownIcon className="ml-1 h-5 w-5" />
                           </Link>
-                          <ul className="grid max-w-[400px] grid-cols-1 gap-0 pl-3">
+                          <ul className="grid max-w-[400px] grid-cols-1 gap-2 pl-3">
                             {slice.items.map((item) => (
-                              <ListItem
+                              <ListItemSheet
                                 key={asText(item.name)}
                                 title={asText(item.name)}
                                 href={isFilled.link(item.link) ? item.link.url : '/'}
@@ -137,10 +137,10 @@ export const NavItemsSheet = ({
                                 className="relative px-0 text-left"
                               >
                                 {isFilled.link(item.link) && pathname === item.link.url && (
-                                  <TpStar className="absolute -left-5 top-[15px] h-[12px] w-[12px] text-primary" />
+                                  <TpStar className="absolute -left-6 top-[12px] h-[12px] w-[12px] text-primary" />
                                 )}
-                                {asText(item.description)}
-                              </ListItem>
+                                {isFilled.richText(item.description) && asText(item.description)}
+                              </ListItemSheet>
                             ))}
                           </ul>
                         </NavigationMenuItem>
@@ -171,7 +171,7 @@ export const NavItemsSheet = ({
                   })}
                 </NavigationMenuList>
               </NavigationMenu>
-            </nav>
+            </div>
           </div>
         </div>
       </SheetContent>
@@ -182,27 +182,28 @@ export const NavItemsSheet = ({
 export const ListItem = forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(
   ({ className, title, href, children, key, ...props }, ref) => {
     return (
-      <li key={key} className="isolate">
+      <li key={key}>
         <NavigationMenuLink asChild>
           {/* legacyBehavior */}
           <Link ref={ref} href={href || '/'} passHref {...props}>
             <div
               className={cn(
-                'group block cursor-pointer select-none space-y-1 p-3 leading-none no-underline outline-none focus:bg-accent/50 focus:text-accent-foreground disabled:opacity-5',
+                'group block cursor-pointer select-none space-y-1 py-3 text-center leading-none no-underline outline-none focus:bg-accent/50 focus:text-accent-foreground disabled:opacity-5',
                 className
               )}
             >
               {/* <div className="flex items-center justify-between gap-6"> */}
               {/* <ListItemIcon icon={title} /> */}
               {/* <div className="block"> */}
-              <div className="mb-3 text-lg font-medium italic leading-none text-primary underline-offset-8 group-hover:underline">
+              <div className="text-lg font-medium italic leading-none text-primary underline-offset-8 group-hover:underline">
                 {title}
               </div>
-              {children && (
-                <p className="text-md important:no-underline relative line-clamp-2 text-pretty font-normal leading-snug text-secondary">
+              {children}
+              {/* {children && (
+                <p className="text-md important:no-underline relative line-clamp-2 mt-3 text-pretty font-normal leading-snug text-secondary">
                   {children}
                 </p>
-              )}
+              )} */}
               {/* </div> */}
               {/* </div> */}
             </div>
@@ -213,6 +214,42 @@ export const ListItem = forwardRef<React.ElementRef<'a'>, React.ComponentPropsWi
   }
 )
 ListItem.displayName = 'ListItem'
+
+export const ListItemSheet = forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(
+  ({ className, title, href, children, key, ...props }, ref) => {
+    return (
+      <li key={key}>
+        <NavigationMenuLink asChild>
+          {/* legacyBehavior */}
+          <Link ref={ref} href={href || '/'} passHref {...props}>
+            <div
+              className={cn(
+                'block cursor-pointer select-none space-y-1 p-3 leading-none no-underline outline-none focus:bg-accent/50 focus:text-accent-foreground disabled:opacity-5',
+                className
+              )}
+            >
+              {/* <div className="flex items-center justify-between gap-6"> */}
+              {/* <ListItemIcon icon={title} /> */}
+              {/* <div className="block"> */}
+              <div className="text-lg font-medium italic leading-none text-primary underline-offset-8 hover:underline">
+                {title}
+              </div>
+              {children}
+              {/* {children && (
+                <p className="text-md important:no-underline relative line-clamp-2 mt-3 text-pretty font-normal leading-snug text-secondary">
+                  {children}
+                </p>
+              )} */}
+              {/* </div> */}
+              {/* </div> */}
+            </div>
+          </Link>
+        </NavigationMenuLink>
+      </li>
+    )
+  }
+)
+ListItemSheet.displayName = 'ListItemSheet'
 
 // const ListItemIcon = ({ icon }: { icon?: string }) => {
 //   switch (icon?.toLowerCase()) {

@@ -12,57 +12,62 @@ import { cn } from '@/lib/utils'
 import { asText, isFilled } from '@prismicio/client'
 import Link from 'next/link'
 import { FooterDocument } from '../../../prismicio-types'
-import { ListItem } from '../Nav/NavItems'
+import { ListItem, ListItemSheet } from '../Nav/NavItems'
 import SocialItems from './SocialItems'
 
 const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
   return (
     <div className="mx-auto mt-6 flex w-full max-w-4xl flex-col items-center justify-between">
-      {/* <SliceZone slices={navigation.data.slices} components={components} /> */}
-      <div className="mb-8 w-full px-6 md:px-8">
-        <NavigationMenu className="w-full">
-          <NavigationMenuList className="w-full flex-none flex-col justify-between gap-1 md:flex-row md:gap-6">
-            {navigation.data.slices.map((slice, i) => {
-              if (slice.slice_type !== 'nav_item') return null
-              const link = isFilled.link(slice.primary.link) && slice.primary.link?.url ? slice.primary.link.url : ''
-              if (slice.items.length > 0) {
-                return (
-                  <NavigationMenuItem key={`footer-item-${i}`} className="relative">
-                    <NavigationMenuTrigger>
+      <NavigationMenu className="w-full mb-8 px-6 md:px-8">
+        <NavigationMenuList className="w-full flex-none flex-col justify-between gap-1 md:flex-row md:gap-6 relative">
+          {navigation.data.slices.map((slice, i) => {
+            if (slice.slice_type !== 'nav_item') return null
+            const link = isFilled.link(slice.primary.link) && slice.primary.link?.url ? slice.primary.link.url : ''
+            if (slice.items.length > 0) {
+              return (
+                <NavigationMenuItem key={`footer-item-${i}`} className="relative">
+                  <NavigationMenuTrigger className="px-5 text-primary">
+                  <Link href={link}>{isFilled.richText(slice.primary.name) && asText(slice.primary.name)}</Link>
+                </NavigationMenuTrigger>
+                  <NavigationMenuContent className="relative hidden md:block">
+                    <ul className="grid w-[160px] grid-cols-1 gap-2 px-2 py-5 justify-center items-center">
+                      {slice.items.map((item) => (
+                        <ListItem
+                          key={asText(item.name)}
+                          title={asText(item.name)}
+                          href={isFilled.link(item.link) ? item.link.url : '/'}
+                        >
+                          {asText(item.description)}
+                        </ListItem>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                  {slice.items.map((item) => (
+                              <ListItemSheet
+                                key={asText(item.name)}
+                                title={asText(item.name)}
+                                href={isFilled.link(item.link) ? item.link.url : '/'}
+                                className="relative text-center md:hidden block"
+                              />
+                            ))}
+                </NavigationMenuItem>
+              )
+            } else {
+              return (
+                <NavigationMenuItem key={`footer-item-${i}`} className="relative">
+                  <Link href={link} legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={cn(navigationMenuTriggerStyle(), 'underline-offset-8 hover:underline')}
+                    >
                       {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent className="relative">
-                      <ul className="grid w-[400px] grid-cols-1 gap-3 p-4">
-                        {slice.items.map((item) => (
-                          <ListItem
-                            key={asText(item.name)}
-                            title={asText(item.name)}
-                            href={isFilled.link(item.link) ? item.link.url : '/'}
-                          >
-                            {asText(item.description)}
-                          </ListItem>
-                        ))}
-                      </ul>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                )
-              } else {
-                return (
-                  <NavigationMenuItem key={`footer-item-${i}`} className="relative">
-                    <Link href={link} legacyBehavior passHref>
-                      <NavigationMenuLink
-                        className={cn(navigationMenuTriggerStyle(), 'underline-offset-8 hover:underline')}
-                      >
-                        {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-                )
-              }
-            })}
-          </NavigationMenuList>
-        </NavigationMenu>
-      </div>
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              )
+            }
+          })}
+        </NavigationMenuList>
+      </NavigationMenu>
       <SocialItems slices={navigation.data.slices} />
     </div>
   )
