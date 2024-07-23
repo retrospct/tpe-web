@@ -18,19 +18,19 @@ import SocialItems from './SocialItems'
 const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
   return (
     <div className="mx-auto mt-6 flex w-full max-w-4xl flex-col items-center justify-between">
-      <NavigationMenu className="w-full mb-8 px-6 md:px-8">
-        <NavigationMenuList className="w-full flex-none flex-col justify-between gap-1 md:flex-row md:gap-6 relative">
+      <NavigationMenu className="mb-8 w-full px-6 md:px-8">
+        <NavigationMenuList className="relative w-full flex-none flex-col justify-between gap-1 md:flex-row md:gap-6">
           {navigation.data.slices.map((slice, i) => {
             if (slice.slice_type !== 'nav_item') return null
             const link = isFilled.link(slice.primary.link) && slice.primary.link?.url ? slice.primary.link.url : ''
             if (slice.items.length > 0) {
               return (
-                <NavigationMenuItem key={`footer-item-${i}`} className="relative">
+                <NavigationMenuItem key={`footer-item-${i}`} className="relative text-center">
                   <NavigationMenuTrigger className="px-5 text-primary">
-                  <Link href={link}>{isFilled.richText(slice.primary.name) && asText(slice.primary.name)}</Link>
-                </NavigationMenuTrigger>
-                  <NavigationMenuContent className="relative hidden md:block">
-                    <ul className="grid w-[160px] grid-cols-1 gap-2 px-2 py-5 justify-center items-center">
+                    <Link href={link}>{isFilled.richText(slice.primary.name) && asText(slice.primary.name)}</Link>
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="relative hidden pb-1 md:block">
+                    <ul className="grid w-[160px] grid-cols-1 items-center justify-center gap-2 px-2 py-5">
                       {slice.items.map((item) => (
                         <ListItem
                           key={asText(item.name)}
@@ -42,14 +42,16 @@ const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
                       ))}
                     </ul>
                   </NavigationMenuContent>
-                  {slice.items.map((item) => (
-                              <ListItemSheet
-                                key={asText(item.name)}
-                                title={asText(item.name)}
-                                href={isFilled.link(item.link) ? item.link.url : '/'}
-                                className="relative text-center md:hidden block"
-                              />
-                            ))}
+                  <ul className="grid w-[160px] grid-cols-1 items-center justify-center md:hidden">
+                    {slice.items.map((item) => (
+                      <ListItemSheet
+                        key={`mobile-footer-item-${asText(item.name)}`}
+                        title={asText(item.name)}
+                        href={isFilled.link(item.link) ? item.link.url : '/'}
+                        className="relative block text-center md:hidden"
+                      />
+                    ))}
+                  </ul>
                 </NavigationMenuItem>
               )
             } else {
