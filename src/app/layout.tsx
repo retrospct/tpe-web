@@ -10,12 +10,8 @@ import localFont from 'next/font/local'
 
 import '../styles/globals.css'
 
-const crimson = Crimson_Pro({
-  subsets: ['latin'],
-  variable: '--font-crimson'
-})
-
-const belgant = localFont({ src: './font/belgant-aesthetic.otf', variable: '--font-belgant' })
+const crimson = Crimson_Pro({ subsets: ['latin'], variable: '--font-crimson', preload: true })
+const belgant = localFont({ src: './font/belgant-aesthetic.otf', variable: '--font-belgant', preload: true })
 
 export default function RootLayout({
   children
@@ -35,9 +31,9 @@ export default function RootLayout({
         <Nav />
         {children}
         <Footer />
+        <Toaster position="bottom-center" richColors />
+        <PrismicPreview repositoryName={repositoryName ?? 'tpe-web'} />
       </body>
-      <Toaster position="bottom-center" richColors />
-      <PrismicPreview repositoryName={repositoryName ?? 'tpe-web'} />
       <GoogleAnalytics gaId="G-BK1E6E3S2L" />
     </html>
   )
