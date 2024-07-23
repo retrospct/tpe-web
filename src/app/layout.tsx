@@ -7,7 +7,6 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import { PrismicPreview } from '@prismicio/next'
 import { Crimson_Pro } from 'next/font/google'
 import localFont from 'next/font/local'
-import Head from 'next/head'
 
 import '../styles/globals.css'
 
@@ -32,11 +31,6 @@ export default function RootLayout({
         belgant.variable
       )}
     >
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-        {/* <link rel="icon" href="/icon?<generated>" type="image/<generated>" sizes="<generated>" />
-        <link rel="apple-touch-icon" href="/apple-icon?<generated>" type="image/<generated>" sizes="<generated>" /> */}
-      </Head>
       <body>
         <Nav />
         {children}
