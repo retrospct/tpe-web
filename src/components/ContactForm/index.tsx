@@ -48,7 +48,7 @@ export function ContactForm() {
   const watchReferral = form.watch('referral', '')
 
   useEffect(() => {
-    if (watchReferral === 'other' && !isOther) {
+    if ((watchReferral === 'other' || watchReferral === 'referral') && !isOther) {
       setIsOther(true)
       form.setValue('referral', '')
     }
@@ -254,12 +254,12 @@ export function ContactForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="referral">Referral</SelectItem>
                     <SelectItem value="google">Google</SelectItem>
+                    <SelectItem value="knot">The Knot/WeddingWire/WeddingPro</SelectItem>
                     <SelectItem value="yelp">Yelp</SelectItem>
+                    <SelectItem value="Instagram">Instagram</SelectItem>
                     <SelectItem value="tiktok">Tiktok</SelectItem>
-                    <SelectItem value="facebook">Facebook</SelectItem>
-                    <SelectItem value="pinterest">Pinterest</SelectItem>
+                    <SelectItem value="referral">Referral</SelectItem>
                     <SelectItem value="other">Other</SelectItem>
                   </SelectContent>
                 </Select>
