@@ -29,7 +29,7 @@ const Contact = ({ slice }: ContactProps): JSX.Element => {
             <div className="relative mx-3 mt-12 w-full max-w-[360px] text-center lg:mx-6 lg:mt-0 lg:max-w-[500px]">
               <PrismicNextImage
                 field={slice.primary.image}
-                imgixParams={{ crop: 'faces,edges', fit: 'crop', w: 1, h: 1 }}
+                imgixParams={{ crop: ['faces', 'edges'], fit: 'crop', w: 1, h: 1 }}
                 className="object-cover"
               />
             </div>

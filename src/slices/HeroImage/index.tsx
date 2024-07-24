@@ -34,7 +34,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
           {isFilled.image(slice.primary.image) && (
             <div
               className={cn(
-                'relative min-w-full overflow-hidden max-w-full',
+                'relative min-w-full max-w-full overflow-hidden',
                 isFilled.select(slice.primary.image_height) && slice.primary.image_height === 'short'
                   ? 'h-[calc(66vh-120px)] max-h-[431px] sm:h-[431px] sm:min-h-[431px]'
                   : 'h-[calc(66vh-120px)] max-h-[652px] sm:h-[652px] sm:min-h-[652px]'
@@ -42,7 +42,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
             >
               <PrismicNextImage
                 field={slice.primary.image}
-                imgixParams={{ crop: 'faces,edges', fit: 'crop', w: 1, h: 1 }}
+                imgixParams={{ crop: ['faces', 'edges'], fit: 'crop', w: 1, h: 1 }}
                 className="object-cover"
                 fill
                 priority
@@ -117,7 +117,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
               <div className="relative mx-3 mt-3 w-full max-w-[360px] text-center lg:mx-6 lg:mt-0 lg:max-w-[584px]">
                 <PrismicNextImage
                   field={slice.primary.image}
-                  imgixParams={{ crop: 'faces,edges', fit: 'crop', w: 1, h: 1 }}
+                  imgixParams={{ crop: ['faces', 'edges'], fit: 'crop', w: 1, h: 1 }}
                   className="object-cover"
                 />
               </div>
@@ -153,7 +153,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
             <div className="relative mx-3 mt-3 w-full max-w-[360px] text-center lg:mx-6 lg:mt-0 lg:max-w-[584px]">
               <PrismicNextImage
                 field={slice.primary.image}
-                imgixParams={{ crop: 'faces,edges', fit: 'crop', w: 1, h: 1 }}
+                imgixParams={{ crop: ['faces', 'edges'], fit: 'crop', w: 1, h: 1 }}
                 className="object-cover"
               />
             </div>

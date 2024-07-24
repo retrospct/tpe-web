@@ -42,7 +42,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
                         <div className="relative mx-6 w-full max-w-60 overflow-hidden rounded-t-full border-[5px] border-solid border-primary text-center transition-transform group-hover:scale-105 group-hover:border-primary lg:mx-12">
                           <PrismicNextImage
                             field={item.image}
-                            imgixParams={{ crop: 'faces,edges', fit: 'crop', w: 1, h: 1 }}
+                            imgixParams={{ crop: ['faces', 'edges'], fit: 'crop', w: 1, h: 1 }}
                             className="object-cover"
                           />
                         </div>
@@ -77,7 +77,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
                         <div className="relative mx-2 w-full max-w-60 overflow-hidden border-[3px] border-solid border-primary text-center transition-transform group-hover:scale-105 lg:mx-5">
                           <PrismicNextImage
                             field={item.image}
-                            imgixParams={{ crop: 'faces,edges', fit: 'crop', w: 1, h: 1 }}
+                            imgixParams={{ crop: ['faces', 'edges'], fit: 'crop', w: 1, h: 1 }}
                             className="object-cover"
                           />
                         </div>
@@ -105,7 +105,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
                     <div className="relative mx-2 mb-7 w-full overflow-hidden border-[3px] border-solid border-primary text-center transition-transform group-hover:scale-105 lg:mx-5">
                       <PrismicNextImage
                         field={service.image}
-                        imgixParams={{ crop: 'faces,edges', fit: 'crop', w: 1, h: 1 }}
+                        imgixParams={{ crop: ['faces', 'edges'], fit: 'crop', w: 1, h: 1 }}
                         className="object-cover"
                       />
                     </div>
