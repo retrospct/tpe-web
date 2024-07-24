@@ -574,11 +574,11 @@ export type PortfolioDocument<Lang extends string = string> = prismic.PrismicDoc
 >
 
 /**
- * Item in *Blog Post → Categories*
+ * Item in *Post → Categories*
  */
 export interface PostDocumentDataCategoriesItem {
   /**
-   * Category field in *Blog Post → Categories*
+   * Category field in *Post → Categories*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
@@ -591,11 +591,11 @@ export interface PostDocumentDataCategoriesItem {
 type PostDocumentDataSlicesSlice = never
 
 /**
- * Content for Blog Post documents
+ * Content for Post documents
  */
 interface PostDocumentData {
   /**
-   * Title field in *Blog Post*
+   * Title field in *Post*
    *
    * - **Field Type**: Title
    * - **Placeholder**: *None*
@@ -606,7 +606,7 @@ interface PostDocumentData {
   title: prismic.TitleField
 
   /**
-   * Preview field in *Blog Post*
+   * Preview field in *Post*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -617,7 +617,7 @@ interface PostDocumentData {
   preview: prismic.RichTextField
 
   /**
-   * Thumbnail field in *Blog Post*
+   * Thumbnail field in *Post*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -628,7 +628,7 @@ interface PostDocumentData {
   thumbnail: prismic.ImageField<never>
 
   /**
-   * Content field in *Blog Post*
+   * Content field in *Post*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -639,7 +639,7 @@ interface PostDocumentData {
   content: prismic.RichTextField
 
   /**
-   * Categories field in *Blog Post*
+   * Categories field in *Post*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
@@ -650,7 +650,7 @@ interface PostDocumentData {
   categories: prismic.GroupField<Simplify<PostDocumentDataCategoriesItem>>
 
   /**
-   * Slice Zone field in *Blog Post*
+   * Slice Zone field in *Post*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -659,7 +659,7 @@ interface PostDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
   slices: prismic.SliceZone<PostDocumentDataSlicesSlice> /**
-   * Meta Description field in *Blog Post*
+   * Meta Description field in *Post*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
@@ -670,7 +670,7 @@ interface PostDocumentData {
   meta_description: prismic.KeyTextField
 
   /**
-   * Meta Image field in *Blog Post*
+   * Meta Image field in *Post*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -681,7 +681,7 @@ interface PostDocumentData {
   meta_image: prismic.ImageField<never>
 
   /**
-   * Meta Title field in *Blog Post*
+   * Meta Title field in *Post*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
@@ -693,7 +693,7 @@ interface PostDocumentData {
 }
 
 /**
- * Blog Post document from Prismic
+ * Post document from Prismic
  *
  * - **API ID**: `post`
  * - **Repeatable**: `true`

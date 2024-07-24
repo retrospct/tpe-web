@@ -54,7 +54,7 @@ export function ContactForm() {
       form.setValue('referral', '')
     }
     return () => {}
-  }, [watchReferral, isOther])
+  }, [watchReferral, isOther, form])
 
   const submitForm = async (data: z.infer<typeof contactFormSchema>) => {
     startTransition(() => {

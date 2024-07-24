@@ -52,11 +52,11 @@ export async function generateMetadata({ params, searchParams }: Props, parent: 
   const previousImages = (await parent).openGraph?.images || []
 
   return {
-    title: post.data.meta_title,
-    description: post.data.meta_description,
+    title: post.data.meta_title || 'Two Perfect Events',
+    description: post.data.meta_description || 'A full-service event planning company based in Palo Alto, CA.',
     openGraph: {
-      title: post.data.meta_title ?? undefined,
-      images: [{ url: post.data.meta_image.url ?? '' }, ...previousImages]
+      title: post.data.meta_title || 'Two Perfect Events',
+      images: [{ url: post.data.meta_image.url || '' }, ...previousImages]
     }
   }
 }

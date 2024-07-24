@@ -1,5 +1,6 @@
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
+import { filter } from '@prismicio/client'
 import { SliceZone } from '@prismicio/react'
 import type { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -35,18 +36,18 @@ export async function generateMetadata({ params, searchParams }: Props, parent: 
   const previousImages = (await parent).openGraph?.images || []
 
   return {
-    title: page.data.meta_title,
-    description: page.data.meta_description,
+    title: page.data.meta_title || 'Two Perfect Events',
+    description: page.data.meta_description || 'A full-service event planning company based in Palo Alto, CA.',
     openGraph: {
-      title: page.data.meta_title ?? undefined,
-      images: [{ url: page.data.meta_image.url ?? '' }, ...previousImages]
+      title: page.data.meta_title || undefined,
+      images: [{ url: page.data.meta_image.url || '' }, ...previousImages]
     }
   }
 }
 
 export async function generateStaticParams() {
   const client = createClient()
-  const pages = await client.getAllByType('page')
+  const pages = await client.getAllByType('page', { predicates: [filter.not('my.page.uid', 'home')] })
 
   return pages.map((page) => {
     return { uid: page.uid }
