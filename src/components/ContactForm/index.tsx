@@ -10,13 +10,12 @@ import { submitContactAction } from '@/lib/actions'
 import { cn } from '@/lib/utils'
 import { contactFormSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
-// import { Turnstile } from '@marsidev/react-turnstile'
 import { format } from 'date-fns'
 import { CalendarIcon, Loader2, X, XIcon } from 'lucide-react'
 import { useEffect, useRef, useState, useTransition } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 import { useForm } from 'react-hook-form'
-import Turnstile, { useTurnstile } from 'react-turnstile'
+// import Turnstile, { useTurnstile } from 'react-turnstile'
 import { toast } from 'sonner'
 import { z } from 'zod'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
@@ -44,7 +43,7 @@ export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null)
   const [isOther, setIsOther] = useState(false)
   // const turnstileRef = useRef<TurnstileInstance>(null)
-  const turnstile = useTurnstile()
+  // const turnstile = useTurnstile()
 
   const watchReferral = form.watch('referral', '')
 
@@ -72,7 +71,7 @@ export function ContactForm() {
     formRef.current?.reset()
     form.reset()
     // turnstileRef.current?.reset()
-    turnstile.reset()
+    // turnstile.reset()
     toast.success('Thank you for contacting Two Perfect Events!', {
       description: `We will get back to you as soon as possible.`,
       duration: 8000
@@ -304,23 +303,18 @@ export function ContactForm() {
             </ul>
           </div>
         )}
-        <div className="flex w-full items-center justify-center pt-5">
-          {/* <Turnstile
+        {/* <div className="flex w-full items-center justify-center pt-5">
+          <Turnstile
             ref={turnstileRef}
             siteKey={process.env.NEXT_PUBLIC_CFTS_SITE ?? '1x00000000000000000000AA'}
             options={{ execution: 'execute', size: 'invisible', appearance: 'interaction-only' }}
-          /> */}
+          />
           <Turnstile
             sitekey={process.env.NEXT_PUBLIC_CFTS_SITE ?? '1x00000000000000000000AA'}
             fixedSize={true}
             appearance="execute"
-            // onVerify={(token) => {
-            // console.log(`Challenge Success ${token}`)
-            // form.setValue('cfTurnstileResponse', token)
-            // if not token then error
-            // }}
           />
-        </div>
+        </div> */}
       </form>
     </Form>
   )
