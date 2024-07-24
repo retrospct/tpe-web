@@ -1,3 +1,4 @@
+import { rgbDataURL } from '@/lib/utils'
 import { isFilled } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
 import { PrismicRichText } from '@prismicio/react'
@@ -19,7 +20,12 @@ export const EventsGrid = ({ events }: { events: any }) => {
           {event?.url && (
             <Link href={event.url} className="flex flex-col items-center justify-start">
               {isFilled.image(event?.data?.thumbnail) && (
-                <PrismicNextImage field={event.data.thumbnail} className="h-96 w-auto" />
+                <PrismicNextImage
+                  field={event.data.thumbnail}
+                  className="h-96 w-auto"
+                  placeholder="blur"
+                  blurDataURL={rgbDataURL(238, 200, 203)}
+                />
               )}
               {isFilled.richText(event?.data?.title) && (
                 <div className="mt-4 text-balance text-xl uppercase leading-none">

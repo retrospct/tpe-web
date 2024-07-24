@@ -1,5 +1,5 @@
 import { Text } from '@/components'
-import { cn } from '@/lib/utils'
+import { cn, rgbDataURL } from '@/lib/utils'
 import { Content, isFilled } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
 import { SliceComponentProps } from '@prismicio/react'
@@ -32,6 +32,8 @@ const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
                         'h-auto w-auto object-cover',
                         item.layout === 'portrait' ? 'w-80' : item.layout === 'square' ? 'h-80 w-80' : 'h-60 w-80'
                       )}
+                      placeholder="blur"
+                      blurDataURL={rgbDataURL(238, 200, 203)}
                     />
                   )}
                 </div>
