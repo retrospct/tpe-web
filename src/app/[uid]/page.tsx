@@ -47,7 +47,13 @@ export async function generateMetadata({ params, searchParams }: Props, parent: 
 
 export async function generateStaticParams() {
   const client = createClient()
-  const pages = await client.getAllByType('page', { predicates: [filter.not('my.page.uid', 'home')] })
+  const pages = await client.getAllByType('page', {
+    filters: [
+      filter.not('my.page.uid', 'home'),
+      filter.not('my.page.uid', 'portfolio'),
+      filter.not('my.page.uid', 'blog')
+    ]
+  })
 
   return pages.map((page) => {
     return { uid: page.uid }
