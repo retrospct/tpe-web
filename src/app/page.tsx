@@ -11,6 +11,16 @@ import { Metadata } from 'next'
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient()
   const home = await client.getByUID('page', 'home')
+  // const title = `${params.domain.toUpperCase()} - A ${
+  //   process.env.NEXT_PUBLIC_APP_NAME
+  // } Custom Domain`;
+  // const description = `${params.domain.toUpperCase()} is a custom domain on ${
+  //   process.env.NEXT_PUBLIC_APP_NAME
+  // } - an open-source link management tool for modern marketing teams to create, share, and track short links.`;
+  // return constructMetadata({
+  //   title,
+  //   description,
+  // });
 
   return {
     title: home.data.meta_title,
