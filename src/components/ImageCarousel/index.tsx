@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import { GroupField, isFilled } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
 import Autoplay from 'embla-carousel-autoplay'
+import { useRef } from 'react'
 import { ServicesSliceGraphicDesignPrimaryImagesItem, Simplify } from '../../../prismicio-types'
 
 export const ImageCarousel = ({
@@ -17,11 +18,15 @@ export const ImageCarousel = ({
   duration?: number
   className?: string
 }) => {
+  const plugin = useRef(Autoplay({ delay: duration, stopOnInteraction: false, stopOnMouseEnter: true }))
   return (
     <Carousel
-      opts={{ loop: true }}
-      plugins={[Autoplay({ delay: duration, stopOnInteraction: false, stopOnMouseEnter: true })]}
+      opts={{ loop: true, align: 'start' }}
+      plugins={[plugin.current]}
+      onMouseEnter={plugin.current.stop}
+      onMouseLeave={plugin.current.reset}
       className={cn('relative', className)}
+      // className="w-full max-w-xs"
     >
       <CarouselContent>
         {images.map(
