@@ -5,17 +5,18 @@ import * as React from 'react'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap text-base font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center whitespace-nowrap text-base font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
         default:
-          'relative bg-primary font-semibold tracking-widest text-accent before:absolute before:inset-1.5 before:block before:border-2 before:border-accent hover:bg-primary/80', //hover:bg-accent-hover
+          'relative bg-primary font-semibold tracking-widest text-accent hover:text-primary transition-colors duration-300 before:absolute before:inset-1.5 before:block before:border-2 before:border-accent before:hover:border-primary hover:bg-accent', //hover:bg-accent-hover
         destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-        outline: 'border-2 border-primary bg-background hover:bg-accent hover:text-primary/90',
+        outline:
+          'border-2 border-primary bg-background hover:bg-accent hover:border-accent duration-300 hover:text-primary',
         secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
-        link: 'text-primary underline-offset-4 hover:underline hover:text-primary/90'
+        ghost: 'transition-colors duration-300 text-primary hover:bg-accent hover:text-primary',
+        link: 'text-primary underline-offset-4 hover:underline hover:text-primary/80'
       },
       size: {
         default: 'px-12 py-6 text-lg',
