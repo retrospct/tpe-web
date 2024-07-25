@@ -49,9 +49,15 @@ const NavItems = ({ navigation, ...props }: { navigation: NavDocument<string> })
                       ))}
                     </ul>
                   </NavigationMenuContent>
-                  {pathname === link && (
+                  <TpStar
+                    className={cn(
+                      'absolute -bottom-1 left-[calc(50%-13px)] hidden h-[12px] w-[12px] text-primary group-hover:block group-hover:text-accent',
+                      pathname === link ? 'block' : 'hidden'
+                    )}
+                  />
+                  {/* {pathname === link && (
                     <TpStar className="absolute -bottom-1 left-[calc(50%-13px)] h-[12px] w-[12px] text-primary" />
-                  )}
+                  )} */}
                 </NavigationMenuItem>
               )
             } else {
@@ -61,16 +67,22 @@ const NavItems = ({ navigation, ...props }: { navigation: NavDocument<string> })
                     <NavigationMenuLink
                       className={cn(
                         navigationMenuTriggerStyle(),
-                        'px-5',
-                        pathname !== link && 'underline-offset-8 hover:underline'
+                        'px-5'
+                        // pathname !== link && 'underline-offset-8 hover:underline'
                       )}
                     >
                       {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
                     </NavigationMenuLink>
                   </Link>
-                  {pathname === link && (
+                  <TpStar
+                    className={cn(
+                      'absolute -bottom-1 left-[calc(50%-6px)] hidden h-[12px] w-[12px] text-primary group-hover:block group-hover:text-accent',
+                      pathname === link ? 'block' : 'hidden'
+                    )}
+                  />
+                  {/* {pathname === link && (
                     <TpStar className="absolute -bottom-1 left-[calc(50%-6px)] h-[12px] w-[12px] text-primary" />
-                  )}
+                  )} */}
                 </NavigationMenuItem>
               )
             }
