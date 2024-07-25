@@ -51,7 +51,7 @@ const Callout = ({ slice }: CalloutProps): JSX.Element => {
             <div className="w-full border-t-2 border-accent px-6 py-0 md:w-[2px] md:border-l-2 md:px-0 md:py-6" />
           </div> */}
           {isFilled.group(slice.primary.venues) && (
-            <div className="grid grid-cols-2 items-start gap-x-6 gap-y-5 overflow-hidden pl-0 pt-10 md:grid-cols-3 md:pl-8 md:pt-0 lg:grid-cols-4 lg:gap-x-12 lg:pl-14">
+            <div className="grid grid-cols-2 items-center gap-x-6 gap-y-5 overflow-hidden pl-0 pt-10 md:grid-cols-3 md:pl-8 md:pt-0 lg:grid-cols-4 lg:gap-x-12 lg:pl-14">
               {slice.primary.venues.map((venue) =>
                 isFilled.link(venue.link) ? (
                   <PrismicNextLink key={`venue-${asText(venue.name)}`} field={venue.link}>

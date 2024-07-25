@@ -37,7 +37,7 @@ const Timeline = ({ slice }: TimelineProps): JSX.Element => {
                   />
                   <Text
                     richText={item.name}
-                    className="font-light leading-none text-secondary lg:leading-none"
+                    className="text-wrap font-light leading-none text-secondary lg:leading-none"
                     size="xl"
                   />
                 </div>
