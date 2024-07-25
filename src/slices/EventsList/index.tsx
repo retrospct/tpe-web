@@ -14,7 +14,7 @@ const EventsList = ({ slice }: EventsListProps): JSX.Element => {
   return (
     <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="my-10 w-full">
       {slice.variation === 'default' && (
-        <div className="flex w-full flex-col items-center justify-center">
+        <div className="flex w-full max-w-4xl flex-col items-center justify-center">
           {isFilled.richText(slice.primary.title) && (
             <HeadingDivider
               richText={slice.primary.title}
@@ -23,7 +23,7 @@ const EventsList = ({ slice }: EventsListProps): JSX.Element => {
                   ? slice.primary.anchor_link.toLowerCase().replace(/\s/g, '-')
                   : slice.slice_type
               }
-              className="max-w-4xl"
+              className="max-w-full"
             />
           )}
           <EventsGrid events={slice?.items} />

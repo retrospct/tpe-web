@@ -90,11 +90,11 @@ export const HeadingDivider = ({
 }) => {
   return (
     <div id={anchor} className={cn('relative mb-6 w-full max-w-full overflow-hidden', className)}>
-      <div className="absolute inset-0 ml-2 flex max-w-full items-center xl:ml-8" aria-hidden="true">
+      <div className="absolute inset-0 flex max-w-full items-center pl-2 xl:pl-8" aria-hidden="true">
         <div className="relative w-full border border-accent" />
       </div>
       <div className="relative flex items-center justify-start">
-        <TpStar className={cn('ml-2 text-primary xl:ml-8', bg)} />
+        <TpStar className={cn('pl-2 text-primary xl:pl-8', bg)} />
         <div
           className={cn(
             'bg-background px-4 font-serif text-2xl uppercase leading-8 tracking-widest text-primary lg:text-3xl',
