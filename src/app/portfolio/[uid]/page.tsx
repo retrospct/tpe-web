@@ -1,5 +1,6 @@
 import { Heading } from '@/components'
 import { buttonVariants } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
@@ -20,6 +21,7 @@ export default async function Page({ params, searchParams }: Props) {
 
   return (
     <div className="mb-14 mt-8">
+      <Separator className="mb-8" />
       <Heading richText={page.data.title} accents className="text-pretty text-center uppercase" />
       <SliceZone slices={page.data.slices} components={components} />
       <section className="flex w-full flex-col items-center gap-6 text-center text-primary">

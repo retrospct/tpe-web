@@ -75,7 +75,7 @@ const CallToAction = ({ slice, ...props }: CallToActionProps): JSX.Element => {
       {slice.variation === 'imageTextFeatured' && (
         <div className="flex w-full max-w-7xl flex-col items-center justify-center gap-12 py-16 lg:flex-row">
           {isFilled.group(slice.primary.images) && (
-            <ImageCarousel images={slice.primary.images} className="max-w-xl overflow-hidden" />
+            <ImageCarousel images={slice.primary.images} className="w-full max-w-xl overflow-hidden" />
           )}
           <div className="flex max-w-xl flex-col items-center">
             <Heading
@@ -146,6 +146,7 @@ const DefaultCTASlice = ({ slice }: CallToActionProps) => {
 
   return (
     <div className={cn('flex w-full max-w-7xl flex-col items-center justify-center gap-6', padding())}>
+      {/* {slice.primary.show_separator && <Separator />} */}
       <Heading
         richText={slice.primary.title}
         size={isFilled.select(slice.primary.title_size) ? slice.primary.title_size : 'md'}

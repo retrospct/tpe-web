@@ -1,4 +1,5 @@
 import { Heading } from '@/components'
+import { Separator } from '@/components/ui/separator'
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
 import { SliceZone } from '@prismicio/react'
@@ -24,6 +25,7 @@ export default async function Page({ params, searchParams }: Props) {
       {/* <div className="inset-0 mx-auto my-8 flex w-full max-w-xl items-center" aria-hidden="true">
         <div className="w-full border-t-2 border-accent px-6" />
       </div> */}
+      <Separator className="mb-8" />
       <Heading richText={page.data.title} accents className="text-center" />
       <ul className="mt-8 flex w-full max-w-xl justify-evenly text-center text-primary sm:text-lg">
         <li className="hover:text-primary/80">
