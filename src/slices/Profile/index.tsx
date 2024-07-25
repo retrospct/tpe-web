@@ -22,15 +22,15 @@ const Profile = ({ slice }: ProfileProps): JSX.Element => {
       {slice.variation === 'default' && (
         <>
           <Heading richText={slice.primary.title} className="mb-16 text-center" accents />
-          <div className="grid auto-cols-auto grid-cols-1 items-center justify-start gap-x-6 gap-y-12 self-center text-center font-medium text-primary md:grid-cols-2 md:items-start md:justify-start lg:grid-cols-3">
+          <div className="grid auto-cols-auto grid-cols-1 items-center justify-start gap-x-6 gap-y-12 self-center px-3 text-center font-medium text-primary md:grid-cols-2 md:items-start md:justify-start lg:grid-cols-3">
             {isFilled.group(slice.primary.persons) &&
               slice.primary.persons.map(({ person, full_width }: { person: any; full_width?: boolean }) => (
                 <div
                   key={person.id}
                   className={cn(
-                    'relative flex h-auto w-80 flex-col',
+                    'relative flex h-auto w-80 max-w-lg flex-col',
                     full_width &&
-                      'col-span-1 w-80 flex-col gap-6 md:col-span-2 md:w-auto md:flex-row lg:col-span-3 lg:w-auto'
+                      'col-span-1 w-full max-w-full flex-col gap-6 md:col-span-2 md:w-auto md:flex-row lg:col-span-3 lg:w-auto'
                   )}
                 >
                   {isFilled.image(person?.data?.image) && (
@@ -39,7 +39,7 @@ const Profile = ({ slice }: ProfileProps): JSX.Element => {
                       className={cn('h-80 w-80', full_width && 'h-80 w-80 md:h-96 md:w-96')}
                     />
                   )}
-                  <div className={cn('mt-4 flex max-w-lg flex-col gap-1', full_width && 'mt-0')}>
+                  <div className={cn('mt-4 flex w-full flex-col gap-1', full_width && 'mt-0')}>
                     <div className="flex items-center gap-1">
                       <Heading richText={person.data?.first_name} className="tracking-normal" size="xs" />
                       <Heading richText={person.data?.last_name} className="tracking-normal" size="xs" />
@@ -59,7 +59,7 @@ const Profile = ({ slice }: ProfileProps): JSX.Element => {
                     />
                     <Text
                       richText={person.data?.likes}
-                      className="mt-3 w-full text-pretty text-left text-base text-secondary lg:text-base"
+                      className="mt-3 w-full text-pretty text-left text-base font-normal text-secondary lg:text-base"
                     />
                   </div>
                 </div>
