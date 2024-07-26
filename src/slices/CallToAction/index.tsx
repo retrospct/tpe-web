@@ -74,7 +74,7 @@ const CallToAction = ({ slice, ...props }: CallToActionProps): JSX.Element => {
         </div>
       )}
       {slice.variation === 'imageTextFeatured' && (
-        <div className="flex w-full max-w-7xl flex-col items-center justify-center gap-12 py-16 lg:flex-row">
+        <div className="flex w-full max-w-7xl flex-col items-center justify-center gap-12 py-16 lg:flex-row lg:gap-0">
           {isFilled.group(slice.primary.images) && (
             <ImageCarousel images={slice.primary.images} className="w-full max-w-xl overflow-hidden" />
           )}

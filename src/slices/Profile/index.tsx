@@ -17,7 +17,7 @@ const Profile = ({ slice }: ProfileProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative mx-auto flex w-full max-w-7xl flex-col items-center justify-start px-6 pt-16 lg:px-8"
+      className="relative mx-auto flex w-full max-w-7xl flex-col items-center justify-start px-6 pt-16 lg:px-0"
     >
       {slice.variation === 'default' && (
         <>
@@ -30,13 +30,13 @@ const Profile = ({ slice }: ProfileProps): JSX.Element => {
                   className={cn(
                     'relative flex h-auto w-80 max-w-lg flex-col',
                     full_width &&
-                      'col-span-1 w-full max-w-5xl flex-col gap-6 md:col-span-2 md:w-auto md:flex-row lg:col-span-3 lg:w-auto'
+                      'col-span-1 w-full max-w-5xl gap-6 md:col-span-2 md:w-auto md:flex-row lg:col-span-3 lg:w-auto'
                   )}
                 >
                   {isFilled.image(person?.data?.image) && (
                     <PrismicNextImage
                       field={person.data.image}
-                      className={cn('h-80 w-80', full_width && 'h-80 w-80 md:h-96 md:w-96')}
+                      className={cn('h-80 w-80', full_width && 'h-80 w-80 lg:h-96 lg:w-96')}
                     />
                   )}
                   <div className={cn('mt-4 flex w-full flex-col gap-1', full_width && 'mt-0')}>
