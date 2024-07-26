@@ -31,7 +31,7 @@ const NavItems = ({ navigation, ...props }: { navigation: NavDocument<string> })
             const link = isFilled.link(slice.primary.link) && slice.primary.link?.url ? slice.primary.link.url : ''
             if (slice.items.length > 0) {
               return (
-                <NavigationMenuItem key={`nav-item-${i}`} className="relative">
+                <NavigationMenuItem key={`nav-item-${i}`} className="group/active relative">
                   <NavigationMenuTrigger className="px-5 text-primary">
                     <Link href={link}>{isFilled.richText(slice.primary.name) && asText(slice.primary.name)}</Link>
                   </NavigationMenuTrigger>
@@ -51,38 +51,26 @@ const NavItems = ({ navigation, ...props }: { navigation: NavDocument<string> })
                   </NavigationMenuContent>
                   <TpStar
                     className={cn(
-                      'absolute -bottom-1 left-[calc(50%-13px)] hidden h-[12px] w-[12px] text-primary group-hover:block group-hover:text-accent',
+                      'absolute -bottom-1 left-[calc(50%-13px)] hidden h-[12px] w-[12px] text-primary group-hover/active:block group-hover/active:text-accent',
                       pathname === link || (pathname.startsWith(link) && link !== '/') ? 'block' : 'hidden'
                     )}
                   />
-                  {/* {pathname === link && (
-                    <TpStar className="absolute -bottom-1 left-[calc(50%-13px)] h-[12px] w-[12px] text-primary" />
-                  )} */}
                 </NavigationMenuItem>
               )
             } else {
               return (
-                <NavigationMenuItem key={`nav-item-${i}`} className="relative">
+                <NavigationMenuItem key={`nav-item-${i}`} className="group/active relative">
                   <Link href={link} legacyBehavior passHref {...props}>
-                    <NavigationMenuLink
-                      className={cn(
-                        navigationMenuTriggerStyle(),
-                        'px-5'
-                        // pathname !== link && 'underline-offset-8 hover:underline'
-                      )}
-                    >
+                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), 'px-5')}>
                       {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
                     </NavigationMenuLink>
                   </Link>
                   <TpStar
                     className={cn(
-                      'absolute -bottom-1 left-[calc(50%-6px)] hidden h-[12px] w-[12px] text-primary group-hover:block group-hover:text-accent',
+                      'absolute -bottom-1 left-[calc(50%-6px)] hidden h-[12px] w-[12px] text-primary group-hover/active:block group-hover/active:text-accent',
                       pathname === link || (pathname.startsWith(link) && link !== '/') ? 'block' : 'hidden'
                     )}
                   />
-                  {/* {pathname === link && (
-                    <TpStar className="absolute -bottom-1 left-[calc(50%-6px)] h-[12px] w-[12px] text-primary" />
-                  )} */}
                 </NavigationMenuItem>
               )
             }
@@ -171,10 +159,6 @@ export const NavItemsSheet = ({
                           key={`nav-item-${i}`}
                           className="relative flex items-center justify-center gap-3"
                         >
-                          {(pathname === link || (pathname.startsWith(link) && link !== '/')) && (
-                            <TpStar className="absolute -left-6 top-[calc(50%-5px)] h-[12px] w-[12px] text-primary" />
-                          )}
-                          {/* legacyBehavior */}
                           <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), 'px-0')} asChild>
                             <Link
                               href={link}
@@ -185,6 +169,9 @@ export const NavItemsSheet = ({
                               {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
                             </Link>
                           </NavigationMenuLink>
+                          {(pathname === link || (pathname.startsWith(link) && link !== '/')) && (
+                            <TpStar className="absolute -left-6 top-[calc(50%-5px)] h-[12px] w-[12px] text-primary" />
+                          )}
                         </NavigationMenuItem>
                       )
                     }
