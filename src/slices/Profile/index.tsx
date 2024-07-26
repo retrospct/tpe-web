@@ -1,6 +1,6 @@
 import { Heading, Text } from '@/components'
 import { cn } from '@/lib/utils'
-import { Content, isFilled } from '@prismicio/client'
+import { asText, Content, isFilled } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
 import { SliceComponentProps } from '@prismicio/react'
 
@@ -21,7 +21,7 @@ const Profile = ({ slice }: ProfileProps): JSX.Element => {
     >
       {slice.variation === 'default' && (
         <>
-          <Heading richText={slice.primary.title} className="mb-16 text-center" accents />
+          <Heading text={asText(slice.primary.title)} className="mb-16 text-center" accents size="lg" />
           <div className="grid auto-cols-auto grid-cols-1 items-center justify-start gap-x-6 gap-y-12 self-center px-3 text-center font-medium text-primary md:grid-cols-2 md:items-start md:justify-start lg:grid-cols-3">
             {isFilled.group(slice.primary.persons) &&
               slice.primary.persons.map(({ person, full_width }: { person: any; full_width?: boolean }) => (
@@ -30,7 +30,7 @@ const Profile = ({ slice }: ProfileProps): JSX.Element => {
                   className={cn(
                     'relative flex h-auto w-80 max-w-lg flex-col',
                     full_width &&
-                      'col-span-1 w-full max-w-full flex-col gap-6 md:col-span-2 md:w-auto md:flex-row lg:col-span-3 lg:w-auto'
+                      'col-span-1 w-full max-w-5xl flex-col gap-6 md:col-span-2 md:w-auto md:flex-row lg:col-span-3 lg:w-auto'
                   )}
                 >
                   {isFilled.image(person?.data?.image) && (

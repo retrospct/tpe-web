@@ -147,6 +147,15 @@
               "bottom"
             ]
           }
+        },
+        "show_separator": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Separator",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
         }
       },
       "items": {}

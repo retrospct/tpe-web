@@ -20,8 +20,8 @@ export default async function Page({ params, searchParams }: Props) {
   const page = await client.getByUID('post', params.uid).catch(() => notFound())
 
   return (
-    <div className="mx-auto mb-14 mt-8 max-w-5xl px-3">
-      <Separator className="mb-8" />
+    <div className="mx-auto mb-14 mt-4 max-w-5xl px-3">
+      <Separator className="mx-auto mb-14 max-w-xl" />
       <Heading richText={page.data.title} accents className="mb-12 text-pretty text-center uppercase" />
       <SliceZone slices={page.data.slices} components={components} />
       <Text richText={page.data.content} />

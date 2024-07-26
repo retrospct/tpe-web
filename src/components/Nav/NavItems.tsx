@@ -24,7 +24,7 @@ import NavLogo from './NavLogo'
 const NavItems = ({ navigation, ...props }: { navigation: NavDocument<string> }) => {
   const pathname = usePathname()
   return (
-    <nav className="mx-auto flex w-full max-w-3xl items-center justify-center p-6 lg:px-8">
+    <nav className="mx-auto flex w-full max-w-3xl items-center justify-center px-6 py-3 lg:px-8">
       <NavigationMenu>
         <NavigationMenuList className="w-full flex-none flex-col justify-between gap-4 md:flex-row md:gap-0">
           {navigation.data.slices.map((slice, i) => {
@@ -52,7 +52,7 @@ const NavItems = ({ navigation, ...props }: { navigation: NavDocument<string> })
                   <TpStar
                     className={cn(
                       'absolute -bottom-1 left-[calc(50%-13px)] hidden h-[12px] w-[12px] text-primary group-hover:block group-hover:text-accent',
-                      pathname === link ? 'block' : 'hidden'
+                      pathname === link || (pathname.startsWith(link) && link !== '/') ? 'block' : 'hidden'
                     )}
                   />
                   {/* {pathname === link && (
@@ -77,7 +77,7 @@ const NavItems = ({ navigation, ...props }: { navigation: NavDocument<string> })
                   <TpStar
                     className={cn(
                       'absolute -bottom-1 left-[calc(50%-6px)] hidden h-[12px] w-[12px] text-primary group-hover:block group-hover:text-accent',
-                      pathname === link ? 'block' : 'hidden'
+                      pathname === link || (pathname.startsWith(link) && link !== '/') ? 'block' : 'hidden'
                     )}
                   />
                   {/* {pathname === link && (
@@ -122,9 +122,7 @@ export const NavItemsSheet = ({
         </VisuallyHidden.Root>
         <div className="flex h-full w-full flex-col items-center justify-between">
           <div className="w-full">
-            {/* <SheetClose asChild> */}
             <NavLogo onClick={() => setSheetOpen(false)} />
-            {/* </SheetClose> */}
             <div className="flex w-full max-w-3xl items-center justify-start py-6 pl-6 pr-2">
               <NavigationMenu>
                 <NavigationMenuList className="mx-1 flex w-full flex-col items-start justify-between gap-4 space-x-0 text-center">
@@ -173,7 +171,7 @@ export const NavItemsSheet = ({
                           key={`nav-item-${i}`}
                           className="relative flex items-center justify-center gap-3"
                         >
-                          {pathname === link && (
+                          {(pathname === link || (pathname.startsWith(link) && link !== '/')) && (
                             <TpStar className="absolute -left-6 top-[calc(50%-5px)] h-[12px] w-[12px] text-primary" />
                           )}
                           {/* legacyBehavior */}

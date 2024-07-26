@@ -20,8 +20,8 @@ export default async function Page({ params, searchParams }: Props) {
   const page = await client.getByUID('event', params.uid).catch(() => notFound())
 
   return (
-    <div className="mb-14 mt-8">
-      <Separator className="mb-8" />
+    <div className="mb-14 mt-4 flex w-full flex-col items-center justify-start">
+      <Separator className="mb-14 max-w-xl" />
       <Heading richText={page.data.title} accents className="text-pretty text-center uppercase" />
       <SliceZone slices={page.data.slices} components={components} />
       <section className="flex w-full flex-col items-center gap-6 text-center text-primary">

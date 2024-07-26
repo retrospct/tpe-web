@@ -6,6 +6,7 @@ import { ReactNode } from 'react'
 
 export const Heading = ({
   richText,
+  text,
   className,
   size = 'lg',
   accents = false,
@@ -14,6 +15,7 @@ export const Heading = ({
   accentSize = 'md'
 }: {
   richText?: RichTextField | null
+  text?: string
   className?: string
   size?: 'xs' | 'sm' | 'md' | 'lg' | '7xl'
   accents?: boolean
@@ -33,7 +35,7 @@ export const Heading = ({
     )
   }
   return (
-    isFilled.richText(richText) && (
+    (isFilled.richText(richText) || text) && (
       <div
         className={cn(
           'font-serif font-normal tracking-widest text-primary',
@@ -42,7 +44,11 @@ export const Heading = ({
         )}
       >
         {(accents || accentBefore) && <TpStar className={cn('mr-5 text-primary', getAccentSize(accentSize))} />}
-        <PrismicRichText field={richText} components={components} />
+        {text ? (
+          <h2 className={cn('mb-0', getTitleSize(size))}>{text}</h2>
+        ) : (
+          <PrismicRichText field={richText} components={components} />
+        )}
         {(accents || accentAfter) && <TpStar className={cn('ml-5 text-primary', getAccentSize(accentSize))} />}
       </div>
     )
@@ -94,7 +100,7 @@ export const HeadingDivider = ({
         <div className="relative w-full border border-accent" />
       </div>
       <div className="relative flex items-center justify-start">
-        <TpStar className={cn('pl-2 text-primary xl:pl-8', bg)} />
+        <TpStar className={cn('text-primary', bg)} />
         <div
           className={cn(
             'bg-background px-4 font-serif text-2xl uppercase leading-8 tracking-widest text-primary lg:text-3xl',

@@ -2,6 +2,7 @@ import { Heading, ImagePrismic, Text } from '@/components'
 import { TpSquiggle } from '@/components/icons/TpSquiggle'
 import { ImageCarousel } from '@/components/ImageCarousel'
 import { buttonVariants } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 import { isFilled, type Content } from '@prismicio/client'
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
@@ -146,7 +147,7 @@ const DefaultCTASlice = ({ slice }: CallToActionProps) => {
 
   return (
     <div className={cn('flex w-full max-w-7xl flex-col items-center justify-center gap-6', padding())}>
-      {/* {slice.primary.show_separator && <Separator />} */}
+      {slice.primary.show_separator && <Separator className="mb-14 mt-4 max-w-xl" />}
       <Heading
         richText={slice.primary.title}
         size={isFilled.select(slice.primary.title_size) ? slice.primary.title_size : 'md'}

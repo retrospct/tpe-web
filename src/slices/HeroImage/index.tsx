@@ -28,7 +28,7 @@ export type HeroImageProps = SliceComponentProps<Content.HeroImageSlice>
  */
 const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
   return (
-    <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="relative">
+    <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="relative pt-6">
       {slice.variation === 'default' && (
         <div className={cn('relative isolate pt-0', slice.primary.padding && 'pb-12 sm:pb-16 lg:pb-20')}>
           {isFilled.image(slice.primary.image) && (
