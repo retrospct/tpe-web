@@ -21,7 +21,7 @@ const Faq = ({ slice }: FaqProps): JSX.Element => {
       className={cn('flex w-full flex-col items-center justify-center', background)}
     >
       {slice.variation === 'default' && (
-        <div id="faq" className="flex w-full max-w-5xl flex-col items-center justify-center px-4 py-16 lg:py-24">
+        <div id="faq" className="my-16 flex w-full max-w-5xl flex-col items-center justify-center px-4">
           <Heading richText={slice.primary.title} className="mb-14 text-center text-3xl lg:text-4xl" accents />
           <div
             className={cn(
