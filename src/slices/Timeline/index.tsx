@@ -32,7 +32,7 @@ const Timeline = ({ slice }: TimelineProps): JSX.Element => {
                 >
                   <Text
                     text={i < 9 ? `0${i + 1}` : `${i + 1}`}
-                    className="h-7 w-7 justify-self-end text-right leading-none text-primary lg:leading-none"
+                    className="h-7 w-7 justify-self-end text-left leading-none text-primary md:text-right lg:leading-none"
                     size="xl"
                   />
                   <Text

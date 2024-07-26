@@ -51,13 +51,13 @@ const Callout = ({ slice }: CalloutProps): JSX.Element => {
             <div className="w-full border-t-2 border-accent px-6 py-0 md:w-[2px] md:border-l-2 md:px-0 md:py-6" />
           </div> */}
           {isFilled.group(slice.primary.venues) && (
-            <div className="grid grid-cols-2 items-center gap-x-6 gap-y-5 overflow-hidden pl-0 pt-10 md:grid-cols-3 md:pl-8 md:pt-0 lg:grid-cols-4 lg:gap-x-12 lg:pl-14">
+            <div className="grid grid-cols-2 items-center gap-x-4 gap-y-5 overflow-hidden pl-0 pt-10 md:grid-cols-3 md:pl-8 md:pt-0 lg:grid-cols-4 lg:gap-x-8 lg:pl-14">
               {slice.primary.venues.map((venue) =>
                 isFilled.link(venue.link) ? (
                   <PrismicNextLink key={`venue-${asText(venue.name)}`} field={venue.link}>
                     <Text
                       richText={venue.name}
-                      className={cn('w-32 leading-tight md:w-28 lg:w-32 lg:leading-tight', textColor)}
+                      className={cn('w-32 leading-tight md:w-32 lg:w-[150px] lg:leading-tight', textColor)}
                       size="md"
                     />
                   </PrismicNextLink>
@@ -65,7 +65,7 @@ const Callout = ({ slice }: CalloutProps): JSX.Element => {
                   <Text
                     key={`venue-${asText(venue.name)}`}
                     richText={venue.name}
-                    className={cn('w-32 leading-tight md:w-28 lg:w-32 lg:leading-tight', textColor)}
+                    className={cn('w-32 leading-tight md:w-32 lg:w-[150px] lg:leading-tight', textColor)}
                     size="md"
                   />
                 )
