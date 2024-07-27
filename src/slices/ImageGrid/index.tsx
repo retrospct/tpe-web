@@ -28,6 +28,7 @@ const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
                   {isFilled.image(item.image) && (
                     <PrismicNextImage
                       field={item.image}
+                      loader={undefined}
                       className={cn(
                         'h-auto w-auto object-cover',
                         item.layout === 'portrait' ? 'w-80' : item.layout === 'square' ? 'h-80 w-80' : 'h-60 w-80'
