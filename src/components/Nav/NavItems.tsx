@@ -127,14 +127,12 @@ export const NavItemsSheet = ({
                             href={link}
                             passHref
                             onClick={() => setSheetOpen(false)}
-                            className={cn(
-                              navigationMenuTriggerStyle(),
-                              'px-0 text-left underline-offset-8 hover:underline'
-                            )}
+                            className={cn(navigationMenuTriggerStyle(), 'px-0 text-left')}
                           >
                             {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
                             <ChevronDownIcon className="ml-1 h-5 w-5" />
                           </Link>
+                          {/* <TpStar className="peer/service:hover:block peer/service:hover:text-accent absolute -left-6 top-[calc(50%-5px)] hidden h-[12px] w-[12px] text-primary" /> */}
                           <ul className="grid max-w-[400px] grid-cols-1 gap-2 pl-3">
                             {slice.items.map((item) => (
                               <ListItemSheet
@@ -142,12 +140,10 @@ export const NavItemsSheet = ({
                                 title={asText(item.name)}
                                 href={isFilled.link(item.link) ? item.link.url : '/'}
                                 onClick={() => setSheetOpen(false)}
-                                className="relative px-0 text-left"
+                                className="group/item relative px-0 text-left"
                               >
-                                {isFilled.link(item.link) && pathname === item.link.url && (
-                                  <TpStar className="absolute -left-6 top-[12px] h-[12px] w-[12px] text-primary" />
-                                )}
                                 {isFilled.richText(item.description) && asText(item.description)}
+                                <TpStar className="absolute -left-6 top-[calc(50%-9px)] hidden h-[12px] w-[12px] text-primary group-hover/item:block group-hover/item:text-accent" />
                               </ListItemSheet>
                             ))}
                           </ul>
@@ -157,21 +153,19 @@ export const NavItemsSheet = ({
                       return (
                         <NavigationMenuItem
                           key={`nav-item-${i}`}
-                          className="relative flex items-center justify-center gap-3"
+                          className="group/active relative flex items-center justify-center gap-3"
                         >
                           <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), 'px-0')} asChild>
-                            <Link
-                              href={link}
-                              passHref
-                              onClick={() => setSheetOpen(false)}
-                              className="underline-offset-8 hover:underline"
-                            >
+                            <Link href={link} passHref onClick={() => setSheetOpen(false)}>
                               {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
                             </Link>
                           </NavigationMenuLink>
-                          {(pathname === link || (pathname.startsWith(link) && link !== '/')) && (
-                            <TpStar className="absolute -left-6 top-[calc(50%-5px)] h-[12px] w-[12px] text-primary" />
-                          )}
+                          <TpStar
+                            className={cn(
+                              'absolute -left-6 top-[calc(50%-5px)] hidden h-[12px] w-[12px] text-primary group-hover/active:block group-hover/active:text-accent',
+                              pathname === link || (pathname.startsWith(link) && link !== '/') ? 'block' : 'hidden'
+                            )}
+                          />
                         </NavigationMenuItem>
                       )
                     }
@@ -195,17 +189,16 @@ export const ListItem = forwardRef<React.ElementRef<'a'>, React.ComponentPropsWi
           <Link ref={ref} href={href || '/'} passHref {...props}>
             <div
               className={cn(
-                'group block cursor-pointer select-none space-y-1 py-3 text-center leading-none no-underline outline-none focus:bg-accent/50 focus:text-accent-foreground disabled:opacity-5',
+                'group/item relative block cursor-pointer select-none space-y-1 py-3 text-center leading-none outline-none focus:bg-accent/50 focus:text-accent-foreground disabled:opacity-5',
                 className
               )}
             >
               {/* <div className="flex items-center justify-between gap-6"> */}
               {/* <ListItemIcon icon={title} /> */}
               {/* <div className="block"> */}
-              <div className="text-lg font-medium italic leading-none text-primary underline-offset-8 group-hover:underline">
-                {title}
-              </div>
+              <div className="text-lg font-medium italic leading-none text-primary">{title}</div>
               {children}
+              <TpStar className="absolute -bottom-1 left-[calc(50%-6px)] hidden h-[12px] w-[12px] text-primary group-hover/item:block group-hover/item:text-accent" />
               {/* {children && (
                 <p className="text-md important:no-underline relative line-clamp-2 mt-3 text-pretty font-normal leading-snug text-secondary">
                   {children}
@@ -230,16 +223,14 @@ export const ListItemSheet = forwardRef<React.ElementRef<'a'>, React.ComponentPr
         <Link ref={ref} href={href || '/'} passHref {...props}>
           <div
             className={cn(
-              'block cursor-pointer select-none space-y-1 p-3 leading-none no-underline outline-none focus:bg-accent/50 focus:text-accent-foreground disabled:opacity-5',
+              'block cursor-pointer select-none space-y-1 p-3 leading-none outline-none focus:bg-accent/50 focus:text-accent-foreground disabled:opacity-5',
               className
             )}
           >
             {/* <div className="flex items-center justify-between gap-6"> */}
             {/* <ListItemIcon icon={title} /> */}
             {/* <div className="block"> */}
-            <div className="text-lg font-medium italic leading-none text-primary underline-offset-8 hover:underline">
-              {title}
-            </div>
+            <div className="text-lg font-medium italic leading-none text-primary">{title}</div>
             {children}
             {/* {children && (
                 <p className="text-md important:no-underline relative line-clamp-2 mt-3 text-pretty font-normal leading-snug text-secondary">

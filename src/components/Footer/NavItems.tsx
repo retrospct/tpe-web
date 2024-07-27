@@ -26,7 +26,7 @@ const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
             const link = isFilled.link(slice.primary.link) && slice.primary.link?.url ? slice.primary.link.url : ''
             if (slice.items.length > 0) {
               return (
-                <NavigationMenuItem key={`footer-item-${i}`} className="group/active relative text-center">
+                <NavigationMenuItem key={`footer-item-${i}`} className="relative text-center">
                   <NavigationMenuTrigger className="px-5 text-primary">
                     <Link href={link}>{isFilled.richText(slice.primary.name) && asText(slice.primary.name)}</Link>
                   </NavigationMenuTrigger>
@@ -43,15 +43,17 @@ const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
                       ))}
                     </ul>
                   </NavigationMenuContent>
-                  <TpStar className="absolute -bottom-1 left-[calc(50%-13px)] hidden h-[12px] w-[12px] text-primary group-hover/active:block group-hover/active:text-accent" />
+                  {/* <TpStar className="absolute -bottom-1 left-[calc(50%-13px)] hidden h-[12px] w-[12px] text-primary group-hover/active:block group-hover/active:text-accent" /> */}
                   <ul className="grid w-[160px] grid-cols-1 items-center justify-center md:hidden">
                     {slice.items.map((item) => (
                       <ListItemSheet
                         key={`mobile-footer-item-${asText(item.name)}`}
                         title={asText(item.name)}
                         href={isFilled.link(item.link) ? item.link.url : '/'}
-                        className="relative block text-center md:hidden"
-                      />
+                        className="group/active relative block text-center md:hidden"
+                      >
+                        <TpStar className="absolute -bottom-1 left-[calc(50%-6px)] hidden h-[12px] w-[12px] text-primary group-hover/active:block group-hover/active:text-accent" />
+                      </ListItemSheet>
                     ))}
                   </ul>
                 </NavigationMenuItem>
