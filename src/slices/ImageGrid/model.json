@@ -41,7 +41,18 @@
           "config": {
             "label": "Image",
             "constraint": {},
-            "thumbnails": []
+            "thumbnails": [
+              {
+                "name": "portrait",
+                "width": 320,
+                "height": 480
+              },
+              {
+                "name": "landscape",
+                "width": 320,
+                "height": 240
+              }
+            ]
           }
         },
         "caption": {

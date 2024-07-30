@@ -1,5 +1,5 @@
 import { Text } from '@/components'
-import { cn, rgbDataURL } from '@/lib/utils'
+import { cn, getBase64Blur } from '@/lib/utils'
 import { Content, isFilled } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
 import { SliceComponentProps } from '@prismicio/react'
@@ -23,22 +23,40 @@ const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
         <>
           <div className="my-4 columns-2 gap-0 text-center font-medium text-primary lg:my-6 lg:columns-3 lg:gap-3">
             {slice.items.length > 0 &&
-              slice.items.map((item) => (
-                <div key={JSON.stringify(item)} className="relative overflow-hidden px-1 pt-2 lg:pt-5">
-                  {isFilled.image(item.image) && (
-                    <PrismicNextImage
-                      field={item.image}
-                      loader={undefined}
-                      className={cn(
-                        'h-auto w-auto object-cover',
-                        item.layout === 'portrait' ? 'w-80' : item.layout === 'square' ? 'h-80 w-80' : 'h-60 w-80'
-                      )}
-                      placeholder="blur"
-                      blurDataURL={rgbDataURL(238, 200, 203)}
-                    />
-                  )}
-                </div>
-              ))}
+              slice.items.map(async (item) => {
+                return (
+                  <div key={JSON.stringify(item)} className="relative overflow-hidden px-1 pt-2 lg:pt-5">
+                    {isFilled.image(item.image) && (
+                      <PrismicNextImage
+                        // field={{...item.image, url: item.layout === 'portrait' ? `${item.image.url}?w=320` : item.layout === 'square' ? `${item.image.url}?w=320&h=320` : `${item.image.url}?w=320&h=240`, dimensions: { width: 320, height: item.layout === 'portrait' || item.layout === 'square' ? 320 : 240 }}}
+                        field={{
+                          ...item.image,
+                          dimensions: {
+                            width: 320,
+                            height: item.layout === 'portrait' ? 480 : item.layout === 'landscape' ? 240 : 320
+                          }
+                        }}
+                        // loader={undefined}
+                        className={cn(
+                          'h-auto w-auto object-cover',
+                          item.layout === 'portrait' ? 'w-80' : item.layout === 'square' ? 'h-80 w-80' : 'h-60 w-80'
+                        )}
+                        imgixParams={{
+                          w: 320,
+                          h: item.layout === 'portrait' ? 480 : item.layout === 'landscape' ? 240 : 320,
+                          q: 90,
+                          fit: 'crop',
+                          crop: ['faces', 'edges']
+                        }}
+                        placeholder="blur"
+                        // blurDataURL={rgbDataURL(238, 200, 203)}
+                        blurDataURL={getBase64Blur(item.layout)}
+                        fallbackAlt=""
+                      />
+                    )}
+                  </div>
+                )
+              })}
           </div>
           <Text richText={slice.primary.credits} className="mt-4 w-full text-center text-primary" size="md" />
         </>

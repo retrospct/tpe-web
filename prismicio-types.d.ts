@@ -2409,7 +2409,7 @@ export interface ImageGridSliceDefaultItem {
    * - **API ID Path**: image_grid.items[].image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<never>
+  image: prismic.ImageField<'portrait' | 'landscape'>
 
   /**
    * Caption field in *ImageGrid → Items*

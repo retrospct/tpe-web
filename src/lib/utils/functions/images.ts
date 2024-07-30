@@ -74,3 +74,16 @@ const triplet = (e1: number, e2: number, e3: number) =>
 
 export const rgbDataURL = (r: number, g: number, b: number) =>
   `data:image/gif;base64,R0lGODlhAQABAPAA${triplet(0, r, g) + triplet(b, 255, 255)}/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`
+
+type ImageLayout = 'portrait' | 'landscape' | 'square'
+export const getBase64Blur = (layout?: ImageLayout) => {
+  switch (layout) {
+    case 'landscape':
+      return `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMElEQVR4nGPQUJYVZGBwsjDxc7JiWDCpU0GU6//H97PaahlWzpoYbKV1YsPSxrwkAN9RDmHBRT+gAAAAAElFTkSuQmCC`
+    case 'square':
+      return `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMElEQVR4nGOY0tl6/crlH3//Ty4vYPBzNK/MjOns6bHRVGbQU5fX11LS19FkZ2YAAHRODjkuKvFKAAAAAElFTkSuQmCC`
+    default:
+      return `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAECAIAAADETxJQAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMUlEQVR4nGOw9/Ewc3Owi9Fl8HG0YWBlcHHWZyhJiqwsSJtSkcZw+9zR/78/rFrYDwDY5w79SD3YEwAAAABJRU5ErkJggg==`
+    // return rgbDataURL(238, 200, 203)
+  }
+}
