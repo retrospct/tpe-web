@@ -28,17 +28,17 @@ export default async function Page({ params, searchParams }: Props) {
       <Separator className="mb-14 max-w-xl" />
       <Heading richText={page.data.title} accents className="text-center" />
       <ul className="mt-8 flex w-full max-w-xl justify-evenly text-center text-primary sm:text-lg">
-        <li className="underline-offset-8 hover:text-primary/80 hover:underline">
+        <li className="underline-offset-8 hover:text-primary/85 hover:underline">
           <Link href="#weddings" shallow>
             WEDDINGS
           </Link>
         </li>
-        <li className="underline-offset-8 hover:text-primary/80 hover:underline">
+        <li className="underline-offset-8 hover:text-primary/85 hover:underline">
           <Link href="#private-parties" shallow>
             PRIVATE PARTIES
           </Link>
         </li>
-        <li className="underline-offset-8 hover:text-primary/80 hover:underline">
+        <li className="underline-offset-8 hover:text-primary/85 hover:underline">
           <Link href="#corporate" shallow>
             CORPORATE
           </Link>

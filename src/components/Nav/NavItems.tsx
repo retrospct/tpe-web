@@ -223,7 +223,7 @@ export const ListItemSheet = forwardRef<React.ElementRef<'a'>, React.ComponentPr
         <Link ref={ref} href={href || '/'} passHref {...props}>
           <div
             className={cn(
-              'block cursor-pointer select-none space-y-1 p-3 leading-none outline-none focus:bg-accent/50 focus:text-accent-foreground disabled:opacity-5',
+              'block cursor-pointer select-none space-y-1 px-2 py-2 leading-none outline-none focus:bg-accent/50 focus:text-accent-foreground disabled:opacity-5',
               className
             )}
           >

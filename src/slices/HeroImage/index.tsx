@@ -2,7 +2,7 @@
 import { Heading, Text } from '@/components'
 import { TpSquiggle } from '@/components/icons/TpSquiggle'
 import { buttonVariants } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
+import { cn, rgbDataURL } from '@/lib/utils'
 import { isFilled, type Content } from '@prismicio/client'
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from '@prismicio/react'
@@ -44,6 +44,8 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                 field={slice.primary.image}
                 imgixParams={{ crop: ['faces', 'edges'], fit: 'crop', w: 1, h: 1 }}
                 className="object-cover"
+                placeholder="blur"
+                blurDataURL={rgbDataURL(252, 244, 236)}
                 fill
                 priority
               />

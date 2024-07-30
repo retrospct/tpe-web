@@ -1,9 +1,9 @@
 import { rgbDataURL } from '@/lib/utils'
 import { isFilled } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
-import { PrismicRichText } from '@prismicio/react'
 import Link from 'next/link'
 import { TpLogoCircle } from '../icons'
+import { Text } from '../Text'
 
 export const EventsGrid = ({ events }: { events: any }) => {
   if (events?.length === 0)
@@ -18,19 +18,21 @@ export const EventsGrid = ({ events }: { events: any }) => {
       {events.map(({ event }: { event: any }) => (
         <div key={event.uid} className="relative w-72">
           {event?.url && (
-            <Link href={event.url} className="flex flex-col items-center justify-start">
+            <Link href={event.url} className="group flex flex-col items-center justify-start">
               {isFilled.image(event?.data?.thumbnail) && (
                 <PrismicNextImage
                   field={event.data.thumbnail}
                   className="h-96 w-auto"
                   placeholder="blur"
-                  blurDataURL={rgbDataURL(238, 200, 203)}
+                  blurDataURL={rgbDataURL(252, 244, 236)}
                 />
               )}
               {isFilled.richText(event?.data?.title) && (
-                <div className="mt-4 text-balance text-xl uppercase leading-none">
-                  <PrismicRichText field={event.data.title} />
-                </div>
+                <Text
+                  richText={event.data.title}
+                  className="my-4 text-balance uppercase text-primary underline-offset-4 *:leading-none group-hover:text-primary/90 group-hover:underline"
+                  size="lg"
+                />
               )}
             </Link>
           )}
