@@ -43,7 +43,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
                           <PrismicNextImage
                             field={item.image}
                             imgixParams={{ crop: ['faces', 'edges'], fit: 'crop', w: 1, h: 1 }}
-                            className="object-cover"
+                            className="w-full object-cover"
                           />
                         </div>
                       )}
@@ -78,7 +78,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
                           <PrismicNextImage
                             field={item.image}
                             imgixParams={{ crop: ['faces', 'edges'], fit: 'crop', w: 1, h: 1 }}
-                            className="object-cover"
+                            className="w-full object-cover"
                           />
                         </div>
                       )}
@@ -106,7 +106,7 @@ const Services = ({ slice }: ServicesProps): JSX.Element => {
                       <PrismicNextImage
                         field={service.image}
                         imgixParams={{ crop: ['faces', 'edges'], fit: 'crop', w: 1, h: 1 }}
-                        className="object-cover"
+                        className="w-full object-cover"
                       />
                     </div>
                   )}

@@ -30,8 +30,8 @@ export const EventsGrid = ({ events }: { events: any }) => {
               {isFilled.richText(event?.data?.title) && (
                 <Text
                   richText={event.data.title}
-                  className="my-4 text-balance uppercase text-primary underline-offset-4 *:leading-none group-hover:text-primary/90 group-hover:underline"
-                  size="lg"
+                  className="my-4 text-balance uppercase text-primary underline-offset-4 transition-colors *:leading-none group-hover:text-primary/90 group-hover:underline"
+                  size="md"
                 />
               )}
             </Link>
