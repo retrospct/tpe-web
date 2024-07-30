@@ -1,5 +1,5 @@
 import { Text } from '@/components'
-import { cn, getBase64Blur } from '@/lib/utils'
+import { cn, rgbDataURL } from '@/lib/utils'
 import { Content, isFilled } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
 import { SliceComponentProps } from '@prismicio/react'
@@ -49,8 +49,9 @@ const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
                           crop: ['faces', 'edges']
                         }}
                         placeholder="blur"
+                        blurDataURL={rgbDataURL(252, 244, 236)}
                         // blurDataURL={rgbDataURL(238, 200, 203)}
-                        blurDataURL={getBase64Blur(item.layout)}
+                        // blurDataURL={getBase64Blur(item.layout)}
                         fallbackAlt=""
                       />
                     )}
