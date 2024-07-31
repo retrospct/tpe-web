@@ -20,7 +20,7 @@ const Testimonials = ({ slice }: TestimonialsProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={cn('relative flex w-full flex-col items-center justify-center pb-24 pt-12 md:py-32', background)}
+      className={cn('relative flex w-full flex-col items-center justify-center pb-20 pt-12 md:py-32', background)}
     >
       <div className="relative flex min-h-[400px] w-full max-w-6xl flex-col items-center justify-start md:min-h-[500px] md:justify-center">
         <div className="relative max-h-[500px] min-h-fit max-w-6xl">
@@ -30,7 +30,7 @@ const Testimonials = ({ slice }: TestimonialsProps): JSX.Element => {
           {/* <TpStar className="absolute left-6 top-1 z-20 text-primary md:left-8 md:top-2" />
           <TpStar className="absolute -bottom-4 right-2 z-20 text-primary md:right-20" /> */}
         </div>
-        <div className={cn('absolute -bottom-12 z-10 flex w-full justify-center', quoteStyles)}>
+        <div className={cn('absolute -bottom-5 z-10 flex w-full justify-center', quoteStyles)}>
           <div className="relative flex h-52 w-[22rem] items-center justify-center">
             <Text richText={slice.primary.quote} size="md" className="relative px-12 text-left font-medium leading-6" />
             <TpQuote className="absolute left-0 top-0 -z-10 h-full w-full text-accent" />
@@ -46,7 +46,7 @@ export default Testimonials
 const getQuoteStyles = (position: 'left' | 'center' | 'right') => {
   switch (position) {
     case 'left':
-      return 'left-2 md:-top-16 md:justify-start'
+      return 'left-0 md:left-16 md:-top-3 md:justify-start'
     case 'center':
       return 'left-0 md:-bottom-20 md:justify-center'
     default:
