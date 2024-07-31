@@ -147,10 +147,18 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                 {slice.primary.highlights.map((highlight) => (
                   <div
                     key={JSON.stringify(highlight)}
-                    className="flex h-24 w-24 flex-col items-center justify-center rounded-full border-2 border-solid border-primary p-6 text-primary lg:h-36 lg:w-36"
+                    className="flex h-24 w-24 flex-col items-center justify-center rounded-full border-2 border-solid border-primary bg-background p-6 text-primary lg:h-36 lg:w-36"
                   >
-                    <Text richText={highlight.stat} size="4xl" />
-                    <Text richText={highlight.label} size="sm" />
+                    <Text
+                      richText={highlight.stat}
+                      size="3xl"
+                      className="*:text-3xl *:leading-tight lg:*:text-[40px]"
+                    />
+                    <Text
+                      richText={highlight.label}
+                      size="lg"
+                      className="font-normal *:text-base *:leading-tight lg:*:text-[18px]"
+                    />
                   </div>
                 ))}
               </div>

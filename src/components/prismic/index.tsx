@@ -60,7 +60,7 @@ export const components: JSXMapSerializer = {
   // ),
   hyperlink: ({ node, children }) => {
     return (
-      <span className="underline-offset-4 transition-colors hover:text-primary/85 hover:underline">
+      <span className="underline underline-offset-4 transition-colors hover:text-primary/85">
         <PrismicNextLink field={node.data}>{children}</PrismicNextLink>
       </span>
     )
