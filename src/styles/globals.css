@@ -87,6 +87,14 @@
   }
 }
 
+@layer components {
+  .field-textarea {
+    field-sizing: content;
+    min-height: 2lh;
+    max-height: 10lh;
+  }
+}
+
 /* ORIGINAL SHADCN/UI */
 /* @layer base {
   :root {

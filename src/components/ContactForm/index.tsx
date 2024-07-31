@@ -217,7 +217,7 @@ export function ContactForm() {
             <FormItem>
               <FormLabel hidden>What is your event vision?</FormLabel>
               <FormControl>
-                <Textarea placeholder="What is your event vision?" {...field} />
+                <Textarea placeholder="What is your event vision?" {...field} className="field-textarea" />
               </FormControl>
               <FormMessage />
             </FormItem>
