@@ -21,11 +21,11 @@ export default async function Page({ params, searchParams }: Props) {
     .catch(() => notFound())
 
   return (
-    <div className="relative mx-auto mb-14 mt-4 flex w-full max-w-7xl flex-col items-center justify-start px-6 lg:px-8">
+    <div className="relative mx-auto mb-8 mt-0 flex w-full max-w-7xl flex-col items-center justify-start px-6 lg:mb-14 lg:mt-4 lg:px-8">
       {/* <div className="inset-0 mx-auto my-8 flex w-full max-w-xl items-center" aria-hidden="true">
         <div className="w-full border-t-2 border-accent px-6" />
       </div> */}
-      <Separator className="mb-14 max-w-xl" />
+      <Separator className="mb-10 max-w-xl lg:mb-14" />
       <Heading richText={page.data.title} accents className="text-center" />
       <ul className="mt-8 flex w-full max-w-xl justify-evenly text-center text-primary sm:text-lg">
         <li className="underline-offset-8 hover:text-primary/85 hover:underline">

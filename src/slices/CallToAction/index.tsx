@@ -29,7 +29,7 @@ const CallToAction = ({ slice, ...props }: CallToActionProps): JSX.Element => {
       {slice.variation === 'default' && <DefaultCTASlice slice={slice} {...props} />}
       {slice.variation === 'imageText' && <ImageText slice={slice} {...props} />}
       {slice.variation === 'buttonOnly' && (
-        <div className="my-16 flex w-full max-w-6xl flex-col items-center justify-center gap-6 lg:flex-row">
+        <div className="my-8 flex w-full max-w-6xl flex-col items-center justify-center gap-0 lg:my-16 lg:flex-row lg:gap-6">
           {isFilled.link(slice.primary.back_link) ? (
             <div className="order-2 flex flex-1 items-center justify-center gap-3 lg:order-1">
               <ArrowLeft className="h-4 w-4 text-primary" />
@@ -153,13 +153,13 @@ const DefaultCTASlice = ({ slice }: CallToActionProps) => {
   }
 
   return (
-    <div className={cn('flex w-full max-w-7xl flex-col items-center justify-center gap-6', padding())}>
-      {slice.primary.show_separator && <Separator className="mb-14 mt-4 max-w-xl" />}
+    <div className={cn('flex w-full max-w-7xl flex-col items-center justify-center gap-6 px-3 lg:px-0', padding())}>
+      {slice.primary.show_separator && <Separator className="mb-10 mt-0 max-w-xl lg:mb-14 lg:mt-5" />}
       <Heading
         richText={slice.primary.title}
         size={isFilled.select(slice.primary.title_size) ? slice.primary.title_size : 'md'}
         accents
-        className="text-center"
+        className="mb-6 text-center"
       />
       <ImagePrismic image={slice.primary.image} className="max-h-[466px] min-h-fit w-full max-w-6xl lg:max-h-[562px]" />
       {isFilled.group(slice.primary.packages) && (

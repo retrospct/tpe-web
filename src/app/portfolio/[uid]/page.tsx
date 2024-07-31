@@ -20,12 +20,12 @@ export default async function Page({ params, searchParams }: Props) {
   const page = await client.getByUID('event', params.uid).catch(() => notFound())
 
   return (
-    <div className="mb-14 mt-4 flex w-full flex-col items-center justify-start">
-      <Separator className="mb-14 max-w-xl" />
-      <Heading richText={page.data.title} accents className="text-pretty text-center uppercase" />
+    <div className="mb-8 mt-0 flex w-full flex-col items-center justify-start lg:mb-14 lg:mt-4">
+      <Separator className="mb-10 max-w-xl lg:mb-14" />
+      <Heading richText={page.data.title} accents className="mb-4 text-pretty px-3 text-center uppercase" />
       <SliceZone slices={page.data.slices} components={components} />
       <section className="flex w-full flex-col items-center gap-6 text-center text-primary">
-        <div className="my-16 flex w-full max-w-6xl flex-col items-center justify-center gap-6 lg:flex-row">
+        <div className="mt-16 flex w-full max-w-6xl flex-col items-center justify-center gap-6 lg:flex-row">
           <div className="order-2 flex flex-1 items-center justify-center gap-3 lg:order-1">
             <ArrowLeft className="h-4 w-4 text-primary" />
             <Link
