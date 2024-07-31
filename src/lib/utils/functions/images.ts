@@ -4,10 +4,12 @@ export const resizeImage = (
     width: number
     height: number
     quality: number
+    blur: boolean
   } = {
     width: 1200, // Desired output width
     height: 630, // Desired output height
-    quality: 1.0 // Set quality to maximum
+    quality: 1.0, // Set quality to maximum
+    blur: false // Set blur to false
   }
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -87,3 +89,37 @@ export const getBase64Blur = (layout?: ImageLayout) => {
     // return rgbDataURL(238, 200, 203)
   }
 }
+
+interface BlurImageOptions {
+  layout?: ImageLayout
+  quality?: number
+  blur?: number
+  width?: number
+  height?: number
+}
+export const blurImage = (
+  url?: string | null,
+  opts: BlurImageOptions | undefined = {
+    layout: 'portrait',
+    quality: 25,
+    blur: 400
+  }
+): Promise<string> => {
+  return new Promise(async (resolve, reject) => {
+    if (!url) return reject(getBase64Blur(opts.layout))
+    try {
+      const imgW = opts.width ? opts.width : opts.layout === 'portrait' ? 320 : opts.layout === 'square' ? 320 : 480
+      const imgH = opts.height ? opts.height : opts.layout === 'portrait' ? 480 : opts.layout === 'square' ? 320 : 240
+      const blurUrl = `${url}?w=${imgW / 4}&h=${imgH / 4}&q=${opts.quality}&blur=${opts.blur}&dpr=1`
+      const buffer = await fetch(blurUrl).then(async (res) => Buffer.from(await res.arrayBuffer()))
+      const base64 = buffer.toString('base64')
+      const base64Image = `data:image/jpeg;base64,${base64}`
+      resolve(base64Image)
+    } catch (error) {
+      console.error('Error loading image:', error)
+      reject(getBase64Blur(opts.layout))
+    }
+  })
+}
+
+// export const getImageWidth = ()

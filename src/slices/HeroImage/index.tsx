@@ -45,6 +45,11 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                 imgixParams={{ crop: ['faces', 'edges'], fit: 'crop', w: 1, h: 1 }}
                 className="object-cover"
                 placeholder="blur"
+                // blurDataURL={await blurImage(slice.primary.image.url, {
+                //   layout: 'landscape',
+                //   width: slice.primary.image.dimensions.width,
+                //   height: slice.primary.image.dimensions.height
+                // })}
                 blurDataURL={rgbDataURL(252, 244, 236)}
                 fill
                 priority
