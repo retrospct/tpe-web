@@ -31,6 +31,8 @@ const Contact = ({ slice }: ContactProps): JSX.Element => {
                 field={slice.primary.image}
                 imgixParams={{ crop: ['faces', 'edges'], fit: 'crop', w: 1, h: 1 }}
                 className="object-cover"
+                width={500}
+                height={611}
               />
             </div>
           )}

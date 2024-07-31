@@ -55,6 +55,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                 //   height: slice.primary.image.dimensions.height
                 // })}
                 blurDataURL={rgbDataURL(252, 244, 236)}
+                sizes="100vw"
                 fill
                 priority
               />

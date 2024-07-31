@@ -197,7 +197,13 @@ const ImageText = ({ slice }: CallToActionProps) => {
   if (slice.variation !== 'imageText') return null
   return (
     <div className="flex w-full max-w-7xl flex-col items-center justify-center gap-12 py-16 lg:flex-row">
-      <ImagePrismic image={slice.primary.image} className="max-h-[466px] max-w-xl lg:max-h-[562px]" />
+      <PrismicNextImage
+        field={slice.primary.image}
+        className="h-auto max-h-[466px] w-full max-w-xl object-cover lg:max-h-[562px]"
+        width={576}
+        height={402}
+        sizes="(min-width: 1024px) 50vw, 100vw"
+      />
       <div className="flex max-w-xl flex-col items-center">
         <Heading
           richText={slice.primary.title}

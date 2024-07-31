@@ -20,12 +20,21 @@ const Testimonials = ({ slice }: TestimonialsProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={cn('relative flex w-full flex-col items-center justify-center pb-20 pt-12 md:py-32', background)}
+      className={cn(
+        'relative flex w-full flex-col items-center justify-center pb-20 pt-12 md:pb-32 md:pt-24',
+        background
+      )}
     >
       <div className="relative flex min-h-[400px] w-full max-w-6xl flex-col items-center justify-start md:min-h-[500px] md:justify-center">
         <div className="relative max-h-[500px] min-h-fit max-w-6xl">
           {isFilled.image(slice.primary.image) && (
-            <PrismicNextImage field={slice.primary.image} width={1000} height={500} />
+            <PrismicNextImage
+              field={slice.primary.image}
+              width={1000}
+              height={500}
+              sizes="100vw"
+              className="h-auto w-full"
+            />
           )}
           {/* <TpStar className="absolute left-6 top-1 z-20 text-primary md:left-8 md:top-2" />
           <TpStar className="absolute -bottom-4 right-2 z-20 text-primary md:right-20" /> */}
@@ -46,10 +55,10 @@ export default Testimonials
 const getQuoteStyles = (position: 'left' | 'center' | 'right') => {
   switch (position) {
     case 'left':
-      return 'left-0 md:left-16 md:-top-3 md:justify-start'
+      return 'left-0 sm:left-3 xl:-left-8 md:top-3 md:justify-start'
     case 'center':
       return 'left-0 md:-bottom-20 md:justify-center'
     default:
-      return 'right-2 md:-top-16 md:justify-end'
+      return 'right-2 md:top-3 md:justify-end'
   }
 }
