@@ -32,12 +32,12 @@ const Timeline = ({ slice }: TimelineProps): JSX.Element => {
                 >
                   <Text
                     text={i < 9 ? `0${i + 1}` : `${i + 1}`}
-                    className="h-7 w-7 justify-self-end text-left leading-none text-primary md:text-right lg:leading-none"
+                    className="h-7 w-7 justify-self-end text-left leading-tight text-primary *:leading-tight md:text-right lg:leading-tight lg:*:leading-tight"
                     size="xl"
                   />
                   <Text
                     richText={item.name}
-                    className="text-wrap font-light leading-none text-secondary lg:leading-none"
+                    className="text-wrap font-light leading-tight text-secondary *:leading-tight lg:leading-tight lg:*:leading-tight"
                     size="xl"
                   />
                 </div>

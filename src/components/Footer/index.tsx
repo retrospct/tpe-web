@@ -36,7 +36,15 @@ export default async function Footer() {
           {navigation.data.statements.map(
             (statement, i) =>
               isFilled.richText(statement.text) && (
-                  <Text key={`statement-${i}`} richText={statement.text} size={i === 1 ? 'md' : 'sm'} className={cn('mt-6 text-center text-primary lg:text-primary', i === 1 && 'order-first font-medium lg:order-none')} />
+                <Text
+                  key={`statement-${i}`}
+                  richText={statement.text}
+                  size={i === 1 ? 'md' : 'sm'}
+                  className={cn(
+                    'mt-6 text-center text-primary lg:text-primary',
+                    i === 1 && 'order-first font-medium lg:order-none [&_span]:no-underline'
+                  )}
+                />
               )
           )}
         </div>

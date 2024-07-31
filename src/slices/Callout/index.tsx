@@ -57,7 +57,10 @@ const Callout = ({ slice }: CalloutProps): JSX.Element => {
                   <PrismicNextLink key={`venue-${asText(venue.name)}`} field={venue.link}>
                     <Text
                       richText={venue.name}
-                      className={cn('w-32 leading-tight md:w-32 lg:w-[150px] lg:leading-tight', textColor)}
+                      className={cn(
+                        'w-32 leading-tight *:leading-tight md:w-32 lg:w-[150px] lg:*:leading-tight',
+                        textColor
+                      )}
                       size="md"
                     />
                   </PrismicNextLink>
@@ -65,7 +68,10 @@ const Callout = ({ slice }: CalloutProps): JSX.Element => {
                   <Text
                     key={`venue-${asText(venue.name)}`}
                     richText={venue.name}
-                    className={cn('w-32 leading-tight md:w-32 lg:w-[150px] lg:leading-tight', textColor)}
+                    className={cn(
+                      'w-32 leading-tight *:leading-tight md:w-32 lg:w-[150px] lg:*:leading-tight',
+                      textColor
+                    )}
                     size="md"
                   />
                 )

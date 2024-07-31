@@ -107,7 +107,14 @@ const CallToAction = ({ slice, ...props }: CallToActionProps): JSX.Element => {
                 <div className="col-span-2 mt-3 flex w-full flex-wrap items-center justify-center gap-6 text-center md:col-span-3 md:flex-nowrap md:items-start md:gap-3 md:pl-3 md:text-left">
                   {slice.primary.featured.map((feature) => {
                     if (isFilled.richText(feature.text))
-                      return <Text key={JSON.stringify(feature)} richText={feature.text} size="md" />
+                      return (
+                        <Text
+                          key={JSON.stringify(feature)}
+                          richText={feature.text}
+                          size="md"
+                          className="[&_span]:no-underline"
+                        />
+                      )
                     else return null
                   })}
                 </div>
