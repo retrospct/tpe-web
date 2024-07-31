@@ -78,15 +78,18 @@ const Profile = ({ slice }: ProfileProps): JSX.Element => {
                     </div>
                     <Text
                       richText={person.data?.title}
-                      className="mt-1 w-full text-pretty text-left text-base uppercase text-primary lg:text-base"
+                      className="mt-1 w-full text-pretty text-left uppercase text-primary"
+                      size="md"
                     />
                     <Text
                       richText={person.data?.bio}
-                      className="mt-3 w-full text-pretty text-left text-base font-normal text-secondary lg:text-base"
+                      className="mt-3 w-full text-pretty text-left font-normal text-secondary"
+                      size="md"
                     />
                     <Text
                       richText={person.data?.likes}
-                      className="mt-3 w-full text-pretty text-left text-base font-normal text-secondary lg:text-base"
+                      className="mt-3 w-full text-pretty text-left font-normal text-secondary"
+                      size="md"
                     />
                   </div>
                 </div>
