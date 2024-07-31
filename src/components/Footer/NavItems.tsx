@@ -53,6 +53,7 @@ const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
                         className="group/active relative block text-center md:hidden"
                       >
                         <TpStar className="absolute -bottom-1 left-[calc(50%-6px)] hidden h-[12px] w-[12px] text-primary group-hover/active:block group-hover/active:text-accent" />
+                        {/* <TpStar className="absolute left-6 top-[calc(50%-9px)] hidden h-[12px] w-[12px] text-primary group-hover/active:block group-hover/active:text-accent" /> */}
                       </ListItemSheet>
                     ))}
                   </ul>

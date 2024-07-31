@@ -51,7 +51,7 @@ const NavItems = ({ navigation, ...props }: { navigation: NavDocument<string> })
                   </NavigationMenuContent>
                   <TpStar
                     className={cn(
-                      'absolute -bottom-1 left-[calc(50%-13px)] hidden h-[12px] w-[12px] text-primary group-hover/active:block group-hover/active:text-accent',
+                      'absolute -bottom-1 left-[calc(50%-13px)] hidden h-[12px] w-[12px] text-primary',
                       pathname === link || (pathname.startsWith(link) && link !== '/') ? 'block' : 'hidden'
                     )}
                   />
@@ -198,7 +198,8 @@ export const ListItem = forwardRef<React.ElementRef<'a'>, React.ComponentPropsWi
               {/* <div className="block"> */}
               <div className="text-lg font-medium italic leading-none text-primary">{title}</div>
               {children}
-              <TpStar className="absolute -bottom-1 left-[calc(50%-6px)] hidden h-[12px] w-[12px] text-primary group-hover/item:block group-hover/item:text-accent" />
+              {/* <TpStar className="absolute -bottom-1 left-[calc(50%-6px)] hidden h-[12px] w-[12px] text-primary group-hover/item:block group-hover/item:text-accent" /> */}
+              <TpStar className="absolute left-4 top-[calc(50%-9px)] hidden h-[12px] w-[12px] text-primary group-hover/item:block group-hover/item:text-accent" />
               {/* {children && (
                 <p className="text-md important:no-underline relative line-clamp-2 mt-3 text-pretty font-normal leading-snug text-secondary">
                   {children}
@@ -223,7 +224,7 @@ export const ListItemSheet = forwardRef<React.ElementRef<'a'>, React.ComponentPr
         <Link ref={ref} href={href || '/'} passHref {...props}>
           <div
             className={cn(
-              'block cursor-pointer select-none space-y-1 px-2 py-2 leading-none outline-none focus:bg-accent/50 focus:text-accent-foreground disabled:opacity-5',
+              'block cursor-pointer select-none space-y-1 px-2 py-3 leading-none outline-none focus:bg-accent/50 focus:text-accent-foreground disabled:opacity-5',
               className
             )}
           >
