@@ -718,6 +718,70 @@ export type PostDocument<Lang extends string = string> = prismic.PrismicDocument
   Lang
 >
 
+type ProfileDocumentDataSlicesSlice = ProfileSlice
+
+/**
+ * Content for Profile documents
+ */
+interface ProfileDocumentData {
+  /**
+   * Slice Zone field in *Profile*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: profile.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ProfileDocumentDataSlicesSlice> /**
+   * Meta Title field in *Profile*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: profile.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField
+
+  /**
+   * Meta Description field in *Profile*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: profile.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField
+
+  /**
+   * Meta Image field in *Profile*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: profile.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>
+}
+
+/**
+ * Profile document from Prismic
+ *
+ * - **API ID**: `profile`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProfileDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<ProfileDocumentData>,
+  'profile',
+  Lang
+>
+
 export type AllDocumentTypes =
   | CategoryDocument
   | EventDocument
@@ -727,6 +791,7 @@ export type AllDocumentTypes =
   | PersonDocument
   | PortfolioDocument
   | PostDocument
+  | ProfileDocument
 
 /**
  * Primary content in *Awards → Items*
@@ -3349,6 +3414,9 @@ declare module '@prismicio/client' {
       PostDocumentData,
       PostDocumentDataCategoriesItem,
       PostDocumentDataSlicesSlice,
+      ProfileDocument,
+      ProfileDocumentData,
+      ProfileDocumentDataSlicesSlice,
       AllDocumentTypes,
       AwardsSlice,
       AwardsSliceDefaultItem,

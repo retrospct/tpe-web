@@ -105,19 +105,19 @@ export const blurImage = (
     blur: 400
   }
 ): Promise<string> => {
-  return new Promise(async (resolve, reject) => {
-    if (!url) return reject(getBase64Blur(opts.layout))
+  return new Promise(async (resolve) => {
+    if (!url) return resolve(rgbDataURL(252, 244, 236))
     try {
       const imgW = opts.width ? opts.width : opts.layout === 'portrait' ? 320 : opts.layout === 'square' ? 320 : 480
       const imgH = opts.height ? opts.height : opts.layout === 'portrait' ? 480 : opts.layout === 'square' ? 320 : 240
-      const blurUrl = `${url}?fm=blurhash&w=${imgW / 10}&h=${imgH / 10}&q=${opts.quality}&dpr=1`
+      const blurUrl = `${url}?fm=blurhash&w=${imgW / 10}&h=${imgH / 10}&q=${opts?.quality || 25}&dpr=1`
       // const blurUrl = `${url}?w=${imgW / 4}&h=${imgH / 4}&q=${opts.quality}&blur=${opts.blur}&dpr=1`
       const buffer = await fetch(blurUrl).then(async (res) => Buffer.from(await res.arrayBuffer()))
       const base64Img = `data:image/jpeg;base64,${buffer.toString('base64')}`
-      resolve(base64Img)
+      return resolve(base64Img)
     } catch (error) {
       console.error('Error loading image:', error)
-      reject(getBase64Blur(opts.layout))
+      return resolve(rgbDataURL(252, 244, 236))
     }
   })
 }
