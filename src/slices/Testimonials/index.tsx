@@ -30,10 +30,7 @@ const Testimonials = ({ slice }: TestimonialsProps): JSX.Element => {
         </div>
         <div className={cn('absolute -bottom-14 z-10 flex w-full justify-center', quoteStyles)}>
           <div className="relative flex h-52 w-[22rem] items-center justify-center">
-            <Text
-              richText={slice.primary.quote}
-              className="relative px-12 text-left text-base font-medium leading-6 lg:text-base"
-            />
+            <Text richText={slice.primary.quote} size="md" className="relative px-12 text-left font-medium leading-6" />
             <TpQuote className="absolute left-0 top-0 -z-10 h-full w-full text-accent" />
           </div>
         </div>

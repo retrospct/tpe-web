@@ -22,7 +22,8 @@ export default async function Page({ params, searchParams }: Props) {
         'person.pronouns',
         'person.title',
         'person.bio',
-        'person.likes'
+        'person.likes',
+        'person.fun_image'
       ]
     })
     .catch(() => notFound())

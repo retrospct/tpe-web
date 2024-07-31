@@ -28,17 +28,44 @@ const Profile = ({ slice }: ProfileProps): JSX.Element => {
                 <div
                   key={person.id}
                   className={cn(
-                    'relative flex h-auto w-80 max-w-lg flex-col',
+                    'group/bio relative flex h-auto w-80 max-w-lg flex-col',
                     full_width &&
                       'col-span-1 w-full max-w-5xl gap-6 md:col-span-2 md:w-auto md:flex-row lg:col-span-3 lg:w-auto'
                   )}
                 >
+                  {isFilled.image(person?.data?.fun_image) && (
+                    <PrismicNextImage
+                      field={person.data.fun_image}
+                      className={cn(
+                        'absolute left-0 top-0 hidden h-80 w-80 group-hover/bio:block',
+                        full_width && 'h-80 w-80 lg:h-96 lg:w-96'
+                      )}
+                      imgixParams={{
+                        fit: 'crop',
+                        crop: ['faces', 'edges'],
+                        w: full_width ? 384 : 320,
+                        h: full_width ? 384 : 320,
+                        q: 90
+                      }}
+                      loading="lazy"
+                      fallbackAlt=""
+                    />
+                  )}
                   {isFilled.image(person?.data?.image) && (
                     <PrismicNextImage
                       field={person.data.image}
                       className={cn('h-80 w-80', full_width && 'h-80 w-80 lg:h-96 lg:w-96')}
+                      imgixParams={{
+                        fit: 'crop',
+                        crop: ['faces', 'edges'],
+                        w: full_width ? 384 : 320,
+                        h: full_width ? 384 : 320,
+                        q: 90
+                      }}
+                      fallbackAlt=""
                     />
                   )}
+
                   <div className={cn('mt-4 flex w-full flex-col gap-1', full_width && 'mt-0')}>
                     <div className="flex items-center gap-1">
                       <Heading richText={person.data?.first_name} className="tracking-normal" size="xs" />

@@ -16,8 +16,34 @@
         "type": "Image",
         "config": {
           "label": "Image",
-          "constraint": {},
-          "thumbnails": []
+          "constraint": {
+            "width": 390,
+            "height": 390
+          },
+          "thumbnails": [
+            {
+              "name": "sm",
+              "width": 311,
+              "height": 311
+            }
+          ]
+        }
+      },
+      "fun_image": {
+        "type": "Image",
+        "config": {
+          "label": "Fun Image",
+          "constraint": {
+            "width": 390,
+            "height": 390
+          },
+          "thumbnails": [
+            {
+              "name": "sm",
+              "width": 311,
+              "height": 311
+            }
+          ]
         }
       },
       "first_name": {

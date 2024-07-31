@@ -403,7 +403,18 @@ interface PersonDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<never>
+  image: prismic.ImageField<'sm'>
+
+  /**
+   * Fun Image field in *Person*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: person.fun_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  fun_image: prismic.ImageField<'sm'>
 
   /**
    * First Name field in *Person*
