@@ -90,14 +90,14 @@ importers:
         specifier: ^0.32.1
         version: 0.32.1(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@types/react@18.3.3)(@vercel/postgres@0.9.0)(react@18.3.1)
       embla-carousel-autoplay:
-        specifier: ^8.1.7
-        version: 8.1.7(embla-carousel@8.1.7)
+        specifier: ^8.1.8
+        version: 8.1.8(embla-carousel@8.1.8)
       embla-carousel-react:
-        specifier: ^8.1.7
-        version: 8.1.7(react@18.3.1)
+        specifier: ^8.1.8
+        version: 8.1.8(react@18.3.1)
       lucide-react:
-        specifier: ^0.417.0
-        version: 0.417.0(react@18.3.1)
+        specifier: ^0.418.0
+        version: 0.418.0(react@18.3.1)
       ms:
         specifier: ^2.1.3
         version: 2.1.3
@@ -151,8 +151,8 @@ importers:
         specifier: ^0.2.1
         version: 0.2.1(tailwindcss@3.4.7)
       '@slicemachine/adapter-next':
-        specifier: ^0.3.44
-        version: 0.3.44(@prismicio/types@0.2.9)(@types/uuid@10.0.0)(next@14.2.5(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(uuid@9.0.1)
+        specifier: ^0.3.45
+        version: 0.3.45(@prismicio/types@0.2.9)(@types/uuid@10.0.0)(next@14.2.5(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(uuid@9.0.1)
       '@tailwindcss/forms':
         specifier: ^0.5.7
         version: 0.5.7(tailwindcss@3.4.7)
@@ -202,8 +202,8 @@ importers:
         specifier: ^0.6.5
         version: 0.6.5(prettier-plugin-organize-imports@4.0.0(prettier@3.3.3)(typescript@5.5.4))(prettier@3.3.3)
       slice-machine-ui:
-        specifier: ^2.4.0
-        version: 2.4.0(@prismicio/types@0.2.9)(@types/react-dom@18.3.0)(@types/react@18.3.3)(@types/uuid@10.0.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(uuid@9.0.1)
+        specifier: ^2.4.1
+        version: 2.4.1(@prismicio/types@0.2.9)(@types/react-dom@18.3.0)(@types/react@18.3.3)(@types/uuid@10.0.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(uuid@9.0.1)
       tailwindcss:
         specifier: ^3.4.7
         version: 3.4.7
@@ -1012,9 +1012,9 @@ packages:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
 
-  '@prismicio/api-renderer@3.2.1':
-    resolution: {integrity: sha512-9N6FBxdk+Auy1FP3CcIiyWpaPGT71/tLNiQ/F5FO3+pMm22o1lg0OLAKNDDrDRZoSYXJ68eLAWMq5nNaBBbw7A==}
-    engines: {node: '20'}
+  '@prismicio/api-renderer@3.2.3':
+    resolution: {integrity: sha512-ait4zWrVGlRdNAgp+cH8OVt+yQtMOGeULYpsuKPaEmFNP5LzZf753md0dAKQcacwaSTvfrUebhpyS2SU6bGDSw==}
+    engines: {node: '>=18'}
     peerDependencies:
       fp-ts: ^2.11.8
       io-ts: ^2.2.16
@@ -1036,8 +1036,8 @@ packages:
     peerDependencies:
       '@prismicio/client': '>=7'
 
-  '@prismicio/mocks@2.3.1':
-    resolution: {integrity: sha512-2HDQINqxIRtNkD1abKNm71ajdVnP1DpSdfJBNkc6DnE13jrq4eMArnMYIbkAeQ1H74my1twjpmjYiLMQv+OoKQ==}
+  '@prismicio/mocks@2.3.3':
+    resolution: {integrity: sha512-wzQfiXZgpBbWs9rELVzTLrm14JPZLYP13AsS67szaKjYsmSj1LwtkDzOVj/5en67xxCTIRDDyGE1Eb34xduCSw==}
     engines: {node: '>=12.7.0'}
 
   '@prismicio/next@1.6.0':
@@ -1748,15 +1748,15 @@ packages:
     resolution: {integrity: sha512-doH1gimEu3A46VX6aVxpHTeHrytJAG6HgdxntYnCFiIFHEM/ZGpG8KiZGBChchjQmG0XFIBL552kBTjVcMZXwQ==}
     engines: {node: '>=12'}
 
-  '@slicemachine/adapter-next@0.3.44':
-    resolution: {integrity: sha512-QbI6eSveclJe5qjG+8UZArpVVnivLBMmQdrwDwYhuY0rJF4NPPMJXX6ot07hK+4N5HGZNjuW5iTUHS8e9XcOPQ==}
+  '@slicemachine/adapter-next@0.3.45':
+    resolution: {integrity: sha512-BKjUWhdufMGnWszsVg5YxNeRCeRlFd0yW2QnVLiyyaZnVM3jh7zGEd8POEmCqK4Nu8uuN7MWcrK4eBxcc70IPQ==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       next: ^11 || ^12 || ^13 || ^14 || ^15.0.0-rc.0
       react: ^17 || ^18 || ^19.0.0-rc.0
 
-  '@slicemachine/manager@0.20.0':
-    resolution: {integrity: sha512-4LVhyr2vEKY1dXm5evZIG5LyvOBkmAw4ds+6shVHVa9HOBJXTRQbsdjkTgnrn25xeb2G9YjSuVZX/f7cyNuJiw==}
+  '@slicemachine/manager@0.20.1':
+    resolution: {integrity: sha512-fjhoXJKB9qU6mPl9rGvMDni8VSi5s8uUi6u6xq6cfkz+Jq+DEhjvLWIEW4ptcygNV3MjiZbL7plE5JsPYn7q3w==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       msw: ^1.1.0
@@ -1764,8 +1764,8 @@ packages:
       msw:
         optional: true
 
-  '@slicemachine/plugin-kit@0.4.44':
-    resolution: {integrity: sha512-Gq2b4TYVFpdEjzwPp+SJxqswfEZ0u0oQGWKDYJfDXvlKrNaUak475AOkKkIP88wD3K3Z3TGJZJz2LoaM2v+RaA==}
+  '@slicemachine/plugin-kit@0.4.45':
+    resolution: {integrity: sha512-+im8M5bIqhfurUuP+bhFakivND7nFfqX0rekNpfncTSVELnCdrz7GgoNa54RtT+v0kzzT6JB08bTEgwuEINOHg==}
     engines: {node: '>=14.15.0'}
 
   '@socket.io/component-emitter@3.1.2':
@@ -2718,23 +2718,23 @@ packages:
   electron-to-chromium@1.4.827:
     resolution: {integrity: sha512-VY+J0e4SFcNfQy19MEoMdaIcZLmDCprqvBtkii1WTCTQHpRvf5N8+3kTYCgL/PcntvwQvmMJWTuDPsq+IlhWKQ==}
 
-  embla-carousel-autoplay@8.1.7:
-    resolution: {integrity: sha512-UXt1XvCNwzC/Sqd7iU8nYd1CjuDLweIwJClfBL3gVTzHQBVwb68GBBfC/oPFsEeIWNUZe8NO5xDQSI9aTnYO7Q==}
+  embla-carousel-autoplay@8.1.8:
+    resolution: {integrity: sha512-H3vVKt4HR2PGeMlCutE3+a8wv7Jq1rg31Fjb8ZDZaiuSnT/1XTwA83KpkJ02BdImVJci9RS0uEBiXBax2kfnMQ==}
     peerDependencies:
-      embla-carousel: 8.1.7
+      embla-carousel: 8.1.8
 
-  embla-carousel-react@8.1.7:
-    resolution: {integrity: sha512-ermMKzQ46LhXE4f81VBCVGxCJWvZfsu504dkyiUDO+cnEEPW8NlC2PpKULmiOWugusYWRLhQLjmyQs3b8vvOjA==}
+  embla-carousel-react@8.1.8:
+    resolution: {integrity: sha512-b8DcmC+j1vqVWSM6rU/GYGyY6Kp9LX8OoikZPBKmV6qL8s94sSPGl6jtDLLUtV8TTIQGMYOlOKUgoMAt/0TwOQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.1 || ^18.0.0
 
-  embla-carousel-reactive-utils@8.1.7:
-    resolution: {integrity: sha512-FDPcWjNtW04KSuvSfGbVeoB8yl5no3E0++HikO/uW12cNkMnWt68C4OBOakZQZlpUdRQSA9KCYoBuQzfpVGvZQ==}
+  embla-carousel-reactive-utils@8.1.8:
+    resolution: {integrity: sha512-bwV/23WD3Ecm0YuQ4I6Syzs3tdVJw0Oj3VCZlEODv1kH8LZ5kNDLgX2Uvx5brvoe2hpifBHPBQ8gYlxNL5kMPA==}
     peerDependencies:
-      embla-carousel: 8.1.7
+      embla-carousel: 8.1.8
 
-  embla-carousel@8.1.7:
-    resolution: {integrity: sha512-b3kBr2H+S1gx4neki0P+aqN6cA5Ibjqy4CR3Ufi3X+Q3JpoNXJgOmJMSPkoP9DKcDREwADN6UWZzRwF2oo0y9Q==}
+  embla-carousel@8.1.8:
+    resolution: {integrity: sha512-KuHPA8qcAts6YE6ELtt38XYAb26hnKw8Ga0lSXmrhm1oI97t6oACFkqSsy33dfeZQEhaZB6VwWvaWQJRJVgSgA==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -3659,8 +3659,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-react@0.417.0:
-    resolution: {integrity: sha512-F/MDUHDter8YMZ7JKQpW/5/+v38tdaoShKX3e+opYsqfCnaHwn+5zz3+lBrMDFMNtSsvxtNpchLIaMpEfsi/4w==}
+  lucide-react@0.418.0:
+    resolution: {integrity: sha512-7TSd4CLfvT/U9504MSJ+e03pgAvqZQ5WbML4Pm+axjCbYBLTWuDu68bebFr/e51Z32uHMY7MO+SpaHX8NubveA==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -4583,8 +4583,8 @@ packages:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
 
-  slice-machine-ui@2.4.0:
-    resolution: {integrity: sha512-kV9h0zn7t2wvDAVknPwn/ulbMQO+WVWAfTyvqjoDlDRcXLbhuzcaWjf3ZDD3tx67JsYjT0sji631Q4X+Edq7sw==}
+  slice-machine-ui@2.4.1:
+    resolution: {integrity: sha512-e69iZyoAV/yIxridsteDdF3gVT3oovcdx3LJMiaDWJf4vbnaed5jfjQd3RP5NhSaprUjR1UqkpqcK2i9F2Hr6A==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -4640,8 +4640,8 @@ packages:
     resolution: {integrity: sha512-KJP1OCML99+8fhOHxwwzyWrlUuVX5GQ0ZpJTd1DFXhdkrvg1szxfHhawXUZ3g9TkXORQd4/WG68jMlQZ2p8wlg==}
     engines: {node: '>=6'}
 
-  start-slicemachine@0.12.24:
-    resolution: {integrity: sha512-Ng/e7qvXYdYNI6w596CAPTaWL/y53o7S9XZKCB9C10/oyHb7woTKeNE2gryfHaVaxjcECRXGHnxbmVyc3CGXgg==}
+  start-slicemachine@0.12.25:
+    resolution: {integrity: sha512-/VXHmlduenphBeL8G7mtc+clf7j29BVGpaL4JUUy5Uo3eSd4Pq3TwuU/W/leHmgtded05E6j9IFOWBUz4yCPOg==}
     engines: {node: '>=14.15.0'}
     hasBin: true
 
@@ -5717,7 +5717,7 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@prismicio/api-renderer@3.2.1(@types/uuid@10.0.0)(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.21(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.21(fp-ts@2.16.9))':
+  '@prismicio/api-renderer@3.2.3(@types/uuid@10.0.0)(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.21(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.21(fp-ts@2.16.9))':
     dependencies:
       '@prismicio/types-internal': 2.6.0(@types/uuid@10.0.0)(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.21(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.21(fp-ts@2.16.9))(uuid@9.0.1)
       fp-ts: 2.16.9
@@ -5754,9 +5754,9 @@ snapshots:
     dependencies:
       '@prismicio/client': 7.7.4
 
-  '@prismicio/mocks@2.3.1(@types/uuid@10.0.0)':
+  '@prismicio/mocks@2.3.3(@types/uuid@10.0.0)':
     dependencies:
-      '@prismicio/api-renderer': 3.2.1(@types/uuid@10.0.0)(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.21(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.21(fp-ts@2.16.9))
+      '@prismicio/api-renderer': 3.2.3(@types/uuid@10.0.0)(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.21(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.21(fp-ts@2.16.9))
       '@prismicio/types-internal': 2.6.0(@types/uuid@10.0.0)(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.21(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.21(fp-ts@2.16.9))(uuid@9.0.1)
       fp-ts: 2.16.9
       io-ts: 2.2.21(fp-ts@2.16.9)
@@ -6711,11 +6711,11 @@ snapshots:
     dependencies:
       escape-string-regexp: 5.0.0
 
-  '@slicemachine/adapter-next@0.3.44(@prismicio/types@0.2.9)(@types/uuid@10.0.0)(next@14.2.5(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(uuid@9.0.1)':
+  '@slicemachine/adapter-next@0.3.45(@prismicio/types@0.2.9)(@types/uuid@10.0.0)(next@14.2.5(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(uuid@9.0.1)':
     dependencies:
       '@prismicio/simulator': 0.1.4
       '@prismicio/types-internal': 2.6.0(@types/uuid@10.0.0)(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.21(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.21(fp-ts@2.16.9))(uuid@9.0.1)
-      '@slicemachine/plugin-kit': 0.4.44(@prismicio/types@0.2.9)
+      '@slicemachine/plugin-kit': 0.4.45(@prismicio/types@0.2.9)
       common-tags: 1.8.2
       fp-ts: 2.16.9
       io-ts: 2.2.21(fp-ts@2.16.9)
@@ -6732,15 +6732,15 @@ snapshots:
       - supports-color
       - uuid
 
-  '@slicemachine/manager@0.20.0(@prismicio/types@0.2.9)(@types/uuid@10.0.0)(uuid@9.0.1)':
+  '@slicemachine/manager@0.20.1(@prismicio/types@0.2.9)(@types/uuid@10.0.0)(uuid@9.0.1)':
     dependencies:
       '@antfu/ni': 0.20.0
       '@prismicio/client': 7.7.4
       '@prismicio/custom-types-client': 2.1.0(@prismicio/client@7.7.4)
-      '@prismicio/mocks': 2.3.1(@types/uuid@10.0.0)
+      '@prismicio/mocks': 2.3.3(@types/uuid@10.0.0)
       '@prismicio/types-internal': 2.6.0(@types/uuid@10.0.0)(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.21(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.21(fp-ts@2.16.9))(uuid@9.0.1)
       '@segment/analytics-node': 2.1.2
-      '@slicemachine/plugin-kit': 0.4.44(@prismicio/types@0.2.9)
+      '@slicemachine/plugin-kit': 0.4.45(@prismicio/types@0.2.9)
       cookie: 0.5.0
       cors: 2.8.5
       execa: 7.2.0
@@ -6768,7 +6768,7 @@ snapshots:
       - uWebSockets.js
       - uuid
 
-  '@slicemachine/plugin-kit@0.4.44(@prismicio/types@0.2.9)':
+  '@slicemachine/plugin-kit@0.4.45(@prismicio/types@0.2.9)':
     dependencies:
       '@prismicio/client': 7.7.4
       common-tags: 1.8.2
@@ -7696,21 +7696,21 @@ snapshots:
 
   electron-to-chromium@1.4.827: {}
 
-  embla-carousel-autoplay@8.1.7(embla-carousel@8.1.7):
+  embla-carousel-autoplay@8.1.8(embla-carousel@8.1.8):
     dependencies:
-      embla-carousel: 8.1.7
+      embla-carousel: 8.1.8
 
-  embla-carousel-react@8.1.7(react@18.3.1):
+  embla-carousel-react@8.1.8(react@18.3.1):
     dependencies:
-      embla-carousel: 8.1.7
-      embla-carousel-reactive-utils: 8.1.7(embla-carousel@8.1.7)
+      embla-carousel: 8.1.8
+      embla-carousel-reactive-utils: 8.1.8(embla-carousel@8.1.8)
       react: 18.3.1
 
-  embla-carousel-reactive-utils@8.1.7(embla-carousel@8.1.7):
+  embla-carousel-reactive-utils@8.1.8(embla-carousel@8.1.8):
     dependencies:
-      embla-carousel: 8.1.7
+      embla-carousel: 8.1.8
 
-  embla-carousel@8.1.7: {}
+  embla-carousel@8.1.8: {}
 
   emoji-regex@8.0.0: {}
 
@@ -8957,7 +8957,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-react@0.417.0(react@18.3.1):
+  lucide-react@0.418.0(react@18.3.1):
     dependencies:
       react: 18.3.1
 
@@ -9999,11 +9999,11 @@ snapshots:
 
   slash@3.0.0: {}
 
-  slice-machine-ui@2.4.0(@prismicio/types@0.2.9)(@types/react-dom@18.3.0)(@types/react@18.3.3)(@types/uuid@10.0.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(uuid@9.0.1):
+  slice-machine-ui@2.4.1(@prismicio/types@0.2.9)(@types/react-dom@18.3.0)(@types/react@18.3.3)(@types/uuid@10.0.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(uuid@9.0.1):
     dependencies:
       '@radix-ui/react-visually-hidden': 1.0.3(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@slicemachine/manager': 0.20.0(@prismicio/types@0.2.9)(@types/uuid@10.0.0)(uuid@9.0.1)
-      start-slicemachine: 0.12.24(@prismicio/types@0.2.9)(@types/uuid@10.0.0)(uuid@9.0.1)
+      '@slicemachine/manager': 0.20.1(@prismicio/types@0.2.9)(@types/uuid@10.0.0)(uuid@9.0.1)
+      start-slicemachine: 0.12.25(@prismicio/types@0.2.9)(@types/uuid@10.0.0)(uuid@9.0.1)
     transitivePeerDependencies:
       - '@prismicio/types'
       - '@types/express'
@@ -10089,11 +10089,11 @@ snapshots:
     dependencies:
       type-fest: 0.7.1
 
-  start-slicemachine@0.12.24(@prismicio/types@0.2.9)(@types/uuid@10.0.0)(uuid@9.0.1):
+  start-slicemachine@0.12.25(@prismicio/types@0.2.9)(@types/uuid@10.0.0)(uuid@9.0.1):
     dependencies:
-      '@prismicio/mocks': 2.3.1(@types/uuid@10.0.0)
+      '@prismicio/mocks': 2.3.3(@types/uuid@10.0.0)
       '@prismicio/types-internal': 2.6.0(@types/uuid@10.0.0)(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.21(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.21(fp-ts@2.16.9))(uuid@9.0.1)
-      '@slicemachine/manager': 0.20.0(@prismicio/types@0.2.9)(@types/uuid@10.0.0)(uuid@9.0.1)
+      '@slicemachine/manager': 0.20.1(@prismicio/types@0.2.9)(@types/uuid@10.0.0)(uuid@9.0.1)
       body-parser: 1.20.2
       chalk: 4.1.2
       cors: 2.8.5
