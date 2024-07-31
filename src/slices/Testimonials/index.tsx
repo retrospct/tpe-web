@@ -20,15 +20,17 @@ const Testimonials = ({ slice }: TestimonialsProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={cn('relative flex w-full flex-col items-center justify-center pb-24 pt-0 md:py-32', background)}
+      className={cn('relative flex w-full flex-col items-center justify-center pb-24 pt-12 md:py-32', background)}
     >
-      <div className="relative flex h-96 w-full max-w-6xl flex-col items-center justify-center">
-        <div className="relative max-h-[466px] min-h-fit max-w-6xl lg:max-h-[562px]">
-          {isFilled.image(slice.primary.image) && <PrismicNextImage field={slice.primary.image} />}
+      <div className="relative flex min-h-[400px] w-full max-w-6xl flex-col items-center justify-start md:min-h-[500px] md:justify-center">
+        <div className="relative max-h-[500px] min-h-fit max-w-6xl">
+          {isFilled.image(slice.primary.image) && (
+            <PrismicNextImage field={slice.primary.image} width={1000} height={500} />
+          )}
           {/* <TpStar className="absolute left-6 top-1 z-20 text-primary md:left-8 md:top-2" />
           <TpStar className="absolute -bottom-4 right-2 z-20 text-primary md:right-20" /> */}
         </div>
-        <div className={cn('absolute -bottom-14 z-10 flex w-full justify-center', quoteStyles)}>
+        <div className={cn('absolute -bottom-12 z-10 flex w-full justify-center', quoteStyles)}>
           <div className="relative flex h-52 w-[22rem] items-center justify-center">
             <Text richText={slice.primary.quote} size="md" className="relative px-12 text-left font-medium leading-6" />
             <TpQuote className="absolute left-0 top-0 -z-10 h-full w-full text-accent" />
