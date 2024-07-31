@@ -14,7 +14,7 @@ const EventsList = ({ slice }: EventsListProps): JSX.Element => {
   return (
     <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="my-10 w-full">
       {slice.variation === 'default' && (
-        <div className="mx-auto flex w-full max-w-4xl flex-col items-center justify-center">
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-center">
           {isFilled.richText(slice.primary.title) && (
             <HeadingDivider
               richText={slice.primary.title}

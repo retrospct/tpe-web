@@ -16,15 +16,15 @@ export const EventsGrid = ({ events }: { events: any }) => {
   return (
     <div className="grid auto-cols-auto grid-cols-1 items-center justify-start gap-8 self-center text-center font-medium text-primary md:grid-cols-2 md:items-start md:justify-start md:gap-4 lg:grid-cols-3">
       {events.map(async ({ event }: { event: any }) => {
-        const blurImgData = await blurImage(event.data.thumbnail.url, { width: 280, height: 384 })
+        const blurImgData = await blurImage(event.data.thumbnail.url, { width: 300, height: 400 })
         return (
-          <div key={event.uid} className="relative w-72">
+          <div key={event.uid} className="relative w-[300px]">
             {event?.url && (
               <Link href={event.url} className="group flex flex-col items-center justify-start">
                 {isFilled.image(event?.data?.thumbnail) && (
                   <PrismicNextImage
                     field={event.data.thumbnail}
-                    className="h-96 w-auto"
+                    className="h-[400px] w-[300px]"
                     placeholder="blur"
                     blurDataURL={blurImgData}
                     // blurDataURL={rgbDataURL(252, 244, 236)}
@@ -35,7 +35,7 @@ export const EventsGrid = ({ events }: { events: any }) => {
                   <Text
                     richText={event.data.title}
                     className="my-4 text-balance uppercase text-primary underline-offset-4 transition-colors *:leading-none group-hover:text-primary/90 group-hover:underline"
-                    size="md"
+                    size="lg"
                   />
                 )}
               </Link>
