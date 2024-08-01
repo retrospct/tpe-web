@@ -1,4 +1,4 @@
-import { PrismicNextLink } from '@prismicio/next'
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import { JSXMapSerializer } from '@prismicio/react'
 
 export const components: JSXMapSerializer = {
@@ -89,4 +89,24 @@ export const components: JSXMapSerializer = {
   //   }
   //   return <React.Fragment key={key}>{result}</React.Fragment>
   // },
+}
+
+export const blogComponents: JSXMapSerializer = {
+  ...components,
+  image: ({ node, key }) => {
+    const img = (
+      <PrismicNextImage
+        field={node}
+        className="h-auto w-full"
+        width={256}
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        imgixParams={{ q: 90, w: 256 }}
+      />
+    )
+    return (
+      <div key={key} className="relative w-64">
+        {node.linkTo ? <PrismicNextLink field={node.linkTo}>{img}</PrismicNextLink> : img}
+      </div>
+    )
+  }
 }
