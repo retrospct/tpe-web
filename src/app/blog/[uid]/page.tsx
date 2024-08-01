@@ -20,11 +20,15 @@ export default async function Page({ params, searchParams }: Props) {
   const page = await client.getByUID('post', params.uid).catch(() => notFound())
 
   return (
-    <div className="mx-auto mb-14 mt-4 max-w-5xl px-3">
+    <div className="mx-auto mb-14 mt-4 max-w-4xl px-3">
       <Separator className="mx-auto mb-14 max-w-xl" />
       <Heading richText={page.data.title} accents className="mb-12 text-pretty text-center uppercase" />
       <SliceZone slices={page.data.slices} components={components} />
-      <Text richText={page.data.content} />
+      <Text
+        richText={page.data.content}
+        blogContent
+        className="flex w-full flex-wrap items-center justify-center gap-4 text-pretty px-3 lg:px-6 [&_p]:my-1 [&_p]:w-full"
+      />
       <section className="flex w-full flex-col items-center gap-6 text-center text-primary">
         <div className="my-16 flex w-full max-w-6xl flex-col items-center justify-center gap-6 lg:flex-row">
           <div className="order-2 flex flex-1 items-center justify-center gap-3 lg:order-1">

@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils'
 import { RichTextField, isFilled } from '@prismicio/client'
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import { PrismicRichText } from '@prismicio/react'
 import { components } from '../prismic'
 
@@ -8,12 +9,14 @@ export const Text = ({
   text,
   size = 'lg',
   className,
+  blogContent,
   ...props
 }: {
   richText?: RichTextField | null
   text?: string
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'lgg' | 'xl' | '2xl' | '3xl' | '4xl'
   className?: string
+  blogContent?: boolean
 }) => {
   if (!isFilled.richText(richText) && !text) return null
   return (
@@ -21,7 +24,32 @@ export const Text = ({
       {text ? (
         <p className={cn('font-medium text-secondary', getTextSize(size), className)}>{text}</p>
       ) : (
-        <PrismicRichText field={richText} components={components} />
+        <PrismicRichText
+          field={richText}
+          components={
+            blogContent
+              ? {
+                  ...components,
+                  image: ({ node, key }) => {
+                    const img = (
+                      <PrismicNextImage
+                        field={node}
+                        className="h-auto w-full"
+                        width={256}
+                        sizes="(min-width: 1024px) 50vw, 100vw"
+                        imgixParams={{ q: 90, w: 256 }}
+                      />
+                    )
+                    return (
+                      <div key={key} className="relative w-64">
+                        {node.linkTo ? <PrismicNextLink field={node.linkTo}>{img}</PrismicNextLink> : img}
+                      </div>
+                    )
+                  }
+                }
+              : components
+          }
+        />
       )}
     </div>
   )

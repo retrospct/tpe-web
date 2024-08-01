@@ -36,7 +36,7 @@ const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
                           dimensions: { width: imgW, height: imgH }
                         }}
                         className={cn(
-                          'h-auto w-auto object-cover',
+                          'h-auto object-cover',
                           item.layout === 'portrait' ? 'w-80' : item.layout === 'square' ? 'h-80 w-80' : 'h-60 w-80'
                         )}
                         imgixParams={{
@@ -46,6 +46,8 @@ const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
                           fit: 'crop',
                           crop: ['faces', 'edges']
                         }}
+                        width={imgW}
+                        height={imgH}
                         placeholder="blur"
                         blurDataURL={blurImgData}
                         // blurDataURL={rgbDataURL(252, 244, 236) rgbDataURL(238, 200, 203)}
