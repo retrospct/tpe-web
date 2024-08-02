@@ -99,6 +99,7 @@ export const blogComponents: JSXMapSerializer = {
         field={node}
         className="h-auto w-full"
         width={256}
+        height={384}
         sizes="(min-width: 1024px) 50vw, 100vw"
         imgixParams={{ q: 90, w: 256 }}
       />
