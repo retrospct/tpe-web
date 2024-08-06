@@ -42,7 +42,7 @@ const nextConfig = {
       },
       {
         source: '/justin-biography',
-        destination: '/about/team/justin-lee',
+        destination: '/about/team/justin',
         permanent: true
       },
       {
