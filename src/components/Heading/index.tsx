@@ -38,7 +38,7 @@ export const Heading = ({
     (isFilled.richText(richText) || text) && (
       <div
         className={cn(
-          'font-serif font-normal tracking-widest text-primary',
+          'font-serif font-normal tracking-widest text-primary *:tracking-widest',
           (accents || accentBefore || accentAfter) && 'flex items-center justify-center',
           className
         )}

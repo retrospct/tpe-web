@@ -55,7 +55,7 @@ export default Testimonials
 const getQuoteStyles = (position: 'left' | 'center' | 'right') => {
   switch (position) {
     case 'left':
-      return 'left-0 sm:left-3 xl:-left-8 md:top-3 md:justify-start'
+      return 'left-0 sm:left-3 xl:-left-8 lg:top-3 lg:justify-start'
     case 'center':
       return 'left-0 md:-bottom-20 md:justify-center'
     default:
