@@ -26,6 +26,11 @@ const nextConfig = {
         permanent: true
       },
       {
+        source: '/services-gallery',
+        destination: '/services',
+        permanent: true
+      },
+      {
         source: '/annies-biography',
         destination: '/about/team/annie-liou',
         permanent: true
@@ -91,12 +96,27 @@ const nextConfig = {
         permanent: true
       },
       {
+        source: '/new-gallery-42',
+        destination: '/portfolio/backyard-farm-to-table',
+        permanent: true
+      },
+      {
         source: '/brazilian-room',
         destination: '/portfolio/brazilian-room-ethereal-spring-blooms',
         permanent: true
       },
       {
+        source: '/brazilian-room-1',
+        destination: '/portfolio/brazilian-room-ethereal-spring-blooms',
+        permanent: true
+      },
+      {
         source: '/cal-academy-of-sciences',
+        destination: '/portfolio/cal-academy-of-sciences',
+        permanent: true
+      },
+      {
+        source: '/cal-academy-of-sciences-1',
         destination: '/portfolio/cal-academy-of-sciences',
         permanent: true
       },
@@ -117,6 +137,11 @@ const nextConfig = {
       },
       {
         source: '/greenhouse',
+        destination: '/portfolio/eclectic-greenhouse',
+        permanent: true
+      },
+      {
+        source: '/greenhouse-1',
         destination: '/portfolio/eclectic-greenhouse',
         permanent: true
       },
@@ -201,6 +226,11 @@ const nextConfig = {
         permanent: true
       },
       {
+        source: '/redwoods-romance-1',
+        destination: '/portfolio/redwoods-romance',
+        permanent: true
+      },
+      {
         source: '/rosewood-sand-hill',
         destination: '/portfolio/rosewood-sand-hill',
         permanent: true
@@ -231,6 +261,11 @@ const nextConfig = {
         permanent: true
       },
       {
+        source: '/san-francisco-city-hall-1',
+        destination: '/portfolio/san-francisco-city-hall',
+        permanent: true
+      },
+      {
         source: '/sf-chinatown',
         destination: '/portfolio/san-francisco-chinatown',
         permanent: true
@@ -242,6 +277,11 @@ const nextConfig = {
       },
       {
         source: '/sip-see-shower',
+        destination: '/portfolio/winnie-the-pooh-sip-and-see-shower',
+        permanent: true
+      },
+      {
+        source: '/sip-see-shower-1',
         destination: '/portfolio/winnie-the-pooh-sip-and-see-shower',
         permanent: true
       },

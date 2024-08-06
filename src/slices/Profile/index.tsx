@@ -68,8 +68,16 @@ const Profile = ({ slice }: ProfileProps): JSX.Element => {
 
                   <div className={cn('mt-4 flex w-full flex-col gap-1', full_width && 'mt-0')}>
                     <div className="flex items-center gap-1">
-                      <Heading richText={person.data?.first_name} className="tracking-normal" size="xs" />
-                      <Heading richText={person.data?.last_name} className="tracking-normal" size="xs" />
+                      <Heading
+                        richText={person.data?.first_name}
+                        className="tracking-normal *:tracking-normal"
+                        size="xs"
+                      />
+                      <Heading
+                        richText={person.data?.last_name}
+                        className="tracking-normal *:tracking-normal"
+                        size="xs"
+                      />
                       <Text
                         richText={person.data?.pronouns}
                         className="text-left tracking-normal text-primary"

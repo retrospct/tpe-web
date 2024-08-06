@@ -14,6 +14,13 @@
     "changeFrequency": "daily"
   },
   {
+    "source": "/services-gallery",
+    "destination": "/services",
+    "permanent": true,
+    "priority": 0.75,
+    "changeFrequency": "daily"
+  },
+  {
     "source": "/annies-biography",
     "destination": "/about/team/annie-liou",
     "permanent": true,
@@ -105,6 +112,13 @@
     "changeFrequency": "daily"
   },
   {
+    "source": "/new-gallery-42",
+    "destination": "/portfolio/backyard-farm-to-table",
+    "permanent": true,
+    "priority": 0.75,
+    "changeFrequency": "daily"
+  },
+  {
     "source": "/brazilian-room",
     "destination": "/portfolio/brazilian-room-ethereal-spring-blooms",
     "permanent": true,
@@ -112,7 +126,21 @@
     "changeFrequency": "daily"
   },
   {
+    "source": "/brazilian-room-1",
+    "destination": "/portfolio/brazilian-room-ethereal-spring-blooms",
+    "permanent": true,
+    "priority": 0.75,
+    "changeFrequency": "daily"
+  },
+  {
     "source": "/cal-academy-of-sciences",
+    "destination": "/portfolio/cal-academy-of-sciences",
+    "permanent": true,
+    "priority": 0.75,
+    "changeFrequency": "daily"
+  },
+  {
+    "source": "/cal-academy-of-sciences-1",
     "destination": "/portfolio/cal-academy-of-sciences",
     "permanent": true,
     "priority": 0.75,
@@ -141,6 +169,13 @@
   },
   {
     "source": "/greenhouse",
+    "destination": "/portfolio/eclectic-greenhouse",
+    "permanent": true,
+    "priority": 0.75,
+    "changeFrequency": "daily"
+  },
+  {
+    "source": "/greenhouse-1",
     "destination": "/portfolio/eclectic-greenhouse",
     "permanent": true,
     "priority": 0.75,
@@ -259,6 +294,13 @@
     "changeFrequency": "daily"
   },
   {
+    "source": "/redwoods-romance-1",
+    "destination": "/portfolio/redwoods-romance",
+    "permanent": true,
+    "priority": 0.75,
+    "changeFrequency": "daily"
+  },
+  {
     "source": "/rosewood-sand-hill",
     "destination": "/portfolio/rosewood-sand-hill",
     "permanent": true,
@@ -301,6 +343,13 @@
     "changeFrequency": "daily"
   },
   {
+    "source": "/san-francisco-city-hall-1",
+    "destination": "/portfolio/san-francisco-city-hall",
+    "permanent": true,
+    "priority": 0.75,
+    "changeFrequency": "daily"
+  },
+  {
     "source": "/sf-chinatown",
     "destination": "/portfolio/san-francisco-chinatown",
     "permanent": true,
@@ -316,6 +365,13 @@
   },
   {
     "source": "/sip-see-shower",
+    "destination": "/portfolio/winnie-the-pooh-sip-and-see-shower",
+    "permanent": true,
+    "priority": 0.75,
+    "changeFrequency": "daily"
+  },
+  {
+    "source": "/sip-see-shower-1",
     "destination": "/portfolio/winnie-the-pooh-sip-and-see-shower",
     "permanent": true,
     "priority": 0.75,
