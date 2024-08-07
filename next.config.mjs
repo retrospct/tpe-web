@@ -287,12 +287,12 @@ const nextConfig = {
       },
       {
         source: '/sonoma-winery',
-        destination: '/portfolio/sonoma-winery',
+        destination: '/portfolio/romantic-maximalist-wine-country',
         permanent: true
       },
       {
         source: '/sonoma-winery-1',
-        destination: '/portfolio/sonoma-winery',
+        destination: '/portfolio/romantic-maximalist-wine-country',
         permanent: true
       },
       {
