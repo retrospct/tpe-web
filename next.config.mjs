@@ -87,7 +87,7 @@ const nextConfig = {
       },
       {
         source: '/amy-josh',
-        destination: '/portfolio/amy-josh',
+        destination: '/portfolio/san-francisco-burning-man-inspired',
         permanent: true
       },
       {

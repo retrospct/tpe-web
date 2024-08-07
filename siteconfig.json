@@ -99,7 +99,7 @@
   },
   {
     "source": "/amy-josh",
-    "destination": "/portfolio/amy-josh",
+    "destination": "/portfolio/san-francisco-burning-man-inspired",
     "permanent": true,
     "priority": 0.75,
     "changeFrequency": "daily"
