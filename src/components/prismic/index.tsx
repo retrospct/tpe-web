@@ -1,5 +1,6 @@
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import { JSXMapSerializer } from '@prismicio/react'
+// import { blurImage, cn, rgbDataURL } from '@/lib/utils'
 
 export const components: JSXMapSerializer = {
   // heading1: ({ children, key }) => <h1 key={key}>{children}</h1>,
@@ -94,14 +95,20 @@ export const components: JSXMapSerializer = {
 export const blogComponents: JSXMapSerializer = {
   ...components,
   image: ({ node, key }) => {
+    const imgW = 256
+    const imgH = 384
+    // const blurImgData = blurImage(node.url)
     const img = (
       <PrismicNextImage
         field={node}
         className="h-auto w-full"
-        width={256}
-        height={384}
+        width={imgW}
+        height={imgH}
         sizes="(min-width: 1024px) 50vw, 100vw"
-        imgixParams={{ q: 90, w: 256 }}
+        imgixParams={{ q: 90, w: imgW }}
+        // placeholder="blur"
+        // blurDataURL={blurImgData || rgbDataURL(252, 244, 236)}
+        fallbackAlt=""
       />
     )
     return (
