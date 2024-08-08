@@ -11,8 +11,8 @@ import { cn } from '@/lib/utils'
 import { contactFormSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { format } from 'date-fns'
-import { CalendarIcon, Loader2, X, XIcon } from 'lucide-react'
-import { useEffect, useRef, useState, useTransition } from 'react'
+import { CalendarIcon, Loader2, XIcon } from 'lucide-react'
+import { useRef, useTransition } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 import { useForm } from 'react-hook-form'
 // import Turnstile, { useTurnstile } from 'react-turnstile'
@@ -41,42 +41,46 @@ export function ContactForm() {
     }
   })
   const formRef = useRef<HTMLFormElement>(null)
-  const [isOther, setIsOther] = useState(false)
+  // const [isOther, setIsOther] = useState(false)
   // const turnstileRef = useRef<TurnstileInstance>(null)
   // const turnstile = useTurnstile()
 
-  const watchReferral = form.watch('referral', '')
+  // const watchReferral = form.watch('referral', '')
 
-  useEffect(() => {
-    if ((watchReferral === 'other' || watchReferral === 'referral') && !isOther) {
-      setIsOther(true)
-      form.setValue('referral', '')
-    }
-    return () => {}
-  }, [watchReferral, isOther, form])
+  // useEffect(() => {
+  //   if ((watchReferral === 'other' || watchReferral === 'referral') && !isOther) {
+  //     setIsOther(true)
+  //     form.setValue('referral', '')
+  //   }
+  //   return () => {}
+  // }, [watchReferral, isOther, form])
 
   const submitForm = async (data: z.infer<typeof contactFormSchema>) => {
+    form.clearErrors()
     startTransition(() => {
+      form.clearErrors()
       const formData = new FormData(formRef.current!)
+      formData.set('referral', data?.referral ?? '')
       formData.set('newsletter', data?.newsletter ? data.newsletter.toString() : 'false')
       data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
       // turnstileRef.current?.execute()
       formAction(formData)
-      resetForm()
     })
+    resetForm()
   }
 
   const resetForm = () => {
-    // if (state?.message !== '' && !state.issues && (!pending || !isPending)) {
-    formRef.current?.reset()
-    form.reset()
-    // turnstileRef.current?.reset()
-    // turnstile.reset()
-    toast.success('Thank you for contacting Two Perfect Events!', {
-      description: `We will get back to you as soon as possible.`,
-      duration: 8000
-    })
-    // }
+    if (state?.message !== '' && !state.issues && (!pending || !isPending)) {
+      formRef.current?.reset()
+      form.reset()
+      // form.setValue('referral', '')
+      // turnstileRef.current?.reset()
+      // turnstile.reset()
+      toast.success('Thank you for contacting Two Perfect Events!', {
+        description: `We will get back to you as soon as possible.`,
+        duration: 8000
+      })
+    }
   }
 
   return (
@@ -229,7 +233,7 @@ export function ContactForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel hidden>How did you hear about us?</FormLabel>
-              {isOther ? (
+              {/* {isOther ? (
                 <FormControl>
                   <div className="relative">
                     <Button
@@ -246,24 +250,24 @@ export function ContactForm() {
                     <Input autoFocus placeholder="We'd love to know more!" {...field} />
                   </div>
                 </FormControl>
-              ) : (
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="How did you hear about us?" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="google">Google</SelectItem>
-                    <SelectItem value="knot">The Knot/WeddingWire/WeddingPro</SelectItem>
-                    <SelectItem value="yelp">Yelp</SelectItem>
-                    <SelectItem value="Instagram">Instagram</SelectItem>
-                    <SelectItem value="tiktok">Tiktok</SelectItem>
-                    <SelectItem value="referral">Referral</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
-                  </SelectContent>
-                </Select>
-              )}
+              ) : ( */}
+              <Select onValueChange={field.onChange} defaultValue={field?.value || undefined}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="How did you hear about us? *" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="google">Google</SelectItem>
+                  <SelectItem value="knot">The Knot/WeddingWire/WeddingPro</SelectItem>
+                  <SelectItem value="yelp">Yelp</SelectItem>
+                  <SelectItem value="Instagram">Instagram</SelectItem>
+                  <SelectItem value="tiktok">Tiktok</SelectItem>
+                  <SelectItem value="referral">Referral</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+              {/* )} */}
               <FormMessage />
             </FormItem>
           )}

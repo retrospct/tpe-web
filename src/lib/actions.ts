@@ -25,8 +25,10 @@ export type FormState = {
 
 export async function submitContactAction(prevState: FormState, data: FormData): Promise<FormState> {
   const formData = Object.fromEntries(data)
+  // console.log('contact_form_raw', formData)
   const parsed = contactFormSchema.safeParse(formData)
-  console.log('contact_form', parsed)
+  // console.log('contact_form', parsed)
+  // console.log('contact_form_error', parsed.error)
   // console.log('prevState', prevState)
 
   if (!parsed.success) {
