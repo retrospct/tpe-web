@@ -32,7 +32,7 @@ const Testimonials = ({ slice }: TestimonialsProps): JSX.Element => {
               field={slice.primary.image}
               width={1000}
               height={500}
-              sizes="100vw"
+              // sizes="100vw"
               className="h-auto w-full"
             />
           )}
