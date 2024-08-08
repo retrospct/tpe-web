@@ -42,8 +42,8 @@ export const ImageCarousel = ({
       </CarouselContent>
       {controls && (
         <>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious className="sm:hidden" />
+          <CarouselNext className="sm:hidden" />
         </>
       )}
     </Carousel>
