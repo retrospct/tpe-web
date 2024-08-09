@@ -2,3 +2,4 @@ User-Agent: *
 Allow: /
 
 Sitemap: https://twoperfectevents.com/sitemap.xml
+Sitemap: https://twoperfectevents.com/blog/sitemap.xml

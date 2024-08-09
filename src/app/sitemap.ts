@@ -1,3 +1,4 @@
+import { APP_HOST } from '@/lib/utils'
 import { MetadataRoute } from 'next'
 import siteconfig from '../../siteconfig.json'
 
@@ -5,7 +6,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let sites: MetadataRoute.Sitemap = []
   siteconfig.forEach((site) =>
     sites.push({
-      url: `https://twopefectevents.com${site.source}` as string,
+      url: `https://${APP_HOST}${site.source}` as string,
       lastModified: new Date(),
       changeFrequency: (site?.changeFrequency || 'daily') as
         | 'daily'
@@ -26,37 +27,43 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
 const mainsites: MetadataRoute.Sitemap = [
   {
-    url: `https://twopefectevents.com`,
+    url: `https://${APP_HOST}`,
     lastModified: new Date(),
     changeFrequency: 'daily',
     priority: 1
   },
   {
-    url: `https://twopefectevents.com/about`,
+    url: `https://${APP_HOST}/about`,
     lastModified: new Date(),
     changeFrequency: 'daily',
     priority: 1
   },
   {
-    url: `https://twopefectevents.com/contact`,
+    url: `https://${APP_HOST}/contact`,
     lastModified: new Date(),
     changeFrequency: 'daily',
     priority: 1
   },
   {
-    url: `https://twopefectevents.com/portfolio`,
+    url: `https://${APP_HOST}/portfolio`,
     lastModified: new Date(),
     changeFrequency: 'daily',
     priority: 1
   },
   {
-    url: `https://twopefectevents.com/services`,
+    url: `https://${APP_HOST}/services`,
     lastModified: new Date(),
     changeFrequency: 'daily',
     priority: 1
   },
   {
-    url: `https://twopefectevents.com/services/design`,
+    url: `https://${APP_HOST}/services/design`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 1
+  },
+  {
+    url: `https://${APP_HOST}/services/blog`,
     lastModified: new Date(),
     changeFrequency: 'daily',
     priority: 1
