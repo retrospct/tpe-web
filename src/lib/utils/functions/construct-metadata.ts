@@ -2,9 +2,9 @@ import { APP_HOST } from '@/lib/utils'
 import type { Metadata } from 'next'
 
 export function constructMetadata({
-  title = `${process.env.NEXT_PUBLIC_APP_NAME} - Link Management for Modern Marketing Teams`,
-  description = `${process.env.NEXT_PUBLIC_APP_NAME} is the open-source link management infrastructure for modern marketing teams to create, share, and track short links.`,
-  image = 'https://assets.dub.co/thumbnail.jpg',
+  title = `${process.env.NEXT_PUBLIC_APP_NAME} - Chic + Multicultural Weddings & Events for Creative Souls`,
+  description = `${process.env.NEXT_PUBLIC_APP_NAME} believes weddings should be as unique as your love story and events should create core memories for all that attend. We embrace the unconventional to plan the most fun, authentic, and take-your-breath-away event experiences.`,
+  image = 'https://twoperfectevents.com/social-card.jpg', // 1866x980
   icons = [
     // {
     //   rel: "icon",
