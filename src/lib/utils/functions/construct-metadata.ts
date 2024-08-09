@@ -18,7 +18,7 @@ export function constructMetadata({
   image = '/social-card.jpg', // 1866x980 on dub, we use 1200x630
   // imageAlt = og:image:alt
   // imageDimensions = { width: 1200, height: 630 },
-  imageSquared = '/social-card_squared.jpg', // 1200x1200
+  imageSquared = '/social-card_squared.jpg', // 600x600
   // imageSquaredAlt = og:image:alt
   // imageAltDimensions = { width: 1200, height: 1200 },
   icons = [
@@ -58,7 +58,7 @@ export function constructMetadata({
       ...(image && {
         images: [
           { url: image, width: 1200, height: 630 },
-          { url: imageSquared, width: 1200, height: 1200 },
+          { url: imageSquared, width: 600, height: 600 },
           ...previousImages
         ]
       })
