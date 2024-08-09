@@ -1,38 +1,36 @@
+import { constructMetadata } from '@/lib/utils'
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
+import { isFilled } from '@prismicio/client'
 import { SliceZone } from '@prismicio/react'
-import { Metadata } from 'next'
+import { Metadata, ResolvingMetadata } from 'next'
+
+type Props = {
+  params: { uid: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
 
 // This component renders your homepage.
 //
 // Use Next's generateMetadata function to render page metadata.
 //
 // Use the SliceZone to render the content of the page.
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const client = createClient()
   const home = await client.getByUID('page', 'home')
-  // const title = `${params.domain.toUpperCase()} - A ${
-  //   process.env.NEXT_PUBLIC_APP_NAME
-  // } Custom Domain`;
-  // const description = `${params.domain.toUpperCase()} is a custom domain on ${
-  //   process.env.NEXT_PUBLIC_APP_NAME
-  // } - an open-source link management tool for modern marketing teams to create, share, and track short links.`;
-  // return constructMetadata({
-  //   title,
-  //   description,
-  // });
+  const previousImages = (await parent).openGraph?.images || []
+  const metadata = constructMetadata({
+    ...(isFilled.keyText(home.data.meta_title) && { title: home.data.meta_title as string }),
+    ...(isFilled.keyText(home.data.meta_description) && { description: home.data.meta_description as string }),
+    image: home.data.meta_image.url,
+    previousImages
+  })
 
-  return {
-    title: home.data.meta_title,
-    description: home.data.meta_description,
-    openGraph: {
-      title: home.data.meta_title ?? undefined,
-      images: [{ url: home.data.meta_image.url ?? '' }]
-    }
-  }
+  // console.log('home metadata', metadata)
+  return metadata
 }
 
-export default async function Index() {
+export default async function Index({ params, searchParams }: Props) {
   // The client queries content from the Prismic API
   const client = createClient()
   const home = await client.getByUID('page', 'home')

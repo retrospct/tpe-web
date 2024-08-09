@@ -1,5 +1,7 @@
+import { constructMetadata } from '@/lib/utils'
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
+import { isFilled } from '@prismicio/client'
 import { SliceZone } from '@prismicio/react'
 import type { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -24,15 +26,14 @@ export async function generateMetadata({ params, searchParams }: Props, parent: 
   const client = createClient()
   const page = await client.getByUID('page', 'blog').catch(() => notFound())
   const previousImages = (await parent).openGraph?.images || []
+  const metadata = constructMetadata({
+    ...(isFilled.keyText(page.data.meta_title) && { title: page.data.meta_title as string }),
+    ...(isFilled.keyText(page.data.meta_description) && { description: page.data.meta_description as string }),
+    image: page.data.meta_image.url,
+    previousImages
+  })
 
-  return {
-    title: page.data.meta_title || 'Two Perfect Events',
-    description: page.data.meta_description || 'A full-service event planning company based in Palo Alto, CA.',
-    openGraph: {
-      title: page.data.meta_title || 'Two Perfect Events',
-      images: [{ url: page.data.meta_image.url || '' }, ...previousImages]
-    }
-  }
+  return metadata
 }
 
 // export async function generateStaticParams() {

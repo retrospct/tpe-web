@@ -1,5 +1,5 @@
 import { Heading, Text } from '@/components'
-import { cn } from '@/lib/utils'
+import { cn, constructMetadata } from '@/lib/utils'
 import { createClient } from '@/prismicio'
 import { asText, isFilled } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
@@ -98,22 +98,16 @@ export default async function Page({ params, searchParams }: Props) {
 export async function generateMetadata({ params, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const client = createClient()
   const page = await client.getByUID('person', params.uid).catch(() => notFound())
-  // const previousImages = (await parent).openGraph?.images || []
+  const previousImages = (await parent).openGraph?.images || []
   const title =
-    `${asText(page.data.first_name)} ${asText(page.data.last_name)}'s Profile - Two Perfect Events` ||
+    `Two Perfect Events - ${asText(page.data.first_name)} ${asText(page.data.last_name)}'s Profile` ||
     'Two Perfect Events'
   const description =
     `${asText(page.data.first_name)} ${asText(page.data.title)} - ${asText(page.data.bio).substring(0, 240)}` ||
-    'A full-service event planning company based in Palo Alto, CA.'
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description
-      // images: [{ url: page.data.meta_image.url || '' }, ...previousImages]
-    }
-  }
+    'Two Perfect Events is a Palo Alto-based event planning studio, crafting unique, unforgettable weddings and events. We specialize in personalized details and flawless execution, ensuring every celebration reflects your unique style and creates lasting memories.'
+  const metadata = constructMetadata({ title, description, previousImages })
+
+  return metadata
 }
 
 export async function generateStaticParams() {
