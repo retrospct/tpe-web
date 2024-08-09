@@ -67,7 +67,7 @@ export function constructMetadata({
       title,
       description,
       ...(image && { card: 'summary_large_image', images: [image] }),
-      creator: '@twoperfectevents'
+      creator: '@twoperfectevent'
     },
 
     metadataBase: new URL(`https://${APP_HOST}`),
