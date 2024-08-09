@@ -1,6 +1,6 @@
 import { Column, Img, Link, Row, Section } from '@react-email/components'
 
-const baseUrl = process.env.APP_URL ? `https://${process.env.APP_URL}` : '/static'
+const baseUrl = process.env.NEXT_PUBLIC_APP_HOST ? `https://${process.env.NEXT_PUBLIC_APP_HOST}` : '/static'
 
 const socials = [
   {

@@ -9,7 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await client.getAllByType('post').catch(() => notFound())
   return posts.map((post) => ({
     url: `https://${APP_HOST}/blog/${post.uid}`,
-    lastModified: post?.last_publication_date || new Date(),
+    lastModified: post?.last_publication_date ? new Date(post?.last_publication_date) : new Date(),
     changeFrequency: 'daily',
     priority: 1
   }))
