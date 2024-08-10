@@ -14,6 +14,13 @@
     "changeFrequency": "daily"
   },
   {
+    "source": "/ourteam",
+    "destination": "/about",
+    "permanent": true,
+    "priority": 1,
+    "changeFrequency": "daily"
+  },
+  {
     "source": "/services-gallery",
     "destination": "/services",
     "permanent": true,

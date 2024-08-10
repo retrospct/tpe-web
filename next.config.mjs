@@ -26,6 +26,11 @@ const nextConfig = {
         permanent: true
       },
       {
+        source: '/ourteam',
+        destination: '/about',
+        permanent: true
+      },
+      {
         source: '/services-gallery',
         destination: '/services',
         permanent: true
