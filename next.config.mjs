@@ -21,13 +21,18 @@ const nextConfig = {
         permanent: true
       },
       {
-        source: '/services/events',
-        destination: '/services',
+        source: '/info',
+        destination: '/',
         permanent: true
       },
       {
         source: '/ourteam',
         destination: '/about',
+        permanent: true
+      },
+      {
+        source: '/services/events',
+        destination: '/services',
         permanent: true
       },
       {
