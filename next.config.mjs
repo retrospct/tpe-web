@@ -41,6 +41,11 @@ const nextConfig = {
         permanent: true
       },
       {
+        source: '/services-gallery/:slug*',
+        destination: '/services',
+        permanent: true
+      },
+      {
         source: '/annies-biography',
         destination: '/about/team/annie-liou',
         permanent: true
@@ -92,6 +97,61 @@ const nextConfig = {
       },
       {
         source: '/staceys-biography',
+        destination: '/about/team/stacey-park',
+        permanent: true
+      },
+      {
+        source: '/annies-biography/:slug*',
+        destination: '/about/team/annie-liou',
+        permanent: true
+      },
+      {
+        source: '/yokos-biography/:slug*',
+        destination: '/about/team/yoko-ohara',
+        permanent: true
+      },
+      {
+        source: '/justin-biography/:slug*',
+        destination: '/about/team/justin',
+        permanent: true
+      },
+      {
+        source: '/justines-biography/:slug*',
+        destination: '/about/team/justine-alberto',
+        permanent: true
+      },
+      {
+        source: '/leah-biography/:slug*',
+        destination: '/about/team/leah-hwung',
+        permanent: true
+      },
+      {
+        source: '/leos-biography/:slug*',
+        destination: '/about/team/leo-huey',
+        permanent: true
+      },
+      {
+        source: '/marissa-biography/:slug*',
+        destination: '/about/team/marissa-velez',
+        permanent: true
+      },
+      {
+        source: '/mary-biography/:slug*',
+        destination: '/about/team/mary-vargas',
+        permanent: true
+      },
+      {
+        source: '/monicas-biography/:slug*',
+        destination: '/about/team/monica-luong',
+        permanent: true
+      },
+      {
+        source: '/natalies-biography/:slug*',
+        destination: '/about/team/natalie-mata',
+        permanent: true
+      },
+      {
+        source: '/staceys-biography/:slug*',
         destination: '/about/team/stacey-park',
         permanent: true
       },
