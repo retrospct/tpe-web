@@ -252,7 +252,7 @@ const nextConfig = {
       },
       {
         source: '/san-francisco-chinatown',
-        destination: '/portfolio/san-francisco-chinatown',
+        destination: '/portfolio/mister-jius-moongate-lounge',
         permanent: true
       },
       {
@@ -267,7 +267,7 @@ const nextConfig = {
       },
       {
         source: '/sf-chinatown',
-        destination: '/portfolio/san-francisco-chinatown',
+        destination: '/portfolio/mister-jius-moongate-lounge',
         permanent: true
       },
       {

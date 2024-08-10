@@ -3,7 +3,6 @@ import { createClient } from '@/prismicio'
 import { MetadataRoute } from 'next'
 import { notFound } from 'next/navigation'
 
-// { uid }: { uid: string }
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const client = createClient()
   const posts = await client.getAllByType('post').catch(() => notFound())
