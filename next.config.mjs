@@ -211,6 +211,11 @@ const nextConfig = {
         permanent: true
       },
       {
+        source: '/new-gallery-5',
+        destination: '/portfolio/moongate-lounge',
+        permanent: true
+      },
+      {
         source: '/oceanside-proposal',
         destination: '/portfolio/oceanside-proposal',
         permanent: true
@@ -242,11 +247,6 @@ const nextConfig = {
       },
       {
         source: '/rosewood-sand-hill',
-        destination: '/portfolio/rosewood-sand-hill',
-        permanent: true
-      },
-      {
-        source: '/new-gallery-3',
         destination: '/portfolio/rosewood-sand-hill',
         permanent: true
       },
