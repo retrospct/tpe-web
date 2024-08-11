@@ -77,7 +77,8 @@ const triplet = (e1: number, e2: number, e3: number) =>
 export const rgbDataURL = (r: number, g: number, b: number) =>
   `data:image/gif;base64,R0lGODlhAQABAPAA${triplet(0, r, g) + triplet(b, 255, 255)}/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`
 
-type ImageLayout = 'portrait' | 'landscape' | 'square'
+export type ImageLayout = 'portrait' | 'landscape' | 'square'
+
 export const getBase64Blur = (layout?: ImageLayout) => {
   switch (layout) {
     case 'landscape':
@@ -102,7 +103,7 @@ export const blurImage = (
   opts: BlurImageOptions | undefined = {
     layout: 'portrait',
     quality: 25,
-    blur: 400
+    blur: 100
   }
 ): Promise<string> => {
   return new Promise(async (resolve) => {
@@ -110,9 +111,26 @@ export const blurImage = (
     try {
       const imgW = opts.width ? opts.width : opts.layout === 'portrait' ? 320 : opts.layout === 'square' ? 320 : 480
       const imgH = opts.height ? opts.height : opts.layout === 'portrait' ? 480 : opts.layout === 'square' ? 320 : 240
-      const blurUrl = `${url}?fm=blurhash&w=${imgW / 10}&h=${imgH / 10}&q=${opts?.quality || 25}&dpr=1`
+      const blurUrl = new URL(url)
+      const imgParams = new URLSearchParams({
+        auto: 'compress',
+        // fm: 'blurhash',
+        fm: 'jpg',
+        blur: opts.blur?.toString() || '100',
+        w: (imgW / 4).toString(),
+        h: (imgH / 4).toString(),
+        q: opts.quality?.toString() || '25',
+        dpr: '1'
+      })
+      blurUrl.search = imgParams.toString()
+      // const blurUrl = `${url}?auto=compress&fm=blurhash&w=${imgW / 10}&h=${imgH / 10}&q=${opts?.quality || 25}&dpr=1`
       // const blurUrl = `${url}?w=${imgW / 4}&h=${imgH / 4}&q=${opts.quality}&blur=${opts.blur}&dpr=1`
-      const buffer = await fetch(blurUrl).then(async (res) => Buffer.from(await res.arrayBuffer()))
+      const res = await fetch(blurUrl.href)
+      // const hash = await res.text()
+      // return resolve(hash)
+      // const base64Img = blurHashToDataURL(hash, imgW / 10, imgH / 10)
+
+      const buffer = Buffer.from(await res.arrayBuffer())
       const base64Img = `data:image/jpeg;base64,${buffer.toString('base64')}`
       return resolve(base64Img)
     } catch (error) {
