@@ -13,7 +13,7 @@ interface ConstructMetadataProps {
 
 export function constructMetadata({
   title = `${APP_NAME} - Chic + Multicultural Weddings & Events for Creative Souls`,
-  description = `${APP_NAME} is a Palo Alto-based event planning studio, crafting unique, unforgettable weddings and events. We specialize in personalized details and flawless execution, ensuring every celebration reflects your unique style and creates lasting memories.`, // 'A full-service event planning company based in Palo Alto, CA.'
+  description = `${APP_NAME} is a Palo Alto, CA based event planning studio, crafting unique, unforgettable weddings and events. We specialize in personalized details and flawless execution, ensuring every celebration reflects your unique style and creates lasting memories.`, // 'A full-service event planning company based in Palo Alto, CA.'
   // url, // optional canonical url
   image = '/social-card.jpg', // 1866x980 on dub, we use 1200x630
   // imageAlt = og:image:alt
