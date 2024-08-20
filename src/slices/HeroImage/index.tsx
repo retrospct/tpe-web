@@ -65,7 +65,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
               />
               <PrismicNextImage
                 field={slice.primary.image}
-                imgixParams={{ crop: ['faces', 'edges'], fit: 'crop', h: 512, maxW: 1200, q: 90 }}
+                imgixParams={{ crop: ['edges', 'faces'], fit: 'crop', h: 512, w: 1200, q: 90 }}
                 className="block h-[512px] w-full object-cover lg:hidden"
                 placeholder="blur"
                 // blurDataURL={await blurImage(slice.primary.image.url, {
