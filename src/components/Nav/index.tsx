@@ -5,7 +5,7 @@ import NavLogo from './NavLogo'
 export default async function Nav() {
   const client = createClient()
   const navigation = await client.getByUID('nav', 'main-nav')
-
+  // fixed top-0 z-50 bg-background
   return (
     <header className="flex w-full flex-row items-center justify-center lg:flex-col">
       <NavLogo className="pl-6 lg:pl-0 lg:pt-14" />

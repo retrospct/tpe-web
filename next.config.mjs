@@ -10,6 +10,14 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'images.prismic.io'
+      },
+      {
+        protocol: 'https',
+        hostname: 'tpe-web.prismic.io'
+      },
+      {
+        protocol: 'https',
+        hostname: 'static.cdn.prismic.io'
       }
     ]
   },

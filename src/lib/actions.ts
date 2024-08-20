@@ -218,5 +218,5 @@ const subscribeResend = async ({
     unsubscribed: false,
     audienceId: 'a4ebedf1-1f0e-4bd8-9a2d-dcb0516f9b90'
   })
-  console.log('contact', contact)
+  console.log('user subscribed to newsletter', contact)
 }

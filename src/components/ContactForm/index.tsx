@@ -112,6 +112,7 @@ export function ContactForm() {
               <FormLabel hidden>Email</FormLabel>
               <FormControl>
                 <Input placeholder="Email*" {...field} />
+                {/* autoComplete="email" */}
               </FormControl>
               {/* <FormDescription>This is your email address</FormDescription> */}
               <FormMessage />
@@ -155,6 +156,7 @@ export function ContactForm() {
                 <FormLabel hidden>Phone</FormLabel>
                 <FormControl>
                   <Input placeholder="Phone*" {...field} />
+                  {/* autoComplete="tel" */}
                 </FormControl>
                 <FormMessage />
               </FormItem>
