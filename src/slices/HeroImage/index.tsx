@@ -41,13 +41,14 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                 'relative min-w-full max-w-full overflow-hidden',
                 isFilled.select(slice.primary.image_height) && slice.primary.image_height === 'short'
                   ? 'h-[calc(66vh-120px)] max-h-[431px] sm:h-[431px] sm:min-h-[431px]'
-                  : 'h-[calc(66vh-120px)] max-h-[652px] sm:h-[652px] sm:min-h-[652px]'
+                  : 'h-auto min-h-[512px] w-full max-w-[1920px]'
+                // : 'h-[calc(66vh-120px)] max-h-[652px] sm:h-[652px] sm:min-h-[652px]'
               )}
             >
               <PrismicNextImage
                 field={slice.primary.image}
-                imgixParams={{ crop: ['faces', 'edges'], fit: 'crop', w: 1, h: 1 }}
-                className="object-cover"
+                imgixParams={{ crop: ['edges', 'faces'], fit: 'crop', ar: `16:9`, q: 90 }}
+                className="hidden h-auto max-h-[996px] min-h-[652px] w-full object-cover lg:block"
                 placeholder="blur"
                 // blurDataURL={await blurImage(slice.primary.image.url, {
                 //   layout: 'landscape',
@@ -55,8 +56,29 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                 //   height: slice.primary.image.dimensions.height
                 // })}
                 blurDataURL={rgbDataURL(252, 244, 236)}
-                sizes="100vw"
-                fill
+                // sizes="100vw"
+                height={652}
+                // width={1302}
+                // sizes="(min-width: 512px) 100vw"
+                // fill
+                priority
+              />
+              <PrismicNextImage
+                field={slice.primary.image}
+                imgixParams={{ crop: ['faces', 'edges'], fit: 'crop', h: 512, maxW: 1200, q: 90 }}
+                className="block h-[512px] w-full object-cover lg:hidden"
+                placeholder="blur"
+                // blurDataURL={await blurImage(slice.primary.image.url, {
+                //   layout: 'landscape',
+                //   width: slice.primary.image.dimensions.width,
+                //   height: slice.primary.image.dimensions.height
+                // })}
+                blurDataURL={rgbDataURL(252, 244, 236)}
+                // sizes="100vw"
+                // sizes="50vw"
+                height={512}
+                // width={512}
+                // fill
                 priority
               />
             </div>

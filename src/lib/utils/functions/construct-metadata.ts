@@ -1,6 +1,20 @@
 import { APP_HOST, APP_NAME } from '@/lib/utils'
 import type { Metadata } from 'next'
 
+type OpenGraphType =
+  | 'article'
+  | 'book'
+  | 'music.song'
+  | 'music.album'
+  | 'music.playlist'
+  | 'music.radio_station'
+  | 'profile'
+  | 'website'
+  | 'video.tv_show'
+  | 'video.other'
+  | 'video.movie'
+  | 'video.episode'
+
 interface ConstructMetadataProps {
   title?: string
   description?: string
@@ -9,6 +23,11 @@ interface ConstructMetadataProps {
   icons?: Metadata['icons']
   noIndex?: boolean
   previousImages?: any
+  type?: OpenGraphType
+  url?: string | URL
+  name?: string
+  alternates?: Metadata['alternates']
+  otherOg?: { [key: string]: string | number | Array<string | number> }
 }
 
 export function constructMetadata({
@@ -46,13 +65,20 @@ export function constructMetadata({
     }
   ],
   noIndex = false,
-  previousImages
+  previousImages,
+  type = 'website',
+  url,
+  name = 'Two Perfect Events',
+  alternates,
+  otherOg
 }: ConstructMetadataProps = {}): Metadata {
   return {
+    metadataBase: new URL(`https://${APP_HOST}`),
     title,
     description,
     icons,
     openGraph: {
+      type,
       title,
       description,
       ...(image && {
@@ -61,7 +87,10 @@ export function constructMetadata({
           { url: imageSquared, width: 600, height: 600 },
           ...previousImages
         ]
-      })
+      }),
+      ...(url && { url }),
+      ...(name && { site_name: name }),
+      ...(otherOg && { ...otherOg })
     },
     twitter: {
       title,
@@ -69,11 +98,29 @@ export function constructMetadata({
       ...(image && { card: 'summary_large_image', images: [image] }),
       creator: '@twoperfectevent'
     },
-
-    metadataBase: new URL(`https://${APP_HOST}`),
+    ...(alternates && { alternates }),
     ...(noIndex && { robots: { index: false, follow: false } })
   }
 }
+
+// node_modules/next/dist/lib/metadata/types/opengraph-types.d.ts
+// type OpenGraphArticle = OpenGraphMetadata & {
+//   type: 'article'
+//   publishedTime?: string
+//   modifiedTime?: string
+//   expirationTime?: string
+//   authors?: null | string | URL | Array<string | URL>
+//   section?: null | string
+//   tags?: null | string | Array<string>
+// }
+
+// type OpenGraphProfile = OpenGraphMetadata & {
+//   type: 'profile';
+//   firstName?: null | string;
+//   lastName?: null | string;
+//   username?: null | string;
+//   gender?: null | string;
+// };
 
 // const defaultMetadata: ConstructMetadataProps = {
 //   title: `${APP_NAME} - Chic + Multicultural Weddings & Events for Creative Souls`,
