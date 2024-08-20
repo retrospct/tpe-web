@@ -47,8 +47,8 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
             >
               <PrismicNextImage
                 field={slice.primary.image}
-                imgixParams={{ crop: ['edges', 'faces'], fit: 'crop', ar: `16:9`, q: 90 }}
-                className="hidden h-auto max-h-[996px] min-h-[652px] w-full object-cover lg:block"
+                // imgixParams={{ crop: ['edges', 'faces'], fit: 'crop', ar: `16:9`, q: 90 }}
+                className="h-auto max-h-[996px] min-h-[512px] w-full object-cover"
                 placeholder="blur"
                 // blurDataURL={await blurImage(slice.primary.image.url, {
                 //   layout: 'landscape',
@@ -56,14 +56,14 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                 //   height: slice.primary.image.dimensions.height
                 // })}
                 blurDataURL={rgbDataURL(252, 244, 236)}
-                // sizes="100vw"
-                height={652}
+                sizes="100vw"
+                height={512}
                 // width={1302}
                 // sizes="(min-width: 512px) 100vw"
                 // fill
                 priority
               />
-              <PrismicNextImage
+              {/* <PrismicNextImage
                 field={slice.primary.image}
                 imgixParams={{ crop: ['edges', 'faces'], fit: 'crop', h: 512, w: 1200, q: 90 }}
                 className="block h-[512px] w-full object-cover lg:hidden"
@@ -74,13 +74,13 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
                 //   height: slice.primary.image.dimensions.height
                 // })}
                 blurDataURL={rgbDataURL(252, 244, 236)}
-                // sizes="100vw"
+                sizes="100vw"
                 // sizes="50vw"
                 height={512}
                 // width={512}
                 // fill
                 priority
-              />
+              /> */}
             </div>
           )}
           {(isFilled.richText(slice.primary.title) ||
