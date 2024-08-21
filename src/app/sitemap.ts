@@ -63,9 +63,21 @@ const mainsites: MetadataRoute.Sitemap = [
     priority: 1
   },
   {
-    url: `https://${APP_HOST}/services/blog`,
+    url: `https://${APP_HOST}/blog`,
     lastModified: new Date(),
     changeFrequency: 'daily',
     priority: 1
-  }
+  },
+  {
+    url: `https://${APP_HOST}/photo-credits`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.75
+  },
+  {
+    url: `https://${APP_HOST}/privacy`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.75
+  },
 ]
