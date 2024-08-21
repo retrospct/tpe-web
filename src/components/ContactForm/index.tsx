@@ -301,7 +301,7 @@ export function ContactForm() {
           {(pending || isPending) && <Loader2 className="ml-2 h-6 w-6 animate-spin" />}
         </Button>
         {state?.message !== '' && !state.issues && (!pending || !isPending) && (
-          <div className="w-full text-center text-primary">{state.message}</div>
+          <div data-testid="success-message" className="w-full text-center text-primary">{state.message}</div>
         )}
         {state?.issues && (
           <div className="w-full text-pretty text-primary">
