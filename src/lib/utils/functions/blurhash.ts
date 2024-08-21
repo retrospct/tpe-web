@@ -1,12 +1,12 @@
-import { decode } from 'blurhash'
+// import { decode } from 'blurhash'
 
-export function blurHashToDataURL(hash: string | undefined, width: number, height: number): string | undefined {
-  if (!hash) return undefined
+// export function blurHashToDataURL(hash: string | undefined, width: number, height: number): string | undefined {
+//   if (!hash) return undefined
 
-  const pixels = decode(hash, width, height)
-  const dataURL = parsePixels(pixels, width, height)
-  return dataURL
-}
+//   const pixels = decode(hash, width, height)
+//   const dataURL = parsePixels(pixels, width, height)
+//   return dataURL
+// }
 
 // thanks to https://github.com/wheany/js-png-encoder
 function parsePixels(pixels: Uint8ClampedArray, width: number, height: number) {

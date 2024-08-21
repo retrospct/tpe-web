@@ -1,9 +1,12 @@
 import { Heading, HeadingDivider, Text } from '@/components'
-import { ImageCarousel } from '@/components/ImageCarousel'
+// import { ImageCarousel } from '@/components/ImageCarousel'
 import { cn } from '@/lib/utils'
 import { Content, isFilled } from '@prismicio/client'
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import { PrismicRichText, SliceComponentProps } from '@prismicio/react'
+import dynamic from 'next/dynamic'
+
+const ImageCarousel = dynamic(() => import('../../components/ImageCarousel').then((mod) => mod.ImageCarousel))
 
 /**
  * Props for `Services`.

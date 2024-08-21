@@ -5,6 +5,11 @@ const nextConfig = {
     //   optimizePackageImports: ['package-name']
   },
   transpilePackages: ['lucide-react'],
+  // compiler: {
+  //   removeConsole: {
+  //     exclude: ['error'],
+  //   },
+  // },
   images: {
     remotePatterns: [
       {

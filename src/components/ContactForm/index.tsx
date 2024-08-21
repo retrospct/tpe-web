@@ -1,10 +1,10 @@
 'use client'
 import { Button } from '@/components/ui/button'
-import { Calendar } from '@/components/ui/calendar'
+// import { Calendar } from '@/components/ui/calendar'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+// import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Textarea } from '@/components/ui/textarea'
 import { submitContactAction } from '@/lib/actions'
 import { cn } from '@/lib/utils'
@@ -16,9 +16,15 @@ import { useRef, useTransition } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 import { useForm } from 'react-hook-form'
 // import Turnstile, { useTurnstile } from 'react-turnstile'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import dynamic from 'next/dynamic'
 import { toast } from 'sonner'
 import { z } from 'zod'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
+
+const Calendar = dynamic(() => import('../ui/calendar').then((mod) => mod.Calendar))
+const Popover = dynamic(() => import('../ui/popover').then((mod) => mod.Popover))
+const PopoverContent = dynamic(() => import('../ui/popover').then((mod) => mod.PopoverContent))
+const PopoverTrigger = dynamic(() => import('../ui/popover').then((mod) => mod.PopoverTrigger))
 
 export function ContactForm() {
   const [isPending, startTransition] = useTransition()

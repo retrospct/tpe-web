@@ -1,6 +1,6 @@
 import { Heading, ImagePrismic, Text } from '@/components'
 import { TpSquiggle } from '@/components/icons/TpSquiggle'
-import { ImageCarousel } from '@/components/ImageCarousel'
+// import { ImageCarousel } from '@/components/ImageCarousel'
 import { buttonVariants } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
@@ -8,6 +8,9 @@ import { isFilled, type Content } from '@prismicio/client'
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import { PrismicRichText, SliceComponentProps } from '@prismicio/react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import dynamic from 'next/dynamic'
+
+const ImageCarousel = dynamic(() => import('../../components/ImageCarousel').then((mod) => mod.ImageCarousel))
 
 export type CallToActionProps = SliceComponentProps<Content.CallToActionSlice>
 
