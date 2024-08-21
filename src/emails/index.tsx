@@ -30,7 +30,7 @@ export const sendEmail = async ({
   to,
   subject,
   from = 'team@email.twoperfectevents.com',
-  reply_to = 'noreply@mail.twoperfectevents.com',
+  replyTo = 'noreply@mail.twoperfectevents.com',
   bcc,
   text = 'ERROR: No email template provided.',
   react
@@ -39,7 +39,7 @@ export const sendEmail = async ({
   to: string | string[]
   subject: string
   from?: string
-  reply_to?: string
+  replyTo?: string
   bcc?: string
   text?: string
   react?: ReactElement<any, string | JSXElementConstructor<any>> | ReactNode
@@ -58,7 +58,7 @@ export const sendEmail = async ({
     from,
     to,
     bcc,
-    reply_to,
+    replyTo,
     subject,
     ...(react ? { react } : { text })
     // ...(text && { text }),
