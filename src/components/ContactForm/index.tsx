@@ -259,13 +259,13 @@ export function ContactForm() {
                   </div>
                 </FormControl>
               ) : ( */}
-              <Select onValueChange={field.onChange} defaultValue={field?.value || undefined}>
+              <Select onValueChange={field.onChange} defaultValue={field?.value || undefined} data-testid="referral-select-2">
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="How did you hear about us? *" />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent>
+                <SelectContent data-testid="referral-select">
                   <SelectItem value="google">Google</SelectItem>
                   <SelectItem value="knot">The Knot/WeddingWire/WeddingPro</SelectItem>
                   <SelectItem value="yelp">Yelp</SelectItem>

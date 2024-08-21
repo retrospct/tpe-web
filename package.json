@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "The public website for Two Perfect Events - twoperfectevents.com",
   "private": true,
-  "license": "Apache-2.0",
+  "license": "MIT",
   "author": "Justin Lee <me@jlee.cool> (https://jlee.cool)",
   "scripts": {
     "dev": "concurrently \"pnpm:next:dev\" \"pnpm:slicemachine\" --names \"next,slicemachine\" --prefix-colors blue,magenta",
@@ -76,7 +76,7 @@
     "autoprefixer": "^10.4.19",
     "concurrently": "^8.2.2",
     "drizzle-kit": "^0.23.1",
-    "eslint": "^9.8.0",
+    "eslint": "8.57.0",
     "eslint-config-next": "^14.2.5",
     "eslint-config-prettier": "^9.1.0",
     "postcss": "^8.4.40",

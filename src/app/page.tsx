@@ -26,7 +26,6 @@ export async function generateMetadata({ params, searchParams }: Props, parent: 
     previousImages
   })
 
-  // console.log('home metadata', metadata)
   return metadata
 }
 
