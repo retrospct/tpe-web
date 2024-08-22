@@ -37,7 +37,7 @@ export default function RootLayout({
         <Footer />
         <Toaster position="bottom-center" richColors />
         {process.env.NODE_ENV === 'development' && <PrismicPreview repositoryName={repositoryName ?? 'tpe-web'} />}
-        <SpeedInsights />
+        <SpeedInsights sampleRate={0.5} />
         <Analytics />
       </body>
       <GoogleAnalytics gaId="G-BK1E6E3S2L" />
