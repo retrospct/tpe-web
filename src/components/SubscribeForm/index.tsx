@@ -91,7 +91,7 @@ export function SubscribeForm({
             </FormItem>
           )}
         />
-        <Button type="submit" size="md" disabled={pending || isPending}>
+        <Button type="submit" size="md" disabled={pending || isPending} data-attr="subscribe">
           {cta}
           {pending || (isPending && <Loader2 className="ml-2 h-4 w-4 animate-spin" />)}
         </Button>

@@ -259,7 +259,11 @@ export function ContactForm() {
                   </div>
                 </FormControl>
               ) : ( */}
-              <Select onValueChange={field.onChange} defaultValue={field?.value || undefined} data-testid="referral-select-2">
+              <Select
+                onValueChange={field.onChange}
+                defaultValue={field?.value || undefined}
+                data-testid="referral-select-2"
+              >
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="How did you hear about us? *" />
@@ -296,12 +300,14 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="italic" disabled={pending || isPending}>
+        <Button type="submit" className="italic" disabled={pending || isPending} data-attr="contact">
           SUBMIT
           {(pending || isPending) && <Loader2 className="ml-2 h-6 w-6 animate-spin" />}
         </Button>
         {state?.message !== '' && !state.issues && (!pending || !isPending) && (
-          <div data-testid="success-message" className="w-full text-center text-primary">{state.message}</div>
+          <div data-testid="success-message" className="w-full text-center text-primary">
+            {state.message}
+          </div>
         )}
         {state?.issues && (
           <div className="w-full text-pretty text-primary">
