@@ -1,15 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverComponentsExternalPackages: ['@react-email/components', '@react-email/render', '@react-email/tailwind']
-    //   optimizePackageImports: ['package-name']
+    serverActions: {
+      allowedOrigins: ['localhost:3000', 'localhost:3001'],
+      bodySizeLimit: '2mb'
+    }
   },
-  transpilePackages: ['lucide-react'],
-  // compiler: {
-  //   removeConsole: {
-  //     exclude: ['error'],
-  //   },
-  // },
+  transpilePackages: ['lucide-react', '@react-email/components', '@react-email/render', '@react-email/tailwind'],
+  compiler: { removeConsole: { exclude: ['error', 'warn'] } },
   images: {
     remotePatterns: [
       {
@@ -26,6 +24,7 @@ const nextConfig = {
       }
     ]
   },
+  // skipTrailingSlashRedirect: true, // This is required to support PostHog trailing slash API requests
   async redirects() {
     return [
       {
