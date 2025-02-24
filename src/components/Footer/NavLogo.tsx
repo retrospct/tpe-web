@@ -6,7 +6,7 @@ export const NavLogo = ({ name }: { name?: string }) => {
     <div className="mx-auto flex max-w-7xl items-center justify-center">
       <Link href="/" className="-m-1.5 p-1.5">
         <span className="sr-only">{name || 'Two Perfect Events'}</span>
-        <TpLogoCircle className="h-auto w-[100px] text-red" />
+        <TpLogoCircle className="text-red h-auto w-[100px]" />
       </Link>
     </div>
   )

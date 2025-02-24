@@ -1,5 +1,6 @@
 import { Heading } from '@/components'
 import { Separator } from '@/components/ui/separator'
+import { Params, SearchParams } from '@/lib/types'
 import { constructMetadata } from '@/lib/utils'
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
@@ -10,8 +11,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 type Props = {
-  params: { uid: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Params
+  searchParams: SearchParams
 }
 
 export default async function Page({ params, searchParams }: Props) {
@@ -23,24 +24,24 @@ export default async function Page({ params, searchParams }: Props) {
     .catch(() => notFound())
 
   return (
-    <div className="relative mx-auto mb-8 mt-0 flex w-full max-w-7xl flex-col items-center justify-start px-6 lg:mb-14 lg:mt-4 lg:px-8">
+    <div className="relative mx-auto mt-0 mb-8 flex w-full max-w-7xl flex-col items-center justify-start px-6 lg:mt-4 lg:mb-14 lg:px-8">
       {/* <div className="inset-0 mx-auto my-8 flex w-full max-w-xl items-center" aria-hidden="true">
         <div className="w-full border-t-2 border-accent px-6" />
       </div> */}
       <Separator className="mb-10 max-w-xl lg:mb-14" />
       <Heading richText={page.data.title} accents className="text-center" />
-      <ul className="mt-8 flex w-full max-w-xl justify-evenly text-center text-primary sm:text-lg">
-        <li className="underline-offset-8 hover:text-primary/85 hover:underline">
+      <ul className="text-primary mt-8 flex w-full max-w-xl justify-evenly text-center sm:text-lg">
+        <li className="hover:text-primary/85 underline-offset-8 hover:underline">
           <Link href="#weddings" shallow>
             WEDDINGS
           </Link>
         </li>
-        <li className="underline-offset-8 hover:text-primary/85 hover:underline">
+        <li className="hover:text-primary/85 underline-offset-8 hover:underline">
           <Link href="#private-parties" shallow>
             PRIVATE PARTIES
           </Link>
         </li>
-        <li className="underline-offset-8 hover:text-primary/85 hover:underline">
+        <li className="hover:text-primary/85 underline-offset-8 hover:underline">
           <Link href="#corporate" shallow>
             CORPORATE
           </Link>

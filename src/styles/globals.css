@@ -44,14 +44,12 @@
   --radius-4xl: 2rem;
 
   --font-base:
-    var(--font-crimson), ui-sans-serif, system-ui, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    var(--font-crimson), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
   --font-sans:
-    var(--font-crimson), ui-sans-serif, system-ui, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-serif:
-    var(--font-belgant), ui-serif, Georgia, Cambria, 'Times New Roman', Times,
-    serif;
+    var(--font-crimson), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+  --font-serif: var(--font-belgant), ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
 
   --container-2xl: 40rem;
   --container-8xl: 90rem;

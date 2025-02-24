@@ -71,9 +71,6 @@ importers:
       '@sindresorhus/slugify':
         specifier: ^2.2.1
         version: 2.2.1
-      '@tailwindcss/postcss':
-        specifier: ^4.0.8
-        version: 4.0.8
       '@vercel/analytics':
         specifier: ^1.5.0
         version: 1.5.0(next@15.1.7(@babel/core@7.24.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
@@ -171,6 +168,9 @@ importers:
       '@tailwindcss/forms':
         specifier: ^0.5.10
         version: 0.5.10(tailwindcss@4.0.8)
+      '@tailwindcss/postcss':
+        specifier: ^4.0.8
+        version: 4.0.8
       '@types/ms':
         specifier: ^2.1.0
         version: 2.1.0

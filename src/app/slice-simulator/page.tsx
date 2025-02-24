@@ -3,7 +3,7 @@ import { SliceSimulator, SliceSimulatorParams, getSlices } from '@slicemachine/a
 
 import { components } from '@/slices'
 
-export default function SliceSimulatorPage({ searchParams }: SliceSimulatorParams) {
+export default async function SliceSimulatorPage({ searchParams }: SliceSimulatorParams) {
   const { state } = await searchParams
   const slices = getSlices(state)
 

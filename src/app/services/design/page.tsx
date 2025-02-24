@@ -1,3 +1,4 @@
+import { Params, SearchParams } from '@/lib/types'
 import { constructMetadata } from '@/lib/utils'
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
@@ -5,7 +6,6 @@ import { isFilled } from '@prismicio/client'
 import { SliceZone } from '@prismicio/react'
 import type { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
-import { Params, SearchParams } from '@/lib/types'
 
 type Props = {
   params: Params

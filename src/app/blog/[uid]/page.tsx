@@ -1,6 +1,7 @@
 import { Heading, Text } from '@/components'
 import { buttonVariants } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { Params, SearchParams } from '@/lib/types'
 import { cn, constructMetadata } from '@/lib/utils'
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
@@ -10,7 +11,6 @@ import { ArrowLeft } from 'lucide-react'
 import type { Metadata, ResolvingMetadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Params, SearchParams } from '@/lib/types'
 
 type Props = {
   params: Params
@@ -23,22 +23,22 @@ export default async function Page({ params, searchParams }: Props) {
   const page = await client.getByUID('post', uid).catch(() => notFound())
 
   return (
-    <div className="mx-auto mb-14 mt-4 max-w-4xl px-3">
+    <div className="mx-auto mt-4 mb-14 max-w-4xl px-3">
       <Separator className="mx-auto mb-14 max-w-xl" />
-      <Heading richText={page.data.title} accents className="mb-12 text-pretty text-center uppercase" />
+      <Heading richText={page.data.title} accents className="mb-12 text-center text-pretty uppercase" />
       <SliceZone slices={page.data.slices} components={components} />
       <Text
         richText={page.data.content}
         blogContent
-        className="flex w-full flex-wrap items-center justify-center gap-4 text-pretty px-3 lg:px-6 [&_p]:my-1 [&_p]:w-full"
+        className="flex w-full flex-wrap items-center justify-center gap-4 px-3 text-pretty lg:px-6 [&_p]:my-1 [&_p]:w-full"
       />
-      <section className="flex w-full flex-col items-center gap-6 text-center text-primary">
+      <section className="text-primary flex w-full flex-col items-center gap-6 text-center">
         <div className="my-16 flex w-full max-w-6xl flex-col items-center justify-center gap-6 lg:flex-row">
           <div className="order-2 flex flex-1 items-center justify-center gap-3 lg:order-1">
-            <ArrowLeft className="h-4 w-4 text-primary" />
+            <ArrowLeft className="text-primary h-4 w-4" />
             <Link
               href="/blog"
-              className={cn(buttonVariants({ variant: 'link' }), 'w-fit p-0 text-xl font-medium italic tracking-wider')}
+              className={cn(buttonVariants({ variant: 'link' }), 'w-fit p-0 text-xl font-medium tracking-wider italic')}
             >
               BACK TO BLOG
             </Link>

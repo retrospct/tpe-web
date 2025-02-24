@@ -12,7 +12,7 @@ import { contactFormSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { format } from 'date-fns'
 import { CalendarIcon, Loader2, XIcon } from 'lucide-react'
-import { useRef, useTransition, useActionState } from 'react'
+import { useActionState, useRef, useTransition } from 'react'
 import { useFormStatus } from 'react-dom'
 import { useForm } from 'react-hook-form'
 // import Turnstile, { useTurnstile } from 'react-turnstile'
@@ -181,7 +181,7 @@ export function ContactForm() {
                         variant="outline"
                         size="md"
                         className={cn(
-                          'h-11 bg-background px-3 text-left text-lg font-normal text-secondary hover:text-secondary',
+                          'bg-background text-secondary hover:text-secondary h-11 px-3 text-left text-lg font-normal',
                           !field.value && 'text-secondary/85'
                         )}
                       >
@@ -206,7 +206,7 @@ export function ContactForm() {
                           <Button
                             variant="link"
                             size="sm"
-                            className="text-lg font-medium italic text-primary"
+                            className="text-primary text-lg font-medium italic"
                             onClick={() => form.setValue('eventDate', undefined)}
                           >
                             RESET
@@ -288,7 +288,7 @@ export function ContactForm() {
           control={form.control}
           name="newsletter"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-center justify-center space-x-3 space-y-0 px-0 py-4 text-primary">
+            <FormItem className="text-primary flex flex-row items-center justify-center space-y-0 space-x-3 px-0 py-4">
               <FormControl>
                 <Checkbox checked={field.value as boolean} onCheckedChange={field.onChange} id="newsletter" />
               </FormControl>
@@ -305,12 +305,12 @@ export function ContactForm() {
           {(pending || isPending) && <Loader2 className="ml-2 h-6 w-6 animate-spin" />}
         </Button>
         {state?.message !== '' && !state.issues && (!pending || !isPending) && (
-          <div data-testid="success-message" className="w-full text-center text-primary">
+          <div data-testid="success-message" className="text-primary w-full text-center">
             {state.message}
           </div>
         )}
         {state?.issues && (
-          <div className="w-full text-pretty text-primary">
+          <div className="text-primary w-full text-pretty">
             <ul>
               {state.issues.map((issue) => (
                 <li key={issue} className="flex gap-1">

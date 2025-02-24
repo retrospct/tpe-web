@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect } from 'react'
 import { log } from '@/lib/utils/functions/log'
+import { useEffect } from 'react'
 
 export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
   }, [error])
 
   return (
-    <div className="flex h-[100dvh] w-full flex-col items-center justify-center gap-6 bg-background p-4 text-center">
+    <div className="bg-background flex h-[100dvh] w-full flex-col items-center justify-center gap-6 p-4 text-center">
       <div className="flex flex-col gap-2">
         <h2 className="text-2xl font-semibold">Oops! Something went wrong...</h2>
         {process.env.NODE_ENV === 'development' && (
@@ -23,13 +23,11 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
             {error.digest && <p className="mt-1 font-mono text-xs">Digest: {error.digest}</p>}
           </div>
         )}
-        <p className="text-muted-foreground">
-          Don&apos;t worry, we&apos;ve been notified and are working to fix this.
-        </p>
+        <p className="text-muted-foreground">Don&apos;t worry, we&apos;ve been notified and are working to fix this.</p>
       </div>
       <button
         onClick={() => reset()}
-        className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+        className="bg-primary text-primary-foreground ring-offset-background hover:bg-primary/90 focus-visible:ring-ring inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
       >
         Try again
       </button>

@@ -1,4 +1,3 @@
-import React from 'react'
 // import { TpSquiggle } from '@/components/icons'
 import { Heading, Text } from '@/components'
 import { TpSquiggle } from '@/components/icons/TpSquiggle'
@@ -39,7 +38,7 @@ const HeroImage = ({ slice }: HeroImageProps) => {
           {isFilled.image(slice.primary.image) && (
             <div
               className={cn(
-                'relative min-w-full max-w-full overflow-hidden',
+                'relative max-w-full min-w-full overflow-hidden',
                 isFilled.select(slice.primary.image_height) && slice.primary.image_height === 'short'
                   ? 'h-[calc(66vh-120px)] max-h-[431px] sm:h-[431px] sm:min-h-[431px]'
                   : 'h-auto min-h-[512px] w-full max-w-[1920px]'
@@ -80,11 +79,11 @@ const HeroImage = ({ slice }: HeroImageProps) => {
             isFilled.richText(slice.primary.description)) && (
             <div className="mx-auto mt-16 max-w-6xl px-6 text-left sm:mt-24 lg:px-8">
               {isFilled.richText(slice.primary.title) && (
-                <div className="max-w-4xl text-pretty font-serif text-4xl font-normal tracking-wider text-primary sm:text-5xl">
+                <div className="text-primary max-w-4xl font-serif text-4xl font-normal tracking-wider text-pretty sm:text-5xl">
                   <PrismicRichText field={slice.primary.title} />
                   {/* <div className="w-full after:mb-0 after:ml-0 after:mt-2 after:block after:h-[12px] after:w-full after:bg-squiggle md:after:ml-28 md:after:h-[20px] md:after:w-[400px]" /> */}
                   <div className="mt-6 flex w-full items-center justify-start">
-                    <TpSquiggle className="w-3/4 text-accent sm:w-auto" />
+                    <TpSquiggle className="text-accent w-3/4 sm:w-auto" />
                   </div>
                 </div>
               )}
@@ -104,7 +103,7 @@ const HeroImage = ({ slice }: HeroImageProps) => {
                     </div>
                   )}
                   {isFilled.richText(slice.primary.description) && (
-                    <div className="text-left text-[23px] font-medium italic leading-7 tracking-wide text-brown">
+                    <div className="text-brown text-left text-[23px] leading-7 font-medium tracking-wide italic">
                       <PrismicRichText field={slice.primary.description} components={components} />
                     </div>
                   )}
@@ -115,15 +114,15 @@ const HeroImage = ({ slice }: HeroImageProps) => {
         </div>
       )}
       {slice.variation === 'textImage' && (
-        <div className="relative pb-12 pt-0 sm:pb-16 lg:pb-20">
-          <div className="relative flex w-full flex-col items-center justify-center gap-6 bg-foreground px-6 py-10 text-left sm:py-28 lg:flex-row lg:px-8">
+        <div className="relative pt-0 pb-12 sm:pb-16 lg:pb-20">
+          <div className="bg-foreground relative flex w-full flex-col items-center justify-center gap-6 px-6 py-10 text-left sm:py-28 lg:flex-row lg:px-8">
             <div className="flex w-full max-w-xl flex-col">
               {isFilled.richText(slice.primary.title) && (
                 <Heading
                   richText={slice.primary.title}
                   accentBefore
                   accentSize="lg"
-                  className="self-start font-sans text-7xl font-light leading-none sm:text-9xl lg:text-9xl"
+                  className="self-start font-sans text-7xl leading-none font-light sm:text-9xl lg:text-9xl"
                 />
               )}
               {isFilled.richText(slice.primary.title_bottom) && (
@@ -136,7 +135,7 @@ const HeroImage = ({ slice }: HeroImageProps) => {
               )}
               <Text
                 richText={slice.primary.description}
-                className="mb-3 text-left font-sans text-lg font-normal text-secondary lg:mb-6 lg:text-lg"
+                className="text-secondary mb-3 text-left font-sans text-lg font-normal lg:mb-6 lg:text-lg"
               />
             </div>
             {isFilled.image(slice.primary.image) && (
@@ -148,17 +147,17 @@ const HeroImage = ({ slice }: HeroImageProps) => {
                 />
               </div>
             )}
-            <TpSquiggle className="block h-auto w-full px-4 text-accent sm:max-w-xl lg:absolute lg:bottom-8 lg:px-0" />
+            <TpSquiggle className="text-accent block h-auto w-full px-4 sm:max-w-xl lg:absolute lg:bottom-8 lg:px-0" />
           </div>
         </div>
       )}
       {slice.variation === 'textImageStats' && (
-        <div className="relative flex w-full flex-col items-center justify-center gap-6 bg-foreground px-6 py-10 text-left sm:py-28 lg:flex-row lg:px-8">
+        <div className="bg-foreground relative flex w-full flex-col items-center justify-center gap-6 px-6 py-10 text-left sm:py-28 lg:flex-row lg:px-8">
           <div className="flex w-full max-w-xl flex-col items-center">
             <Heading richText={slice.primary.title} accents size="7xl" className="mb-6 text-center leading-none" />
             <Text
               richText={slice.primary.description}
-              className="mb-6 text-left font-sans font-normal text-secondary"
+              className="text-secondary mb-6 text-left font-sans font-normal"
               size="lgg"
             />
             {isFilled.group(slice.primary.highlights) && (
@@ -166,7 +165,7 @@ const HeroImage = ({ slice }: HeroImageProps) => {
                 {slice.primary.highlights.map((highlight) => (
                   <div
                     key={JSON.stringify(highlight)}
-                    className="flex h-24 w-24 flex-col items-center justify-center rounded-full border-2 border-solid border-primary bg-background p-6 text-primary lg:h-36 lg:w-36"
+                    className="border-primary bg-background text-primary flex h-24 w-24 flex-col items-center justify-center rounded-full border-2 border-solid p-6 lg:h-36 lg:w-36"
                   >
                     <Text
                       richText={highlight.stat}

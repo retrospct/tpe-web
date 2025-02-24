@@ -2,14 +2,14 @@ import Footer from '@/components/Footer'
 import Nav from '@/components/Nav'
 import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
+import { repositoryName } from '@/prismicio'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { PrismicPreview } from '@prismicio/next'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Crimson_Pro } from 'next/font/google'
 import localFont from 'next/font/local'
 import { PHProvider } from './providers'
-import { PrismicPreview } from '@prismicio/next'
-import { repositoryName } from '@/prismicio'
 
 import '../styles/globals.css'
 
@@ -25,7 +25,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
-        'min-h-screen overflow-x-hidden bg-background font-sans antialiased focus-visible:ring-accent-hover',
+        'bg-background focus-visible:ring-accent-hover min-h-screen overflow-x-hidden font-sans antialiased',
         crimson.variable,
         belgant.variable
       )}

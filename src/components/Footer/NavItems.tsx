@@ -27,7 +27,7 @@ const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
             if (slice.items.length > 0) {
               return (
                 <NavigationMenuItem key={`footer-item-${i}`} className="relative text-center">
-                  <NavigationMenuTrigger className="px-5 text-primary">
+                  <NavigationMenuTrigger className="text-primary px-5">
                     <Link href={link}>{isFilled.richText(slice.primary.name) && asText(slice.primary.name)}</Link>
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="relative hidden pb-1 md:block">
@@ -52,7 +52,7 @@ const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
                         href={isFilled.link(item.link) ? item.link.url : '/'}
                         className="group/active relative block text-center md:hidden"
                       >
-                        <TpStar className="absolute -bottom-1 left-[calc(50%-6px)] hidden h-[12px] w-[12px] text-primary group-hover/active:block group-hover/active:text-accent" />
+                        <TpStar className="text-primary group-hover/active:text-accent absolute -bottom-1 left-[calc(50%-6px)] hidden h-[12px] w-[12px] group-hover/active:block" />
                         {/* <TpStar className="absolute left-6 top-[calc(50%-9px)] hidden h-[12px] w-[12px] text-primary group-hover/active:block group-hover/active:text-accent" /> */}
                       </ListItemSheet>
                     ))}
@@ -67,7 +67,7 @@ const NavItems = ({ navigation }: { navigation: FooterDocument<string> }) => {
                       {isFilled.richText(slice.primary.name) && asText(slice.primary.name)}
                     </NavigationMenuLink>
                   </Link>
-                  <TpStar className="absolute -bottom-1 left-[calc(50%-6px)] hidden h-[12px] w-[12px] text-primary group-hover/active:block group-hover/active:text-accent" />
+                  <TpStar className="text-primary group-hover/active:text-accent absolute -bottom-1 left-[calc(50%-6px)] hidden h-[12px] w-[12px] group-hover/active:block" />
                 </NavigationMenuItem>
               )
             }
