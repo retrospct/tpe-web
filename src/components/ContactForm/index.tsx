@@ -117,8 +117,7 @@ export function ContactForm() {
             <FormItem>
               <FormLabel hidden>Email</FormLabel>
               <FormControl>
-                <Input placeholder="Email*" {...field} />
-                {/* autoComplete="email" */}
+                <Input placeholder="Email*" autoComplete="email" {...field} />
               </FormControl>
               {/* <FormDescription>This is your email address</FormDescription> */}
               <FormMessage />
@@ -161,8 +160,7 @@ export function ContactForm() {
               <FormItem className="relative w-1/2">
                 <FormLabel hidden>Phone</FormLabel>
                 <FormControl>
-                  <Input placeholder="Phone*" {...field} />
-                  {/* autoComplete="tel" */}
+                  <Input placeholder="Phone*" autoComplete="tel" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -181,7 +179,7 @@ export function ContactForm() {
                         variant="outline"
                         size="md"
                         className={cn(
-                          'h-11 bg-background px-3 text-left text-lg font-normal text-secondary hover:text-secondary',
+                          'bg-background text-secondary hover:text-secondary h-11 px-3 text-left text-lg font-normal',
                           !field.value && 'text-secondary/85'
                         )}
                       >
@@ -206,7 +204,7 @@ export function ContactForm() {
                           <Button
                             variant="link"
                             size="sm"
-                            className="text-lg font-medium italic text-primary"
+                            className="text-primary text-lg font-medium italic"
                             onClick={() => form.setValue('eventDate', undefined)}
                           >
                             RESET
@@ -288,7 +286,7 @@ export function ContactForm() {
           control={form.control}
           name="newsletter"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-center justify-center space-x-3 space-y-0 px-0 py-4 text-primary">
+            <FormItem className="text-primary flex flex-row items-center justify-center space-y-0 space-x-3 px-0 py-4">
               <FormControl>
                 <Checkbox checked={field.value as boolean} onCheckedChange={field.onChange} id="newsletter" />
               </FormControl>
@@ -305,12 +303,12 @@ export function ContactForm() {
           {(pending || isPending) && <Loader2 className="ml-2 h-6 w-6 animate-spin" />}
         </Button>
         {state?.message !== '' && !state.issues && (!pending || !isPending) && (
-          <div data-testid="success-message" className="w-full text-center text-primary">
+          <div data-testid="success-message" className="text-primary w-full text-center">
             {state.message}
           </div>
         )}
         {state?.issues && (
-          <div className="w-full text-pretty text-primary">
+          <div className="text-primary w-full text-pretty">
             <ul>
               {state.issues.map((issue) => (
                 <li key={issue} className="flex gap-1">

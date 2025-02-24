@@ -83,8 +83,7 @@ export function SubscribeForm({
             <FormItem>
               <FormLabel hidden>Email</FormLabel>
               <FormControl>
-                <Input placeholder={placeholder} className="h-9" {...field} />
-                {/* autoComplete="email" */}
+                <Input placeholder={placeholder} className="h-9" autoComplete="email" {...field} />
               </FormControl>
               {/* <FormDescription>This is your email address</FormDescription> */}
               <FormMessage />
