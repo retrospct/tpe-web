@@ -40,7 +40,7 @@ export default function RootLayout({
           {children}
           <Footer />
           <Toaster position="bottom-center" richColors />
-          {process.env.NODE_ENV === 'development' && <PrismicPreview repositoryName={repositoryName ?? 'tpe-web'} />}
+          <PrismicPreview repositoryName={repositoryName ?? 'tpe-web'} />
           <SpeedInsights sampleRate={0.5} />
           <Analytics />
         </body>

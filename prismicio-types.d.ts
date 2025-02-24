@@ -845,7 +845,7 @@ export interface AwardsSliceDefaultItem {
    * - **API ID Path**: awards.items[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -1046,7 +1046,7 @@ export interface CallToActionSliceImageTextFeaturedPrimaryFeaturedItem {
    * - **API ID Path**: call_to_action.imageTextFeatured.primary.featured[].logo_link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  logo_link: prismic.LinkField
+  logo_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Text field in *CallToAction → Image Text Featured → Primary → Featured*
@@ -1101,7 +1101,7 @@ export interface CallToActionSliceDefaultPrimary {
    * - **API ID Path**: call_to_action.default.primary.cta_link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cta_link: prismic.LinkField
+  cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * CTA Text field in *CallToAction → Default → Primary*
@@ -1252,7 +1252,7 @@ export interface CallToActionSliceImageTextPrimary {
    * - **API ID Path**: call_to_action.imageText.primary.cta_link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cta_link: prismic.LinkField
+  cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * CTA Text field in *CallToAction → Image + Text → Primary*
@@ -1322,7 +1322,7 @@ export interface CallToActionSliceButtonOnlyPrimary {
    * - **API ID Path**: call_to_action.buttonOnly.primary.back_link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  back_link: prismic.LinkField
+  back_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Back Text field in *CallToAction → Button Only → Primary*
@@ -1342,7 +1342,7 @@ export interface CallToActionSliceButtonOnlyPrimary {
    * - **API ID Path**: call_to_action.buttonOnly.primary.cta_link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cta_link: prismic.LinkField
+  cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * CTA Text field in *CallToAction → Button Only → Primary*
@@ -1362,7 +1362,7 @@ export interface CallToActionSliceButtonOnlyPrimary {
    * - **API ID Path**: call_to_action.buttonOnly.primary.forward_link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  forward_link: prismic.LinkField
+  forward_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Forward Text field in *CallToAction → Button Only → Primary*
@@ -1471,7 +1471,7 @@ export interface CallToActionSliceImageTextFeaturedPrimary {
    * - **API ID Path**: call_to_action.imageTextFeatured.primary.cta_link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cta_link: prismic.LinkField
+  cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * CTA Text field in *CallToAction → Image Text Featured → Primary*
@@ -1579,7 +1579,7 @@ export interface CalloutSlicePartnersPrimaryVenuesItem {
    * - **API ID Path**: callout.partners.primary.venues[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -2025,7 +2025,7 @@ export interface HeroSliceDefaultPrimary {
    * - **API ID Path**: hero.default.primary.callToActionLink
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  callToActionLink: prismic.LinkField
+  callToActionLink: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -2099,7 +2099,7 @@ export interface HeroSliceImageRightPrimary {
    * - **API ID Path**: hero.imageRight.primary.callToActionLink
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  callToActionLink: prismic.LinkField
+  callToActionLink: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -2206,7 +2206,7 @@ export interface HeroImageSliceDefaultPrimary {
    * - **API ID Path**: hero_image.default.primary.cta_link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cta_link: prismic.LinkField
+  cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Max Width field in *HeroImage → Default → Primary*
@@ -2317,7 +2317,7 @@ export interface HeroImageSliceTextImagePrimary {
    * - **API ID Path**: hero_image.textImage.primary.cta_link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cta_link: prismic.LinkField
+  cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Max Width field in *HeroImage → Text Image → Primary*
@@ -2396,7 +2396,7 @@ export interface HeroImageSliceTextImageStatsPrimary {
    * - **API ID Path**: hero_image.textImageStats.primary.cta_link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cta_link: prismic.LinkField
+  cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Highlights field in *HeroImage → Text Image Stats → Primary*
@@ -2547,7 +2547,7 @@ export interface NavItemSliceDefaultPrimary {
    * - **API ID Path**: nav_item.default.primary.link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -2572,7 +2572,7 @@ export interface NavItemSliceDefaultItem {
    * - **API ID Path**: nav_item.items[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Child Description field in *NavItem → Items*
@@ -2718,7 +2718,7 @@ export interface ServicesSliceDefaultPrimaryServicesItem {
    * - **API ID Path**: services.default.primary.services[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * List field in *Services → Default → Primary → Services*
@@ -2774,7 +2774,7 @@ export interface ServicesSliceMainServicesPrimaryServicesItem {
    * - **API ID Path**: services.mainServices.primary.services[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -2904,7 +2904,7 @@ export interface ServicesSliceDefaultItem {
    * - **API ID Path**: services.items[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * List field in *Services → Items*
@@ -3018,7 +3018,7 @@ export interface ServicesSliceMainServicesItem {
    * - **API ID Path**: services.items[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -3206,7 +3206,7 @@ export interface SocialItemSliceDefaultItem {
    * - **API ID Path**: social_item.items[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -3386,6 +3386,14 @@ export type TimelineSlice = prismic.SharedSlice<'timeline', TimelineSliceVariati
 declare module '@prismicio/client' {
   interface CreateClient {
     (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>
+  }
+
+  interface CreateWriteClient {
+    (repositoryNameOrEndpoint: string, options: prismic.WriteClientConfig): prismic.WriteClient<AllDocumentTypes>
+  }
+
+  interface CreateMigration {
+    (): prismic.Migration<AllDocumentTypes>
   }
 
   namespace Content {
