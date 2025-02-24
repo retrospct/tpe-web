@@ -5,15 +5,17 @@ import { asText, isFilled } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
 import type { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
+import { Params, SearchParams } from '@/lib/types'
 
 type Props = {
-  params: { uid: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Params
+  searchParams: SearchParams
 }
 
 export default async function Page({ params, searchParams }: Props) {
   const client = createClient()
-  const page = await client.getByUID('person', params.uid).catch(() => notFound())
+  const { uid } = await params
+  const page = await client.getByUID('person', uid).catch(() => notFound())
 
   const full_width = true
   const person = page.data
@@ -97,7 +99,8 @@ export default async function Page({ params, searchParams }: Props) {
 
 export async function generateMetadata({ params, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const client = createClient()
-  const page = await client.getByUID('person', params.uid).catch(() => notFound())
+  const { uid } = await params
+  const page = await client.getByUID('person', uid).catch(() => notFound())
   const previousImages = (await parent).openGraph?.images || []
   const title =
     `Two Perfect Events - ${asText(page.data.first_name)} ${asText(page.data.last_name)}'s Profile` ||

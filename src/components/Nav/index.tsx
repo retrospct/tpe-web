@@ -82,7 +82,7 @@ export default async function Nav() {
 //               <li className="row-span-3">
 //                 <NavigationMenuLink asChild>
 //                   <a
-//                     className="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none focus:shadow-md"
+//                     className="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden focus:shadow-md"
 //                     href="/"
 //                   >
 //                     {/* <Icons.logo className="h-6 w-6" /> */}
@@ -137,7 +137,7 @@ export default async function Nav() {
 //           <a
 //             ref={ref}
 //             className={cn(
-//               'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors',
+//               'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-hidden transition-colors',
 //               className
 //             )}
 //             {...props}

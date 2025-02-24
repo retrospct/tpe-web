@@ -1,3 +1,4 @@
+import React from 'react'
 // import { TpSquiggle } from '@/components/icons'
 import { Heading, Text } from '@/components'
 import { TpSquiggle } from '@/components/icons/TpSquiggle'
@@ -26,7 +27,7 @@ export type HeroImageProps = SliceComponentProps<Content.HeroImageSlice>
 /**
  * Component for "HeroImage" Slices.
  */
-const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
+const HeroImage = ({ slice }: HeroImageProps) => {
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -47,27 +48,18 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
             >
               <PrismicNextImage
                 field={slice.primary.image}
-                // imgixParams={{ crop: ['edges', 'faces'], fit: 'crop', ar: `16:9`, q: 90 }}
                 className="h-auto max-h-[996px] min-h-[512px] w-full object-cover"
                 placeholder="blur"
-                // blurDataURL={await blurImage(slice.primary.image.url, {
-                //   layout: 'landscape',
-                //   width: slice.primary.image.dimensions.width,
-                //   height: slice.primary.image.dimensions.height
-                // })}
                 blurDataURL={rgbDataURL(252, 244, 236)}
                 sizes="100vw"
                 height={512}
-                // width={1302}
-                // sizes="(min-width: 512px) 100vw"
-                // fill
                 priority
               />
               {/* <PrismicNextImage
                 field={slice.primary.image}
                 imgixParams={{ crop: ['edges', 'faces'], fit: 'crop', h: 512, w: 1200, q: 90 }}
                 className="block h-[512px] w-full object-cover lg:hidden"
-                placeholder="blur"
+                placeholder="blur-sm"
                 // blurDataURL={await blurImage(slice.primary.image.url, {
                 //   layout: 'landscape',
                 //   width: slice.primary.image.dimensions.width,
@@ -90,7 +82,7 @@ const HeroImage = ({ slice }: HeroImageProps): JSX.Element => {
               {isFilled.richText(slice.primary.title) && (
                 <div className="max-w-4xl text-pretty font-serif text-4xl font-normal tracking-wider text-primary sm:text-5xl">
                   <PrismicRichText field={slice.primary.title} />
-                  {/* <div className="w-full after:mb-0 after:ml-0 after:mt-2 after:block after:h-[12px] after:w-full after:bg-squiggle after:md:ml-28 after:md:h-[20px] after:md:w-[400px]" /> */}
+                  {/* <div className="w-full after:mb-0 after:ml-0 after:mt-2 after:block after:h-[12px] after:w-full after:bg-squiggle md:after:ml-28 md:after:h-[20px] md:after:w-[400px]" /> */}
                   <div className="mt-6 flex w-full items-center justify-start">
                     <TpSquiggle className="w-3/4 text-accent sm:w-auto" />
                   </div>

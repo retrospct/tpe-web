@@ -10,15 +10,17 @@ import { ArrowLeft } from 'lucide-react'
 import type { Metadata, ResolvingMetadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { Params, SearchParams } from '@/lib/types'
 
 type Props = {
-  params: { uid: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Params
+  searchParams: SearchParams
 }
 
 export default async function Page({ params, searchParams }: Props) {
   const client = createClient()
-  const page = await client.getByUID('event', params.uid).catch(() => notFound())
+  const { uid } = await params
+  const page = await client.getByUID('event', uid).catch(() => notFound())
 
   return (
     <div className="mb-8 mt-0 flex w-full flex-col items-center justify-start lg:mb-14 lg:mt-4">
@@ -50,7 +52,8 @@ export default async function Page({ params, searchParams }: Props) {
 
 export async function generateMetadata({ params, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const client = createClient()
-  const page = await client.getByUID('event', params.uid).catch(() => notFound())
+  const { uid } = await params
+  const page = await client.getByUID('event', uid).catch(() => notFound())
   const previousImages = (await parent).openGraph?.images || []
   const metadata = constructMetadata({
     ...(isFilled.keyText(page.data.meta_title) && { title: page.data.meta_title as string }),

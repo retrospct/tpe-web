@@ -7,7 +7,7 @@ const nextConfig = {
     }
   },
   transpilePackages: ['lucide-react', '@react-email/components', '@react-email/render', '@react-email/tailwind'],
-  compiler: { removeConsole: { exclude: ['error', 'warn'] } },
+  // compiler: { removeConsole: { exclude: ['error', 'warn'] } },
   images: {
     remotePatterns: [
       {

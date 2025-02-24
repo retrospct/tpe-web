@@ -4,9 +4,9 @@ import dynamic from 'next/dynamic'
 import posthog from 'posthog-js'
 import { PostHogProvider } from 'posthog-js/react'
 import { useEffect } from 'react'
-// import PostHogPageView from "./PostHogPageView"
+import PostHogPageView from "./PostHogPageView"
 
-const PostHogPageView = dynamic(() => import('./PostHogPageView'), { ssr: false })
+// const PostHogPageView = dynamic(() => import('./PostHogPageView'), { ssr: false })
 
 // if (typeof window !== 'undefined') {
 //   posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {

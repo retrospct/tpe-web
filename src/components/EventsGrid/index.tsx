@@ -27,7 +27,6 @@ export const EventsGrid = ({ events }: { events: any }) => {
                     className="h-[400px] w-[300px]"
                     placeholder="blur"
                     blurDataURL={blurImgData}
-                    // blurDataURL={rgbDataURL(252, 244, 236)}
                     fallbackAlt=""
                   />
                 )}

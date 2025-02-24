@@ -12,8 +12,8 @@ import { contactFormSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { format } from 'date-fns'
 import { CalendarIcon, Loader2, XIcon } from 'lucide-react'
-import { useRef, useTransition } from 'react'
-import { useFormState, useFormStatus } from 'react-dom'
+import { useRef, useTransition, useActionState } from 'react'
+import { useFormStatus } from 'react-dom'
 import { useForm } from 'react-hook-form'
 // import Turnstile, { useTurnstile } from 'react-turnstile'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -28,7 +28,7 @@ const PopoverTrigger = dynamic(() => import('../ui/popover').then((mod) => mod.P
 
 export function ContactForm() {
   const [isPending, startTransition] = useTransition()
-  const [state, formAction] = useFormState(submitContactAction, {
+  const [state, formAction] = useActionState(submitContactAction, {
     message: ''
   })
   const { pending } = useFormStatus()

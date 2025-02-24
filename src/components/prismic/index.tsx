@@ -106,7 +106,7 @@ export const blogComponents: JSXMapSerializer = {
         height={imgH}
         sizes="(min-width: 1024px) 50vw, 100vw"
         imgixParams={{ q: 90, w: imgW }}
-        // placeholder="blur"
+        // placeholder="blur-sm"
         // blurDataURL={blurImgData || rgbDataURL(252, 244, 236)}
         fallbackAlt=""
       />

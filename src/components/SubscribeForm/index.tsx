@@ -7,8 +7,8 @@ import { cn } from '@/lib/utils'
 import { subscribeFormSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2 } from 'lucide-react'
-import { ReactNode, useRef, useTransition } from 'react'
-import { useFormState, useFormStatus } from 'react-dom'
+import { ReactNode, useRef, useTransition, useActionState } from 'react'
+import { useFormStatus } from 'react-dom'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -24,7 +24,7 @@ export function SubscribeForm({
   className?: string
 }) {
   const [isPending, startTransition] = useTransition()
-  const [state, formAction] = useFormState(subscribeAction, {
+  const [state, formAction] = useActionState(subscribeAction, {
     message: ''
   })
   const { pending } = useFormStatus()

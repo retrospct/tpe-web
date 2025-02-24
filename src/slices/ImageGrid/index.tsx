@@ -1,3 +1,4 @@
+import React from 'react'
 import { Text } from '@/components'
 import { blurImage, cn, ImageLayout } from '@/lib/utils'
 import { Content, isFilled } from '@prismicio/client'
@@ -13,7 +14,7 @@ export type ImageGridProps = SliceComponentProps<Content.ImageGridSlice>
 /**
  * Component for "ImageGrid" Slices.
  */
-const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
+const ImageGrid = ({ slice }: ImageGridProps) => {
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -57,8 +58,6 @@ const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
                         height={imgH}
                         placeholder="blur"
                         blurDataURL={blurImgData}
-                        // blurDataURL={rgbDataURL(252, 244, 236) rgbDataURL(238, 200, 203)}
-                        // blurDataURL={getBase64Blur(layout)}
                         fallbackAlt=""
                       />
                     )}
@@ -74,7 +73,7 @@ const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
           <blockquote
             data-instgrm-permalink="https://www.instagram.com/twoperfectevents/?utm_source=ig_embed&amp;utm_campaign=loading"
             data-instgrm-version="14"
-            className="instagram-media [box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15)] w-[calc(100% - 2px)] m-px min-w-[326px] max-w-[540px] rounded-[3px] border-[0] bg-[#FFF] p-0"
+            className="instagram-media [box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15)] w-[calc(100% - 2px)] m-px min-w-[326px] max-w-[540px] rounded-[3px] border-0 bg-[#FFF] p-0"
             // style={{
             //   background: '#FFF',
             //   border: 0,
@@ -93,17 +92,17 @@ const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
               {' '}
               <a
                 href="https://www.instagram.com/twoperfectevents/?utm_source=ig_embed&amp;utm_campaign=loading"
-                className="bg-[#FFFFFF] leading-[0] p-[0] text-center no-underline w-full"
+                className="bg-[#FFFFFF] leading-[0] p-0 text-center no-underline w-full"
                 target="_blank"
               >
                 {' '}
                 <div className="flex flex-row items-center">
                   {' '}
-                  <div className="bg-[#F4F4F4] rounded-[50%] flex-grow-0 h-[40px] mr-[14px] w-[40px]"></div>{' '}
+                  <div className="bg-[#F4F4F4] rounded-[50%] grow-0 h-[40px] mr-[14px] w-[40px]"></div>{' '}
                   <div className="">
                     {' '}
-                    <div className="bg-[#F4F4F4] rounded-[4px] flex-grow-0 h-[14px] mb-[6px] w-[100px]"></div>{' '}
-                    <div className="bg-[#F4F4F4] rounded-[4px] flex-grow-0 h-[14px] w-[60px]"></div>
+                    <div className="bg-[#F4F4F4] rounded-[4px] grow-0 h-[14px] mb-[6px] w-[100px]"></div>{' '}
+                    <div className="bg-[#F4F4F4] rounded-[4px] grow-0 h-[14px] w-[60px]"></div>
                   </div>
                 </div>
                 <div className="padding: 19% 0;"></div>{' '}
@@ -136,25 +135,25 @@ const ImageGrid = ({ slice }: ImageGridProps): JSX.Element => {
                   <div>
                     {' '}
                     <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div>{' '}
-                    <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div>{' '}
+                    <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; grow: 0; margin-right: 14px; margin-left: 2px;"></div>{' '}
                     <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div>
                   </div>
                   <div style="margin-left: 8px;">
                     {' '}
-                    <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div>{' '}
+                    <div style=" background-color: #F4F4F4; border-radius: 50%; grow: 0; height: 20px; width: 20px;"></div>{' '}
                     <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div>
                   </div>
                   <div style="margin-left: auto;">
                     {' '}
                     <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div>{' '}
-                    <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div>{' '}
+                    <div style=" background-color: #F4F4F4; grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div>{' '}
                     <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div>
                   </div>
                 </div>{' '}
-                <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;">
+                <div style="display: flex; flex-direction: column; grow: 1; justify-content: center; margin-bottom: 24px;">
                   {' '}
-                  <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div>{' '}
-                  <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div>
+                  <div style=" background-color: #F4F4F4; border-radius: 4px; grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div>{' '}
+                  <div style=" background-color: #F4F4F4; border-radius: 4px; grow: 0; height: 14px; width: 144px;"></div>
                 </div>
               </a>
               <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">

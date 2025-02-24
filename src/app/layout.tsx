@@ -2,14 +2,14 @@ import Footer from '@/components/Footer'
 import Nav from '@/components/Nav'
 import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
-import { repositoryName } from '@/prismicio'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Crimson_Pro } from 'next/font/google'
 import localFont from 'next/font/local'
-import { Providers } from './providers'
-import { ClientProviders } from '@/components/ClientProviders'
+import { PHProvider } from './providers'
+import { PrismicPreview } from '@prismicio/next'
+import { repositoryName } from '@/prismicio'
 
 import '../styles/globals.css'
 
@@ -25,17 +25,30 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
+        'min-h-screen overflow-x-hidden bg-background font-sans antialiased focus-visible:ring-accent-hover',
         crimson.variable,
         belgant.variable
       )}
     >
-      <body className={cn('min-h-screen bg-background antialiased')}>
-        <Providers>
-          <ClientProviders>
-            {children}
-          </ClientProviders>
-        </Providers>
-      </body>
+      <PHProvider>
+        <body>
+          <Nav />
+          {children}
+          <Footer />
+          <Toaster position="bottom-center" richColors />
+          {process.env.NODE_ENV === 'development' && <PrismicPreview repositoryName={repositoryName ?? 'tpe-web'} />}
+          <SpeedInsights sampleRate={0.5} />
+          <Analytics />
+        </body>
+      </PHProvider>
+      <GoogleAnalytics gaId="G-BK1E6E3S2L" />
     </html>
   )
 }
+
+// import { sendGAEvent } from '@next/third-parties/google'
+// {/* <button
+//   onClick={() => sendGAEvent({ event: 'buttonClicked', value: 'xyz' })}
+// >
+//   Send Event
+// </button> */}

@@ -5,10 +5,11 @@ import { isFilled } from '@prismicio/client'
 import { SliceZone } from '@prismicio/react'
 import type { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
+import { Params, SearchParams } from '@/lib/types'
 
 type Props = {
-  params: { uid: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Params
+  searchParams: SearchParams
 }
 
 export default async function Page() {
