@@ -15,7 +15,7 @@ jobs:
         run: npm add -g @unlighthouse/cli puppeteer
 
       - name: Unlighthouse assertions and client
-        run: unlighthouse-ci --site https://twoperfectevents.com --build-static
+        run: unlighthouse-ci --site twoperfectevents.com --build-static
 
       - name: Deploy report to Netlify
         uses: nwtgck/actions-netlify@v1.2
