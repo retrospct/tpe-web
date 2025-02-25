@@ -1,4 +1,36 @@
-# Prismic + Next.js Minimal TypeScript Starter
+# tpe-web
+
+[Two Perfect Events website](https://twoperfectevents.com) code.
+
+## Contributing
+
+### Use Conventional Commits
+
+More info about [Conventional Commits](https://www.conventionalcommits.org)
+Conventional commit types are used to categorize changes to source code. They help make it easier to understand the history of changes and avoid miscommunication.
+
+#### Prefix your commit subjects with one of the following prefixes:
+
+- feat: Adds a new feature
+- fix: Fixes a bug
+- docs: Adds or updates documentation
+- style: Improves code structure or format without changing code logic
+- refactor: Modifies code without adding new features or fixing bugs
+- test: Adds or modifies tests
+- chore: Updates build tasks, CI configurations, and other non-production code changes
+- perf: Improves performance
+- build: Changes that affect the build system or external dependencies
+- ci: Changes to CI configuration files and scripts
+- ops: Affects operational components like infrastructure, deployment, backup, and recovery
+
+#### How to use conventional commits
+
+- Prefix each commit with a type, such as "feat" or "fix", followed by a colon and a space
+- Include a short description of the code changes after the type
+- Optionally include a longer commit body after the short description
+- Optionally include a footer that contains additional issue references
+
+Scaffolded out using the Prismic + Next.js Minimal TypeScript Starter
 
 Want to quickly get started building your own project with [Prismic][prismic], [Next.js][nextjs], and TypeScript? This project includes basic configurations and nothing else. The project includes one Rich Text Slice, a homepage, and a dynamic page.
 

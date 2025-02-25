@@ -12,23 +12,28 @@ jobs:
           fetch-depth: 0
 
       - name: Install Dependencies
-        run: npm add -g @unlighthouse/cli puppeteer
+        run: npm add -g @unlighthouse/cli puppeteer netlify-cli
 
       - name: Unlighthouse assertions and client
-        run: unlighthouse-ci --site https://twoperfectevents.com --build-static
+        run: unlighthouse-ci --site twoperfectevents.com --debug --build-static
 
       - name: Deploy report to Netlify
-        uses: nwtgck/actions-netlify@v1.2
-        with:
-          publish-dir: ./.unlighthouse
-          production-branch: main
-          production-deploy: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: New Release Deploy from GitHub Actions
-          enable-pull-request-comment: false
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
+        run: netlify deploy --dir=.unlighthouse --prod --message="New Release Deploy from GitHub Actions"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 1
+      # - name: Deploy report to Netlify
+      #   uses: nwtgck/actions-netlify@v1.2
+      #   with:
+      #     publish-dir: ./.unlighthouse
+      #     production-branch: main
+      #     production-deploy: true
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     deploy-message: New Release Deploy from GitHub Actions
+      #     enable-pull-request-comment: false
+      #     enable-commit-comment: true
+      #     overwrites-pull-request-comment: true
+      #   env:
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      #   timeout-minutes: 3
