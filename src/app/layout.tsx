@@ -13,7 +13,7 @@ import { PHProvider } from './providers'
 import dynamic from 'next/dynamic'
 import '../styles/globals.css'
 
-const PostHogPageView = dynamic(() => import('./PostHogPageView'), { ssr: false })
+// const PostHogPageView = dynamic(() => import('./ph-pageview'), { ssr: false })
 const PrismicPreview = dynamic(() => import('@prismicio/next').then((mod) => mod.PrismicPreview), { ssr: false })
 
 const crimson = Crimson_Pro({ subsets: ['latin'], variable: '--font-crimson', preload: true })
@@ -36,13 +36,13 @@ export default function RootLayout({
       <PHProvider>
         <body>
           <Nav />
-          <PostHogPageView />
+          {/* <PostHogPageView /> */}
           {children}
           <Footer />
           <Toaster position="bottom-center" richColors />
-          <PrismicPreview repositoryName={repositoryName ?? 'tpe-web'} />
           <SpeedInsights sampleRate={0.5} />
           <Analytics />
+          <PrismicPreview repositoryName={repositoryName ?? 'tpe-web'} />
         </body>
       </PHProvider>
       <GoogleAnalytics gaId="G-BK1E6E3S2L" />
