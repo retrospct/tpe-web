@@ -97,7 +97,7 @@ export const NavItemsSheet = ({
   return (
     <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
       <SheetTrigger asChild>
-        <Button variant="link">
+        <Button variant="link" aria-label={sheetOpen ? 'Close main nav menu' : 'Open main nav menu'}>
           <Menu className="h-8 w-8" />
         </Button>
       </SheetTrigger>
