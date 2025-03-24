@@ -2,6 +2,7 @@ import { createContactForm } from '@/drizzle/db'
 import { sendEmail } from '@/emails'
 import { EmailContactConfirm } from '@/emails/contact-confirm'
 import { EmailContactSubmit } from '@/emails/contact-submit'
+// import { v4 as uuid } from 'uuid';
 
 export async function POST(req: Request) {
   try {
@@ -13,8 +14,8 @@ export async function POST(req: Request) {
 
     // Send new email to TPE team
     const emailAdmin = await sendEmail({
-      to: process.env.NODE_ENV === 'development' ? ['delivered@resend.dev'] : 'leah@twoperfectevents.com',
-      from: 'Two Perfect Events <no-reply@email.twoperfectevents.com>',
+      to: process.env.NODE_ENV === 'development' ? 'delivered@resend.dev' : 'leah@twoperfectevents.com',
+      from: 'Two Perfect Events <leah@email.twoperfectevents.com>',
       subject: `TPE form submission from ${body?.name}<${body?.email}>`,
       react: EmailContactSubmit({ payload: body })
     })
@@ -22,10 +23,11 @@ export async function POST(req: Request) {
 
     // Send confirmation email to user
     const email = await sendEmail({
-      to: body?.email || 'leah@twoperfectevents.com',
-      from: 'Two Perfect Events <no-reply@email.twoperfectevents.com>',
+      to: body?.email || 'me@jlee.cool',
+      from: 'Two Perfect Events <leah@email.twoperfectevents.com>',
       subject: body?.subject || 'Thank you for contacting Two Perfect Events!',
       react: EmailContactConfirm({ name: body?.name })
+      // headers: { 'X-Entity-Ref-ID': uuid() }
     })
     console.log('email', email)
 
