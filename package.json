@@ -22,7 +22,7 @@
     "@next/env": "^14.2.5",
     "@next/third-parties": "^14.2.5",
     "@prismicio/client": "^7.8.0",
-    "@prismicio/next": "^2.0.1",
+    "@prismicio/next": "^1.6.0",
     "@prismicio/react": "^2.8.0",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-checkbox": "^1.1.1",
