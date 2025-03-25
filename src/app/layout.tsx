@@ -4,10 +4,11 @@ import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
 // import { repositoryName } from '@/prismicio'
 import { GoogleAnalytics } from '@next/third-parties/google'
-import { Analytics } from '@vercel/analytics/react'
+// import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Crimson_Pro } from 'next/font/google'
 import localFont from 'next/font/local'
+import { PreloadResources } from './preload-resources'
 import { PHProvider } from './providers'
 // import dynamic from 'next/dynamic'
 
@@ -33,6 +34,7 @@ export default function RootLayout({
         belgant.variable
       )}
     >
+      <PreloadResources />
       <body>
         <PHProvider>
           <Nav />
@@ -41,7 +43,7 @@ export default function RootLayout({
           <Footer />
           <Toaster position="bottom-center" richColors />
           <SpeedInsights sampleRate={0.5} />
-          <Analytics />
+          {/* <Analytics /> */}
           {/* <PrismicPreview repositoryName={repositoryName ?? 'tpe-web'} /> */}
         </PHProvider>
       </body>
