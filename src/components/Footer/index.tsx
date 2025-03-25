@@ -13,12 +13,12 @@ export default async function Footer() {
   const navigation = await client.getByUID('footer', 'main-footer')
 
   return (
-    <footer className="mb-10 mt-1 lg:my-16">
+    <footer className="mt-1 mb-10 lg:my-16">
       <NavLogo />
       <NavItems navigation={navigation} />
 
       {isFilled.richText(navigation.data.newsletter_cta) && isFilled.richText(navigation.data.newsletter_text) && (
-        <div className="mx-auto mt-8 flex w-full flex-col items-center justify-center px-6 text-center text-red lg:px-12">
+        <div className="text-red mx-auto mt-8 flex w-full flex-col items-center justify-center px-6 text-center lg:px-12">
           <SubscribeForm
             cta={<PrismicRichText field={navigation.data.newsletter_cta} />}
             placeholder={
@@ -32,7 +32,7 @@ export default async function Footer() {
       )}
 
       {navigation.data?.statements?.length > 0 && (
-        <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-6 text-center text-red lg:flex-row lg:justify-between lg:px-12">
+        <div className="text-red mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-6 text-center lg:flex-row lg:justify-between lg:px-12">
           {navigation.data.statements.map(
             (statement, i) =>
               isFilled.richText(statement.text) && (
@@ -41,7 +41,7 @@ export default async function Footer() {
                   richText={statement.text}
                   size={i === 1 ? 'md' : 'sm'}
                   className={cn(
-                    'mt-6 text-center text-primary lg:text-primary',
+                    'text-primary lg:text-primary mt-6 text-center',
                     i === 1 && 'order-first font-medium lg:order-none [&_span]:no-underline'
                   )}
                 />
@@ -51,7 +51,7 @@ export default async function Footer() {
       )}
       {isFilled.richText(navigation.data.copyright) && (
         <div className="mx-auto mt-6 max-w-xs px-6 lg:mt-1 lg:max-w-full lg:px-12">
-          <Text richText={navigation.data.copyright} size="xs" className="text-center text-primary lg:text-primary" />
+          <Text richText={navigation.data.copyright} size="xs" className="text-primary lg:text-primary text-center" />
         </div>
       )}
     </footer>

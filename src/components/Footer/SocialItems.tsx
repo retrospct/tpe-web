@@ -23,7 +23,7 @@ export const SocialItems = ({ slices }: { slices: SliceZone<FooterDocumentDataSl
                 <PrismicNextLink
                   key={JSON.stringify(item)}
                   field={item.link}
-                  className="text-primary hover:text-accent-hover focus-visible:ring-accent-hover font-medium underline-offset-8 transition-all duration-300 hover:scale-105 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+                  className="text-primary hover:text-accent-hover focus-visible:ring-accent-hover font-medium underline-offset-8 transition-all duration-300 hover:scale-105 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden"
                   aria-label={`Link to Two Perfect Events ${item.platform} webpage`}
                 >
                   {platforms.get(item?.platform || 'Unknown')?.icon}

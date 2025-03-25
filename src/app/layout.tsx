@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 // import { repositoryName } from '@/prismicio'
 import { GoogleAnalytics } from '@next/third-parties/google'
 // import { Analytics } from '@vercel/analytics/react'
+import { PrismicPreview } from '@prismicio/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Crimson_Pro } from 'next/font/google'
 import localFont from 'next/font/local'
@@ -29,7 +30,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
-        'min-h-screen overflow-x-hidden bg-background font-sans antialiased focus-visible:ring-accent-hover',
+        'bg-background focus-visible:ring-accent-hover min-h-screen overflow-x-hidden font-sans antialiased',
         crimson.variable,
         belgant.variable
       )}

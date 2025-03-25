@@ -1,8 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverComponentsExternalPackages: ['@react-email/components', '@react-email/render', '@react-email/tailwind']
-    //   optimizePackageImports: ['package-name']
+    serverActions: {
+      allowedOrigins: ['localhost:3000', 'localhost:3001'],
+      bodySizeLimit: '2mb'
+    }
   },
   transpilePackages: ['lucide-react'],
   // compiler: {

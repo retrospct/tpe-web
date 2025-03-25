@@ -1,98 +1,113 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@layer base {
-  :root {
-    /* almond #EFE4D9 */
-    --background: 27 100% 98%;
-    /* beige #F8F3EE */
-    --foreground: 30 73% 96%;
-    /* --background: 30 41% 89%; */
-    /* --foreground: 30 42% 95%; */
+@custom-variant dark (&:is(.dark *));
 
-    /* brown #5B3613 */
-    /* --text: 29 65% 22%; */
+@theme {
+  --color-almond: hsl(var(--background));
+  --color-beige: hsl(var(--foreground));
+  --color-red: hsl(var(--primary));
+  --color-brown: hsl(var(--secondary));
+  --color-pink: hsl(var(--accent));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
 
-    /* crimson #9E3811 */
-    --primary: 17 81% 34%;
-    --primary-foreground: 17 81% 98%;
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
 
-    /* brown #5B3613 */
-    --secondary: 29 65% 22%;
-    --secondary-foreground: 29 65% 9%;
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
 
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-hover: #d78a95;
 
-    /* rose #EEC8CB */
-    --accent: 355 53% 86%;
-    --accent-foreground: 355 53% 9%;
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
 
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+  --background-image-squiggle: var(--squiggle);
 
-    --radius: 0.25rem;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-4xl: 2rem;
 
-    --squiggle: url('/svg/squiggle.svg');
+  --font-base:
+    var(--font-crimson), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+  --font-sans:
+    var(--font-crimson), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+  --font-serif: var(--font-belgant), ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+
+  --container-2xl: 40rem;
+  --container-8xl: 90rem;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
   }
-
-  .dark {
-    --background: 27 100% 98%;
-    --foreground: 30 73% 96%;
-
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 17 81% 34%;
-    --primary-foreground: 17 81% 98%;
-
-    --secondary: 29 65% 22%;
-    --secondary-foreground: 29 65% 98%;
-
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-
-    --accent: 355 53% 86%;
-    --accent-foreground: 355 53% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
   }
-  body {
-    @apply bg-background text-foreground;
+  @media (width >= 1400px) {
+    max-width: 1400px;
   }
 }
 
-@layer components {
-  .field-textarea {
-    field-sizing: content;
-    min-height: 2lh;
-    max-height: 10lh;
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
   }
+}
+
+@utility field-textarea {
+  field-sizing: content;
+  min-height: 2lh;
+  max-height: 10lh;
 }
 
 /* ORIGINAL SHADCN/UI */
@@ -206,3 +221,88 @@
     --ring: 0 0% 83.1%;
   }
 } */
+
+@layer base {
+  :root {
+    /* almond #EFE4D9 */
+    --background: 27 100% 98%;
+    /* beige #F8F3EE */
+    --foreground: 30 73% 96%;
+    /* --background: 30 41% 89%; */
+    /* --foreground: 30 42% 95%; */
+
+    /* brown #5B3613 */
+    /* --text: 29 65% 22%; */
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    /* crimson #9E3811 */
+    --primary: 17 81% 34%;
+    --primary-foreground: 17 81% 98%;
+
+    /* brown #5B3613 */
+    --secondary: 29 65% 22%;
+    --secondary-foreground: 29 65% 9%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    /* rose #EEC8CB */
+    --accent: 355 53% 86%;
+    --accent-foreground: 355 53% 9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+
+    --radius: 0.25rem;
+
+    --squiggle: url('/svg/squiggle.svg');
+  }
+
+  .dark {
+    --background: 27 100% 98%;
+    --foreground: 30 73% 96%;
+
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 17 81% 34%;
+    --primary-foreground: 17 81% 98%;
+
+    --secondary: 29 65% 22%;
+    --secondary-foreground: 29 65% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 355 53% 86%;
+    --accent-foreground: 355 53% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

@@ -1,3 +1,4 @@
+import { Params, SearchParams } from '@/lib/types'
 import { constructMetadata } from '@/lib/utils'
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
@@ -7,14 +8,15 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
 
 type Props = {
-  params: { uid: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Params
+  searchParams: SearchParams
 }
 
 export default async function Page({ params, searchParams }: Props) {
   const client = createClient()
+  const { uid } = await params
   const page = await client
-    .getByUID('page', params.uid, {
+    .getByUID('page', uid, {
       fetchLinks: [
         'person',
         'person.first_name',
@@ -34,7 +36,8 @@ export default async function Page({ params, searchParams }: Props) {
 
 export async function generateMetadata({ params, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const client = createClient()
-  const page = await client.getByUID('page', params.uid).catch(() => notFound())
+  const { uid } = await params
+  const page = await client.getByUID('page', uid).catch(() => notFound())
   const previousImages = (await parent).openGraph?.images || []
   const metadata = constructMetadata({
     ...(isFilled.keyText(page.data.meta_title) && { title: page.data.meta_title as string }),

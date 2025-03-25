@@ -1,3 +1,5 @@
+import { log } from '@/lib/utils/functions/log'
+
 export const resizeImage = (
   file: File,
   opts: {
@@ -124,7 +126,7 @@ export const blurImage = (
       })
       blurUrl.search = imgParams.toString()
       // const blurUrl = `${url}?auto=compress&fm=blurhash&w=${imgW / 10}&h=${imgH / 10}&q=${opts?.quality || 25}&dpr=1`
-      // const blurUrl = `${url}?w=${imgW / 4}&h=${imgH / 4}&q=${opts.quality}&blur=${opts.blur}&dpr=1`
+      // const blurUrl = `${url}?w=${imgW / 4}&h=${imgH / 4}&q=${opts.quality}&blur-sm=${opts.blur-sm}&dpr=1`
       const res = await fetch(blurUrl.href)
       // const hash = await res.text()
       // return resolve(hash)
@@ -135,6 +137,24 @@ export const blurImage = (
       return resolve(base64Img)
     } catch (error) {
       console.error('Error loading image:', error)
+      return resolve(rgbDataURL(252, 244, 236))
+    }
+  })
+}
+
+export async function getBase64ImageUrl(url: string): Promise<string> {
+  return new Promise(async (resolve) => {
+    try {
+      const response = await fetch(url)
+      const buffer = await response.arrayBuffer()
+      const base64Img = `data:image/jpeg;base64,${Buffer.from(buffer).toString('base64')}`
+      return resolve(base64Img)
+    } catch (error) {
+      await log({
+        message: `Image loading error for URL ${url}: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        type: 'errors'
+      }).catch(() => {})
+      // Return fallback color in case of error
       return resolve(rgbDataURL(252, 244, 236))
     }
   })

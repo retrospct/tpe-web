@@ -1,3 +1,4 @@
+import { Params, SearchParams } from '@/lib/types'
 import { constructMetadata } from '@/lib/utils'
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
@@ -6,8 +7,8 @@ import { SliceZone } from '@prismicio/react'
 import { Metadata, ResolvingMetadata } from 'next'
 
 type Props = {
-  params: { uid: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Params
+  searchParams: SearchParams
 }
 
 // This component renders your homepage.

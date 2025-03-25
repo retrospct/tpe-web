@@ -1,4 +1,5 @@
 import { Heading, Text } from '@/components'
+import { Params, SearchParams } from '@/lib/types'
 import { cn, constructMetadata } from '@/lib/utils'
 import { createClient } from '@/prismicio'
 import { asText, isFilled } from '@prismicio/client'
@@ -7,13 +8,14 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
 
 type Props = {
-  params: { uid: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Params
+  searchParams: SearchParams
 }
 
 export default async function Page({ params, searchParams }: Props) {
   const client = createClient()
-  const page = await client.getByUID('person', params.uid).catch(() => notFound())
+  const { uid } = await params
+  const page = await client.getByUID('person', uid).catch(() => notFound())
 
   const full_width = true
   const person = page.data
@@ -26,7 +28,7 @@ export default async function Page({ params, searchParams }: Props) {
         accents
         size="lg"
       />
-      <div className="grid auto-cols-auto grid-cols-1 items-center justify-start gap-x-6 gap-y-12 self-center px-3 text-center font-medium text-primary md:grid-cols-2 md:items-start md:justify-start lg:grid-cols-3">
+      <div className="text-primary grid auto-cols-auto grid-cols-1 items-center justify-start gap-x-6 gap-y-12 self-center px-3 text-center font-medium md:grid-cols-2 md:items-start md:justify-start lg:grid-cols-3">
         <div
           className={cn(
             'group/bio relative flex h-auto w-80 max-w-lg flex-col',
@@ -38,7 +40,7 @@ export default async function Page({ params, searchParams }: Props) {
             <PrismicNextImage
               field={person.fun_image}
               className={cn(
-                'absolute left-0 top-0 hidden h-80 w-80 group-hover/bio:block',
+                'absolute top-0 left-0 hidden h-80 w-80 group-hover/bio:block',
                 full_width && 'h-80 w-80 lg:h-96 lg:w-96'
               )}
               imgixParams={{
@@ -71,21 +73,21 @@ export default async function Page({ params, searchParams }: Props) {
             <div className="flex items-center gap-1">
               <Heading richText={person?.first_name} className="tracking-normal" size="xs" />
               <Heading richText={person?.last_name} className="tracking-normal" size="xs" />
-              <Text richText={person?.pronouns} className="text-left tracking-normal text-primary" size="sm" />
+              <Text richText={person?.pronouns} className="text-primary text-left tracking-normal" size="sm" />
             </div>
             <Text
               richText={person?.title}
-              className="mt-1 w-full text-pretty text-left uppercase text-primary"
+              className="text-primary mt-1 w-full text-left text-pretty uppercase"
               size="md"
             />
             <Text
               richText={person?.bio}
-              className="mt-3 w-full text-pretty text-left font-normal text-secondary"
+              className="text-secondary mt-3 w-full text-left font-normal text-pretty"
               size="md"
             />
             <Text
               richText={person?.likes}
-              className="mt-3 w-full text-pretty text-left font-normal text-secondary"
+              className="text-secondary mt-3 w-full text-left font-normal text-pretty"
               size="md"
             />
           </div>
@@ -97,7 +99,8 @@ export default async function Page({ params, searchParams }: Props) {
 
 export async function generateMetadata({ params, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const client = createClient()
-  const page = await client.getByUID('person', params.uid).catch(() => notFound())
+  const { uid } = await params
+  const page = await client.getByUID('person', uid).catch(() => notFound())
   const previousImages = (await parent).openGraph?.images || []
   const title =
     `Two Perfect Events - ${asText(page.data.first_name)} ${asText(page.data.last_name)}'s Profile` ||

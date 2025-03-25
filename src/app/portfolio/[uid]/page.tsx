@@ -1,6 +1,7 @@
 import { Heading } from '@/components'
 import { buttonVariants } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { Params, SearchParams } from '@/lib/types'
 import { cn, constructMetadata } from '@/lib/utils'
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
@@ -12,26 +13,27 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 type Props = {
-  params: { uid: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Params
+  searchParams: SearchParams
 }
 
 export default async function Page({ params, searchParams }: Props) {
   const client = createClient()
-  const page = await client.getByUID('event', params.uid).catch(() => notFound())
+  const { uid } = await params
+  const page = await client.getByUID('event', uid).catch(() => notFound())
 
   return (
-    <div className="mb-8 mt-0 flex w-full flex-col items-center justify-start lg:mb-14 lg:mt-4">
+    <div className="mt-0 mb-8 flex w-full flex-col items-center justify-start lg:mt-4 lg:mb-14">
       <Separator className="mb-10 max-w-xl lg:mb-14" />
-      <Heading richText={page.data.title} accents className="mb-4 text-pretty px-3 text-center uppercase" />
+      <Heading richText={page.data.title} accents className="mb-4 px-3 text-center text-pretty uppercase" />
       <SliceZone slices={page.data.slices} components={components} />
-      <section className="flex w-full flex-col items-center gap-6 text-center text-primary">
+      <section className="text-primary flex w-full flex-col items-center gap-6 text-center">
         <div className="mt-16 flex w-full max-w-6xl flex-col items-center justify-center gap-6 lg:flex-row">
           <div className="order-2 flex flex-1 items-center justify-center gap-3 lg:order-1">
-            <ArrowLeft className="h-4 w-4 text-primary" />
+            <ArrowLeft className="text-primary h-4 w-4" />
             <Link
               href="/portfolio"
-              className={cn(buttonVariants({ variant: 'link' }), 'w-fit p-0 text-xl font-medium italic tracking-wider')}
+              className={cn(buttonVariants({ variant: 'link' }), 'w-fit p-0 text-xl font-medium tracking-wider italic')}
             >
               BACK TO PORTFOLIO
             </Link>
@@ -50,7 +52,8 @@ export default async function Page({ params, searchParams }: Props) {
 
 export async function generateMetadata({ params, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const client = createClient()
-  const page = await client.getByUID('event', params.uid).catch(() => notFound())
+  const { uid } = await params
+  const page = await client.getByUID('event', uid).catch(() => notFound())
   const previousImages = (await parent).openGraph?.images || []
   const metadata = constructMetadata({
     ...(isFilled.keyText(page.data.meta_title) && { title: page.data.meta_title as string }),
