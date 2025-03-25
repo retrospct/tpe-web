@@ -26,6 +26,9 @@ export async function generateMetadata({ params, searchParams }: Props, parent: 
     previousImages
   })
 
+  // <meta property="og:site_name" content="Link preview site name">
+  // <meta property="og:url" content="Canonical link preview URL">
+
   return metadata
 }
 
