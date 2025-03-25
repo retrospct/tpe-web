@@ -4,7 +4,7 @@ import { Resend } from 'resend'
 export async function POST(req: Request) {
   try {
     const body = await req.json()
-    console.log('body', body)
+    // console.log('body', body)
     // TODO: add a step to filter out only needed fields from body
     const resend = process.env.RESEND_ADMIN_API_KEY ? new Resend(process.env.RESEND_ADMIN_API_KEY) : null
 

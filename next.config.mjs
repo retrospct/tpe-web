@@ -6,8 +6,13 @@ const nextConfig = {
       bodySizeLimit: '2mb'
     }
   },
-  transpilePackages: ['lucide-react', '@react-email/components', '@react-email/render', '@react-email/tailwind'],
-  // compiler: { removeConsole: { exclude: ['error', 'warn'] } },
+  transpilePackages: ['lucide-react'],
+  // compiler: {
+  //   removeConsole: {
+  //     exclude: ['error'],
+  //   },
+  // },
+  skipTrailingSlashRedirect: true,
   images: {
     remotePatterns: [
       {
@@ -24,7 +29,22 @@ const nextConfig = {
       }
     ]
   },
-  // skipTrailingSlashRedirect: true, // This is required to support PostHog trailing slash API requests
+  async rewrites() {
+    return [
+      {
+        source: '/ingest/static/:path*',
+        destination: 'https://us-assets.i.posthog.com/static/:path*'
+      },
+      {
+        source: '/ingest/:path*',
+        destination: 'https://us.i.posthog.com/:path*'
+      },
+      {
+        source: '/ingest/decide',
+        destination: 'https://us.i.posthog.com/decide'
+      }
+    ]
+  },
   async redirects() {
     return [
       {
