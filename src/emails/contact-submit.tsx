@@ -28,7 +28,7 @@ const defaultPayload = {
   newsletter: true
 }
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_HOST ? `https://${process.env.NEXT_PUBLIC_APP_HOST}` : '/static'
+const baseUrl = process.env.NEXT_PUBLIC_APP_HOST ? `https://email.${process.env.NEXT_PUBLIC_APP_HOST}` : '/static'
 
 export const EmailContactSubmit: React.FC<Readonly<EmailContactSubmitProps>> = ({ payload = defaultPayload }) => {
   const previewText = `New form submission - ${payload?.name}<${payload?.email}>`

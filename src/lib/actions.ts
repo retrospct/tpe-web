@@ -1,7 +1,6 @@
 'use server'
 
-import { createContactForm, createPerson, createPersonsToSubscriptions, createSubscription } from '@/drizzle/db'
-import { InsertContactForm } from '@/drizzle/schema'
+// import { InsertContactForm } from '@/drizzle/schema'
 import { sendBatchEmail, sendEmail } from '@/emails'
 import { EmailContactConfirm } from '@/emails/contact-confirm'
 import { EmailContactSubmit } from '@/emails/contact-submit'
@@ -69,8 +68,8 @@ export async function submitContactAction(prevState: FormState, data: FormData):
   // if (outcome.success) {
   // console.log('CF Turnstile success...')
   try {
-    // Add new contact form submission to database
-    await createContactForm({ ...(parsed.data as InsertContactForm), raw: JSON.stringify(parsed.data) })
+    // // Add new contact form submission to database
+    // await createContactForm({ ...(parsed.data as InsertContactForm), raw: JSON.stringify(parsed.data) })
 
     // Send new submission email to TPE team
     // Send confirmation email to user
@@ -169,10 +168,10 @@ export async function subscribeAction(prevState: FormState, data: FormData): Pro
     const { email } = parsed.data
     // Call resend Audience & Contacts APIs
     await subscribeResend({ email })
-    // Add user to subscriptions list
-    const [person] = await createPerson({ email })
-    const [subscription] = await createSubscription({ name: 'Newsletter' })
-    await createPersonsToSubscriptions({ personId: person.id, subscriptionId: subscription.id })
+    // // Add user to subscriptions list
+    // const [person] = await createPerson({ email })
+    // const [subscription] = await createSubscription({ name: 'Newsletter' })
+    // await createPersonsToSubscriptions({ personId: person.id, subscriptionId: subscription.id })
 
     // Send confirmation email to user
     await sendEmail({

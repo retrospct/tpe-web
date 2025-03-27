@@ -63,17 +63,17 @@ export function ContactForm() {
 
   const submitForm = async (data: z.infer<typeof contactFormSchema>) => {
     // form.clearErrors()
-    // startTransition(() => {
-    form.clearErrors()
-    const formData = new FormData(formRef.current!)
-    formData.set('referral', data?.referral ?? '')
-    formData.set('newsletter', data?.newsletter ? data.newsletter.toString() : 'false')
-    data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
-    // turnstileRef.current?.execute()
-    formAction(formData)
-    // })
+    startTransition(() => {
+      form.clearErrors()
+      const formData = new FormData(formRef.current!)
+      formData.set('referral', data?.referral ?? '')
+      formData.set('newsletter', data?.newsletter ? data.newsletter.toString() : 'false')
+      data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
+      // turnstileRef.current?.execute()
+      formAction(formData)
+    })
     if (data?.newsletter)
-      await fetch('/api/resend', {
+      await fetch('/api/resend/subscribe', {
         method: 'POST',
         body: JSON.stringify({
           ...data,
@@ -107,6 +107,8 @@ export function ContactForm() {
         // action={onSubmit}
         action={(evt) => {
           form.handleSubmit(async (data) => {
+            console.log('data', data)
+            console.log('evt', evt)
             await submitForm(data)
           })
           // resetForm()
