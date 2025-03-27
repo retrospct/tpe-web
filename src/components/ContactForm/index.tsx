@@ -72,10 +72,6 @@ export function ContactForm() {
     // turnstileRef.current?.execute()
     formAction(formData)
     // })
-    toast.success('Thank you for contacting Two Perfect Events!', {
-      description: `We will get back to you as soon as possible.`,
-      duration: 8000
-    })
     if (data?.newsletter)
       await fetch('/api/resend', {
         method: 'POST',
@@ -96,10 +92,10 @@ export function ContactForm() {
       // form.setValue('referral', '')
       // turnstileRef.current?.reset()
       // turnstile.reset()
-      // toast.success('Thank you for contacting Two Perfect Events!', {
-      //   description: `We will get back to you as soon as possible.`,
-      //   duration: 8000
-      // })
+      toast.success('Thank you for contacting Two Perfect Events!', {
+        description: `We will get back to you as soon as possible.`,
+        duration: 8000
+      })
     }
   }
 
