@@ -1,8 +1,8 @@
 import { createContactForm } from '@/drizzle/db'
-import { sendEmail } from '@/emails'
+import { sendBatchEmail } from '@/emails'
 import { EmailContactConfirm } from '@/emails/contact-confirm'
 import { EmailContactSubmit } from '@/emails/contact-submit'
-import { render } from '@react-email/render'
+// import { render } from '@react-email/render'
 // import { v4 as uuid } from 'uuid';
 
 export async function POST(req: Request) {
@@ -14,28 +14,54 @@ export async function POST(req: Request) {
     await createContactForm(body)
 
     // Send new email to TPE team
-    const emailAdmin = await sendEmail({
-      to: process.env.NODE_ENV === 'development' ? ['delivered@resend.dev'] : 'leah@twoperfectevents.com',
-      from: 'Two Perfect Events <contact@email.twoperfectevents.com>',
-      subject: `TPE form submission from ${body?.name}<${body?.email}>`,
-      react: EmailContactSubmit({ payload: body })
-    })
-    console.log('emailAdmin', emailAdmin)
-
     // Send confirmation email to user
-    const email = await sendEmail({
-      to: body?.email || 'me@jlee.cool',
-      from: 'Two Perfect Events <contact@email.twoperfectevents.com>',
-      replyTo: 'contact@email.twoperfectevents.com',
-      subject: body?.subject || 'Thank you for contacting Two Perfect Events!',
-      react: EmailContactConfirm({ name: body?.name }),
-      text: render(EmailContactConfirm({ name: body?.name }), { plainText: true })
-      // headers: { 'X-Entity-Ref-ID': uuid() }
-    })
+    const email = await sendBatchEmail([
+      {
+        to: process.env.NODE_ENV === 'development' ? ['delivered@resend.dev'] : 'leah@twoperfectevents.com',
+        from: 'Two Perfect Events <contact@email.twoperfectevents.com>',
+        replyTo: 'contact@email.twoperfectevents.com',
+        subject: `TPE form submission from ${body?.name}<${body?.email}>`,
+        react: EmailContactSubmit({ payload: body })
+      },
+      {
+        to: body?.email || 'me@jlee.cool',
+        from: 'Two Perfect Events <contact@email.twoperfectevents.com>',
+        replyTo: 'contact@email.twoperfectevents.com',
+        subject: body?.subject || 'Thank you for contacting Two Perfect Events!',
+        react: EmailContactConfirm({ name: body?.name })
+        // text: render(EmailContactConfirm({ name: body?.name }), { plainText: true })
+        // headers: { 'X-Entity-Ref-ID': uuid() }
+      }
+    ])
     console.log('email', email)
 
-    if (!emailAdmin?.data || !email?.data) {
-      return Response.json({ error: emailAdmin?.error || email?.error || 'Email sending error!' }, { status: 500 })
+    // // Send new email to TPE team
+    // const emailAdmin = await sendEmail({
+    //   to: process.env.NODE_ENV === 'development' ? ['delivered@resend.dev'] : 'leah@twoperfectevents.com',
+    //   from: 'Two Perfect Events <contact@email.twoperfectevents.com>',
+    //   replyTo: 'contact@email.twoperfectevents.com',
+    //   subject: `TPE form submission from ${body?.name}<${body?.email}>`,
+    //   react: EmailContactSubmit({ payload: body })
+    // })
+    // console.log('emailAdmin', emailAdmin)
+
+    // // Send confirmation email to user
+    // const email = await sendEmail({
+    //   to: body?.email || 'me@jlee.cool',
+    //   from: 'Two Perfect Events <contact@email.twoperfectevents.com>',
+    //   replyTo: 'contact@email.twoperfectevents.com',
+    //   subject: body?.subject || 'Thank you for contacting Two Perfect Events!',
+    //   react: EmailContactConfirm({ name: body?.name }),
+    //   text: render(EmailContactConfirm({ name: body?.name }), { plainText: true })
+    //   // headers: { 'X-Entity-Ref-ID': uuid() }
+    // })
+    // console.log('email', email)
+
+    // if (!emailAdmin?.data || !email?.data) {
+    //   return Response.json({ error: emailAdmin?.error || email?.error || 'Email sending error!' }, { status: 500 })
+    // }
+    if (!email?.data) {
+      return Response.json({ error: email?.error || 'Email sending error!' }, { status: 500 })
     }
 
     return Response.json({ data: email.data })

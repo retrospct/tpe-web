@@ -22,20 +22,11 @@
 // }),
 
 import { JSXElementConstructor, ReactElement, ReactNode } from 'react'
-import { Resend } from 'resend'
+import { CreateBatchOptions, CreateEmailOptions, Resend } from 'resend'
 
 export const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 
-export const sendEmail = async ({
-  to,
-  subject,
-  from = 'Two Perfect Events <contact@email.twoperfectevents.com>',
-  replyTo = 'contact@email.twoperfectevents.com',
-  bcc,
-  text = 'ERROR: No email template provided.',
-  react
-  // marketing
-}: {
+interface SendEmailProps {
   to: string | string[]
   subject: string
   from?: string
@@ -44,7 +35,19 @@ export const sendEmail = async ({
   text?: string
   react?: ReactElement<any, string | JSXElementConstructor<any>> | ReactNode
   // marketing?: boolean
-}) => {
+}
+
+export const sendEmail = async ({
+  to,
+  subject,
+  from = 'Two Perfect Events <contact@email.twoperfectevents.com>',
+  replyTo = 'contact@email.twoperfectevents.com',
+  // bcc,
+  // text = 'ERROR: No email template provided.',
+  react,
+  ...rest
+  // marketing
+}: CreateEmailOptions) => {
   // if (process.env.NODE_ENV === 'development' && !resend) {
   //   // Set up a fake email client for development
   //   console.info(`Email to ${to} with subject ${subject} sent from ${from || process.env.NEXT_PUBLIC_APP_NAME}`)
@@ -58,14 +61,25 @@ export const sendEmail = async ({
   return resend.emails.send({
     from,
     to,
-    bcc,
+    // bcc,
     replyTo,
     subject,
-    ...(react ? { react } : { text })
+    react,
+    ...rest
+    // ...(react ? { react } : { text })
     // ...(text && { text }),
     // ...(react && { react: render(react) }),
     // ...(marketing && {
     // MessageStream: "broadcast",
     // }),
   })
+}
+
+export const sendBatchEmail = async (emails: CreateBatchOptions) => {
+  if (!resend) {
+    console.error('Resend is not configured. You need to add a RESEND_API_KEY in your .env file for emails to work.')
+    return Promise.resolve()
+  }
+
+  return resend.batch.send(emails)
 }

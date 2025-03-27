@@ -62,16 +62,30 @@ export function ContactForm() {
   // }, [watchReferral, isOther, form])
 
   const submitForm = async (data: z.infer<typeof contactFormSchema>) => {
+    // form.clearErrors()
+    // startTransition(() => {
     form.clearErrors()
-    startTransition(() => {
-      form.clearErrors()
-      const formData = new FormData(formRef.current!)
-      formData.set('referral', data?.referral ?? '')
-      formData.set('newsletter', data?.newsletter ? data.newsletter.toString() : 'false')
-      data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
-      // turnstileRef.current?.execute()
-      formAction(formData)
+    const formData = new FormData(formRef.current!)
+    formData.set('referral', data?.referral ?? '')
+    formData.set('newsletter', data?.newsletter ? data.newsletter.toString() : 'false')
+    data?.eventDate && formData.set('eventDate', data.eventDate.toISOString())
+    // turnstileRef.current?.execute()
+    formAction(formData)
+    // })
+    toast.success('Thank you for contacting Two Perfect Events!', {
+      description: `We will get back to you as soon as possible.`,
+      duration: 8000
     })
+    if (data?.newsletter)
+      await fetch('/api/resend', {
+        method: 'POST',
+        body: JSON.stringify({
+          ...data,
+          referral: data?.referral ?? '',
+          newsletter: data?.newsletter ? data.newsletter.toString() : 'false',
+          ...(data?.eventDate && { eventDate: data.eventDate.toISOString() })
+        })
+      })
     resetForm()
   }
 
@@ -82,10 +96,10 @@ export function ContactForm() {
       // form.setValue('referral', '')
       // turnstileRef.current?.reset()
       // turnstile.reset()
-      toast.success('Thank you for contacting Two Perfect Events!', {
-        description: `We will get back to you as soon as possible.`,
-        duration: 8000
-      })
+      // toast.success('Thank you for contacting Two Perfect Events!', {
+      //   description: `We will get back to you as soon as possible.`,
+      //   duration: 8000
+      // })
     }
   }
 
@@ -179,7 +193,7 @@ export function ContactForm() {
                         variant="outline"
                         size="md"
                         className={cn(
-                          'bg-background text-secondary hover:text-secondary h-11 px-3 text-left text-lg font-normal',
+                          'h-11 bg-background px-3 text-left text-lg font-normal text-secondary hover:text-secondary',
                           !field.value && 'text-secondary/85'
                         )}
                       >
@@ -204,7 +218,7 @@ export function ContactForm() {
                           <Button
                             variant="link"
                             size="sm"
-                            className="text-primary text-lg font-medium italic"
+                            className="text-lg font-medium italic text-primary"
                             onClick={() => form.setValue('eventDate', undefined)}
                           >
                             RESET
@@ -286,7 +300,7 @@ export function ContactForm() {
           control={form.control}
           name="newsletter"
           render={({ field }) => (
-            <FormItem className="text-primary flex flex-row items-center justify-center space-y-0 space-x-3 px-0 py-4">
+            <FormItem className="flex flex-row items-center justify-center space-x-3 space-y-0 px-0 py-4 text-primary">
               <FormControl>
                 <Checkbox checked={field.value as boolean} onCheckedChange={field.onChange} id="newsletter" />
               </FormControl>
@@ -303,12 +317,12 @@ export function ContactForm() {
           {(pending || isPending) && <Loader2 className="ml-2 h-6 w-6 animate-spin" />}
         </Button>
         {state?.message !== '' && !state.issues && (!pending || !isPending) && (
-          <div data-testid="success-message" className="text-primary w-full text-center">
+          <div data-testid="success-message" className="w-full text-center text-primary">
             {state.message}
           </div>
         )}
         {state?.issues && (
-          <div className="text-primary w-full text-pretty">
+          <div className="w-full text-pretty text-primary">
             <ul>
               {state.issues.map((issue) => (
                 <li key={issue} className="flex gap-1">

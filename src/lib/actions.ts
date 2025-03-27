@@ -2,7 +2,7 @@
 
 import { createContactForm, createPerson, createPersonsToSubscriptions, createSubscription } from '@/drizzle/db'
 import { InsertContactForm } from '@/drizzle/schema'
-import { sendEmail } from '@/emails'
+import { sendBatchEmail, sendEmail } from '@/emails'
 import { EmailContactConfirm } from '@/emails/contact-confirm'
 import { EmailContactSubmit } from '@/emails/contact-submit'
 import { formatLocalDate } from '@/lib/utils'
@@ -73,47 +73,55 @@ export async function submitContactAction(prevState: FormState, data: FormData):
     await createContactForm({ ...(parsed.data as InsertContactForm), raw: JSON.stringify(parsed.data) })
 
     // Send new submission email to TPE team
-    await sendEmail({
-      to: process.env.NODE_ENV === 'development' ? ['delivered@resend.dev'] : 'leah@twoperfectevents.com',
-      from: 'Two Perfect Events <no-reply@email.twoperfectevents.com>',
-      subject: `TPE form submission from ${parsed.data.firstName}<${parsed.data.email}>`,
-      react: EmailContactSubmit({
-        payload: { ...parsed.data, eventDate: formatLocalDate(parsed.data?.eventDate) }
-      })
-    })
-
     // Send confirmation email to user
-    await sendEmail({
-      to: parsed.data?.email || 'leah@twoperfectevents.com',
-      from: 'Two Perfect Events <no-reply@email.twoperfectevents.com>',
-      subject: 'Thank you for contacting Two Perfect Events!',
-      react: EmailContactConfirm({ name: parsed.data.firstName })
-    })
+    await sendBatchEmail([
+      {
+        to: process.env.NODE_ENV === 'development' ? ['delivered@resend.dev'] : 'leah@twoperfectevents.com',
+        from: 'Two Perfect Events <contact@email.twoperfectevents.com>',
+        subject: `TPE form submission from ${parsed.data.firstName}<${parsed.data.email}>`,
+        react: EmailContactSubmit({
+          payload: { ...parsed.data, eventDate: formatLocalDate(parsed.data?.eventDate) }
+        })
+      },
+      {
+        to: parsed.data?.email || 'leah@twoperfectevents.com',
+        from: 'Two Perfect Events <contact@email.twoperfectevents.com>',
+        subject: 'Thank you for contacting Two Perfect Events!',
+        react: EmailContactConfirm({ name: parsed.data.firstName })
+      }
+    ])
 
     return { message: `Thank you! We will get back to you as soon as possible.` }
   } catch (error) {
     console.error('contact form error', error)
     return { message: errorMessage }
-  } finally {
-    // If newsletter is checked
-    if (parsed.data?.newsletter === 'true') {
-      const { firstName, lastName, email, phone, eventDate, comments, referral } = parsed.data
-      // Call resend Audience & Contacts APIs
-      await subscribeResend({ email, firstName, lastName })
-      // Add user to subscriptions list
-      const [person] = await createPerson({
-        firstName,
-        lastName,
-        email,
-        phone,
-        ...(eventDate && { eventDate: eventDate?.toISOString() }),
-        comments,
-        referral
-      })
-      const [subscription] = await createSubscription({ name: 'Newsletter' })
-      await createPersonsToSubscriptions({ personId: person.id, subscriptionId: subscription.id })
-    }
   }
+  // finally {
+  //   // If newsletter is checked
+  //   if (parsed.data?.newsletter === 'true') {
+  //     const { firstName, lastName, email, phone, eventDate, comments, referral } = parsed.data
+  //     fetch('/api/resend', {
+  //       method: 'POST',
+  //       body: JSON.stringify({ firstName, lastName, email, phone, eventDate, comments, referral })
+  //     })
+  //   }
+  // }
+  //     // Call resend Audience & Contacts APIs
+  //     await subscribeResend({ email, firstName, lastName })
+  //     // Add user to subscriptions list
+  //     const [person] = await createPerson({
+  //       firstName,
+  //       lastName,
+  //       email,
+  //       phone,
+  //       ...(eventDate && { eventDate: eventDate?.toISOString() }),
+  //       comments,
+  //       referral
+  //     })
+  //     const [subscription] = await createSubscription({ name: 'Newsletter' })
+  //     await createPersonsToSubscriptions({ personId: person.id, subscriptionId: subscription.id })
+  //   }
+  // }
   // } else {
   //   console.error('turnstile contact form error', outcome)
   //   return { message: errorMessage }
@@ -168,8 +176,8 @@ export async function subscribeAction(prevState: FormState, data: FormData): Pro
 
     // Send confirmation email to user
     await sendEmail({
-      to: parsed.data?.email || 'leah@twoperfectevents.com',
-      from: 'Two Perfect Events <no-reply@email.twoperfectevents.com>',
+      to: parsed.data?.email || 'me@jlee.cool',
+      from: 'Two Perfect Events <contact@email.twoperfectevents.com>',
       subject: 'Thank you for contacting Two Perfect Events!',
       react: EmailContactConfirm({
         previewText: 'Thanks for subscribing to our newsletter!',
@@ -190,7 +198,7 @@ export async function subscribeAction(prevState: FormState, data: FormData): Pro
 }
 
 // Call resend Audience & Contacts APIs
-const subscribeResend = async ({
+export const subscribeResend = async ({
   email,
   firstName,
   lastName
@@ -199,7 +207,6 @@ const subscribeResend = async ({
   firstName?: string
   lastName?: string
 }) => {
-  // const contact = await fetch('/api/resend', { method: 'POST', body: JSON.stringify({ email }) })
   const resend = new Resend(process.env.RESEND_ADMIN_API_KEY!)
   if (!resend || !email) {
     console.error(

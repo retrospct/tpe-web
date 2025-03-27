@@ -1,3 +1,5 @@
+import { createPerson, createPersonsToSubscriptions, createSubscription } from '@/drizzle/db'
+import { subscribeResend } from '@/lib/actions'
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
@@ -5,22 +7,35 @@ export async function POST(req: Request) {
   try {
     const body = await req.json()
     // console.log('body', body)
+
+    const { firstName, lastName, email, phone, eventDate, comments, referral } = body
     // TODO: add a step to filter out only needed fields from body
     const resend = process.env.RESEND_ADMIN_API_KEY ? new Resend(process.env.RESEND_ADMIN_API_KEY) : null
 
-    if (!resend || !body.email) {
+    if (!resend || !email) {
       console.error('Resend is not configured. You need to add a RESEND_API_KEY in your .env file for emails to work.')
       return NextResponse.json({ error: 'Error initializing resend client' }, { status: 500 })
     }
-
-    // Create contact with user data
-    const names = body?.name?.trim()?.split(' ')
-    const firstName = names?.length > 0 ? names[0] : ''
-    const lastName = names?.length > 1 ? names.slice(1).join(' ') : ''
-    const contact = await resend.contacts.create({
-      email: body.email,
+    // Call resend Audience & Contacts APIs
+    await subscribeResend({ email, firstName, lastName })
+    // Add user to subscriptions list
+    const [person] = await createPerson({
       firstName,
       lastName,
+      email,
+      phone,
+      ...(eventDate && { eventDate: eventDate?.toISOString() }),
+      comments,
+      referral
+    })
+    const [subscription] = await createSubscription({ name: 'Newsletter' })
+    await createPersonsToSubscriptions({ personId: person.id, subscriptionId: subscription.id })
+
+    // Create contact with user data
+    const contact = await resend.contacts.create({
+      email: body.email,
+      ...(firstName && { firstName }),
+      ...(lastName && { lastName }),
       unsubscribed: false,
       audienceId: 'a4ebedf1-1f0e-4bd8-9a2d-dcb0516f9b90'
     })
