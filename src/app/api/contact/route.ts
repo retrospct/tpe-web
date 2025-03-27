@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     const email = await sendEmail({
       to: body?.email || 'me@jlee.cool',
       from: 'Two Perfect Events <contact@email.twoperfectevents.com>',
-      // replyTo: 'leah@email.twoperfectevents.com',
+      replyTo: 'contact@email.twoperfectevents.com',
       subject: body?.subject || 'Thank you for contacting Two Perfect Events!',
       react: EmailContactConfirm({ name: body?.name }),
       text: render(EmailContactConfirm({ name: body?.name }), { plainText: true })

@@ -29,8 +29,8 @@ export const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND
 export const sendEmail = async ({
   to,
   subject,
-  from = 'leah@email.twoperfectevents.com',
-  // replyTo = 'leah@email.twoperfectevents.com',
+  from = 'contact@email.twoperfectevents.com',
+  replyTo = 'contact@email.twoperfectevents.com',
   bcc,
   text = 'ERROR: No email template provided.',
   react
@@ -39,7 +39,7 @@ export const sendEmail = async ({
   to: string | string[]
   subject: string
   from?: string
-  // replyTo?: string
+  replyTo?: string
   bcc?: string
   text?: string
   react?: ReactElement<any, string | JSXElementConstructor<any>> | ReactNode
@@ -59,7 +59,7 @@ export const sendEmail = async ({
     from,
     to,
     bcc,
-    // replyTo,
+    replyTo,
     subject,
     ...(react ? { react } : { text })
     // ...(text && { text }),
