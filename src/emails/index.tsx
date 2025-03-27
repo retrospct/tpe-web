@@ -29,8 +29,8 @@ export const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND
 export const sendEmail = async ({
   to,
   subject,
-  from = 'team@email.twoperfectevents.com',
-  replyTo = 'noreply@mail.twoperfectevents.com',
+  from = 'leah@email.twoperfectevents.com',
+  // replyTo = 'leah@email.twoperfectevents.com',
   bcc,
   text = 'ERROR: No email template provided.',
   react
@@ -39,17 +39,18 @@ export const sendEmail = async ({
   to: string | string[]
   subject: string
   from?: string
-  replyTo?: string
+  // replyTo?: string
   bcc?: string
   text?: string
   react?: ReactElement<any, string | JSXElementConstructor<any>> | ReactNode
   // marketing?: boolean
 }) => {
-  if (process.env.NODE_ENV === 'development' && !resend) {
-    // Set up a fake email client for development
-    console.info(`Email to ${to} with subject ${subject} sent from ${from || process.env.NEXT_PUBLIC_APP_NAME}`)
-    return Promise.resolve()
-  } else if (!resend) {
+  // if (process.env.NODE_ENV === 'development' && !resend) {
+  //   // Set up a fake email client for development
+  //   console.info(`Email to ${to} with subject ${subject} sent from ${from || process.env.NEXT_PUBLIC_APP_NAME}`)
+  //   return Promise.resolve()
+  // } else if
+  if (!resend) {
     console.error('Resend is not configured. You need to add a RESEND_API_KEY in your .env file for emails to work.')
     return Promise.resolve()
   }
@@ -58,7 +59,7 @@ export const sendEmail = async ({
     from,
     to,
     bcc,
-    replyTo,
+    // replyTo,
     subject,
     ...(react ? { react } : { text })
     // ...(text && { text }),
