@@ -29,7 +29,7 @@ export const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND
 export const sendEmail = async ({
   to,
   subject,
-  from = 'contact@email.twoperfectevents.com',
+  from = 'Two Perfect Events <contact@email.twoperfectevents.com>',
   replyTo = 'contact@email.twoperfectevents.com',
   bcc,
   text = 'ERROR: No email template provided.',
