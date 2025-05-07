@@ -6,8 +6,9 @@ import { EmailContactConfirm } from '@/emails/contact-confirm'
 import { EmailContactSubmit } from '@/emails/contact-submit'
 import { formatLocalDate } from '@/lib/utils'
 import { contactFormSchema, subscribeFormSchema } from '@/lib/validations'
-// import { headers } from 'next/headers'
+import { render } from '@react-email/render'
 import { Resend } from 'resend'
+// import { headers } from 'next/headers'
 
 export type FormState = {
   message: string
@@ -83,10 +84,11 @@ export async function submitContactAction(prevState: FormState, data: FormData):
         })
       },
       {
-        to: parsed.data?.email || 'leah@twoperfectevents.com',
+        to: parsed.data?.email || 'me@jlee.cool',
         from: 'Two Perfect Events <contact@email.twoperfectevents.com>',
         subject: 'Thank you for contacting Two Perfect Events!',
-        react: EmailContactConfirm({ name: parsed.data.firstName })
+        react: EmailContactConfirm({ name: parsed.data.firstName }),
+        text: await render(EmailContactConfirm({ name: parsed.data.firstName }), { plainText: true })
       }
     ])
 
@@ -168,22 +170,25 @@ export async function subscribeAction(prevState: FormState, data: FormData): Pro
     const { email } = parsed.data
     // Call resend Audience & Contacts APIs
     await subscribeResend({ email })
-    // // Add user to subscriptions list
+    // Add user to subscriptions list
     // const [person] = await createPerson({ email })
     // const [subscription] = await createSubscription({ name: 'Newsletter' })
     // await createPersonsToSubscriptions({ personId: person.id, subscriptionId: subscription.id })
+
+    const emailProps = {
+      previewText: 'Thanks for subscribing to our newsletter!',
+      subject: 'Thank you for subscribing!',
+      body: `We'll periodically send interesting content and updates on what the Two Perfect Events team are up to.`,
+      name: parsed.data.email
+    }
 
     // Send confirmation email to user
     await sendEmail({
       to: parsed.data?.email || 'me@jlee.cool',
       from: 'Two Perfect Events <contact@email.twoperfectevents.com>',
       subject: 'Thank you for contacting Two Perfect Events!',
-      react: EmailContactConfirm({
-        previewText: 'Thanks for subscribing to our newsletter!',
-        subject: 'Thank you for subscribing!',
-        body: `We'll periodically send interesting content and updates on what the Two Perfect Events team are up to.`,
-        name: parsed.data.email
-      })
+      react: EmailContactConfirm(emailProps),
+      text: await render(EmailContactConfirm(emailProps), { plainText: true })
     })
 
     return { message: `Thank you for subscribing to our newsletter!` }

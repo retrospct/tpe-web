@@ -72,6 +72,8 @@ export function ContactForm() {
       // turnstileRef.current?.execute()
       formAction(formData)
     })
+
+    // If newsletter is checked, subscribe user to newsletter
     if (data?.newsletter)
       await fetch('/api/resend/subscribe', {
         method: 'POST',
