@@ -16,7 +16,7 @@ const DismissableBanner: React.FC<DismissableBannerProps> = ({ children }) => {
 
   return (
     <div className="relative flex w-full items-center justify-center bg-accent px-1 py-2 md:p-2">
-      <p className="text-balance text-center text-xs font-medium italic leading-normal text-primary md:text-sm">
+      <p className="text-balance text-center text-sm font-medium italic leading-normal text-primary md:text-base">
         {children}
       </p>
       <button

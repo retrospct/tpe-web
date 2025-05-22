@@ -44,6 +44,7 @@ export default function RootLayout({
               href="mailto:leah@twoperfectevents.com?subject=Content%20Creator%20%2B%20Event%20Producer%20Role"
               target="_blank"
               rel="noopener noreferrer"
+              className="underline underline-offset-2"
             >
               leah@twoperfectevents.com
             </a>{' '}
