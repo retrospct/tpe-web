@@ -39,8 +39,15 @@ export default function RootLayout({
       <body>
         <PHProvider>
           <DismissableBanner>
-            We&apos;re hiring for our next content creator + event producer! Please send a resume to
-            leah@twoperfectevents.com to apply.
+            We&apos;re hiring for our next content creator + event producer! Please send a resume to{' '}
+            <a
+              href="mailto:leah@twoperfectevents.com?subject=Content%20Creator%20%2B%20Event%20Producer%20Role"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              leah@twoperfectevents.com
+            </a>{' '}
+            to apply.
           </DismissableBanner>
           <Nav />
           {/* <PostHogPageView /> */}
@@ -63,13 +70,3 @@ export default function RootLayout({
 // >
 //   Send Event
 // </button> */}
-
-{
-  /* <a
-  href="mailto:leah@twoperfectevents.com?subject=Content%20Creator%20%2B%20Event%20Producer%20Role"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  leah@twoperfectevents.com
-</a> */
-}
