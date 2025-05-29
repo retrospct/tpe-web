@@ -1,7 +1,5 @@
 # Two Perfect Events Website
 
-*(Note: This repository is currently private but will be made public soon.)*
-
 This repository contains the source code for the [Two Perfect Events website](https://twoperfectevents.com).
 
 Two Perfect Events is a premier wedding and event planning company specializing in creating chic and multicultural experiences for creative souls. This website showcases their portfolio, details their services, hosts a blog, and provides ways for potential clients to get in touch.
