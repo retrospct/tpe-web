@@ -21,7 +21,7 @@ interface EmailContactSubmitProps {
 const defaultPayload = {
   name: 'Guest',
   email: 'missing@email.com',
-  phone: '4158301739',
+  phone: '(555) 555-5555',
   eventDate: '2024-01-01',
   comments: 'Hello, world!',
   referral: 'Yelp page',
