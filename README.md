@@ -19,12 +19,14 @@ The website is built with a modern tech stack including:
 *   **Email:** [Resend](https://resend.com/) for contact forms and communication.
 *   **Deployment:** [Vercel](https://vercel.com/)
 
-## Key Features
+## Pages & Features
 
-*   **Event Portfolio:** Displays a gallery of past events and weddings.
+*   **Home:** Primary landing marketing page.
+*   **About:** About the team and company.
+*   **Events Portfolio:** Displays a gallery of past events and weddings.
+*   **Services:** Details the event planning and design services offered.
+*   **Contact:** Allows potential clients to inquire about services.
 *   **Blog:** Features articles, tips, and inspiration related to event planning.
-*   **Services Listing:** Details the event planning and design services offered.
-*   **Contact Forms:** Allows potential clients to inquire about services.
 *   **Newsletter Subscription:** Enables users to sign up for updates and tips.
 
 ## Getting Started (Development)
