@@ -1,4 +1,3 @@
-import DismissableBanner from '@/components/DismissableBanner'
 import Footer from '@/components/Footer'
 import Nav from '@/components/Nav'
 import { Toaster } from '@/components/ui/sonner'
@@ -38,7 +37,7 @@ export default function RootLayout({
       <PreloadResources />
       <body>
         <PHProvider>
-          <DismissableBanner>
+          {/* <DismissableBanner>
             We&apos;re hiring for our next{' '}
             <a
               href="https://docs.google.com/document/d/1pTmsLTd9r_YqceeNNKLTYg6Ff1nd9WI71IBB4ZVFV-8/edit?usp=sharing"
@@ -58,7 +57,7 @@ export default function RootLayout({
               leah@twoperfectevents.com
             </a>{' '}
             to apply.
-          </DismissableBanner>
+          </DismissableBanner> */}
           <Nav />
           {/* <PostHogPageView /> */}
           {children}
