@@ -37,27 +37,6 @@ export default function RootLayout({
       <PreloadResources />
       <body>
         <PHProvider>
-          {/* <DismissableBanner>
-            We&apos;re hiring for our next{' '}
-            <a
-              href="https://docs.google.com/document/d/1pTmsLTd9r_YqceeNNKLTYg6Ff1nd9WI71IBB4ZVFV-8/edit?usp=sharing"
-              target="_blank"
-              rel="noopener"
-              className="underline underline-offset-2"
-            >
-              content creator + event producer
-            </a>
-            ! Please send a resume to{' '}
-            <a
-              href="mailto:leah@twoperfectevents.com?subject=Content%20Creator%20%2B%20Event%20Producer%20Role"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-2"
-            >
-              leah@twoperfectevents.com
-            </a>{' '}
-            to apply.
-          </DismissableBanner> */}
           <Nav />
           {/* <PostHogPageView /> */}
           {children}
