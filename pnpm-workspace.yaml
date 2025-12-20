@@ -5,4 +5,6 @@ onlyBuiltDependencies:
   - bufferutil
   - core-js
   - esbuild
+  - sharp
+  - unrs-resolver
   - utf-8-validate
