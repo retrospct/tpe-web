@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
         page?.url && revalidatePath(page.url)
       })
     } else {
-      revalidateTag('prismic')
+      await revalidateTag('prismic', {})
     }
 
     return NextResponse.json({ revalidated: true, now: Date.now() })
