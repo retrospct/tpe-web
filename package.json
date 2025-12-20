@@ -10,7 +10,8 @@
     "next:dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
     "slicemachine": "start-slicemachine",
     "format": "prettier --write .",
@@ -69,7 +70,6 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.3",
     "@headlessui/tailwindcss": "^0.2.1",
     "@slicemachine/adapter-next": "^0.3.91",
     "@tailwindcss/forms": "^0.5.7",
