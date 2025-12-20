@@ -1,0 +1,8 @@
+onlyBuiltDependencies:
+  - '@scarf/scarf'
+  - '@swc/core'
+  - '@vercel/speed-insights'
+  - bufferutil
+  - core-js
+  - esbuild
+  - utf-8-validate
