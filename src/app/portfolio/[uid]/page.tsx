@@ -12,11 +12,12 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 type Props = {
-  params: { uid: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Promise<{ uid: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-export default async function Page({ params, searchParams }: Props) {
+export default async function Page(props: Props) {
+  const params = await props.params;
   const client = createClient()
   const page = await client.getByUID('event', params.uid).catch(() => notFound())
 
@@ -48,7 +49,8 @@ export default async function Page({ params, searchParams }: Props) {
   )
 }
 
-export async function generateMetadata({ params, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
   const client = createClient()
   const page = await client.getByUID('event', params.uid).catch(() => notFound())
   const previousImages = (await parent).openGraph?.images || []

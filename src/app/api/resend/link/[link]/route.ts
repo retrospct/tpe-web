@@ -1,7 +1,8 @@
 import { isValidUrl } from '@/lib/utils'
 import { NextResponse } from 'next/server'
 
-export async function GET(req: Request, { params }: { params: { link: string } }) {
+export async function GET(req: Request, props: { params: Promise<{ link: string }> }) {
+  const params = await props.params;
   try {
     const { link } = params
     // Can add a isValid URL or string check here

@@ -12,8 +12,8 @@ import { contactFormSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { format } from 'date-fns'
 import { CalendarIcon, Loader2, XIcon } from 'lucide-react'
-import { useRef, useTransition } from 'react'
-import { useFormState, useFormStatus } from 'react-dom'
+import { useActionState, useRef, useTransition } from 'react'
+import { useFormStatus } from 'react-dom'
 import { useForm } from 'react-hook-form'
 // import Turnstile, { useTurnstile } from 'react-turnstile'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -28,10 +28,10 @@ const PopoverTrigger = dynamic(() => import('../ui/popover').then((mod) => mod.P
 
 export function ContactForm() {
   const [isPending, startTransition] = useTransition()
-  const [state, formAction] = useFormState(submitContactAction, {
+  const [state, formAction, pending] = useActionState(submitContactAction, {
     message: ''
   })
-  const { pending } = useFormStatus()
+  const { pending: formPending } = useFormStatus()
   const form = useForm<z.infer<typeof contactFormSchema>>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -88,7 +88,7 @@ export function ContactForm() {
   }
 
   const resetForm = () => {
-    if (state?.message !== '' && !state.issues && (!pending || !isPending)) {
+    if (state?.message !== '' && !state.issues && !pending && !isPending) {
       formRef.current?.reset()
       form.reset()
       // form.setValue('referral', '')
@@ -316,7 +316,7 @@ export function ContactForm() {
           SUBMIT
           {(pending || isPending) && <Loader2 className="ml-2 h-6 w-6 animate-spin" />}
         </Button>
-        {state?.message !== '' && !state.issues && (!pending || !isPending) && (
+        {state?.message !== '' && !state.issues && !pending && !isPending && (
           <div data-testid="success-message" className="w-full text-center text-primary">
             {state.message}
           </div>
