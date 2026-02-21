@@ -84,8 +84,8 @@ export function constructMetadata({
       ...(image && {
         images: [
           { url: image, width: 1200, height: 630 },
-          { url: imageSquared, width: 600, height: 600 },
-          ...previousImages
+          ...(imageSquared ? [{ url: imageSquared, width: 600, height: 600 }] : []),
+          ...(previousImages || [])
         ]
       }),
       ...(url && { url }),
