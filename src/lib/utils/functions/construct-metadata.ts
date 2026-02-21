@@ -37,7 +37,7 @@ export function constructMetadata({
   image = '/social-card.jpg', // 1866x980 on dub, we use 1200x630
   // imageAlt = og:image:alt
   // imageDimensions = { width: 1200, height: 630 },
-  imageSquared = '/social-card_squared.jpg', // 600x600
+  imageSquared = null as string | null, // 600x600 — pass explicitly to include a square variant
   // imageSquaredAlt = og:image:alt
   // imageAltDimensions = { width: 1200, height: 1200 },
   icons = [
