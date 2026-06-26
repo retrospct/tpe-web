@@ -125,7 +125,10 @@ export const blurImage = (
       blurUrl.search = imgParams.toString()
       // const blurUrl = `${url}?auto=compress&fm=blurhash&w=${imgW / 10}&h=${imgH / 10}&q=${opts?.quality || 25}&dpr=1`
       // const blurUrl = `${url}?w=${imgW / 4}&h=${imgH / 4}&q=${opts.quality}&blur=${opts.blur}&dpr=1`
-      const res = await fetch(blurUrl.href)
+      const controller = new AbortController()
+      const timeout = setTimeout(() => controller.abort(), 3000)
+      const res = await fetch(blurUrl.href, { signal: controller.signal })
+      clearTimeout(timeout)
       // const hash = await res.text()
       // return resolve(hash)
       // const base64Img = blurHashToDataURL(hash, imgW / 10, imgH / 10)
