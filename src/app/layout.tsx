@@ -12,7 +12,7 @@ import { PreloadResources } from './preload-resources'
 import { PHProvider } from './providers'
 // import dynamic from 'next/dynamic'
 
-import DismissableBanner from '@/components/DismissableBanner'
+// import DismissableBanner from '@/components/DismissableBanner'
 import '../styles/globals.css'
 
 // const PostHogPageView = dynamic(() => import('./ph-pageview'), { ssr: false })
@@ -38,7 +38,7 @@ export default function RootLayout({
       <PreloadResources />
       <body>
         <PHProvider>
-          <DismissableBanner>
+          {/* <DismissableBanner>
             We are seeking our next{' '}
             <a
               href="https://docs.google.com/document/d/1pTmsLTd9r_YqceeNNKLTYg6Ff1nd9WI71IBB4ZVFV-8/edit?tab=t.0"
@@ -58,7 +58,7 @@ export default function RootLayout({
               the job description
             </a>{' '}
             for more details.
-          </DismissableBanner>
+          </DismissableBanner> */}
           <Nav />
           {/* <PostHogPageView /> */}
           {children}
