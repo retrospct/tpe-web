@@ -1,4 +1,5 @@
 'use client'
+import { HoneypotField } from '@/components/HoneypotField'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
@@ -74,8 +75,9 @@ export function SubscribeForm({
           })(evt)
           resetForm()
         }}
-        className={cn('my-2 flex items-start justify-center gap-2', className)}
+        className={cn('relative my-2 flex items-start justify-center gap-2', className)}
       >
+        <HoneypotField />
         <FormField
           control={form.control}
           name="email"

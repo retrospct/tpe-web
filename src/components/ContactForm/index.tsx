@@ -1,4 +1,5 @@
 'use client'
+import { HoneypotField } from '@/components/HoneypotField'
 import { Button } from '@/components/ui/button'
 // import { Calendar } from '@/components/ui/calendar'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -122,8 +123,9 @@ export function ContactForm() {
           })(evt)
           // resetForm()
         }}
-        className="my-8 w-full max-w-md space-y-4 px-2 text-center"
+        className="relative my-8 w-full max-w-md space-y-4 px-2 text-center"
       >
+        <HoneypotField />
         <FormField
           control={form.control}
           name="email"
