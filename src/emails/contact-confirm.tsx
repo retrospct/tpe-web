@@ -22,7 +22,7 @@ interface EmailContactConfirmProps {
   body?: string
 }
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_HOST ? `https://${process.env.NEXT_PUBLIC_APP_HOST}` : '/static'
+const baseUrl = process.env.NEXT_PUBLIC_APP_HOST ? `https://${process.env.NEXT_PUBLIC_APP_HOST}` : 'https://twoperfectevents.com'
 
 export const EmailContactConfirm = ({
   name = 'guest',

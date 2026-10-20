@@ -1,14 +1,15 @@
 'use server'
 
 // import { InsertContactForm } from '@/drizzle/schema'
-import { sendBatchEmail, sendEmail } from '@/emails'
+import { CONTACT_REPLY_TO, sendBatchEmail, sendEmail } from '@/emails'
 import { EmailContactConfirm } from '@/emails/contact-confirm'
 import { EmailContactSubmit } from '@/emails/contact-submit'
+import { getClientIp, isHoneypotTripped, rateLimit } from '@/lib/anti-spam'
 import { formatLocalDate } from '@/lib/utils'
 import { contactFormSchema, subscribeFormSchema } from '@/lib/validations'
 import { render } from '@react-email/render'
+import { headers } from 'next/headers'
 import { Resend } from 'resend'
-// import { headers } from 'next/headers'
 
 export type FormState = {
   message: string
@@ -16,14 +17,30 @@ export type FormState = {
   issues?: string[]
 }
 
-// async function IP() {
-//   const FALLBACK_IP_ADDRESS = '0.0.0.0'
-//   const forwardedFor = headers().get('x-forwarded-for')
-//   if (forwardedFor) return forwardedFor.split(',')[0] ?? FALLBACK_IP_ADDRESS
-//   return headers().get('x-real-ip') ?? FALLBACK_IP_ADDRESS
-// }
+const CONTACT_SUCCESS = `Thank you! We will get back to you as soon as possible.`
+const SUBSCRIBE_SUCCESS = `Thank you for subscribing to our newsletter!`
+
+/**
+ * Returns true when the submission should be silently dropped (bot or flood).
+ * Callers respond with the normal success message so abusers get no signal.
+ */
+async function shouldDropSubmission(form: string, data: FormData): Promise<boolean> {
+  if (isHoneypotTripped(data)) {
+    console.warn(`[${form}] honeypot tripped, dropping submission`)
+    return true
+  }
+  const ip = getClientIp(await headers())
+  const { ok } = rateLimit(`${form}:${ip}`)
+  if (!ok) {
+    console.warn(`[${form}] rate limit exceeded for ${ip}, dropping submission`)
+    return true
+  }
+  return false
+}
 
 export async function submitContactAction(prevState: FormState, data: FormData): Promise<FormState> {
+  if (await shouldDropSubmission('contact', data)) return { message: CONTACT_SUCCESS }
+
   const formData = Object.fromEntries(data)
   // console.log('contact_form_raw', formData)
   const parsed = contactFormSchema.safeParse(formData)
@@ -78,21 +95,24 @@ export async function submitContactAction(prevState: FormState, data: FormData):
       {
         to: process.env.NODE_ENV === 'development' ? ['delivered@resend.dev'] : 'leah@twoperfectevents.com',
         from: 'Two Perfect Events <contact@email.twoperfectevents.com>',
-        subject: `TPE form submission from ${parsed.data.firstName}<${parsed.data.email}>`,
+        // Reply goes straight back to the person who submitted the form.
+        replyTo: parsed.data.email,
+        subject: `TPE form submission from ${parsed.data.firstName} ${parsed.data.lastName}`,
         react: EmailContactSubmit({
           payload: { ...parsed.data, eventDate: formatLocalDate(parsed.data?.eventDate) }
         })
       },
       {
-        to: parsed.data?.email || 'me@jlee.cool',
+        to: parsed.data.email,
         from: 'Two Perfect Events <contact@email.twoperfectevents.com>',
+        replyTo: CONTACT_REPLY_TO,
         subject: 'Thank you for contacting Two Perfect Events!',
         react: EmailContactConfirm({ name: parsed.data.firstName }),
         text: await render(EmailContactConfirm({ name: parsed.data.firstName }), { plainText: true })
       }
     ])
 
-    return { message: `Thank you! We will get back to you as soon as possible.` }
+    return { message: CONTACT_SUCCESS }
   } catch (error) {
     console.error('contact form error', error)
     return { message: errorMessage }
@@ -130,6 +150,8 @@ export async function submitContactAction(prevState: FormState, data: FormData):
 }
 
 export async function subscribeAction(prevState: FormState, data: FormData): Promise<FormState> {
+  if (await shouldDropSubmission('subscribe', data)) return { message: SUBSCRIBE_SUCCESS }
+
   const formData = Object.fromEntries(data)
   const parsed = subscribeFormSchema.safeParse(formData)
   console.log('subscribe_form', parsed)
@@ -179,20 +201,22 @@ export async function subscribeAction(prevState: FormState, data: FormData): Pro
       previewText: 'Thanks for subscribing to our newsletter!',
       subject: 'Thank you for subscribing!',
       body: `We'll periodically send interesting content and updates on what the Two Perfect Events team are up to.`,
-      name: parsed.data.email
+      name: 'there'
     }
 
     // Send confirmation email to user
     await sendEmail({
-      to: parsed.data?.email || 'me@jlee.cool',
+      to: email,
       from: 'Two Perfect Events <contact@email.twoperfectevents.com>',
-      subject: 'Thank you for contacting Two Perfect Events!',
+      replyTo: CONTACT_REPLY_TO,
+      subject: emailProps.subject,
       react: EmailContactConfirm(emailProps),
       text: await render(EmailContactConfirm(emailProps), { plainText: true })
     })
 
-    return { message: `Thank you for subscribing to our newsletter!` }
+    return { message: SUBSCRIBE_SUCCESS }
   } catch (error) {
+    console.error('subscribe form error', error)
     return { message: errorMessage }
   }
   // } else {

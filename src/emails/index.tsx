@@ -26,6 +26,13 @@ import { CreateBatchOptions, CreateEmailOptions, Resend } from 'resend'
 
 export const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 
+/**
+ * Reply-To for mail we send to the public. Must be a monitored mailbox on the
+ * root domain. Mail is sent *from* the `email.` subdomain, which may not have
+ * an inbox behind it, so replies would otherwise bounce or vanish.
+ */
+export const CONTACT_REPLY_TO = 'leah@twoperfectevents.com'
+
 interface SendEmailProps {
   to: string | string[]
   subject: string
@@ -41,7 +48,7 @@ export const sendEmail = async ({
   to,
   subject,
   from = 'Two Perfect Events <contact@email.twoperfectevents.com>',
-  replyTo = 'contact@email.twoperfectevents.com',
+  replyTo = CONTACT_REPLY_TO,
   // bcc,
   // text = 'ERROR: No email template provided.',
   react,
